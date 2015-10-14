@@ -35,9 +35,21 @@ public class SimulationResult {
 	 * Formats the properties of this <code>SimulationResult</code> as an
 	 * ASCII-Table suitable for printing to a console.
 	 * 
-	 * @return a <code>String</code> holding a formatted table.
+	 * @return a <code>String</code> holding  formatted table.
 	 */
 	public String createOutputTable() {
+
+		String output;
+		int livingWoodspace=15;
+		int deadWoodspace=23;
+		int harvestedWoodspace=16;
+		int processedWoddspace=18;
+		int boundCO2space=16;
+
+		output = "-----------------------------------------------------------------------------------------------------" ;
+		output += "| Jahr | lebendes Holz | verbleibendes Totholz | geerntets Holz | verwertetes Holz | gebundenes CO2 |";
+		output += "|  1   | 2,90908       | 0,89789               | 15,897234      | 18,7238409       | 2              |";
+		output += "-----------------------------------------------------------------------------------------------------" ;
 		return null;
 	}
 
