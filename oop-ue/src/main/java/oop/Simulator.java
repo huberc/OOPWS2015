@@ -17,17 +17,10 @@ public class Simulator {
 	 */
 	public SimulationResult simulate(SimulationRequest req, int years) {
 
-
 		double totalLivingWoodpast = 0;
 		double totalDeadWoodpast = 0;
 		double totalHarvestedWoodpast = 0;
 		double totalProcessedWoodpast = 0;
-		double totalBoundCO2past = 0;
-
-		double startlivingWood = req.getStartLivingWood();
-		double startDeadWood = req.getStartDeadWood();
-		double avgHarvestYearly = req.getAvgHarvestYearly();
-		double avgWoodGrowth = req.getAvgWoodGrowth();
 
 		SimulationResult retVal = new SimulationResult(years);
 		SimulationRecord rec = retVal.new SimulationRecord();
