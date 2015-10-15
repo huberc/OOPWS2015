@@ -1,5 +1,7 @@
 package oop;
 
+import java.util.Arrays;
+
 /**
  * This class describes the result of a simulation. The state of the environment
  * is stored in a snapshot for each simulated year, i.e. the result has one
@@ -162,6 +164,19 @@ public class SimulationResult {
 			this.totalBoundCO2 = totalBoundCO2;
 		}
 
+		@Override
+		public String toString() {
+			return "SimulationRecord [totalLivingWood=" + totalLivingWood + ", totalDeadWood=" + totalDeadWood
+					+ ", totalHarvestedWood=" + totalHarvestedWood + ", totalProcessedWood=" + totalProcessedWood
+					+ ", totalBoundCO2=" + totalBoundCO2 + "]";
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		return "SimulationResult [dataPerYears=" + Arrays.toString(dataPerYears) + ", yearsSimulated=" + yearsSimulated
+				+ "]";
 	}
 
 }
