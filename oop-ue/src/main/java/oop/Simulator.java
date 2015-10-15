@@ -23,9 +23,11 @@ public class Simulator {
 		double totalProcessedWoodpast = 0;
 
 		SimulationResult retVal = new SimulationResult(years);
-		SimulationRecord rec = retVal.new SimulationRecord();
+		SimulationRecord rec;
 
 		for(int i=0;i<=years;i++){
+
+			 rec = retVal.new SimulationRecord();
 
 			if(i==0){
 
@@ -43,8 +45,8 @@ public class Simulator {
 				rec.setTotalBoundCO2(req.getStartLivingWood() + req.getStartDeadWood());
 			}
 			else{
-				rec.setTotalLivingWood(totalLivingWoodpast + req.getAvgWoodGrowth() - req.getAvgHarvestYearly() - req.getAvgDeadWoodYearly());
-				totalLivingWoodpast = totalLivingWoodpast + req.getAvgWoodGrowth() - req.getAvgHarvestYearly() - req.getAvgDeadWoodYearly();
+				rec.setTotalLivingWood(totalLivingWoodpast + req.getAvgWoodGrowth() - req.getAvgHarvestYearly());
+				totalLivingWoodpast = totalLivingWoodpast + req.getAvgWoodGrowth() - req.getAvgHarvestYearly();
 
 				rec.setTotalDeadWood((totalDeadWoodpast + req.getAvgDeadWoodYearly()) *(1-req.getAvgDecompWoodYearly()));
 				totalDeadWoodpast = (totalDeadWoodpast + req.getAvgDeadWoodYearly()) *(1-req.getAvgDecompWoodYearly());
