@@ -16,6 +16,8 @@ public class SimulationResult {
 	 */
 	private SimulationRecord[] dataPerYears;
 
+	private int yearsSimulated;
+
 	/**
 	 * Creates a new <code>SimulationResult</code> with a pre-initialized
 	 * storage for <code>yearsSimulated + 1</code> years where the general
@@ -25,6 +27,7 @@ public class SimulationResult {
 	 *            the number of years simulated
 	 */
 	public SimulationResult(int yearsSimulated) {
+		this.yearsSimulated = yearsSimulated;
 		this.dataPerYears = new SimulationRecord[yearsSimulated + 1];
 	}
 
@@ -55,6 +58,10 @@ public class SimulationResult {
 		return this.dataPerYears[year];
 	}
 
+	public int getYearsSimulated() {
+		return yearsSimulated;
+	}
+
 	/**
 	 * Formats the properties of this <code>SimulationResult</code> as an
 	 * ASCII-Table suitable for printing to a console.
@@ -76,7 +83,7 @@ public class SimulationResult {
 		output += "-----------------------------------------------------------------------------------------------------";
 		return null;
 	}
-	
+
 	/**
 	 * A <code>SimulationRecord</code> represents the state of the simulated
 	 * environment at a specific point in time.
