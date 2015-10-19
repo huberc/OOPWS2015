@@ -70,21 +70,27 @@ public class SimulationResult {
 	 * 
 	 * @return a <code>String</code> holding formatted table.
 	 */
-	public String createOutputTable() {
+    int counter = 0;
+    int yearSpace = 6;
+
+	/* public String createOutputTable() {
 
 		String output;
-		int livingWoodspace = 15;
-		int deadWoodspace = 23;
-		int harvestedWoodspace = 16;
-		int processedWoddspace = 18;
-		int boundCO2space = 16;
 
-		output = "-----------------------------------------------------------------------------------------------------";
-		output += "| Jahr | lebendes Holz | verbleibendes Totholz | geerntets Holz | verwertetes Holz | gebundenes CO2 |";
-		output += "|  1   | 2,90908       | 0,89789               | 15,897234      | 18,7238409       | 2              |";
+		output = "----------------------------------------------------------------------------------------------------- \n";
+		output += "| Jahr | lebendes Holz | verbleibendes Totholz | geerntets Holz | verwertetes Holz | gebundenes CO2 | \n";
+        for (int i = 0; i <= yearsSimulated; i++) {
+            output += "|" + i;
+            for(int j = String.valueOf(i).length(); j < yearSpace; j++) {
+                output += " ";
+            }
+            output += Arrays.toString(dataPerYears);
+            output += "| \n";
+        }
 		output += "-----------------------------------------------------------------------------------------------------";
-		return null;
+		return output;
 	}
+	*/
 
 	/**
 	 * A <code>SimulationRecord</code> represents the state of the simulated
@@ -164,19 +170,68 @@ public class SimulationResult {
 			this.totalBoundCO2 = totalBoundCO2;
 		}
 
-		@Override
-		public String toString() {
-			return "SimulationRecord [totalLivingWood=" + totalLivingWood + ", totalDeadWood=" + totalDeadWood
-					+ ", totalHarvestedWood=" + totalHarvestedWood + ", totalProcessedWood=" + totalProcessedWood
-					+ ", totalBoundCO2=" + totalBoundCO2 + "]";
-		}
+        public String toString() {
+            int livingWoodspace = 15;
+            int deadWoodspace = 23;
+            int harvestedWoodspace = 16;
+            int processedWoddspace = 18;
+            int boundCO2space = 16;
 
+            String line = "|" + counter;
+            ++counter;
+            for(int j = String.valueOf(counter).length(); j < yearSpace; j++) {
+                line += " ";
+            }
+
+            line += "|" + totalLivingWood;
+            if(String.valueOf(totalLivingWood).length() < livingWoodspace) {
+                for(int i = String.valueOf(totalLivingWood).length(); i < livingWoodspace; i++) {
+                    line += " ";
+                }
+            }
+
+            line += "|" + totalDeadWood;
+            if(String.valueOf(totalDeadWood).length() < deadWoodspace) {
+                for(int i = String.valueOf(totalDeadWood).length(); i < deadWoodspace; i++) {
+                    line += " ";
+                }
+            }
+
+            line += "|" + totalHarvestedWood;
+            if(String.valueOf(totalHarvestedWood).length() < harvestedWoodspace) {
+                for(int i = String.valueOf(totalHarvestedWood).length(); i < harvestedWoodspace; i++) {
+                    line += " ";
+                }
+            }
+
+            line += "|" + totalProcessedWood;
+            if(String.valueOf(totalProcessedWood).length() < processedWoddspace) {
+                for(int i = String.valueOf(totalProcessedWood).length(); i < processedWoddspace; i++) {
+                    line += " ";
+                }
+            }
+
+            line += "|" + totalBoundCO2;
+            if(String.valueOf(totalBoundCO2).length() < boundCO2space) {
+                for(int i = String.valueOf(totalBoundCO2).length(); i < boundCO2space; i++) {
+                    line += " ";
+                }
+            }
+
+            return line + "| \n";
+		}
 	}
 
-	@Override
 	public String toString() {
-		return "SimulationResult [dataPerYears=" + Arrays.toString(dataPerYears) + ", yearsSimulated=" + yearsSimulated
-				+ "]";
+
+        String output;
+
+        output = "\n" + "----------------------------------------------------------------------------------------------------- \n";
+        output += "| Jahr | lebendes Holz | verbleibendes Totholz | geerntets Holz | verwertetes Holz | gebundenes CO2 | \n";
+        output += Arrays.toString(dataPerYears).replace("[", "").replace("]", "").replace(", ", "");
+        output += "-----------------------------------------------------------------------------------------------------";
+
+        return output;
 	}
 
 }
