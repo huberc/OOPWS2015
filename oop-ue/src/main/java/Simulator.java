@@ -1,6 +1,6 @@
 
 
-public abstract class Simulator {
+public class Simulator {
 
 	/**
 	 * Executes a simulation run based on a given <code>SimulationRequest</code>
@@ -13,7 +13,7 @@ public abstract class Simulator {
 	 * @return a <code>SimulationResult</code> describing the state of the wood
 	 *         after <code>years</code> years
 	 */
-	public abstract SimulationResult simulate(SimulationRequest req, int years) {
+	public SimulationResult simulate(SimulationRequest req, int years) {
 
 		double totalLivingWoodpast = 0;
 		double totalDeadWoodpast = 0;
