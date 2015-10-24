@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.Map;
+
 /**
  * Definition of a usage model (e.g. wood used for energy, public space,
  * tourism, etc.) The <code>IWoodUsageModel</code> defines a
@@ -15,7 +18,7 @@ public interface IWoodUsageModel {
 	 * Calculates the action to perform on the forest
 	 * 
 	 * @param numTrees
-	 *            the number of trees in the forest
+	 *            the number and type of living trees currently in the forest
 	 * @param avgSpacePerTree
 	 *            the space each tree uses (and/or shadows) in square meters
 	 * @param avgGroundShadowing
@@ -23,7 +26,8 @@ public interface IWoodUsageModel {
 	 *            cannot be reached by the sun)
 	 * @return a <code>WoodUsageAction</code> calculated based on above params
 	 */
-	WoodUsageAction calcAction(int numTrees, double avgSpacePerTree,
-			double avgGroundShadowing);
+	List<WoodUsageAction> calcAction(
+			Map<Class<? extends AbstractTree>, Integer> currentTrees,
+			double avgSpacePerTree, double avgGroundShadowing);
 
 }
