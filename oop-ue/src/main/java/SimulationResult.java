@@ -105,6 +105,11 @@ public class SimulationResult {
 		 * understanding not done here in order to centralize all calculations.
 		 */
 		private double totalBoundCO2;
+		
+		/**
+		 * The money that was made from selling wood.
+		 */
+		private double profitMade;
 
 		public double getTotalLivingWood() {
 			return totalLivingWood;
@@ -154,6 +159,14 @@ public class SimulationResult {
 			this.treesByType = treesByType;
 		}
 		
+		public double getProfitMade() {
+			return profitMade;
+		}
+
+		public void setProfitMade(double profitMade) {
+			this.profitMade = profitMade;
+		}
+		
         public String toString() {
             int livingWoodspace = 15;
             int deadWoodspace = 23;
@@ -200,6 +213,7 @@ public class SimulationResult {
 
             return line + "| \n";
 		}
+
 	}
 
 	@Override
