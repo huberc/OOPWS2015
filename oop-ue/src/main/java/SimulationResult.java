@@ -1,5 +1,5 @@
-
-
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class describes the result of a simulation. The state of the environment
@@ -73,6 +73,11 @@ public class SimulationResult {
 	public class SimulationRecord {
 
 		/**
+		 * A map of tree counts by type (e.g. Oak=3; Maple=5, ...)
+		 */
+		private Map<Class<? extends Tree>, Integer> treesByType = new HashMap<>();
+		
+		/**
 		 * Total amount of living wood in the wood.
 		 */
 		private double totalLivingWood;
@@ -97,7 +102,7 @@ public class SimulationResult {
 		 * in time.
 		 * 
 		 * NOTE: Could be calculated in the <code>Result</code>, for ease of
-		 * understanding not done here in order to cantralize all calculations.
+		 * understanding not done here in order to centralize all calculations.
 		 */
 		private double totalBoundCO2;
 
@@ -141,11 +146,19 @@ public class SimulationResult {
 			this.totalBoundCO2 = totalBoundCO2;
 		}
 
+		public Map<Class<? extends Tree>, Integer> getTreesByType() {
+			return treesByType;
+		}
+
+		public void setTreesByType(Map<Class<? extends Tree>, Integer> treesByType) {
+			this.treesByType = treesByType;
+		}
+		
         public String toString() {
             int livingWoodspace = 15;
             int deadWoodspace = 23;
             int harvestedWoodspace = 20;
-            int processedWoddspace = 20;
+            int processedWoodspace = 20;
             int boundCO2space = 20;
 
             String line = "";
@@ -172,8 +185,8 @@ public class SimulationResult {
             }
 
             line += "|" + totalProcessedWood;
-            if(String.valueOf(totalProcessedWood).length() < processedWoddspace) {
-                for(int i = String.valueOf(totalProcessedWood).length(); i < processedWoddspace; i++) {
+            if(String.valueOf(totalProcessedWood).length() < processedWoodspace) {
+                for(int i = String.valueOf(totalProcessedWood).length(); i < processedWoodspace; i++) {
                     line += " ";
                 }
             }
@@ -189,6 +202,7 @@ public class SimulationResult {
 		}
 	}
 
+	@Override
 	public String toString() {
 		int yearSpace = 6;
 		
