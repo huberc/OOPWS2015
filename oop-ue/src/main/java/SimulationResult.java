@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -166,77 +167,40 @@ public class SimulationResult {
 		public void setProfitMade(double profitMade) {
 			this.profitMade = profitMade;
 		}
-		
+
 		@Override
-        public String toString() {
-            int livingWoodspace = 15;
-            int deadWoodspace = 23;
-            int harvestedWoodspace = 20;
-            int processedWoodspace = 20;
-            int boundCO2space = 20;
-
-            String line = "";
-            
-            line += "|" + totalLivingWood;
-            if(String.valueOf(totalLivingWood).length() < livingWoodspace) {
-                for(int i = String.valueOf(totalLivingWood).length(); i < livingWoodspace; i++) {
-                    line += " ";
-                }
-            }
-
-            line += "|" + totalDeadWood;
-            if(String.valueOf(totalDeadWood).length() < deadWoodspace) {
-                for(int i = String.valueOf(totalDeadWood).length(); i < deadWoodspace; i++) {
-                    line += " ";
-                }
-            }
-
-            line += "|" + totalHarvestedWood;
-            if(String.valueOf(totalHarvestedWood).length() < harvestedWoodspace) {
-                for(int i = String.valueOf(totalHarvestedWood).length(); i < harvestedWoodspace; i++) {
-                    line += " ";
-                }
-            }
-
-            line += "|" + totalProcessedWood;
-            if(String.valueOf(totalProcessedWood).length() < processedWoodspace) {
-                for(int i = String.valueOf(totalProcessedWood).length(); i < processedWoodspace; i++) {
-                    line += " ";
-                }
-            }
-
-            line += "|" + totalBoundCO2;
-            if(String.valueOf(totalBoundCO2).length() < boundCO2space) {
-                for(int i = String.valueOf(totalBoundCO2).length(); i < boundCO2space; i++) {
-                    line += " ";
-                }
-            }
-
-            return line + "| \n";
+		public String toString() {
+			StringBuilder builder = new StringBuilder();
+			builder.append("SimulationRecord [treesByType=");
+			builder.append(treesByType);
+			builder.append(", totalLivingWood=");
+			builder.append(totalLivingWood);
+			builder.append(", totalDeadWood=");
+			builder.append(totalDeadWood);
+			builder.append(", totalHarvestedWood=");
+			builder.append(totalHarvestedWood);
+			builder.append(", totalProcessedWood=");
+			builder.append(totalProcessedWood);
+			builder.append(", totalBoundCO2=");
+			builder.append(totalBoundCO2);
+			builder.append(", profitMade=");
+			builder.append(profitMade);
+			builder.append("]\n");
+			return builder.toString();
 		}
+		
 
 	}
 
 	@Override
 	public String toString() {
-		int yearSpace = 6;
-		
-        String output;
-
-        output = "\n" + "--------------------------------------------------------------------------------------------------------------- \n";
-        output += "| Jahr | lebendes Holz | verbleibendes Totholz |   geerntets Holz   |  verwertetes Holz  |   gebundenes CO2   | \n";
-        String line;
-        for(int i = 0; i < this.dataPerYears.length; i++){
-            line = "|" + i;
-            for(int j = String.valueOf(i).length(); j < yearSpace; j++) {
-                line += " ";
-            }
-            line += this.dataPerYears[i].toString();
-            output += line;
-        }
-        output += "---------------------------------------------------------------------------------------------------------------";
-
-        return output;
+		StringBuilder builder = new StringBuilder();
+		builder.append("SimulationResult [dataPerYears=\n");
+		builder.append(Arrays.toString(dataPerYears));
+		builder.append(", yearsSimulated=");
+		builder.append(yearsSimulated);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }
