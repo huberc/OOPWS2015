@@ -6,13 +6,26 @@ import java.util.Map;
  * @author Ines
  *
  */
-public class Forest {
+public class Forest implements Cloneable {
 
-	List<AbstractTree> trees;
+	private List<AbstractTree> trees;
 
 	// @Ines - Eventuell hier statt der Liste eine Map verwenden (nachdem ja
 	// harvest und plant types verwenden), zB:
 	// Map<Class<? extends AbstractTree>, List<? extends AbstractTree>> trees;
+
+	/**
+	 * The size of the forest (in square meters)
+	 */
+	private double forestSize;
+
+	/**
+	 * The percentage of space on the forest floor that is shadowed by trees.
+	 * Assumption for shadowing is the exact mid of day at equatorial latitude,
+	 * i.e. the sun comes from directly above and the space shadowed by an
+	 * individual tree is exactly it's <code>spaceUsed</code> property.
+	 */
+	private double percentGroundShadowed;
 
 	/**
 	 * Lets the wood grow.
@@ -70,14 +83,35 @@ public class Forest {
 		// https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html
 	}
 
+	/**
+	 * Calculates the total amount of living wood (in cubic meters) in the
+	 * forest
+	 * 
+	 * @return the added-up <code>wood</code> properties of all living trees
+	 */
 	public double getTotalLivingWood() {
 		// TODO - sum of living trees
 		return 0.0;
 	}
 
+	/**
+	 * Calculates the total amount of dead wood in the forest
+	 * 
+	 * @return the added-up <code>wood</code> properties of all dead trees
+	 */
 	public double getTotalDeadWood() {
 		// TODO - sum of currently rotting trees
 		return 0.0;
+	}
+
+	/**
+	 * Performs a deep copy of this <code>Forest</code>
+	 */
+	@Override
+	public Forest clone() {
+		// @Ines - hier musst nix machen, die brauch ich für den Test, schreib
+		// ich mir dann selber
+		return null;
 	}
 
 	/**
@@ -86,6 +120,15 @@ public class Forest {
 	 * @return the number of living trees (by tree type) currently in the forest
 	 */
 	public Map<Class<? extends AbstractTree>, Integer> getNumberOfTreesByType() {
+		// TODO
 		return null;
+	}
+
+	public double getForestSize() {
+		return forestSize;
+	}
+
+	public double getPercentGroundShadowed() {
+		return percentGroundShadowed;
 	}
 }

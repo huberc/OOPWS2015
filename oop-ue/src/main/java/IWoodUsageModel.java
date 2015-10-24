@@ -15,7 +15,7 @@ import java.util.Map;
 public interface IWoodUsageModel {
 
 	/**
-	 * Calculates the action to perform on the forest
+	 * Calculates the action(s) to perform on the forest
 	 * 
 	 * @param numTrees
 	 *            the number and type of living trees currently in the forest
@@ -24,7 +24,8 @@ public interface IWoodUsageModel {
 	 * @param avgGroundShadowing
 	 *            the percentage of forest floor that is shadowed by trees (i.e
 	 *            cannot be reached by the sun)
-	 * @return a <code>WoodUsageAction</code> calculated based on above params
+	 * @return a list of <code>WoodUsageAction</code>s calculated based on above
+	 *         params
 	 */
 	List<WoodUsageAction> calcAction(
 			Map<Class<? extends AbstractTree>, Integer> currentTrees,
