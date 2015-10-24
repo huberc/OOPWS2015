@@ -42,7 +42,7 @@ public class SimulationRequest {
 	/**
 	 * Weather conditions for the simulation
 	 */
-	private WeatherConditions weatherConditions;
+	private IWeatherModel weatherModel;
 
 
 	public double getStartLivingWood() {
@@ -101,11 +101,11 @@ public class SimulationRequest {
 		this.avgDecompWoodYearly = avgDecompWoodYearly;
 	}
 
-	public WeatherConditions getWeatherConditions() {
-		return weatherConditions;
+	public IWeatherModel getWeatherModel() {
+		return this.weatherModel;
 	}
 
-	public void setWeatherConditions(WeatherConditions weatherConditions) {
-		this.weatherConditions = weatherConditions;
+	public void setWeatherModel(IWeatherModel weatherModel) {
+		this.weatherModel = weatherModel;
 	}
 }

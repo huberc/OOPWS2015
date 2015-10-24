@@ -167,6 +167,7 @@ public class SimulationResult {
 			this.profitMade = profitMade;
 		}
 		
+		@Override
         public String toString() {
             int livingWoodspace = 15;
             int deadWoodspace = 23;
