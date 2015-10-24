@@ -76,7 +76,7 @@ public class SimulationResult {
 		/**
 		 * A map of tree counts by type (e.g. Oak=3; Maple=5, ...)
 		 */
-		private Map<Class<? extends Tree>, Integer> treesByType = new HashMap<>();
+		private Map<Class<? extends AbstractTree>, Integer> treesByType = new HashMap<>();
 		
 		/**
 		 * Total amount of living wood in the wood.
@@ -152,11 +152,11 @@ public class SimulationResult {
 			this.totalBoundCO2 = totalBoundCO2;
 		}
 
-		public Map<Class<? extends Tree>, Integer> getTreesByType() {
+		public Map<Class<? extends AbstractTree>, Integer> getTreesByType() {
 			return treesByType;
 		}
 
-		public void setTreesByType(Map<Class<? extends Tree>, Integer> treesByType) {
+		public void setTreesByType(Map<Class<? extends AbstractTree>, Integer> treesByType) {
 			this.treesByType = treesByType;
 		}
 		
