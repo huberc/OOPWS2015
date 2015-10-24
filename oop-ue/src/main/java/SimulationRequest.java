@@ -1,4 +1,9 @@
-
+/**
+ *
+ *
+ * @author Christoph
+ *
+*/
 
 public class SimulationRequest {
 
@@ -40,10 +45,19 @@ public class SimulationRequest {
 	private double avgDecompWoodYearly;
 
 	/**
-	 * Weather conditions for the simulation
+	 * Weathermodel for the simulation
 	 */
 	private IWeatherModel weatherModel;
 
+	/**
+	 * Woadusagemodel for the simulation
+	 */
+	private IWoodUsageModel woodUsageModel;
+
+	/**
+	 * Ecconomicmodel for the simulation
+	 */
+	private IEconomicModel economicModel;
 
 	public double getStartLivingWood() {
 		return startLivingWood;
@@ -107,5 +121,21 @@ public class SimulationRequest {
 
 	public void setWeatherModel(IWeatherModel weatherModel) {
 		this.weatherModel = weatherModel;
+	}
+
+	public IWoodUsageModel getWoodUsageModel() {
+		return woodUsageModel;
+	}
+
+	public void setWoodUsageModel(IWoodUsageModel woodUsageModel) {
+		this.woodUsageModel = woodUsageModel;
+	}
+
+	public IEconomicModel getEconomicModel() {
+		return economicModel;
+	}
+
+	public void setEconomicModel(IEconomicModel economicModel) {
+		this.economicModel = economicModel;
 	}
 }
