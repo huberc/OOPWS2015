@@ -56,6 +56,7 @@ public class Simulator {
 
 				//due to the results of the models the specific forest methode have to be called
 				// TODO zuerst action auf den wald oder zuerst wachsen ?
+				// A: Erst wachsen würd ich sagen
 				forest.grow(req.getWeatherModel().calcWeatherForYear(i));
 
 				List<WoodUsageAction> woodUsageActionList = req.getWoodUsageModel().calcAction(forest.getNumberOfTreesByType(), forest.getForestSize(), forest.getPercentGroundShadowed());
@@ -72,6 +73,7 @@ public class Simulator {
 				// BUGFIX - living wood must also be reduced by dead wood (-> dead wood doesn't just grow)
 				//rec.setTotalLivingWood(totalLivingWoodpast + req.getAvgWoodGrowth() - req.getAvgHarvestYearly());
 				// TODO what to do with startliving and startdeadwood ?
+				// in jahr null aus dem forest holen, in Jahr 0 keine Aktionen, also kein grow oder cut machen
 				rec.setTotalLivingWood(forest.getTotalLivingWood());
 
 				// BUGFIX - deadwood should only start rotting after 1 year
