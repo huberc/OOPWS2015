@@ -11,4 +11,9 @@ public class DummyEconomicModel implements IEconomicModel {
 		return 5.0;
 	}
 
+	@Override
+	public double calcGuV(int variableCosts, double harvestedWood, int fixCosts){
+		return (double) fixCosts +(harvestedWood*variableCosts);
+	}
+
 }

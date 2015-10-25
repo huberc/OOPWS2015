@@ -17,4 +17,6 @@ public interface IEconomicModel {
 	 */
 	double calcPricePerMeter(int simulationYear);
 
+	double calcGuV(int variableCosts, double harvestedWood, int fixCosts);
+
 }
