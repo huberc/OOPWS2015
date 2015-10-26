@@ -38,25 +38,18 @@ public class Simulator {
 
 			// Intials values saved for displaying it.
 			if(i==0){
+				rec.setTotalLivingWood(forest.getTotalLivingWood());
 
-				rec.setTotalLivingWood(req.getStartLivingWood());
-				totalLivingWoodpast = req.getStartLivingWood();
+				rec.setTotalDeadWood(forest.getTotalDeadWood());
 
-				rec.setTotalDeadWood(req.getStartDeadWood());
-				totalDeadWoodpast = req.getStartDeadWood();
+				rec.setTotalHarvestedWood(0.0);
+				rec.setTotalProcessedWood(0.0);
 
-				rec.setTotalHarvestedWood(0);
-
-				rec.setTotalProcessedWood(0);
-				totalProcessedWoodpast = 0;
-
-				rec.setTotalBoundCO2(req.getStartLivingWood() + req.getStartDeadWood());
+				rec.setTotalBoundCO2(forest.getTotalLivingWood()+forest.getTotalDeadWood());
 			}
 			else{
 
 				//due to the results of the models the specific forest methode have to be called
-				// TODO zuerst action auf den wald oder zuerst wachsen ?
-				// A: Erst wachsen würd ich sagen
 				forest.grow(req.getWeatherModel().calcWeatherForYear(i));
 
 				List<WoodUsageAction> woodUsageActionList = req.getWoodUsageModel().calcAction(forest.getNumberOfTreesByType(), forest.getForestSize(), forest.getPercentGroundShadowed());
@@ -67,22 +60,13 @@ public class Simulator {
 					}
 					else{
 						forest.plantTrees(woodUsageActionList.get(j).getNumTreesToActOn(),woodUsageActionList.get(j).getTreeTypeToActOn());
+						rec.setTotalHarvestedWood(0.0);
 					}
 				}
 
-				// BUGFIX - living wood must also be reduced by dead wood (-> dead wood doesn't just grow)
-				//rec.setTotalLivingWood(totalLivingWoodpast + req.getAvgWoodGrowth() - req.getAvgHarvestYearly());
-				// TODO what to do with startliving and startdeadwood ?
-				// in jahr null aus dem forest holen, in Jahr 0 keine Aktionen, also kein grow oder cut machen
 				rec.setTotalLivingWood(forest.getTotalLivingWood());
 
-				// BUGFIX - deadwood should only start rotting after 1 year
 				rec.setTotalDeadWood(forest.getTotalDeadWood());
-
-				// BUGFIX - need to consider previously harvested wood
-				//rec.setTotalHarvestedWood(req.getAvgHarvestYearly() * (1-req.getAvgProcessedWoodYearly()));
-				// harvesting according to the result of the models
-				//rec.setTotalHarvestedWood(totalHarvestedWoodpast + req.getAvgHarvestYearly() * (1-req.getAvgProcessedWoodYearly()));
 
 				rec.setTotalProcessedWood(totalProcessedWoodpast + (rec.getTotalHarvestedWood()*req.getAvgProcessedWoodYearly()));
 				totalProcessedWoodpast = totalProcessedWoodpast + (rec.getTotalHarvestedWood()*req.getAvgProcessedWoodYearly());
@@ -90,6 +74,8 @@ public class Simulator {
 				rec.setTotalBoundCO2(forest.getTotalLivingWood()+forest.getTotalDeadWood()+rec.getTotalHarvestedWood());
 
 				rec.setProfitMade(req.getEconomicModel().calcGuV(req.getVariableCosts(),rec.getTotalHarvestedWood(),req.getFixCosts()));
+
+				rec.setTreesByType(forest.getNumberOfTreesByType());
 			}
 
 			retVal.addSimulationRecordForYear(rec,i);
