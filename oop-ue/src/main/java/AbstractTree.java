@@ -7,9 +7,18 @@
  */
 public abstract class AbstractTree {
 
-	/**
+    /**
+     * The age of a tree.
+     * tree height
+     * diameter of the tree trunk in 1.3m height
+     */
+    int age;
+    int height;
+    double diameter;
+
+    /**
 	 * Possible states of a tree. A living tree grows, a dead one rots.
-	 * 
+	 *
 	 * @author michael
 	 *
 	 */
@@ -20,7 +29,7 @@ public abstract class AbstractTree {
 	/**
 	 * The current state of the tree
 	 */
-	private TreeState state;
+	public TreeState state;
 
 	/**
 	 * The amount of wood on this tree.
@@ -45,7 +54,7 @@ public abstract class AbstractTree {
 	 * tree's age and the space available (for the tree to grow in width). When
 	 * a tree grows, it's <code>wood</code> and <code>usedSpace</code>
 	 * properties change. Exact growth function is implementation-specific.
-	 * 
+	 *
 	 * @param weather
 	 *            the current <code>WeatherConditions</code>
 	 * @param spaceAvailable
@@ -56,7 +65,7 @@ public abstract class AbstractTree {
 	 */
 	public abstract void grow(WeatherConditions weather, double spaceAvailable);
 
-	/**
+    /**
 	 * Lets the tree "rot", i.e. the amount of wood reduces according to an
 	 * implementation specific function.
 	 */
