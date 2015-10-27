@@ -11,16 +11,16 @@ public class BlackAlder extends AbstractTree {
 		double inf = 1.0;
 
 		if (temp < 3) {
-			double help = -4.0 - temp;
+			double help = 3.0 - temp;
 			inf -= help / 10.0;
 		} else if (temp > 14) {
-			double help = temp - 9.0;
+			double help = temp - 14.0;
 			inf -= help / 10.0;
 		} else if (rain < 450) {
-			double help = 400.0 - rain;
+			double help = 450.0 - rain;
 			inf -= help / 1000.0;
 		} else if (rain > 1300.0) {
-			double help = rain - 800.0;
+			double help = rain - 1300.0;
 			inf -= help / 1000.0;
 		}
 
@@ -41,7 +41,7 @@ public class BlackAlder extends AbstractTree {
 		// diameter grow
 		if (spaceAvailable > 0.1) {
 			if (this.getAge() <= 10) {
-				this.setDiameter(this.getDiameter() + this.getAge() / 10 * inf);
+				this.setDiameter(this.getDiameter() + ((double) this.getAge() / 10.0) * inf);
 			} else if ((this.getAge() > 10) && (this.getAge() <= 100)) {
 				this.setDiameter(this.getDiameter()
 						+ (5.98 * Math.pow(10, -4) * Math.pow(this.getAge(), 2)

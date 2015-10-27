@@ -192,14 +192,24 @@ public class Forest implements Cloneable {
 	/**
 	 * Gets the number of living trees (by tree type) currently in the forest
 	 * 
+	 * @param state
+	 *            the state of the trees to look at
 	 * @return the number of living trees (by tree type) currently in the forest
 	 */
-	public Map<Class<? extends AbstractTree>, Integer> getNumberOfTreesByType() {
+	public Map<Class<? extends AbstractTree>, Integer> getNumberOfTreesByType(
+			AbstractTree.TreeState requestedState) {
 		Set<Entry<Class<? extends AbstractTree>, List<AbstractTree>>> mySet = trees
 				.entrySet();
 		Map<Class<? extends AbstractTree>, Integer> result = new HashMap<>();
+		int treeCnt;
 		for (Entry<Class<? extends AbstractTree>, List<AbstractTree>> t : mySet) {
-			result.put(t.getKey(), t.getValue().size());
+			treeCnt = 0;
+			for(AbstractTree tree : t.getValue()){
+				if(tree.getState() == requestedState){
+					treeCnt++;
+				}
+			}
+			result.put(t.getKey(), treeCnt);
 		}
 		return result;
 	}
