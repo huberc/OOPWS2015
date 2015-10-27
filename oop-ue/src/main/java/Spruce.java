@@ -26,14 +26,18 @@ public class Spruce extends AbstractTree{
         }
 
         if (inf < 0) {
+            deathwood = wood;
             this.state = TreeState.DEAD;
+            return;
         }
 
         //height grow
         height += 0.02 * Math.pow(age, 2) * Math.pow(Math.E, (-0.1*age)) * inf;
 
         //diameter grow
-        diameter = 1/(1+Math.pow(Math.E, (-0.05*(age-60))));
+        if (spaceAvailable > 0.1) {
+            diameter = 1/(1+Math.pow(Math.E, (-0.05*(age-60))));
+        }
 
         //usable from the age of 9
         if (age < 9) {
@@ -47,9 +51,10 @@ public class Spruce extends AbstractTree{
         wood = useableWood *100/75;
 
         //change of used space
-        usedSpace = 0.0466 * Math.pow(diameter, 1.1778);
+        double r = 0.0466 * Math.pow(diameter*100, 1.1778);
+        usedSpace = Math.pow(r, 2)*Math.PI;
     }
     public void rot() {
-
+        wood = deathwood * Math.pow(Math.E, -0.1*age);
     }
 }

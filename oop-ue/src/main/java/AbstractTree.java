@@ -11,10 +11,12 @@ public abstract class AbstractTree {
      * The age of a tree.
      * tree height
      * diameter of the tree trunk in 1.3m height
+     * wood amount when state was changed
      */
     int age;
     int height;
     double diameter;
+    double deathwood;
 
     /**
 	 * Possible states of a tree. A living tree grows, a dead one rots.
@@ -75,6 +77,7 @@ public abstract class AbstractTree {
 		this.state = TreeState.DEAD;
 		double retVal = this.useablePercentage * this.wood;
 		this.wood = this.wood - retVal;
+        this.deathwood = this.wood;
 		this.usedSpace = 0;
 		return retVal;
 	}
