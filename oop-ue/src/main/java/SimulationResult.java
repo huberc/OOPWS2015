@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -77,7 +78,18 @@ public class SimulationResult {
 		 * A map of tree counts by type (e.g. Oak=3; Maple=5, ...)
 		 */
 		private Map<Class<? extends AbstractTree>, Integer> treesByType = new HashMap<>();
-		
+
+		/**
+		 * The weather conditions from the simulation year
+		 */
+		private WeatherConditions weather;
+
+		/**
+		 * All <code>WoodUsageActions</code> that were applied to the
+		 * <code>Forest</code> in the simulation year
+		 */
+		private List<WoodUsageAction> woodActions;
+
 		/**
 		 * Total amount of living wood in the wood.
 		 */
@@ -106,11 +118,32 @@ public class SimulationResult {
 		 * understanding not done here in order to centralize all calculations.
 		 */
 		private double totalBoundCO2;
-		
+
 		/**
 		 * The money that was made from selling wood.
 		 */
 		private double profitMade;
+
+		@Override
+		public String toString() {
+			StringBuilder builder = new StringBuilder();
+			builder.append("SimulationRecord [treesByType=");
+			builder.append(treesByType);
+			builder.append(", totalLivingWood=");
+			builder.append(totalLivingWood);
+			builder.append(", totalDeadWood=");
+			builder.append(totalDeadWood);
+			builder.append(", totalHarvestedWood=");
+			builder.append(totalHarvestedWood);
+			builder.append(", totalProcessedWood=");
+			builder.append(totalProcessedWood);
+			builder.append(", totalBoundCO2=");
+			builder.append(totalBoundCO2);
+			builder.append(", profitMade=");
+			builder.append(profitMade);
+			builder.append("]\n");
+			return builder.toString();
+		}
 
 		public double getTotalLivingWood() {
 			return totalLivingWood;
@@ -156,10 +189,11 @@ public class SimulationResult {
 			return treesByType;
 		}
 
-		public void setTreesByType(Map<Class<? extends AbstractTree>, Integer> treesByType) {
+		public void setTreesByType(
+				Map<Class<? extends AbstractTree>, Integer> treesByType) {
 			this.treesByType = treesByType;
 		}
-		
+
 		public double getProfitMade() {
 			return profitMade;
 		}
@@ -168,27 +202,21 @@ public class SimulationResult {
 			this.profitMade = profitMade;
 		}
 
-		@Override
-		public String toString() {
-			StringBuilder builder = new StringBuilder();
-			builder.append("SimulationRecord [treesByType=");
-			builder.append(treesByType);
-			builder.append(", totalLivingWood=");
-			builder.append(totalLivingWood);
-			builder.append(", totalDeadWood=");
-			builder.append(totalDeadWood);
-			builder.append(", totalHarvestedWood=");
-			builder.append(totalHarvestedWood);
-			builder.append(", totalProcessedWood=");
-			builder.append(totalProcessedWood);
-			builder.append(", totalBoundCO2=");
-			builder.append(totalBoundCO2);
-			builder.append(", profitMade=");
-			builder.append(profitMade);
-			builder.append("]\n");
-			return builder.toString();
+		public WeatherConditions getWeather() {
+			return weather;
 		}
-		
+
+		public void setWeather(WeatherConditions weather) {
+			this.weather = weather;
+		}
+
+		public List<WoodUsageAction> getWoodActions() {
+			return woodActions;
+		}
+
+		public void setWoodActions(List<WoodUsageAction> woodActions) {
+			this.woodActions = woodActions;
+		}
 
 	}
 
