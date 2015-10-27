@@ -19,6 +19,7 @@ public class Test {
 	public static void main(String[] args) {
 		Test simulatorTest = new Test();
 		// simulatorTest.testEnergyWoodThreeDecades();
+		System.out.println("UNIT TESTS\n");
 		System.out.println("Test of wood grow with okay conditions: "
 				+ simulatorTest.testWoodGrowthOptimal());
 		System.out.println("Test of trees dying: "
@@ -27,22 +28,31 @@ public class Test {
 				+ simulatorTest.testEnergyWoodModel());
 		System.out.println("Test of recovery wood usage model: "
 				+ simulatorTest.testRecoveryWoodUsageModel());
-
+		System.out.println("Test des linearen Wetter Models:");
+		System.out
+				.println("\tTeststatus für 3 Jahre und zwei unterschiedliche Simulationen: "
+						+ simulatorTest.testLinearWeahterModel());
+		System.out.println("Test des exponentialen Wetter Models:");
+		System.out
+				.println("\tTeststatus für 3 Jahre und zwei unterschiedliche Simulationen: "
+						+ simulatorTest.testExponentialWeatherModel());
+		System.out.println("Test des logarithmischen Wetter Models:");
+		System.out
+				.println("\tTeststatus für 3 Jahre und zwei unterschiedliche Simulationen: "
+						+ simulatorTest.testLogarithmicWeatherModel());
+		System.out.println("Test des Wirtschaftsmodel:");
+		System.out
+				.println("\tTeststatus: " + simulatorTest.testEconomicModel());
+		System.out.println("\n");
 		System.out.println("TEST RUN OF WOODGROWTH SIMULATION:\n");
 		System.out
 				.println("1. Test result content with only initial state, no simulation done at all:");
 		System.out.println("Test of initial state: "
 				+ simulatorTest.testInitialState());
-		simulatorTest.testEnergyWoodThreeDecades();
-
-		System.out.println("Test des linearen Wetter Models:");
-		System.out.println("\tTeststatus für 3 Jahre und zwei unterschiedliche Simulationen: "+simulatorTest.testLinearWeahterModel());
-		System.out.println("Test des exponentialen Wetter Models:");
-		System.out.println("\tTeststatus für 3 Jahre und zwei unterschiedliche Simulationen: "+simulatorTest.testExponentialWeatherModel());
-		System.out.println("Test des logarithmischen Wetter Models:");
-		System.out.println("\tTeststatus für 3 Jahre und zwei unterschiedliche Simulationen: "+simulatorTest.testLogarithmicWeatherModel());
-		System.out.println("Test des Wirtschaftsmodel:");
-		System.out.println("\tTeststatus: " + simulatorTest.testEconomicModel());
+		System.out.println("ENERGY WOOD SIM - THREE DECADES");
+		simulatorTest.runEnergyWoodThreeDecades();
+		System.out.println("RECOVERY WOOD SIM - FIVE DECADES");
+		simulatorTest.runRecoveryWoodFiveDecades();
 
 		/*
 		 * System.out.println(
@@ -218,19 +228,154 @@ public class Test {
 		return actions.size() == expectedTreesToCutAndReplant;
 	}
 
+	public boolean testLogarithmicWeatherModel() {
+		LogarithmicWeatherModel logarithmicWeatherModel = new LogarithmicWeatherModel(
+				3, 0.5, 3, 0.5);
+
+		if (!(areEqual(logarithmicWeatherModel.calcWeatherForYear(1)
+				.getRainfall(), 0.5) && areEqual(logarithmicWeatherModel
+				.calcWeatherForYear(1).getAvgTemperature(), 0.5)))
+			return false;
+		if (!(areEqual(logarithmicWeatherModel.calcWeatherForYear(2)
+				.getRainfall(), 2.5794) && areEqual(logarithmicWeatherModel
+				.calcWeatherForYear(2).getAvgTemperature(), 2.5794)))
+			return false;
+		if (!(areEqual(logarithmicWeatherModel.calcWeatherForYear(3)
+				.getRainfall(), 3.7958) && areEqual(logarithmicWeatherModel
+				.calcWeatherForYear(3).getAvgTemperature(), 3.7958)))
+			return false;
+
+		LogarithmicWeatherModel logarithmicWeatherModel1 = new LogarithmicWeatherModel(
+				4, 1, 6, 3);
+
+		if (!(areEqual(logarithmicWeatherModel1.calcWeatherForYear(1)
+				.getAvgTemperature(), 1.0) && areEqual(logarithmicWeatherModel1
+				.calcWeatherForYear(1).getRainfall(), 3.0)))
+			return false;
+		if (!(areEqual(logarithmicWeatherModel1.calcWeatherForYear(2)
+				.getAvgTemperature(), 3.7725) && areEqual(
+				logarithmicWeatherModel1.calcWeatherForYear(2).getRainfall(),
+				7.1588)))
+			return false;
+		if (!(areEqual(logarithmicWeatherModel1.calcWeatherForYear(3)
+				.getAvgTemperature(), 5.3944) && areEqual(
+				logarithmicWeatherModel1.calcWeatherForYear(3).getRainfall(),
+				9.59167)))
+			return false;
+
+		return true;
+	}
+
+	public boolean testExponentialWeatherModel() {
+
+		ExponentialWeatherModel exponentialWeatherModel = new ExponentialWeatherModel(
+				3, 0.00005, 3, 0.00005);
+
+		if (!(areEqual(exponentialWeatherModel.calcWeatherForYear(1)
+				.getRainfall(), 3.00015) && areEqual(exponentialWeatherModel
+				.calcWeatherForYear(1).getAvgTemperature(), 3.00015)))
+			return false;
+		if (!(areEqual(exponentialWeatherModel.calcWeatherForYear(2)
+				.getRainfall(), 3.0003) && areEqual(exponentialWeatherModel
+				.calcWeatherForYear(2).getAvgTemperature(), 3.0003)))
+			return false;
+		if (!(areEqual(exponentialWeatherModel.calcWeatherForYear(3)
+				.getRainfall(), 3.00045) && areEqual(exponentialWeatherModel
+				.calcWeatherForYear(3).getAvgTemperature(), 3.00045)))
+			return false;
+
+		ExponentialWeatherModel exponentialWeatherModel1 = new ExponentialWeatherModel(
+				4, 0.00002, 2, 0.00003);
+
+		if (!(areEqual(exponentialWeatherModel1.calcWeatherForYear(1)
+				.getAvgTemperature(), 4.00008) && areEqual(
+				exponentialWeatherModel1.calcWeatherForYear(1).getRainfall(),
+				2.00006)))
+			return false;
+		if (!(areEqual(exponentialWeatherModel1.calcWeatherForYear(2)
+				.getAvgTemperature(), 4.00016) && areEqual(
+				exponentialWeatherModel1.calcWeatherForYear(2).getRainfall(),
+				2.00012)))
+			return false;
+		if (!(areEqual(exponentialWeatherModel1.calcWeatherForYear(3)
+				.getAvgTemperature(), 4.00024) && areEqual(
+				exponentialWeatherModel1.calcWeatherForYear(3).getRainfall(),
+				2.00018)))
+			return false;
+
+		return true;
+	}
+
+	public boolean testLinearWeahterModel() {
+
+		LinearWeatherModel linearWeatherModel = new LinearWeatherModel(0.5, 8,
+				0.5, 8);
+
+		if (!(areEqual(linearWeatherModel.calcWeatherForYear(1).getRainfall(),
+				8.5) && areEqual(linearWeatherModel.calcWeatherForYear(1)
+				.getAvgTemperature(), 8.5)))
+			return false;
+		if (!(areEqual(linearWeatherModel.calcWeatherForYear(2).getRainfall(),
+				9.0) && areEqual(linearWeatherModel.calcWeatherForYear(2)
+				.getAvgTemperature(), 9.0)))
+			return false;
+		if (!(areEqual(linearWeatherModel.calcWeatherForYear(3).getRainfall(),
+				9.5) && areEqual(linearWeatherModel.calcWeatherForYear(3)
+				.getAvgTemperature(), 9.5)))
+			return false;
+
+		LinearWeatherModel linearWeatherModel1 = new LinearWeatherModel(0.4,
+				7.5, 0.6, 10);
+
+		if (!(areEqual(linearWeatherModel1.calcWeatherForYear(1)
+				.getAvgTemperature(), 7.9) && areEqual(linearWeatherModel1
+				.calcWeatherForYear(1).getRainfall(), 10.6)))
+			return false;
+		if (!(areEqual(linearWeatherModel1.calcWeatherForYear(2)
+				.getAvgTemperature(), 8.3) && areEqual(linearWeatherModel1
+				.calcWeatherForYear(2).getRainfall(), 11.2)))
+			return false;
+		if (!(areEqual(linearWeatherModel1.calcWeatherForYear(3)
+				.getAvgTemperature(), 8.7) && areEqual(linearWeatherModel1
+				.calcWeatherForYear(3).getRainfall(), 11.8)))
+			return false;
+
+		return true;
+	}
+
+	public boolean testEconomicModel() {
+
+		DummyEconomicModel economicModel = new DummyEconomicModel();
+
+		if (!(areEqual(economicModel.calcProfitPerMeter(100, 10), 1000.0)))
+			return false;
+		if (!(areEqual(economicModel.calcProfitPerMeter(50.5, 5), 252.5)))
+			return false;
+		if (!(areEqual(economicModel.calcCosts(3, 100.4, 50), 351.2)))
+			return false;
+		if (!(areEqual(economicModel.calcCosts(5, 100.0, 100), 600)))
+			return false;
+		if (!(areEqual(economicModel.calcProfit(50, 1000), 950)))
+			return false;
+		if (!(areEqual(economicModel.calcProfit(23.5, 189.3), 165.8)))
+			return false;
+
+		return true;
+	}
+
 	/**
 	 * Tests an energy wood usage over 30 years
 	 * 
 	 * 
 	 * @return
 	 */
-	public boolean testEnergyWoodThreeDecades() {
+	public void runEnergyWoodThreeDecades() {
 		SimulationRequest req = new SimulationRequest();
 
 		Map<Class<? extends AbstractTree>, Integer> trees = new HashMap<>();
 
 		trees.put(Spruce.class, 5);
-		trees.put(BlackAlder.class, 15);
+		trees.put(BlackAlder.class, 45);
 
 		Forest forest = new Forest(100.0, trees);
 
@@ -240,101 +385,47 @@ public class Test {
 		req.setVariableCosts(1);
 		req.setPricePerMeter(10);
 		req.setEconomicModel(new DummyEconomicModel());
-		req.setWeatherModel(new DummyWeatherModel());
-		req.setWoodUsageModel(new DummyWoodUsageModel());
+		req.setWeatherModel(new RealWorldWeatherModel(RealWorldWeatherModel.ModelingApproach.EXPONENTIAL, true));
+		req.setWoodUsageModel(new EnergyWoodUsageModel(0.95, Spruce.class));
 		// req.setWoodUsageModel(new EnergyWoodUsageModel(0.95, Spruce.class));
 
 		SimulationResult actual = this.sim.simulate(req, 30);
 		System.out.println("Result = "
 				+ SimulationDisplay.formatAsTable(actual));
-		return false;
-	}
-	public  boolean testLogarithmicWeatherModel(){
-		LogarithmicWeatherModel logarithmicWeatherModel= new LogarithmicWeatherModel(3,0.5,3,0.5);
-
-		if(!(areEqual(logarithmicWeatherModel.calcWeatherForYear(1).getRainfall(),0.5) &&areEqual(logarithmicWeatherModel.calcWeatherForYear(1).getAvgTemperature(),0.5)))
-			return  false;
-		if(!(areEqual(logarithmicWeatherModel.calcWeatherForYear(2).getRainfall(),2.5794) && areEqual(logarithmicWeatherModel.calcWeatherForYear(2).getAvgTemperature(),2.5794)))
-			return false;
-		if(!(areEqual(logarithmicWeatherModel.calcWeatherForYear(3).getRainfall(),3.7958) && areEqual(logarithmicWeatherModel.calcWeatherForYear(3).getAvgTemperature(),3.7958)))
-			return false;
-
-		LogarithmicWeatherModel logarithmicWeatherModel1= new LogarithmicWeatherModel(4,1,6,3);
-
-		if(!(areEqual(logarithmicWeatherModel1.calcWeatherForYear(1).getAvgTemperature(),1.0) &&areEqual(logarithmicWeatherModel1.calcWeatherForYear(1).getRainfall(),3.0)))
-			return  false;
-		if(!(areEqual(logarithmicWeatherModel1.calcWeatherForYear(2).getAvgTemperature(),3.7725) && areEqual(logarithmicWeatherModel1.calcWeatherForYear(2).getRainfall(),7.1588)))
-			return false;
-		if(!(areEqual(logarithmicWeatherModel1.calcWeatherForYear(3).getAvgTemperature(),5.3944) && areEqual(logarithmicWeatherModel1.calcWeatherForYear(3).getRainfall(),9.59167)))
-			return false;
-
-		return true;
-	}
-	public boolean testExponentialWeatherModel(){
-
-		ExponentialWeatherModel exponentialWeatherModel = new ExponentialWeatherModel(3,0.00005,3,0.00005);
-
-		if(!(areEqual(exponentialWeatherModel.calcWeatherForYear(1).getRainfall(),3.00015) &&areEqual(exponentialWeatherModel.calcWeatherForYear(1).getAvgTemperature(),3.00015)))
-			return  false;
-		if(!(areEqual(exponentialWeatherModel.calcWeatherForYear(2).getRainfall(),3.0003) && areEqual(exponentialWeatherModel.calcWeatherForYear(2).getAvgTemperature(),3.0003)))
-			return false;
-		if(!(areEqual(exponentialWeatherModel.calcWeatherForYear(3).getRainfall(),3.00045) && areEqual(exponentialWeatherModel.calcWeatherForYear(3).getAvgTemperature(),3.00045)))
-			return false;
-
-		ExponentialWeatherModel exponentialWeatherModel1 = new ExponentialWeatherModel(4,0.00002,2,0.00003);
-
-		if(!(areEqual(exponentialWeatherModel1.calcWeatherForYear(1).getAvgTemperature(),4.00008) &&areEqual(exponentialWeatherModel1.calcWeatherForYear(1).getRainfall(),2.00006)))
-			return  false;
-		if(!(areEqual(exponentialWeatherModel1.calcWeatherForYear(2).getAvgTemperature(),4.00016) && areEqual(exponentialWeatherModel1.calcWeatherForYear(2).getRainfall(),2.00012)))
-			return false;
-		if(!(areEqual(exponentialWeatherModel1.calcWeatherForYear(3).getAvgTemperature(),4.00024) && areEqual(exponentialWeatherModel1.calcWeatherForYear(3).getRainfall(),2.00018)))
-			return false;
-
-		return true;
-	}
-	public boolean testLinearWeahterModel(){
-
-		LinearWeatherModel linearWeatherModel = new LinearWeatherModel(0.5,8,0.5,8);
-
-		if(!(areEqual(linearWeatherModel.calcWeatherForYear(1).getRainfall(),8.5) &&areEqual(linearWeatherModel.calcWeatherForYear(1).getAvgTemperature(),8.5)))
-			return  false;
-		if(!(areEqual(linearWeatherModel.calcWeatherForYear(2).getRainfall(),9.0) && areEqual(linearWeatherModel.calcWeatherForYear(2).getAvgTemperature(),9.0)))
-			return false;
-		if(!(areEqual(linearWeatherModel.calcWeatherForYear(3).getRainfall(),9.5) && areEqual(linearWeatherModel.calcWeatherForYear(3).getAvgTemperature(),9.5)))
-			return false;
-
-		LinearWeatherModel linearWeatherModel1 = new LinearWeatherModel(0.4,7.5,0.6,10);
-
-		if(!(areEqual(linearWeatherModel1.calcWeatherForYear(1).getAvgTemperature(),7.9) &&areEqual(linearWeatherModel1.calcWeatherForYear(1).getRainfall(),10.6)))
-			return  false;
-		if(!(areEqual(linearWeatherModel1.calcWeatherForYear(2).getAvgTemperature(),8.3) && areEqual(linearWeatherModel1.calcWeatherForYear(2).getRainfall(),11.2)))
-			return false;
-		if(!(areEqual(linearWeatherModel1.calcWeatherForYear(3).getAvgTemperature(),8.7) && areEqual(linearWeatherModel1.calcWeatherForYear(3).getRainfall(),11.8)))
-			return false;
-
-		return true;
 	}
 
-	public boolean testEconomicModel(){
+	/**
+	 * Tests a recovery wood usage over 50 years
+	 * 
+	 * 
+	 * @return
+	 */
+	public void runRecoveryWoodFiveDecades() {
+		SimulationRequest req = new SimulationRequest();
 
-		DummyEconomicModel economicModel = new DummyEconomicModel();
+		Map<Class<? extends AbstractTree>, Integer> trees = new HashMap<>();
 
-		if(!(areEqual(economicModel.calcProfitPerMeter(100,10),1000.0)))
-			return false;
-		if(!(areEqual(economicModel.calcProfitPerMeter(50.5,5),252.5)))
-			return false;
-		if (!(areEqual(economicModel.calcCosts(3, 100.4, 50),351.2)))
-			return false;
-		if (!(areEqual(economicModel.calcCosts(5,100.0,100), 600)))
-			return false;
-		if (!(areEqual(economicModel.calcProfit(50, 1000),950)))
-			return false;
-		if (!(areEqual(economicModel.calcProfit(23.5,189.3), 165.8)))
-			return false;
+		trees.put(Spruce.class, 60);
+		trees.put(BlackAlder.class, 75);
 
+		Forest forest = new Forest(100.0, trees);
 
-		return true;
-	}
+		req.setAvgProcessedWoodYearly(0.5);
+		req.setForest(forest);
+		req.setFixCosts(100);
+		req.setVariableCosts(1);
+		req.setPricePerMeter(10);
+		req.setEconomicModel(new DummyEconomicModel());
+		req.setWeatherModel(new RealWorldWeatherModel(RealWorldWeatherModel.ModelingApproach.LINEAR, true));
+		req.setWoodUsageModel(new RecoveryWoodUsageModel(0.45));
+		// req.setWoodUsageModel(new EnergyWoodUsageModel(0.95, Spruce.class));
+
+		SimulationResult actual = this.sim.simulate(req, 50);
+		System.out.println("Result = "
+				+ SimulationDisplay.formatAsTable(actual));
+	}	
+	
+	
 	private static boolean compareResults(SimulationResult actual,
 			SimulationResult expected) {
 		System.out.println("Actual = "
