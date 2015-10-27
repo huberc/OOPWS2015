@@ -31,7 +31,7 @@ public class SimulationDisplay {
                 if (rec1.getWeather() != null) {
                     // no weather in year 0
                     zusatzinfo += "   Wetter:";
-                    zusatzinfo += "\n\t\t- Regenfall:\t\t\t\t"
+                    zusatzinfo += "\n\t\t- Regenfall:\t\t\t"
                             + rec1.getWeather().getRainfall();
                     zusatzinfo += "\n\t\t- Durchschnittstemperatur:\t"
                             + rec1.getWeather().getAvgTemperature() + "\n";

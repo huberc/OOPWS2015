@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,18 +12,27 @@ import java.util.Map;
  */
 public class Test {
 
-	private static final double CONSIDER_EQUAL_TRESHOLD = 0.0000001;
+	private static final double CONSIDER_EQUAL_TRESHOLD = 0.001;
 
 	private Simulator sim = new Simulator();
 
 	public static void main(String[] args) {
 		Test simulatorTest = new Test();
+		// simulatorTest.testEnergyWoodThreeDecades();
+		System.out.println("Test of wood grow with okay conditions: "
+				+ simulatorTest.testWoodGrowthOptimal());
+		System.out.println("Test of trees dying: "
+				+ simulatorTest.testTreeDying());
+		System.out.println("Test of energy wood usage model: "
+				+ simulatorTest.testEnergyWoodModel());
+		System.out.println("Test of recovery wood usage model: "
+				+ simulatorTest.testRecoveryWoodUsageModel());
+
 		System.out.println("TEST RUN OF WOODGROWTH SIMULATION:\n");
 		System.out
 				.println("1. Test result content with only initial state, no simulation done at all:");
 		System.out.println("Test of initial state: "
 				+ simulatorTest.testInitialState());
-		simulatorTest.testEnergyWoodThreeDecades();
 
 		/*
 		 * System.out.println(
@@ -88,110 +98,115 @@ public class Test {
 		return Test.compareResults(actual, expected);
 	}
 
-	// basic test for one year simulation based on hardcoded values
-	/*
-	 * public boolean testOneYear() { SimulationRequest req = new
-	 * SimulationRequest(); req.setStartDeadWood(10);
-	 * req.setStartLivingWood(10); req.setAvgWoodGrowth(10);
-	 * req.setAvgProcessedWoodYearly(0.5); req.setAvgHarvestYearly(10);
-	 * req.setAvgDecompWoodYearly(0.2); req.setAvgDeadWoodYearly(2);
-	 * SimulationResult actual = this.sim.simulate(req, 1);
-	 * 
-	 * // reference result SimulationResult expected = new SimulationResult(1);
-	 * 
-	 * SimulationResult.SimulationRecord rec = expected.new SimulationRecord();
-	 * rec.setTotalBoundCO2(20); rec.setTotalDeadWood(10);
-	 * rec.setTotalHarvestedWood(0); rec.setTotalLivingWood(10);
-	 * rec.setTotalProcessedWood(0); expected.addSimulationRecordForYear(rec,
-	 * 0);
-	 * 
-	 * SimulationResult.SimulationRecord rec1 = expected.new SimulationRecord();
-	 * rec1.setTotalDeadWood(10.0 * 0.8 + 2); rec1.setTotalHarvestedWood(10 -
-	 * 0.5 * 10); rec1.setTotalLivingWood(20 - 10 - 2);
-	 * rec1.setTotalProcessedWood(5);
-	 * rec1.setTotalBoundCO2(rec1.getTotalLivingWood() + rec1.getTotalDeadWood()
-	 * + rec1.getTotalHarvestedWood());
-	 * expected.addSimulationRecordForYear(rec1, 1);
-	 * 
-	 * return Test.compareResults(actual, expected); }
-	 * 
-	 * // blackbox test of calculations in simulator in order to verify if the
-	 * simulator works according to specification public boolean testFourYears()
-	 * { SimulationRequest req = new SimulationRequest();
-	 * req.setStartDeadWood(15); req.setStartLivingWood(30);
-	 * req.setAvgWoodGrowth(8); req.setAvgProcessedWoodYearly(0.5);
-	 * req.setAvgHarvestYearly(1); req.setAvgDecompWoodYearly(0.5);
-	 * req.setAvgDeadWoodYearly(2);
-	 * 
-	 * SimulationResult actual = this.sim.simulate(req, 4);
-	 * 
-	 * // reference result SimulationResult expected = new SimulationResult(4);
-	 * 
-	 * SimulationResult.SimulationRecord rec = expected.new SimulationRecord();
-	 * rec.setTotalBoundCO2(req.getStartDeadWood() + req.getStartLivingWood());
-	 * rec.setTotalDeadWood(req.getStartDeadWood());
-	 * rec.setTotalHarvestedWood(0);
-	 * rec.setTotalLivingWood(req.getStartLivingWood());
-	 * rec.setTotalProcessedWood(0); expected.addSimulationRecordForYear(rec,
-	 * 0);
-	 * 
-	 * SimulationResult.SimulationRecord rec1 = expected.new SimulationRecord();
-	 * rec1.setTotalDeadWood((rec.getTotalDeadWood() * (1 -
-	 * req.getAvgDecompWoodYearly()) + req.getAvgDeadWoodYearly()));
-	 * rec1.setTotalHarvestedWood(rec.getTotalHarvestedWood() +
-	 * (req.getAvgHarvestYearly() * (1 - req.getAvgProcessedWoodYearly())));
-	 * rec1.setTotalLivingWood(rec.getTotalLivingWood() + req.getAvgWoodGrowth()
-	 * - req.getAvgDeadWoodYearly() - req.getAvgHarvestYearly());
-	 * rec1.setTotalProcessedWood(rec.getTotalProcessedWood() +
-	 * req.getAvgHarvestYearly() * req.getAvgProcessedWoodYearly());
-	 * rec1.setTotalBoundCO2(rec1.getTotalLivingWood() + rec1.getTotalDeadWood()
-	 * + rec1.getTotalHarvestedWood());
-	 * expected.addSimulationRecordForYear(rec1, 1);
-	 * 
-	 * SimulationResult.SimulationRecord rec2 = expected.new SimulationRecord();
-	 * rec2.setTotalDeadWood((rec1.getTotalDeadWood() * (1 -
-	 * req.getAvgDecompWoodYearly()) + req.getAvgDeadWoodYearly()));
-	 * rec2.setTotalHarvestedWood(rec1.getTotalHarvestedWood() +
-	 * (req.getAvgHarvestYearly() * (1 - req.getAvgProcessedWoodYearly())));
-	 * rec2.setTotalLivingWood(rec1.getTotalLivingWood() +
-	 * req.getAvgWoodGrowth() - req.getAvgDeadWoodYearly() -
-	 * req.getAvgHarvestYearly());
-	 * rec2.setTotalProcessedWood(rec1.getTotalProcessedWood() +
-	 * req.getAvgHarvestYearly() * req.getAvgProcessedWoodYearly());
-	 * rec2.setTotalBoundCO2(rec2.getTotalLivingWood() + rec2.getTotalDeadWood()
-	 * + rec2.getTotalHarvestedWood());
-	 * expected.addSimulationRecordForYear(rec2, 2);
-	 * 
-	 * SimulationResult.SimulationRecord rec3 = expected.new SimulationRecord();
-	 * rec3.setTotalDeadWood((rec2.getTotalDeadWood() * (1 -
-	 * req.getAvgDecompWoodYearly()) + req.getAvgDeadWoodYearly()));
-	 * rec3.setTotalHarvestedWood(rec2.getTotalHarvestedWood() +
-	 * (req.getAvgHarvestYearly() * (1 - req.getAvgProcessedWoodYearly())));
-	 * rec3.setTotalLivingWood(rec2.getTotalLivingWood() +
-	 * req.getAvgWoodGrowth() - req.getAvgDeadWoodYearly() -
-	 * req.getAvgHarvestYearly());
-	 * rec3.setTotalProcessedWood(rec2.getTotalProcessedWood() +
-	 * req.getAvgHarvestYearly() * req.getAvgProcessedWoodYearly());
-	 * rec3.setTotalBoundCO2(rec3.getTotalLivingWood() + rec3.getTotalDeadWood()
-	 * + rec3.getTotalHarvestedWood());
-	 * expected.addSimulationRecordForYear(rec3, 3);
-	 * 
-	 * SimulationResult.SimulationRecord rec4 = expected.new SimulationRecord();
-	 * rec4.setTotalDeadWood((rec3.getTotalDeadWood() * (1 -
-	 * req.getAvgDecompWoodYearly()) + req.getAvgDeadWoodYearly()));
-	 * rec4.setTotalHarvestedWood(rec3.getTotalHarvestedWood() +
-	 * (req.getAvgHarvestYearly() * (1 - req.getAvgProcessedWoodYearly())));
-	 * rec4.setTotalLivingWood(rec3.getTotalLivingWood() +
-	 * req.getAvgWoodGrowth() - req.getAvgDeadWoodYearly() -
-	 * req.getAvgHarvestYearly());
-	 * rec4.setTotalProcessedWood(rec3.getTotalProcessedWood() +
-	 * req.getAvgHarvestYearly() * req.getAvgProcessedWoodYearly());
-	 * rec4.setTotalBoundCO2(rec4.getTotalLivingWood() + rec4.getTotalDeadWood()
-	 * + rec4.getTotalHarvestedWood());
-	 * expected.addSimulationRecordForYear(rec4, 4);
-	 * 
-	 * return Test.compareResults(actual, expected); }
-	 */
+	public boolean testWoodGrowthOptimal() {
+		Spruce spruce = new Spruce();
+		spruce.grow(new WeatherConditions(8.0, 900), 10.0);
+		spruce.grow(new WeatherConditions(8.0, 900), 10.0);
+		spruce.grow(new WeatherConditions(8.0, 900), 10.0);
+		spruce.grow(new WeatherConditions(8.0, 900), 10.0);
+
+		int expectedAge = 4;
+		double expectedHeight = 0.631444903;
+		double expectedDiameter = 0.057324176;
+		double expectedWood = Math.pow(expectedDiameter / 2, 2) * Math.PI
+				* expectedHeight;
+
+		boolean sprucePassed = (spruce.getAge() == expectedAge
+				&& Test.areEqual(spruce.getHeight(), expectedHeight)
+				&& Test.areEqual(spruce.getDiameter(), expectedDiameter) && Test
+				.areEqual(spruce.getWood(), expectedWood));
+
+		BlackAlder blackAlder = new BlackAlder();
+		blackAlder.grow(new WeatherConditions(11.0, 1100.0), 10.0);
+		blackAlder.grow(new WeatherConditions(11.0, 1100.0), 10.0);
+		blackAlder.grow(new WeatherConditions(11.0, 1100.0), 10.0);
+		blackAlder.grow(new WeatherConditions(11.0, 1100.0), 10.0);
+		blackAlder.grow(new WeatherConditions(11.0, 1100.0), 10.0);
+		blackAlder.grow(new WeatherConditions(11.0, 1100.0), 10.0);
+
+		expectedAge = 6;
+		expectedHeight = 6.2;
+		expectedDiameter = 0.041;
+		expectedWood = Math.pow(expectedDiameter / 2, 2) * Math.PI
+				* expectedHeight;
+
+		boolean blackAlderPassed = (blackAlder.getAge() == expectedAge
+				&& Test.areEqual(blackAlder.getHeight(), expectedHeight)
+				&& Test.areEqual(blackAlder.getDiameter(), expectedDiameter) && Test
+				.areEqual(blackAlder.getWood(), expectedWood));
+
+		return sprucePassed && blackAlderPassed;
+	}
+
+	public boolean testTreeDying() {
+		Spruce spruce = new Spruce();
+		spruce.grow(new WeatherConditions(15.0, 1600), 10.0);
+
+		boolean spruceDead = (spruce.getState() == AbstractTree.TreeState.DEAD);
+
+		BlackAlder blackAlder = new BlackAlder();
+		blackAlder.grow(new WeatherConditions(-2.0, 2000), 10.0);
+
+		boolean blackAlderDead = (blackAlder.getState() == AbstractTree.TreeState.DEAD);
+
+		return spruceDead && blackAlderDead;
+	}
+
+	public boolean testEnergyWoodModel() {
+		Map<Class<? extends AbstractTree>, Integer> treeCounts = new HashMap<>();
+		treeCounts.put(BlackAlder.class, 20);
+
+		IWoodUsageModel model = new EnergyWoodUsageModel(0.95, Spruce.class);
+		List<WoodUsageAction> actions = model.calcAction(treeCounts, 1.0, 0.1);
+		boolean cutAction = false;
+		boolean plantAction = false;
+
+		// check if undesired trees are correctly replaced with desired ones
+		for (WoodUsageAction act : actions) {
+			if (act.getType() == WoodUsageAction.ActionType.CUT_TREES) {
+				cutAction = (act.getNumTreesToActOn() == 20 && act
+						.getTreeTypeToActOn() == BlackAlder.class);
+			}
+			if (act.getType() == WoodUsageAction.ActionType.PLANT_TREES) {
+				plantAction = (act.getNumTreesToActOn() == 20 && act
+						.getTreeTypeToActOn() == Spruce.class);
+			}
+		}
+
+		boolean exchangeTreeTypesOk = cutAction && plantAction;
+
+		// also check that after reaching shadowing treshold trees are cut
+		Map<Class<? extends AbstractTree>, Integer> treeCounts2 = new HashMap<>();
+		treeCounts2.put(Spruce.class, 100);
+		actions = model.calcAction(treeCounts2, 1.0, 1.0);
+		boolean overGrowthCutAction = false;
+		boolean overGrowthRePlantAction = false;
+		for (WoodUsageAction act : actions) {
+			if (act.getType() == WoodUsageAction.ActionType.CUT_TREES) {
+				overGrowthCutAction = (act.getNumTreesToActOn() == 5 && act
+						.getTreeTypeToActOn() == Spruce.class);
+			}
+			if (act.getType() == WoodUsageAction.ActionType.PLANT_TREES) {
+				overGrowthRePlantAction = (act.getNumTreesToActOn() == 5 && act
+						.getTreeTypeToActOn() == Spruce.class);
+			}
+		}
+		boolean overGrowthControlOk = overGrowthCutAction
+				&& overGrowthRePlantAction;
+
+		return exchangeTreeTypesOk && overGrowthControlOk;
+	}
+
+	public boolean testRecoveryWoodUsageModel() {
+		IWoodUsageModel model = new RecoveryWoodUsageModel(0.5);
+		Map<Class<? extends AbstractTree>, Integer> trees = new HashMap<>();
+		trees.put(Spruce.class, 20);
+		trees.put(BlackAlder.class, 35);
+
+		List<WoodUsageAction> actions = model.calcAction(trees, 1.0, 1.0);
+		int expectedTreesToCutAndReplant = 28 * 2;
+		return actions.size() == expectedTreesToCutAndReplant;
+	}
 
 	/**
 	 * Tests an energy wood usage over 30 years
@@ -211,13 +226,13 @@ public class Test {
 
 		req.setAvgProcessedWoodYearly(0.5);
 		req.setForest(forest);
-		req.setFixCosts(10000);
-		req.setVariableCosts(5);
+		req.setFixCosts(100);
+		req.setVariableCosts(1);
 		req.setPricePerMeter(10);
 		req.setEconomicModel(new DummyEconomicModel());
 		req.setWeatherModel(new DummyWeatherModel());
 		req.setWoodUsageModel(new DummyWoodUsageModel());
-		//req.setWoodUsageModel(new EnergyWoodUsageModel(0.95, Spruce.class));
+		// req.setWoodUsageModel(new EnergyWoodUsageModel(0.95, Spruce.class));
 
 		SimulationResult actual = this.sim.simulate(req, 30);
 		System.out.println("Result = "
@@ -263,10 +278,11 @@ public class Test {
 			return false;
 		}
 
-		if (!actual.getLivingTreesByType().equals(expected.getLivingTreesByType())) {
+		if (!actual.getLivingTreesByType().equals(
+				expected.getLivingTreesByType())) {
 			return false;
 		}
-		
+
 		if (!actual.getDeadTreesByType().equals(expected.getDeadTreesByType())) {
 			return false;
 		}

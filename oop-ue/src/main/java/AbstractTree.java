@@ -7,18 +7,16 @@
  */
 public abstract class AbstractTree {
 
-    /**
-     * The age of a tree.
-     * tree height
-     * diameter of the tree trunk in 1.3m height
-     * wood amount when state was changed
-     */
-    private int age;
-    private double height;
-    private double diameter;
-    private double deathwood;
+	/**
+	 * The age of a tree. tree height diameter of the tree trunk in 1.3m height
+	 * wood amount when state was changed
+	 */
+	private int age;
+	private double height;
+	private double diameter;
+	private double deathwood;
 
-    /**
+	/**
 	 * Possible states of a tree. A living tree grows, a dead one rots.
 	 *
 	 * @author michael
@@ -67,18 +65,24 @@ public abstract class AbstractTree {
 	 */
 	public abstract void grow(WeatherConditions weather, double spaceAvailable);
 
-    /**
+	/**
 	 * Lets the tree "rot", i.e. the amount of wood reduces according to an
-	 * implementation specific function.
+	 * implementation specific function. Note: For the sake of simplicity all
+	 * trees rot according to the same function
 	 */
-	public abstract void rot();
+	public void rot() {
+		this.age++;
+		this.setWood(this.getDeathwood()
+				* Math.pow(Math.E, -0.1 * this.getAge()));
+	}
 
 	public double harvest() {
 		this.state = TreeState.DEAD;
 		double retVal = this.useablePercentage * this.wood;
 		this.wood = this.wood - retVal;
-        this.deathwood = this.wood;
+		this.deathwood = this.wood;
 		this.usedSpace = 0;
+		this.age = 0; // to hit start point of rot function
 		return retVal;
 	}
 

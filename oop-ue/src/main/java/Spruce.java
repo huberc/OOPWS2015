@@ -3,6 +3,13 @@
  */
 public class Spruce extends AbstractTree {
 
+	public Spruce(){
+		super();
+		// initial values for functions
+		this.setHeight(0.2);
+		this.setDiameter(0.02);
+	}
+	
 	public void grow(WeatherConditions weather, double spaceAvailable) {
 		this.setAge(this.getAge() + 1);
 		// Influence weather conditions
@@ -16,11 +23,12 @@ public class Spruce extends AbstractTree {
 		} else if (temp > 9) {
 			double help = temp - 9.0;
 			inf -= help / 10.0;
-		} else if (rain < 400) {
+		} 
+		if (rain < 400) {
 			double help = 400.0 - rain;
 			inf -= help / 1000.0;
-		} else if (rain > 800) {
-			double help = rain - 800.0;
+		} else if (rain > 1100) {
+			double help = rain - 1100.0;
 			inf -= help / 1000.0;
 		}
 
@@ -45,23 +53,19 @@ public class Spruce extends AbstractTree {
 		if (this.getAge() < 9) {
 			this.setUseablePercentage(0);
 		} else if (this.getAge() == 9) {
-			this.setUseablePercentage(84);
+			this.setUseablePercentage(0.84);
 		}
 
 		// wood grow
 		double useableWood = Math.pow(this.getDiameter() / 2, 2) * Math.PI
 				* (double) this.getHeight();
-		this.setWood(useableWood * 100.0 / 75.0);
+		this.setWood(useableWood);
 
 		// change of used space
 		double r = 0.0466 * Math.pow(this.getDiameter() * 100, 1.1778);
 		this.setUsedSpace(Math.pow(r, 2) * Math.PI);
 	}
 
-	public void rot() {
-		this.setWood(this.getDeathwood()
-				* Math.pow(Math.E, -0.1 * this.getAge()));
-	}
 	public String toString(){
 		return "Fichte";
 	}

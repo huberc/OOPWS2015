@@ -2,6 +2,14 @@
  * Created by ines on 26.10.2015.
  */
 public class BlackAlder extends AbstractTree {
+	
+	public BlackAlder(){
+		super();
+		// initial values for functions
+		this.setHeight(0.2);
+		this.setDiameter(0.02);
+	}
+	
 	public void grow(WeatherConditions weather, double spaceAvailable) {
 		this.setAge(this.getAge() + 1);
 
@@ -16,7 +24,8 @@ public class BlackAlder extends AbstractTree {
 		} else if (temp > 14) {
 			double help = temp - 14.0;
 			inf -= help / 10.0;
-		} else if (rain < 450) {
+		} 
+		if (rain < 450) {
 			double help = 450.0 - rain;
 			inf -= help / 1000.0;
 		} else if (rain > 1300.0) {
@@ -41,11 +50,13 @@ public class BlackAlder extends AbstractTree {
 		// diameter grow
 		if (spaceAvailable > 0.1) {
 			if (this.getAge() <= 10) {
-				this.setDiameter(this.getDiameter() + ((double) this.getAge() / 10.0) * inf);
+				this.setDiameter(this.getDiameter()
+						+ (((double) this.getAge() / 10.0) * inf) / 100.0);
 			} else if ((this.getAge() > 10) && (this.getAge() <= 100)) {
 				this.setDiameter(this.getDiameter()
-						+ (5.98 * Math.pow(10, -4) * Math.pow(this.getAge(), 2)
-								- 0.13 * this.getAge() + 7.29) * inf);
+						+ ((5.98 * Math.pow(10, -4)
+								* Math.pow(this.getAge(), 2) - 0.13
+								* this.getAge() + 7.29) * inf) / 1000.0);
 			} else {
 				this.setDiameter(this.getDiameter()
 						+ (0.2 / (this.getAge() / 100)) * inf);
@@ -56,24 +67,19 @@ public class BlackAlder extends AbstractTree {
 		if (this.getAge() < 4) {
 			this.setUseablePercentage(0);
 		} else if (this.getAge() == 4) {
-			this.setUseablePercentage(75);
+			this.setUseablePercentage(0.75);
 		}
 
 		// wood grow
-		double useableWood = Math.pow(this.getDiameter() / 2, 2) * Math.PI
-				* (double) this.getHeight();
-		this.setWood(useableWood * 100.0 / 75.0);
+		this.setWood(Math.pow(this.getDiameter() / 2, 2) * Math.PI
+				* (double) this.getHeight());
 
 		// change of used space
 		double r = 0.1675 * Math.pow(this.getDiameter() * 100, 0.97);
 		this.setUsedSpace(Math.pow(r, 2) * Math.PI);
 	}
 
-	public void rot() {
-		this.setWood(this.getDeathwood()
-				* Math.pow(Math.E, -0.1 * this.getAge()));
-	}
-	public String toString(){
+	public String toString() {
 		return "Schwarzerle";
 	}
 }

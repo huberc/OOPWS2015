@@ -76,18 +76,17 @@ public class Simulator {
 				double harvestedWood = 0.0;
 				for (WoodUsageAction action : woodUsageActionList) {
 					if (action.getType() == WoodUsageAction.ActionType.CUT_TREES) {
-						harvestedWood = forest.harvestTrees(
+						harvestedWood += forest.harvestTrees(
 								action.getNumTreesToActOn(),
 								action.getTreeTypeToActOn());
-						rec.setTotalHarvestedWood(totalHarvestedWoodpast
-								+ harvestedWood);
-						totalProcessedWoodpast = totalHarvestedWoodpast
-								+ harvestedWood;
 					} else {
 						forest.plantTrees(action.getNumTreesToActOn(),
 								action.getTreeTypeToActOn());
 					}
 				}
+				rec.setTotalHarvestedWood(totalHarvestedWoodpast
+						+ harvestedWood);
+				totalHarvestedWoodpast += harvestedWood;
 
 				rec.setTotalLivingWood(totalLivingWoodpast
 						+ forest.getTotalLivingWood());
@@ -105,8 +104,8 @@ public class Simulator {
 						+ (rec.getTotalHarvestedWood() * req
 								.getAvgProcessedWoodYearly());
 
-				rec.setTotalBoundCO2(forest.getTotalLivingWood()
-						+ forest.getTotalDeadWood()
+				rec.setTotalBoundCO2(rec.getTotalLivingWood()
+						+ rec.getTotalDeadWood()
 						+ rec.getTotalHarvestedWood());
 
 				rec.setProfitMade(req.getEconomicModel()

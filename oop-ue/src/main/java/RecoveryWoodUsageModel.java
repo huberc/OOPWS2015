@@ -36,7 +36,8 @@ public class RecoveryWoodUsageModel implements IWoodUsageModel {
 		if (this.targetTreeCount == -1) {
 			// no tree count set yet
 			this.targetTreeCount = totalTrees;
-		} else if (totalTrees > this.targetTreeCount) {
+		}
+		if (totalTrees > this.targetTreeCount) {
 			// too many trees, cut them and return
 			return this.calcDistributedCuttingAction(totalTrees
 					- this.targetTreeCount, false, currentTrees);
@@ -52,23 +53,23 @@ public class RecoveryWoodUsageModel implements IWoodUsageModel {
 		return new ArrayList<>();
 	}
 
+	@SuppressWarnings("unchecked")
 	private List<WoodUsageAction> calcDistributedCuttingAction(int numTrees,
 			boolean replant,
 			Map<Class<? extends AbstractTree>, Integer> currentTrees) {
 		@SuppressWarnings("unchecked")
-		Entry<Class<? extends AbstractTree>, Integer>[] entryArr = (Entry<Class<? extends AbstractTree>, Integer>[]) currentTrees
-				.entrySet().toArray();
+		Object[] entryArr = currentTrees.entrySet().toArray();
 		List<WoodUsageAction> retVal = new ArrayList<>();
 		int rand;
 		for (int i = 0; i < numTrees; i++) {
 			rand = (int) (Math.random() * entryArr.length);
 			retVal.add(new WoodUsageAction(
-					WoodUsageAction.ActionType.CUT_TREES, 1, entryArr[rand]
+					WoodUsageAction.ActionType.CUT_TREES, 1, ((Entry<Class<? extends AbstractTree>, Integer>) entryArr[rand])
 							.getKey()));
 			if (replant) {
 				retVal.add(new WoodUsageAction(
 						WoodUsageAction.ActionType.PLANT_TREES, 1,
-						entryArr[rand].getKey()));
+						((Entry<Class<? extends AbstractTree>, Integer>) entryArr[rand]).getKey()));
 			}
 		}
 		return retVal;
