@@ -7,13 +7,17 @@
 public class DummyEconomicModel implements IEconomicModel {
 
 	@Override
-	public double calcPricePerMeter(int simulationYear) {
-		return 5.0;
+	public double calcProfitPerMeter(double harvetedWood, int pricePerMeter) {
+		return harvetedWood*pricePerMeter;
 	}
 
 	@Override
-	public double calcGuV(int variableCosts, double harvestedWood, int fixCosts){
-		return (double) fixCosts +(harvestedWood*variableCosts);
+	public double calcCosts(int variableCosts, double harvestedWood, int fixCosts){
+		return fixCosts +(harvestedWood*variableCosts);
+	}
+	@Override
+	public double calcProfit(double costs, double profit){
+		return profit - costs;
 	}
 
 }
