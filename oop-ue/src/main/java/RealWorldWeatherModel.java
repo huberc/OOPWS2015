@@ -1,5 +1,4 @@
 import java.util.Random;
-import java.util.function.Function;
 
 /**
  * A "real-world" climate model, trying to roughly model actual climatic
