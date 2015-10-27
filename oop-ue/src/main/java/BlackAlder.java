@@ -3,9 +3,9 @@
  */
 public class BlackAlder extends AbstractTree{
     public void grow(WeatherConditions weather, double spaceAvailable){
-    ++age;
+        ++age;
 
-    //Influence weather conditions
+        //Influence weather conditions
         double temp = weather.getAvgTemperature();
         double rain = weather.getRainfall();
         int inf = 1;
@@ -33,7 +33,7 @@ public class BlackAlder extends AbstractTree{
             return;
         }
 
-    //height grow
+        //height grow
         if(age <= 10){
             height += 1 * inf;
         }
@@ -41,7 +41,7 @@ public class BlackAlder extends AbstractTree{
             height += ((12-age/15)/age)*inf;
         }
 
-    //diameter grow
+        //diameter grow
         if (spaceAvailable > 0.1) {
             if (age <= 10) {
                 diameter += age / 10 * inf;
@@ -52,18 +52,18 @@ public class BlackAlder extends AbstractTree{
             }
         }
 
-    //usable from the age of 4
+        //usable from the age of 4
         if (age < 4) {
             useablePercentage = 0;
         } else if (age == 4) {
             useablePercentage = 75;
         }
 
-    //wood grow
+        //wood grow
         double useableWood = (Math.pow(diameter*100, 2)/1000)+(Math.pow(diameter*100, 2)/1000)*(height-27)*0.03;
         wood = useableWood *100/75;
 
-    //change of used space
+        //change of used space
         double r = 0.1675 * Math.pow(diameter*100, 0.97);
         usedSpace = Math.pow(r, 2)*Math.PI;
     }
