@@ -51,6 +51,7 @@ public class Simulator {
 				totalProcessedWoodpast = 0.0;
 
 				rec.setTotalBoundCO2(forest.getTotalLivingWood()+forest.getTotalDeadWood());
+				rec.setTreesByType(forest.getNumberOfTreesByType());
 			}
 			else{
 

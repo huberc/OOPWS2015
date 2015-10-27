@@ -31,7 +31,7 @@ public abstract class AbstractTree {
 	/**
 	 * The current state of the tree
 	 */
-	private TreeState state;
+	private TreeState state = TreeState.LIVING;
 
 	/**
 	 * The amount of wood on this tree.

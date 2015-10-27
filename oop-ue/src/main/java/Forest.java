@@ -1,5 +1,5 @@
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +13,7 @@ import java.util.Set;
  */
 public class Forest implements Cloneable {
 
-	private Map<Class<? extends AbstractTree>, List<AbstractTree>> trees;
+	private Map<Class<? extends AbstractTree>, List<AbstractTree>> trees = new HashMap<>();
 
 	public Forest(double sizeSqMeters,
 			Map<Class<? extends AbstractTree>, Integer> trees) {
@@ -96,6 +96,9 @@ public class Forest implements Cloneable {
 		try {
 			treeConstructor = type.getConstructor();
 			for (int i = 0; i < numTrees; i++) {
+				if(null == this.trees.get(type)){
+					this.trees.put(type, new ArrayList<>());
+				}
 				this.trees.get(type).add(treeConstructor.newInstance());
 			}
 		} catch (Exception e) {
