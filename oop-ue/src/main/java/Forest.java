@@ -124,7 +124,7 @@ public class Forest implements Cloneable {
 			treeConstructor = type.getConstructor();
 			for (int i = 0; i < numTrees; i++) {
 				if (null == this.trees.get(type)) {
-					this.trees.put(type, new ArrayList<>());
+					this.trees.put(type, new ArrayList<AbstractTree>());
 				}
 				this.trees.get(type).add(treeConstructor.newInstance());
 			}

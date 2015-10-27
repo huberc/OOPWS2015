@@ -35,7 +35,7 @@ public class EnergyWoodUsageModel implements IWoodUsageModel {
 			double avgSpacePerTree, double avgGroundShadowing) {
 		Set<Class<? extends AbstractTree>> types = currentTrees.keySet();
 		final List<WoodUsageAction> retVal = new ArrayList<>();
-		types.forEach((clazz) -> {
+		for (Class<? extends AbstractTree> clazz : types) {
 			if (!this.preferredTrees.contains(clazz)) {
 				// "undesired" tree type - cut down
 				retVal.add(new WoodUsageAction(
@@ -47,7 +47,7 @@ public class EnergyWoodUsageModel implements IWoodUsageModel {
 								.get((int) (Math.random() * this.preferredTrees
 										.size()))));
 			}
-		});
+		}
 		if (avgGroundShadowing >= this.groundShadowedTreshold) {
 			int totalTrees = 0;
 			for (Entry<Class<? extends AbstractTree>, Integer> entry : currentTrees
