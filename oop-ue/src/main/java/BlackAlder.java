@@ -8,20 +8,20 @@ public class BlackAlder extends AbstractTree {
 		// Influence weather conditions
 		double temp = weather.getAvgTemperature();
 		double rain = weather.getRainfall();
-		int inf = 1;
+		double inf = 1.0;
 
 		if (temp < 3) {
-			double help = -4 - temp;
-			inf -= help / 10;
+			double help = -4.0 - temp;
+			inf -= help / 10.0;
 		} else if (temp > 14) {
-			double help = temp - 9;
-			inf -= help / 10;
+			double help = temp - 9.0;
+			inf -= help / 10.0;
 		} else if (rain < 450) {
-			double help = 400 - rain;
-			inf -= help / 1000;
-		} else if (rain > 1300) {
-			double help = rain - 800;
-			inf -= help / 1000;
+			double help = 400.0 - rain;
+			inf -= help / 1000.0;
+		} else if (rain > 1300.0) {
+			double help = rain - 800.0;
+			inf -= help / 1000.0;
 		}
 
 		if (inf < 0) {
@@ -60,9 +60,8 @@ public class BlackAlder extends AbstractTree {
 		}
 
 		// wood grow
-		double useableWood = (Math.pow(this.getDiameter() * 100, 2) / 1000)
-				+ (Math.pow(this.getDiameter() * 100, 2) / 1000)
-				* (this.getHeight() - 27) * 0.03;
+		double useableWood = Math.pow(this.getDiameter() / 2, 2) * Math.PI
+				* (double) this.getHeight();
 		this.setWood(useableWood * 100.0 / 75.0);
 
 		// change of used space

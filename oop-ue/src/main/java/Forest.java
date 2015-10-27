@@ -89,15 +89,20 @@ public class Forest implements Cloneable {
 	 *            the number of trees to harvest
 	 * @param preferredType
 	 *            the preferred type to harvest. If no (or not enough trees of
-	 *            the specified type exist), any tree can be harvested
+	 *            the specified type exist), no trees will be harvested
 	 * @return the amount of wood harvested (that can be actually used, i.e. not
 	 *         including wood that remains as dead wood in the forest)
 	 */
 	public double harvestTrees(int numTrees,
 			Class<? extends AbstractTree> preferredType) {
 		double amount = 0;
+		int treesToGo = numTrees;
 		for (AbstractTree t : trees.get(preferredType)) {
 			amount += t.harvest();
+			treesToGo--;
+			if(treesToGo <= 0){
+				break;
+			}
 		}
 		this.percentGroundShadowed = this.calculateShadowed();
 		return amount;

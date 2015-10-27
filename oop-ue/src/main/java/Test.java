@@ -216,7 +216,8 @@ public class Test {
 		req.setPricePerMeter(10);
 		req.setEconomicModel(new DummyEconomicModel());
 		req.setWeatherModel(new DummyWeatherModel());
-		req.setWoodUsageModel(new EnergyWoodUsageModel(0.95, Spruce.class));
+		req.setWoodUsageModel(new DummyWoodUsageModel());
+		//req.setWoodUsageModel(new EnergyWoodUsageModel(0.95, Spruce.class));
 
 		SimulationResult actual = this.sim.simulate(req, 30);
 		System.out.println("Result = "
