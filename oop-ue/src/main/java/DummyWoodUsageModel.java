@@ -11,8 +11,8 @@ import java.util.Map;
 public class DummyWoodUsageModel implements IWoodUsageModel{
 
 	@Override
-	public List<WoodUsageAction> calcAction(Map<Class<? extends AbstractTree>, Integer> currentTrees, double avgSpacePerTree,
-			double avgGroundShadowing) {
+	public List<WoodUsageAction> calcAction(final Map<Class<? extends AbstractTree>, Integer> currentTrees,
+			double avgSpacePerTree, double avgGroundShadowing) {
 		List<WoodUsageAction> retVal = new ArrayList<>();
 		retVal.add(new WoodUsageAction(WoodUsageAction.ActionType.CUT_TREES, 1, null));
 		return retVal;

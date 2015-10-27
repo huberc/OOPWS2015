@@ -13,10 +13,10 @@ public abstract class AbstractTree {
      * diameter of the tree trunk in 1.3m height
      * wood amount when state was changed
      */
-    int age;
-    int height;
-    double diameter;
-    double deathwood;
+    private int age;
+    private int height;
+    private double diameter;
+    private double deathwood;
 
     /**
 	 * Possible states of a tree. A living tree grows, a dead one rots.
@@ -31,25 +31,25 @@ public abstract class AbstractTree {
 	/**
 	 * The current state of the tree
 	 */
-	public TreeState state;
+	private TreeState state;
 
 	/**
 	 * The amount of wood on this tree.
 	 */
-	public double wood;
+	private double wood;
 
 	/**
 	 * The percentage of wood from this tree that can be used when harvested.
 	 * (e.g. thinner branches + base of the tree typically remain)
 	 */
-	public double useablePercentage;
+	private double useablePercentage;
 
 	/**
 	 * The space (in square meters) of ground floor this tress uses or shadows,
 	 * i.e. an oak with a crown of 5 meters in width would have 5 here. Changes
 	 * when the tree grows (assuming there´s enough space available)
 	 */
-	public double usedSpace;
+	private double usedSpace;
 
 	/**
 	 * Lets the tree grow. Growth is influenced by weather conditions, the
@@ -103,5 +103,53 @@ public abstract class AbstractTree {
 
 	public double getUsedSpace() {
 		return usedSpace;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public double getDiameter() {
+		return diameter;
+	}
+
+	public void setDiameter(double diameter) {
+		this.diameter = diameter;
+	}
+
+	public double getDeathwood() {
+		return deathwood;
+	}
+
+	public void setDeathwood(double deathwood) {
+		this.deathwood = deathwood;
+	}
+
+	public void setState(TreeState state) {
+		this.state = state;
+	}
+
+	public void setWood(double wood) {
+		this.wood = wood;
+	}
+
+	public void setUseablePercentage(double useablePercentage) {
+		this.useablePercentage = useablePercentage;
+	}
+
+	public void setUsedSpace(double usedSpace) {
+		this.usedSpace = usedSpace;
 	}
 }

@@ -17,8 +17,8 @@ public interface IWoodUsageModel {
 	/**
 	 * Calculates the action(s) to perform on the forest
 	 * 
-	 * @param numTrees
-	 *            the number and type of living trees currently in the forest
+	 * @param currentTrees
+	 *            the number of living trees currently in the forest by type
 	 * @param avgSpacePerTree
 	 *            the space each tree uses (and/or shadows) in square meters
 	 * @param avgGroundShadowing
@@ -28,7 +28,7 @@ public interface IWoodUsageModel {
 	 *         params
 	 */
 	List<WoodUsageAction> calcAction(
-			Map<Class<? extends AbstractTree>, Integer> currentTrees,
+			final Map<Class<? extends AbstractTree>, Integer> currentTrees,
 			double avgSpacePerTree, double avgGroundShadowing);
 
 }
