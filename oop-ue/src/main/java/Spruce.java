@@ -30,7 +30,24 @@ public class Spruce extends AbstractTree{
         }
 
         //height grow
-        height += 0.02 * age^2 * (Math.E)^(-0.1*age);
+        height += 0.02 * Math.pow(age, 2) * Math.pow(Math.E, (-0.1*age)) * inf;
+
+        //diameter grow
+        diameter = 1/(1+Math.pow(Math.E, (-0.05*(age-60))));
+
+        //usable from the age of 9
+        if (age < 9) {
+            useablePercentage = 0;
+        } else if (age == 9) {
+            useablePercentage = 84;
+        }
+
+        //wood grow
+        double useableWood = (Math.pow(diameter*100, 2)/1000)+(Math.pow(diameter*100, 2)/1000)*(height-(19+diameter*2)*10)*0.04;
+        wood = useableWood *100/75;
+
+        //change of used space
+        usedSpace = 0.0466 * Math.pow(diameter, 1.1778);
     }
     public void rot() {
 

@@ -34,20 +34,20 @@ public abstract class AbstractTree {
 	/**
 	 * The amount of wood on this tree.
 	 */
-	private double wood;
+	public double wood;
 
 	/**
 	 * The percentage of wood from this tree that can be used when harvested.
 	 * (e.g. thinner branches + base of the tree typically remain)
 	 */
-	private double useablePercentage;
+	public double useablePercentage;
 
 	/**
 	 * The space (in square meters) of ground floor this tress uses or shadows,
 	 * i.e. an oak with a crown of 5 meters in width would have 5 here. Changes
 	 * when the tree grows (assuming there´s enough space available)
 	 */
-	private double usedSpace;
+	public double usedSpace;
 
 	/**
 	 * Lets the tree grow. Growth is influenced by weather conditions, the
