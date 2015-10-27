@@ -51,7 +51,10 @@ public class Simulator {
 
 				rec.setTotalBoundCO2(forest.getTotalLivingWood()
 						+ forest.getTotalDeadWood());
-				rec.setTreesByType(forest.getNumberOfTreesByType());
+				rec.setLivingTreesByType(forest
+						.getNumberOfTreesByType(AbstractTree.TreeState.LIVING));
+				rec.setDeadTreesByType(forest
+						.getNumberOfTreesByType(AbstractTree.TreeState.DEAD));
 			} else {
 
 				// due to the results of the models the specific forest methode
@@ -60,23 +63,24 @@ public class Simulator {
 				forest.grow(req.getWeatherModel().calcWeatherForYear(i));
 
 				List<WoodUsageAction> woodUsageActionList = req
-						.getWoodUsageModel().calcAction(
-								forest.getNumberOfTreesByType(),
+						.getWoodUsageModel()
+						.calcAction(
+								forest.getNumberOfTreesByType(AbstractTree.TreeState.LIVING),
 								forest.getForestSize(),
 								forest.getPercentGroundShadowed());
 
 				rec.setWoodActions(woodUsageActionList);
 
+				double harvestedWood = 0.0;
 				for (WoodUsageAction action : woodUsageActionList) {
 					if (action.getType() == WoodUsageAction.ActionType.CUT_TREES) {
+						harvestedWood = forest.harvestTrees(
+								action.getNumTreesToActOn(),
+								action.getTreeTypeToActOn());
 						rec.setTotalHarvestedWood(totalHarvestedWoodpast
-								+ forest.harvestTrees(
-										action.getNumTreesToActOn(),
-										action.getTreeTypeToActOn()));
+								+ harvestedWood);
 						totalProcessedWoodpast = totalHarvestedWoodpast
-								+ forest.harvestTrees(
-										action.getNumTreesToActOn(),
-										action.getTreeTypeToActOn());
+								+ harvestedWood;
 					} else {
 						forest.plantTrees(action.getNumTreesToActOn(),
 								action.getTreeTypeToActOn());
@@ -113,7 +117,10 @@ public class Simulator {
 										rec.getTotalHarvestedWood(),
 										req.getPricePerMeter())));
 
-				rec.setTreesByType(forest.getNumberOfTreesByType());
+				rec.setLivingTreesByType(forest
+						.getNumberOfTreesByType(AbstractTree.TreeState.LIVING));
+				rec.setDeadTreesByType(forest
+						.getNumberOfTreesByType(AbstractTree.TreeState.DEAD));
 			}
 
 			retVal.addSimulationRecordForYear(rec, i);

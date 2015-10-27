@@ -83,7 +83,7 @@ public class Test {
 		Map<Class<? extends AbstractTree>, Integer> treesByType = new HashMap<>();
 		treesByType.put(Spruce.class, 10);
 		treesByType.put(BlackAlder.class, 15);
-		rec.setTreesByType(treesByType);
+		rec.setLivingTreesByType(treesByType);
 		expected.addSimulationRecordForYear(rec, 0);
 		return Test.compareResults(actual, expected);
 	}
@@ -263,10 +263,13 @@ public class Test {
 			return false;
 		}
 
-		if (!actual.getTreesByType().equals(expected.getTreesByType())) {
+		if (!actual.getLivingTreesByType().equals(expected.getLivingTreesByType())) {
 			return false;
 		}
-
+		
+		if (!actual.getDeadTreesByType().equals(expected.getDeadTreesByType())) {
+			return false;
+		}
 		return Test.areEqual(actual.getTotalProcessedWood(),
 				expected.getTotalProcessedWood());
 	}

@@ -77,8 +77,13 @@ public class SimulationResult {
 		/**
 		 * A map of tree counts by type (e.g. Oak=3; Maple=5, ...)
 		 */
-		private Map<Class<? extends AbstractTree>, Integer> treesByType = new HashMap<>();
+		private Map<Class<? extends AbstractTree>, Integer> livingTreesByType = new HashMap<>();
 
+		/**
+		 * A map of tree counts by type (e.g. Oak=3; Maple=5, ...)
+		 */
+		private Map<Class<? extends AbstractTree>, Integer> deadTreesByType = new HashMap<>();		
+		
 		/**
 		 * The weather conditions from the simulation year
 		 */
@@ -127,8 +132,10 @@ public class SimulationResult {
 		@Override
 		public String toString() {
 			StringBuilder builder = new StringBuilder();
-			builder.append("SimulationRecord [treesByType=");
-			builder.append(treesByType);
+			builder.append("SimulationRecord [livingTreesByType=");
+			builder.append(this.livingTreesByType);
+			builder.append("deadTreesByType=");
+			builder.append(this.deadTreesByType);
 			builder.append(", totalLivingWood=");
 			builder.append(totalLivingWood);
 			builder.append(", totalDeadWood=");
@@ -185,15 +192,6 @@ public class SimulationResult {
 			this.totalBoundCO2 = totalBoundCO2;
 		}
 
-		public Map<Class<? extends AbstractTree>, Integer> getTreesByType() {
-			return treesByType;
-		}
-
-		public void setTreesByType(
-				Map<Class<? extends AbstractTree>, Integer> treesByType) {
-			this.treesByType = treesByType;
-		}
-
 		public double getProfitMade() {
 			return profitMade;
 		}
@@ -216,6 +214,24 @@ public class SimulationResult {
 
 		public void setWoodActions(List<WoodUsageAction> woodActions) {
 			this.woodActions = woodActions;
+		}
+
+		public Map<Class<? extends AbstractTree>, Integer> getLivingTreesByType() {
+			return livingTreesByType;
+		}
+
+		public void setLivingTreesByType(
+				Map<Class<? extends AbstractTree>, Integer> livingTreesByType) {
+			this.livingTreesByType = livingTreesByType;
+		}
+
+		public Map<Class<? extends AbstractTree>, Integer> getDeadTreesByType() {
+			return deadTreesByType;
+		}
+
+		public void setDeadTreesByType(
+				Map<Class<? extends AbstractTree>, Integer> deadTreesByType) {
+			this.deadTreesByType = deadTreesByType;
 		}
 
 	}
