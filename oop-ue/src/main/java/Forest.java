@@ -11,7 +11,7 @@ import java.util.Set;
  * @author Ines
  *
  */
-public class Forest implements Cloneable {
+public class Forest {
 
 	/**
 	 * Value to decide if a rotting (=dead) tree should be fully removed from
@@ -177,16 +177,6 @@ public class Forest implements Cloneable {
 			}
 		}
 		return counter;
-	}
-
-	/**
-	 * Performs a deep copy of this <code>Forest</code>
-	 */
-	@Override
-	public Forest clone() {
-		// @Ines - hier musst nix machen, die brauch ich für den Test, schreib
-		// ich mir dann selber
-		return null;
 	}
 
 	/**

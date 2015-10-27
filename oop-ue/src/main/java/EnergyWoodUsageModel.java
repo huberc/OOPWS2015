@@ -11,7 +11,7 @@ import java.util.Set;
  * means that pinewood is preferred over broadleaf trees in general. Trees of
  * undesired types are cut down and replaced with newly planted preferred ones
  * Trees are cut when a certain (high) percentage of ground is shadowed, i.e.
- * trees don´t have much space left to grow. If trees of preferred types are
+ * trees dont have much space left to grow. If trees of preferred types are
  * cut, new ones are planted.
  * 
  * @author michael

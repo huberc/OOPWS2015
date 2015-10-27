@@ -35,7 +35,7 @@ public class SimulationDisplay {
                             + rec1.getWeather().getRainfall();
                     zusatzinfo += "\n\t\t- Durchschnittstemperatur:\t"
                             + rec1.getWeather().getAvgTemperature() + "\n";
-                    zusatzinfo += "   Durchgeführte Aktionen:\n";
+                    zusatzinfo += "   Durchgefuehrte Aktionen:\n";
                 }
             }
             zusatzinfo += SimulationDisplay.actionsPerfomed(res.getRecordForYear(i), i);
@@ -149,7 +149,7 @@ public class SimulationDisplay {
                         + action.getType().getHumanReadableName() + "\n";
             }
         } else {
-            output = "\t\t- Im Jahr " + year + " wurden keine Aktionen durchgeführt\n";
+            output = "\t\t- Im Jahr " + year + " wurden keine Aktionen durchgefuehrt\n";
         }
         return output;
     }

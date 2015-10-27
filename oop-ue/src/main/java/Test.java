@@ -30,15 +30,15 @@ public class Test {
 				+ simulatorTest.testRecoveryWoodUsageModel());
 		System.out.println("Test des linearen Wetter Models:");
 		System.out
-				.println("\tTeststatus für 3 Jahre und zwei unterschiedliche Simulationen: "
+				.println("\tTeststatus fuer 3 Jahre und zwei unterschiedliche Simulationen: "
 						+ simulatorTest.testLinearWeahterModel());
 		System.out.println("Test des exponentialen Wetter Models:");
 		System.out
-				.println("\tTeststatus für 3 Jahre und zwei unterschiedliche Simulationen: "
+				.println("\tTeststatus fuer 3 Jahre und zwei unterschiedliche Simulationen: "
 						+ simulatorTest.testExponentialWeatherModel());
 		System.out.println("Test des logarithmischen Wetter Models:");
 		System.out
-				.println("\tTeststatus für 3 Jahre und zwei unterschiedliche Simulationen: "
+				.println("\tTeststatus fuer 3 Jahre und zwei unterschiedliche Simulationen: "
 						+ simulatorTest.testLogarithmicWeatherModel());
 		System.out.println("Test des Wirtschaftsmodel:");
 		System.out
