@@ -31,11 +31,11 @@ public class SimulationDisplay {
 			if (rec1.getWeather() != null) {
 				// no weather in year 0
 				zusatzinfo += "   Wetter:";
-				zusatzinfo += "      - Regenfall:\t"
+				zusatzinfo += "\n      - Regenfall:\t\t\t"
 						+ rec1.getWeather().getRainfall();
-				zusatzinfo += "      - Durchschnittstemperatur:\n"
-						+ rec1.getWeather().getAvgTemperature();
-				zusatzinfo += "   Durchgeführte Aktionen:";
+				zusatzinfo += "\n      - Durchschnittstemperatur:\t"
+						+ rec1.getWeather().getAvgTemperature() + "\n";
+				zusatzinfo += "   Durchgeführte Aktionen:\n";
 			}
 
 			if (rec1.getWoodActions() != null) {
@@ -45,8 +45,8 @@ public class SimulationDisplay {
 							+ rec1.getWoodActions().get(k).getNumTreesToActOn()
 							+ " "
 							+ rec1.getWoodActions().get(k).getTreeTypeToActOn()
-									.getName() + "wurden "
-							+ rec1.getWoodActions().get(k).getType().toString();
+									.getName() + " wurden "
+							+ rec1.getWoodActions().get(k).getType().getHumanReadableName() + "\n";
 				}
 			}
 			line += SimulationDisplay.formatAsTable(res.getRecordForYear(i));
@@ -58,14 +58,14 @@ public class SimulationDisplay {
 	}
 
 	private static String formatAsTable(SimulationResult.SimulationRecord rec) {
-		int livingWoodspace = 15;
-		int deadWoodspace = 23;
-		int harvestedWoodspace = 20;
-		int processedWoodspace = 20;
-		int boundCO2space = 20;
-		int blackAlderspace = 20;
-		int sprucespace = 20;
-		int proftspace = 20;
+		int livingWoodspace = 30;
+		int deadWoodspace = 30;
+		int harvestedWoodspace = 30;
+		int processedWoodspace = 30;
+		int boundCO2space = 30;
+		int blackAlderspace = 30;
+		int sprucespace = 30;
+		int proftspace = 30;
 
 		String line = "";
 

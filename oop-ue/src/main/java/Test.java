@@ -22,6 +22,8 @@ public class Test {
 				.println("1. Test result content with only initial state, no simulation done at all:");
 		System.out.println("Test of initial state: "
 				+ simulatorTest.testInitialState());
+		simulatorTest.testEnergyWoodThreeDecades();
+
 		/*
 		 * System.out.println(
 		 * "\n2. Test result content after a one-year simulation run:");
@@ -190,6 +192,37 @@ public class Test {
 	 * 
 	 * return Test.compareResults(actual, expected); }
 	 */
+
+	/**
+	 * Tests an energy wood usage over 30 years
+	 * 
+	 * 
+	 * @return
+	 */
+	public boolean testEnergyWoodThreeDecades() {
+		SimulationRequest req = new SimulationRequest();
+
+		Map<Class<? extends AbstractTree>, Integer> trees = new HashMap<>();
+
+		trees.put(Spruce.class, 5);
+		trees.put(BlackAlder.class, 15);
+
+		Forest forest = new Forest(100.0, trees);
+
+		req.setAvgProcessedWoodYearly(0.5);
+		req.setForest(forest);
+		req.setFixCosts(10000);
+		req.setVariableCosts(5);
+		req.setPricePerMeter(10);
+		req.setEconomicModel(new DummyEconomicModel());
+		req.setWeatherModel(new DummyWeatherModel());
+		req.setWoodUsageModel(new EnergyWoodUsageModel(0.95, Spruce.class));
+
+		SimulationResult actual = this.sim.simulate(req, 30);
+		System.out.println("Result = "
+				+ SimulationDisplay.formatAsTable(actual));
+		return false;
+	}
 
 	private static boolean compareResults(SimulationResult actual,
 			SimulationResult expected) {

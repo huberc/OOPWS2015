@@ -14,7 +14,7 @@ public abstract class AbstractTree {
      * wood amount when state was changed
      */
     private int age;
-    private int height;
+    private double height;
     private double diameter;
     private double deathwood;
 
@@ -113,11 +113,11 @@ public abstract class AbstractTree {
 		this.age = age;
 	}
 
-	public int getHeight() {
+	public double getHeight() {
 		return height;
 	}
 
-	public void setHeight(int height) {
+	public void setHeight(double height) {
 		this.height = height;
 	}
 

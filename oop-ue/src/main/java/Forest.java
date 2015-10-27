@@ -13,12 +13,20 @@ import java.util.Set;
  */
 public class Forest implements Cloneable {
 
+	/**
+	 * Value to decide if a rotting (=dead) tree should be fully removed from
+	 * the forest. If the tree's wood property is below this level, the tree is
+	 * removed from the forest
+	 */
+	private static final double ROTTEN_TREE_REMOVE_TRESHOLD = 0.01;
+
 	private Map<Class<? extends AbstractTree>, List<AbstractTree>> trees = new HashMap<>();
 
 	public Forest(double sizeSqMeters,
 			Map<Class<? extends AbstractTree>, Integer> trees) {
 		this.forestSize = sizeSqMeters;
-		for(Entry<Class<? extends AbstractTree>, Integer> entry : trees.entrySet()){
+		for (Entry<Class<? extends AbstractTree>, Integer> entry : trees
+				.entrySet()) {
 			this.plantTrees(entry.getValue(), entry.getKey());
 		}
 		this.percentGroundShadowed = this.calculateShadowed();
@@ -53,10 +61,22 @@ public class Forest implements Cloneable {
 				.entrySet();
 		List<AbstractTree> temp;
 		double availableSpace = this.forestSize * (1 - percentGroundShadowed);
+		List<AbstractTree> removeTreesList;
 		for (Entry<Class<? extends AbstractTree>, List<AbstractTree>> t : mySet) {
+			removeTreesList = new ArrayList<>();
 			temp = t.getValue();
 			for (AbstractTree i : temp) {
-				i.grow(weather, availableSpace);
+				if (i.getState() == AbstractTree.TreeState.LIVING) {
+					i.grow(weather, availableSpace);
+				} else {
+					i.rot();
+					if(i.getWood() <= Forest.ROTTEN_TREE_REMOVE_TRESHOLD){
+						removeTreesList.add(i);
+					}
+				}
+			}
+			for(AbstractTree treeToRemove : removeTreesList){
+				temp.remove(treeToRemove);
 			}
 		}
 		this.percentGroundShadowed = this.calculateShadowed();
@@ -96,7 +116,7 @@ public class Forest implements Cloneable {
 		try {
 			treeConstructor = type.getConstructor();
 			for (int i = 0; i < numTrees; i++) {
-				if(null == this.trees.get(type)){
+				if (null == this.trees.get(type)) {
 					this.trees.put(type, new ArrayList<>());
 				}
 				this.trees.get(type).add(treeConstructor.newInstance());
@@ -183,8 +203,9 @@ public class Forest implements Cloneable {
 
 	private double calculateShadowed() {
 		double usedSpace = 0.0;
-		for(Entry<Class<? extends AbstractTree>, List<AbstractTree>> entry : this.trees.entrySet()){
-			for(AbstractTree t : entry.getValue()){
+		for (Entry<Class<? extends AbstractTree>, List<AbstractTree>> entry : this.trees
+				.entrySet()) {
+			for (AbstractTree t : entry.getValue()) {
 				usedSpace += t.getUsedSpace();
 			}
 		}
