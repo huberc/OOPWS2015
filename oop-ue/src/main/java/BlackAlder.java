@@ -73,4 +73,7 @@ public class BlackAlder extends AbstractTree {
 		this.setWood(this.getDeathwood()
 				* Math.pow(Math.E, -0.1 * this.getAge()));
 	}
+	public String toString(){
+		return "Schwarzerle";
+	}
 }

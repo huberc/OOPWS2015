@@ -55,6 +55,8 @@ public class Simulator {
 						.getNumberOfTreesByType(AbstractTree.TreeState.LIVING));
 				rec.setDeadTreesByType(forest
 						.getNumberOfTreesByType(AbstractTree.TreeState.DEAD));
+
+				rec.setWeather(req.getWeatherModel().calcWeatherForYear(i));
 			} else {
 
 				// due to the results of the models the specific forest methode
