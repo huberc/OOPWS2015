@@ -39,41 +39,51 @@ public class Simulator {
 			// Intials values saved for displaying it.
 			if(i==0){
 				rec.setTotalLivingWood(forest.getTotalLivingWood());
+				totalLivingWoodpast = forest.getTotalLivingWood();
 
 				rec.setTotalDeadWood(forest.getTotalDeadWood());
+				totalDeadWoodpast = forest.getTotalDeadWood();
 
 				rec.setTotalHarvestedWood(0.0);
+				totalHarvestedWoodpast = 0.0;
+
 				rec.setTotalProcessedWood(0.0);
+				totalProcessedWoodpast = 0.0;
 
 				rec.setTotalBoundCO2(forest.getTotalLivingWood()+forest.getTotalDeadWood());
 			}
 			else{
 
 				//due to the results of the models the specific forest methode have to be called
+				rec.setWeather(req.getWeatherModel().calcWeatherForYear(i));
 				forest.grow(req.getWeatherModel().calcWeatherForYear(i));
 
 				List<WoodUsageAction> woodUsageActionList = req.getWoodUsageModel().calcAction(forest.getNumberOfTreesByType(), forest.getForestSize(), forest.getPercentGroundShadowed());
 
+				rec.setWoodActions(woodUsageActionList);
+
 				for (int j = 0; i < woodUsageActionList.size(); j++) {
 					if(woodUsageActionList.get(j).getType().compareTo(WoodUsageAction.ActionType.CUT_TREES) == 0){
-						rec.setTotalHarvestedWood(forest.harvestTrees(woodUsageActionList.get(j).getNumTreesToActOn(), woodUsageActionList.get(j).getTreeTypeToActOn()));
+						rec.setTotalHarvestedWood(totalHarvestedWoodpast + forest.harvestTrees(woodUsageActionList.get(j).getNumTreesToActOn(), woodUsageActionList.get(j).getTreeTypeToActOn()));
+						totalProcessedWoodpast = totalHarvestedWoodpast + + forest.harvestTrees(woodUsageActionList.get(j).getNumTreesToActOn(), woodUsageActionList.get(j).getTreeTypeToActOn());
 					}
 					else{
 						forest.plantTrees(woodUsageActionList.get(j).getNumTreesToActOn(),woodUsageActionList.get(j).getTreeTypeToActOn());
-						rec.setTotalHarvestedWood(0.0);
 					}
 				}
 
-				rec.setTotalLivingWood(forest.getTotalLivingWood());
+				rec.setTotalLivingWood(totalLivingWoodpast + forest.getTotalLivingWood());
+				totalLivingWoodpast = totalLivingWoodpast + forest.getTotalLivingWood();
 
 				rec.setTotalDeadWood(forest.getTotalDeadWood());
+				totalDeadWoodpast = totalDeadWoodpast + forest.getTotalDeadWood();
 
 				rec.setTotalProcessedWood(totalProcessedWoodpast + (rec.getTotalHarvestedWood()*req.getAvgProcessedWoodYearly()));
 				totalProcessedWoodpast = totalProcessedWoodpast + (rec.getTotalHarvestedWood()*req.getAvgProcessedWoodYearly());
 
 				rec.setTotalBoundCO2(forest.getTotalLivingWood()+forest.getTotalDeadWood()+rec.getTotalHarvestedWood());
 
-				rec.setProfitMade(req.getEconomicModel().calcGuV(req.getVariableCosts(),rec.getTotalHarvestedWood(),req.getFixCosts()));
+				rec.setProfitMade(req.getEconomicModel().calcProfit(req.getEconomicModel().calcCosts(req.getVariableCosts(),rec.getTotalHarvestedWood(),req.getFixCosts()),req.getEconomicModel().calcProfitPerMeter(rec.getTotalHarvestedWood(),req.getPricePerMeter())));
 
 				rec.setTreesByType(forest.getNumberOfTreesByType());
 			}

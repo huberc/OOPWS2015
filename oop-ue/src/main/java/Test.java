@@ -1,3 +1,4 @@
+import java.util.Map;
 
 /**
  * Test class for the environment simulation.
@@ -19,12 +20,12 @@ public class Test {
 		System.out.println("1. Test result content with only initial state, no simulation done at all:");
 		System.out.println("Test of initial state: "
 				+ simulatorTest.testInitialState());
-		System.out.println("\n2. Test result content after a one-year simulation run:");
+		/*System.out.println("\n2. Test result content after a one-year simulation run:");
 		System.out.println("Test of state after 1 year: "
 				+ simulatorTest.testOneYear());
 		System.out.println("\n3. Test result content after a 4-year simulation run:");
 		System.out.println("Test of state after 4 years: "
-				+ simulatorTest.testFourYears());
+				+ simulatorTest.testFourYears());*(
 		
 		/*
 		System.out.println("-------------------------------------------------------");
@@ -45,29 +46,41 @@ public class Test {
 
 	// simple "dummy-test" that just verifies if inital values are unchanged in result
 	public boolean testInitialState() {
+
 		SimulationRequest req = new SimulationRequest();
-		req.setStartDeadWood(10);
-		req.setStartLivingWood(10);
-		req.setAvgWoodGrowth(10);
+
+		Map<Class<? extends AbstractTree>, Integer> trees = null;
+
+		trees.put(Spruce.class, 10);
+		trees.put(BlackAlder.class, 15);
+
+		Forest forest = new Forest(100.0,trees);
+
 		req.setAvgProcessedWoodYearly(0.5);
-		req.setAvgHarvestYearly(10);
-		req.setAvgDecompWoodYearly(0.2);
-		req.setAvgDeadWoodYearly(2);
+		req.setForest(forest);
+		req.setFixCosts(10000);
+		req.setVariableCosts(5);
+		req.setPricePerMeter(10);
+		req.setEconomicModel(new DummyEconomicModel());
+		req.setWeatherModel(new DummyWeatherModel());
+		req.setWoodUsageModel(new DummyWoodUsageModel());
+
 		SimulationResult actual = this.sim.simulate(req, 0);
 
 		// reference result
 		SimulationResult expected = new SimulationResult(0);
 		SimulationResult.SimulationRecord rec = expected.new SimulationRecord();
-		rec.setTotalBoundCO2(20);
-		rec.setTotalDeadWood(10);
+		rec.setTotalBoundCO2(35);
+		rec.setTotalDeadWood(0);
 		rec.setTotalHarvestedWood(0);
-		rec.setTotalLivingWood(10);
+		rec.setTotalLivingWood(35);
 		rec.setTotalProcessedWood(0);
 		expected.addSimulationRecordForYear(rec, 0);
 		return Test.compareResults(actual, expected);
 	}
 
 	// basic test for one year simulation based on hardcoded values
+/*
 	public boolean testOneYear() {
 		SimulationRequest req = new SimulationRequest();
 		req.setStartDeadWood(10);
@@ -164,6 +177,7 @@ public class Test {
 		
 		return Test.compareResults(actual, expected);
 	}
+*/
 
 	private static boolean compareResults(SimulationResult actual,
 			SimulationResult expected) {
@@ -199,11 +213,8 @@ public class Test {
 				expected.getTotalLivingWood())) {
 			return false;
 		}
-		if (!Test.areEqual(actual.getTotalProcessedWood(),
-				expected.getTotalProcessedWood())) {
-			return false;
-		}
-		return true;
+		return Test.areEqual(actual.getTotalProcessedWood(),
+				expected.getTotalProcessedWood());
 	}
 
 	/**
