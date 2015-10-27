@@ -2,9 +2,9 @@
  * Created by Christoph on 27.10.2015.
  */
 public class LogarithmicWeatherModel implements IWeatherModel{
-    private int aTemp,bTemp, aRain, bRain;
+    private double aTemp,bTemp, aRain, bRain;
 
-    public LogarithmicWeatherModel(int aTemp, int bTemp, int aRain, int bRain){
+    public LogarithmicWeatherModel(double aTemp, double bTemp, double aRain, double bRain){
         this.aRain = aRain;
         this.bRain = bRain;
         this.aTemp = aTemp;

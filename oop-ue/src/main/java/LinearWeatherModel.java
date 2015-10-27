@@ -3,9 +3,9 @@
  */
 public class LinearWeatherModel implements IWeatherModel{
 
-    private int aTemp,bTemp, aRain, bRain;
+    private double aTemp,bTemp, aRain, bRain;
 
-    public LinearWeatherModel(int aTemp, int bTemp, int aRain, int bRain){
+    public LinearWeatherModel(double aTemp, double bTemp, double aRain, double bRain){
         this.aRain = aRain;
         this.bRain = bRain;
         this.aTemp = aTemp;
