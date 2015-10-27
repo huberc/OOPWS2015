@@ -1,9 +1,10 @@
 /**
  * Created by ines on 26.10.2015.
  */
-public class blackAlder extends AbstractTree{
+public class BlackAlder extends AbstractTree{
     public void grow(WeatherConditions weather, double spaceAvailable){
     ++age;
+
     //Influence weather conditions
         double temp = weather.getAvgTemperature();
         double rain = weather.getRainfall();
@@ -28,6 +29,8 @@ public class blackAlder extends AbstractTree{
 
         if (inf < 0) {
             this.state = TreeState.DEAD;
+            deathwood = this.wood;
+            return;
         }
 
     //height grow
@@ -39,12 +42,14 @@ public class blackAlder extends AbstractTree{
         }
 
     //diameter grow
-        if(age <= 10) {
-            diameter += age/10 *inf;
-        } else if ((age > 10) && (age <= 100)) {
-            diameter += (5.98 * Math.pow(10, -4) * Math.pow(age, 2) - 0.13 * age + 7.29) *inf;
-        } else {
-            diameter += (0.2/(age/100)) * inf;
+        if (spaceAvailable > 0.1) {
+            if (age <= 10) {
+                diameter += age / 10 * inf;
+            } else if ((age > 10) && (age <= 100)) {
+                diameter += (5.98 * Math.pow(10, -4) * Math.pow(age, 2) - 0.13 * age + 7.29) * inf;
+            } else {
+                diameter += (0.2 / (age / 100)) * inf;
+            }
         }
 
     //usable from the age of 4
@@ -59,11 +64,12 @@ public class blackAlder extends AbstractTree{
         wood = useableWood *100/75;
 
     //change of used space
-        usedSpace = 0.1675 * Math.pow(diameter, 0.97);
+        double r = 0.1675 * Math.pow(diameter*100, 0.97);
+        usedSpace = Math.pow(r, 2)*Math.PI;
     }
 
 
     public void rot() {
-
+        wood = deathwood * Math.pow(Math.E, -0.1*age);
     }
 }
