@@ -3,9 +3,9 @@
  */
 public class ExponentialWeatherModel implements IWeatherModel{
 
-    private int aTemp,bTemp, aRain, bRain;
+    private double aTemp,bTemp, aRain, bRain;
 
-    public ExponentialWeatherModel(int aTemp, int bTemp, int aRain, int bRain){
+    public ExponentialWeatherModel(double aTemp, double bTemp, double aRain, double bRain){
         this.aRain = aRain;
         this.bRain = bRain;
         this.aTemp = aTemp;
