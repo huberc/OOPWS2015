@@ -34,6 +34,7 @@ public class Test {
 		System.out.println("Test of initial state: "
 				+ simulatorTest.testInitialState());
 		simulatorTest.testEnergyWoodThreeDecades();
+
 		System.out.println("Test des linearen Wetter Models:");
 		System.out.println("\tTeststatus für 3 Jahre und zwei unterschiedliche Simulationen: "+simulatorTest.testLinearWeahterModel());
 		System.out.println("Test des exponentialen Wetter Models:");
@@ -248,7 +249,7 @@ public class Test {
 				+ SimulationDisplay.formatAsTable(actual));
 		return false;
 	}
-
+	public  boolean testLogarithmicWeatherModel(){
 		LogarithmicWeatherModel logarithmicWeatherModel= new LogarithmicWeatherModel(3,0.5,3,0.5);
 
 		if(!(areEqual(logarithmicWeatherModel.calcWeatherForYear(1).getRainfall(),0.5) &&areEqual(logarithmicWeatherModel.calcWeatherForYear(1).getAvgTemperature(),0.5)))
