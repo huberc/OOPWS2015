@@ -45,7 +45,7 @@ public abstract class AbstractTree {
 	/**
 	 * The space (in square meters) of ground floor this tress uses or shadows,
 	 * i.e. an oak with a crown of 5 meters in width would have 5 here. Changes
-	 * when the tree grows (assuming there´s enough space available)
+	 * when the tree grows (assuming there is enough space available)
 	 */
 	private double usedSpace;
 
