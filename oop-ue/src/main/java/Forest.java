@@ -70,12 +70,12 @@ public class Forest implements Cloneable {
 					i.grow(weather, availableSpace);
 				} else {
 					i.rot();
-					if(i.getWood() <= Forest.ROTTEN_TREE_REMOVE_TRESHOLD){
+					if (i.getWood() <= Forest.ROTTEN_TREE_REMOVE_TRESHOLD) {
 						removeTreesList.add(i);
 					}
 				}
 			}
-			for(AbstractTree treeToRemove : removeTreesList){
+			for (AbstractTree treeToRemove : removeTreesList) {
 				temp.remove(treeToRemove);
 			}
 		}
@@ -98,10 +98,12 @@ public class Forest implements Cloneable {
 		double amount = 0;
 		int treesToGo = numTrees;
 		for (AbstractTree t : trees.get(preferredType)) {
-			amount += t.harvest();
-			treesToGo--;
-			if(treesToGo <= 0){
-				break;
+			if (t.getState() == AbstractTree.TreeState.LIVING) {
+				amount += t.harvest();
+				treesToGo--;
+				if (treesToGo <= 0) {
+					break;
+				}
 			}
 		}
 		this.percentGroundShadowed = this.calculateShadowed();
