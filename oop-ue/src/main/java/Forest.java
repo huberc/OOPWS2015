@@ -16,9 +16,10 @@ public class Forest implements Cloneable {
     private double sizeSqMeters;
     private Integer numTrees;
 
-    public Forest(double sizeSqMeters, Map<Class<? extends AbstractTree>, List<AbstractTree>> trees, Integer numTrees) {
+    public Forest(double sizeSqMeters, Map<Class<? extends AbstractTree>, Integer> trees) {
         this.sizeSqMeters = sizeSqMeters;
-        this.trees = trees;
+        //this.trees = trees;
+
         this.numTrees = numTrees;
     }
 
@@ -42,7 +43,7 @@ public class Forest implements Cloneable {
     private int amountTrees() {
         int counter = 0;
         Set<Entry<Class<? extends AbstractTree>, List<AbstractTree>>> mySet = trees.entrySet();
-        List<AbstractTree> temp;
+        List<AbstractTree> temp = null;
         for (Entry<Class<? extends AbstractTree>, List<AbstractTree>> t : mySet) {
             counter += temp.size();
         }
