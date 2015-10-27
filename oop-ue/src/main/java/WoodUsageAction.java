@@ -13,7 +13,17 @@ public class WoodUsageAction {
 	 *
 	 */
 	public enum ActionType {
-		CUT_TREES, PLANT_TREES;
+		CUT_TREES("geerntet"), PLANT_TREES("gepflanzt");
+
+		private String humanReadableName;
+
+		private ActionType(String name) {
+			this.humanReadableName = name;
+		}
+
+		public String getHumanReadableName() {
+			return this.humanReadableName;
+		}
 	}
 
 	/**
@@ -25,10 +35,9 @@ public class WoodUsageAction {
 	 * The number of trees to perform the action on.
 	 */
 	private int numTreesToActOn;
-	
+
 	/**
-	 * The kind of trees to cut or plant.
-	 * Depends on the purpose of the wood.
+	 * The kind of trees to cut or plant. Depends on the purpose of the wood.
 	 */
 	private Class<? extends AbstractTree> treeTypeToActOn;
 
@@ -40,7 +49,8 @@ public class WoodUsageAction {
 	 * @param numTrees
 	 *            the affected trees
 	 */
-	public WoodUsageAction(ActionType type, int numTrees, Class<? extends AbstractTree> treeType) {
+	public WoodUsageAction(ActionType type, int numTrees,
+			Class<? extends AbstractTree> treeType) {
 		this.type = type;
 		this.numTreesToActOn = numTrees;
 		this.treeTypeToActOn = treeType;

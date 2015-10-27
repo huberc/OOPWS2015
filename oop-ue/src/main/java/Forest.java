@@ -1,7 +1,10 @@
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * 
@@ -10,18 +13,16 @@ import java.util.Map.Entry;
  */
 public class Forest implements Cloneable {
 
-    private List<AbstractTree> blackAlderList;
-    private List<AbstractTree> spruceList;
-    private Map<Class<? extends AbstractTree>, List<AbstractTree>> trees;
-    private double sizeSqMeters;
-    private Integer numTrees;
+	private Map<Class<? extends AbstractTree>, List<AbstractTree>> trees;
 
-    public Forest(double sizeSqMeters, Map<Class<? extends AbstractTree>, Integer> trees) {
-        this.sizeSqMeters = sizeSqMeters;
-        //this.trees = trees;
-
-        this.numTrees = numTrees;
-    }
+	public Forest(double sizeSqMeters,
+			Map<Class<? extends AbstractTree>, Integer> trees) {
+		this.forestSize = sizeSqMeters;
+		for(Entry<Class<? extends AbstractTree>, Integer> entry : trees.entrySet()){
+			this.plantTrees(entry.getValue(), entry.getKey());
+		}
+		this.percentGroundShadowed = this.calculateShadowed();
+	}
 
 	// @Ines - Eventuell hier statt der Liste eine Map verwenden (nachdem ja
 	// harvest und plant types verwenden), zB:
@@ -40,16 +41,6 @@ public class Forest implements Cloneable {
 	 */
 	private double percentGroundShadowed;
 
-    private int amountTrees() {
-        int counter = 0;
-        Set<Entry<Class<? extends AbstractTree>, List<AbstractTree>>> mySet = trees.entrySet();
-        List<AbstractTree> temp = null;
-        for (Entry<Class<? extends AbstractTree>, List<AbstractTree>> t : mySet) {
-            counter += temp.size();
-        }
-        return counter;
-    }
-
 	/**
 	 * Lets the wood grow.
 	 * 
@@ -58,17 +49,18 @@ public class Forest implements Cloneable {
 	 *            year
 	 */
 	public void grow(WeatherConditions weather) {
-        Set<Entry<Class<? extends AbstractTree>, List<AbstractTree>>> mySet = trees.entrySet();
-        List<AbstractTree> temp;
-        double availableSpace = sizeSqMeters *(1-percentGroundShadowed);
-        for (Entry<Class<? extends AbstractTree>, List<AbstractTree>> t : mySet) {
-            temp = t.getValue();
-            for (AbstractTree i : temp) {
-                i.grow(weather, availableSpace);
-            }
-        }
-        setForestSize();
-    }
+		Set<Entry<Class<? extends AbstractTree>, List<AbstractTree>>> mySet = trees
+				.entrySet();
+		List<AbstractTree> temp;
+		double availableSpace = this.forestSize * (1 - percentGroundShadowed);
+		for (Entry<Class<? extends AbstractTree>, List<AbstractTree>> t : mySet) {
+			temp = t.getValue();
+			for (AbstractTree i : temp) {
+				i.grow(weather, availableSpace);
+			}
+		}
+		this.percentGroundShadowed = this.calculateShadowed();
+	}
 
 	/**
 	 * Harvests trees from the forest.
@@ -83,26 +75,12 @@ public class Forest implements Cloneable {
 	 */
 	public double harvestTrees(int numTrees,
 			Class<? extends AbstractTree> preferredType) {
-
-        double amount = 0;
-        for(AbstractTree t : trees.get(preferredType)) {
-            amount += t.harvest();
-        }
-        setForestSize();
+		double amount = 0;
+		for (AbstractTree t : trees.get(preferredType)) {
+			amount += t.harvest();
+		}
+		this.percentGroundShadowed = this.calculateShadowed();
 		return amount;
-	}
-
-	/**
-	 * Destroys trees (e.g. as a result of a thunderstorm etc)
-	 * 
-	 * @param numTrees
-	 *            the number of trees to destroy
-	 */
-	public void destroyTrees(int numTrees) {
-		// TODO
-		// to be called when trees are destroyed, e.g. by lightning strikes
-
-        setForestSize();
 	}
 
 	/**
@@ -114,16 +92,18 @@ public class Forest implements Cloneable {
 	 *            the type of trees to plant
 	 */
 	public void plantTrees(int numTrees, Class<? extends AbstractTree> type) {
-		// TODO
-        // @Ines: Basierend auf einer Class Bäume dieses Types erzeugen geht wie
-        // folgt:
-        //AbstractTree t = type.getDeclaredConstructor(null).newInstance(null);
-        // siehe auch java API
-        // https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html
-
-
-        setForestSize();
-
+		Constructor<? extends AbstractTree> treeConstructor = null;
+		try {
+			treeConstructor = type.getConstructor();
+			for (int i = 0; i < numTrees; i++) {
+				this.trees.get(type).add(treeConstructor.newInstance());
+			}
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Cannot plant trees of type "
+					+ type.getName() + " -> exception is "
+					+ e.getClass().getSimpleName() + ": " + e.getMessage());
+		}
+		this.percentGroundShadowed = calculateShadowed();
 	}
 
 	/**
@@ -133,17 +113,18 @@ public class Forest implements Cloneable {
 	 * @return the added-up <code>wood</code> properties of all living trees
 	 */
 	public double getTotalLivingWood() {
-        Set<Entry<Class<? extends AbstractTree>, List<AbstractTree>>> mySet = trees.entrySet();
-        List<AbstractTree> temp;
-        double counter = 0;
-        for (Entry<Class<? extends AbstractTree>, List<AbstractTree>> t : mySet) {
-            temp = t.getValue();
-            for (AbstractTree i : temp) {
-                if (i.getState() == AbstractTree.TreeState.LIVING) {
-                    counter += i.getWood();
-                }
-            }
-        }
+		Set<Entry<Class<? extends AbstractTree>, List<AbstractTree>>> mySet = trees
+				.entrySet();
+		List<AbstractTree> temp;
+		double counter = 0;
+		for (Entry<Class<? extends AbstractTree>, List<AbstractTree>> t : mySet) {
+			temp = t.getValue();
+			for (AbstractTree i : temp) {
+				if (i.getState() == AbstractTree.TreeState.LIVING) {
+					counter += i.getWood();
+				}
+			}
+		}
 		return counter;
 	}
 
@@ -153,18 +134,19 @@ public class Forest implements Cloneable {
 	 * @return the added-up <code>wood</code> properties of all dead trees
 	 */
 	public double getTotalDeadWood() {
-        Set<Entry<Class<? extends AbstractTree>, List<AbstractTree>>> mySet = trees.entrySet();
-        List<AbstractTree> temp;
-        double counter = 0;
-        for (Entry<Class<? extends AbstractTree>, List<AbstractTree>> t : mySet) {
-            temp = t.getValue();
-            for (AbstractTree i : temp) {
-                if (i.getState() == AbstractTree.TreeState.DEAD) {
-                    counter += i.getWood();
-                }
-            }
-        }
-        return counter;
+		Set<Entry<Class<? extends AbstractTree>, List<AbstractTree>>> mySet = trees
+				.entrySet();
+		List<AbstractTree> temp;
+		double counter = 0;
+		for (Entry<Class<? extends AbstractTree>, List<AbstractTree>> t : mySet) {
+			temp = t.getValue();
+			for (AbstractTree i : temp) {
+				if (i.getState() == AbstractTree.TreeState.DEAD) {
+					counter += i.getWood();
+				}
+			}
+		}
+		return counter;
 	}
 
 	/**
@@ -183,40 +165,31 @@ public class Forest implements Cloneable {
 	 * @return the number of living trees (by tree type) currently in the forest
 	 */
 	public Map<Class<? extends AbstractTree>, Integer> getNumberOfTreesByType() {
-        Set<Entry<Class<? extends AbstractTree>, List<AbstractTree>>> mySet = trees.entrySet();
-        List<AbstractTree> temp;
-        Map<Class<? extends AbstractTree>, Integer> result;
-        for (Entry<Class<? extends AbstractTree>, List<AbstractTree>> t : mySet) {
-            result.put(temp ,temp.size());
-        }
+		Set<Entry<Class<? extends AbstractTree>, List<AbstractTree>>> mySet = trees
+				.entrySet();
+		Map<Class<? extends AbstractTree>, Integer> result = new HashMap<>();
+		for (Entry<Class<? extends AbstractTree>, List<AbstractTree>> t : mySet) {
+			result.put(t.getKey(), t.getValue().size());
+		}
 		return result;
 	}
 
 	public double getForestSize() {
-		return forestSize;
+		return this.forestSize;
 	}
 
-    private double setForestSize() {
-        Set<Entry<Class<? extends AbstractTree>, List<AbstractTree>>> mySet = trees.entrySet();
-        List<AbstractTree> temp;
-        double counter = 0;
-        for (Entry<Class<? extends AbstractTree>, List<AbstractTree>> t : mySet) {
-            temp = t.getValue();
-            for (AbstractTree i : temp) {
-                if (i.getState() == AbstractTree.TreeState.DEAD) {
-                    counter += i.getUsedSpace();
-                }
-            }
-        }
-        setPercentGroundShadowed();
-        return counter;
-    }
+	private double calculateShadowed() {
+		double usedSpace = 0.0;
+		for(Entry<Class<? extends AbstractTree>, List<AbstractTree>> entry : this.trees.entrySet()){
+			for(AbstractTree t : entry.getValue()){
+				usedSpace += t.getUsedSpace();
+			}
+		}
+		return usedSpace / this.forestSize;
+	}
 
 	public double getPercentGroundShadowed() {
 		return percentGroundShadowed;
 	}
 
-    private double setPercentGroundShadowed() {
-        return (forestSize*100/sizeSqMeters);
-    }
 }
