@@ -144,8 +144,7 @@ public class SimulationDisplay {
             for (WoodUsageAction action : rec.getWoodActions()) {
                 output += "\t\t\t" + action.getNumTreesToActOn()
                         + " "
-                        + action.getTreeTypeToActOn()
-                        .toString() + " "
+                        + action.getTreeTypeToActOn().getName()+ " "
                         + action.getType().getHumanReadableName() + "\n";
             }
         } else {
