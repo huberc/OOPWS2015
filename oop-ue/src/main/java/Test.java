@@ -4,11 +4,17 @@ import java.util.Map;
 
 /**
  * Test class for the environment simulation.
- * 
- * TODO Who did what? Why did we do it?
- * 
- * @author Michael Langowski, e1426581@student.tuwien.ac.at
  *
+ * @author Michael Langowski, e1426581@student.tuwien.ac.at All Interfaces, WeatherConditions, WoodUsageAction, RecorveryWoodUsageModel, RealWeatherModel, EnergyWoodUsageModel, DummyWeatherModel
+ * @author Christoph Huber, e1427322@student.tuwien.ac.at Simulator, SimulatorRequest, SimulationDisplay, LinearWeatherModel, ExponentialWeatherModel, LogarithmicWeathermodel, DummyEconomicModel
+ * @author Ines Rieder, e1425000@student.tuwien.ac.at Forest, BlackAlder, Spruce, SimulationDisplay, AbstractTree
+ *
+ *
+ * GOOD:
+ * 		- the class cohesion overall the project is quite good
+ * 		- good dynamic binding for example the <code>Simulator</code> and the <ocde>Weathermodels</ocde>
+ * BAD:
+ * 		- We don't think that there are bad things overall the project, but some selective mistakes.
  */
 public class Test {
 
@@ -54,31 +60,13 @@ public class Test {
 		System.out.println("RECOVERY WOOD SIM - FIVE DECADES");
 		simulatorTest.runRecoveryWoodFiveDecades();
 
-		/*
-		 * System.out.println(
-		 * "\n2. Test result content after a one-year simulation run:");
-		 * System.out.println("Test of state after 1 year: " +
-		 * simulatorTest.testOneYear()); System.out.println(
-		 * "\n3. Test result content after a 4-year simulation run:");
-		 * System.out.println("Test of state after 4 years: " +
-		 * simulatorTest.testFourYears());*(
-		 * 
-		 * /* System.out.println(
-		 * "-------------------------------------------------------");
-		 * SimulationRequest req = new SimulationRequest();
-		 * req.setStartDeadWood(0); req.setStartLivingWood(0);
-		 * req.setAvgWoodGrowth(10); req.setAvgDeadWoodYearly(2);
-		 * req.setAvgHarvestYearly(7); req.setAvgProcessedWoodYearly(0.8);
-		 * req.setAvgDecompWoodYearly(0.2);
-		 * 
-		 * SimulationResult result = simulatorTest.sim.simulate(req, 20);
-		 * System.out.println("Result after 20 years:\n" + result);
-		 */
-
 	}
 
-	// simple "dummy-test" that just verifies if inital values are unchanged in
-	// result
+	/**
+	 * test the initial state of the simulation
+	 *
+	 * @return true if the test is good, false if there are mistakes in the simulation
+	 */
 	public boolean testInitialState() {
 
 		SimulationRequest req = new SimulationRequest();
@@ -118,6 +106,10 @@ public class Test {
 		return Test.compareResults(actual, expected);
 	}
 
+	/**
+	 *
+	 * @return ture if the test is good, false if there are mistakes in the simulation
+	 */
 	public boolean testWoodGrowthOptimal() {
 		Spruce spruce = new Spruce();
 		spruce.grow(new WeatherConditions(8.0, 900), 10.0);
@@ -228,6 +220,11 @@ public class Test {
 		return actions.size() == expectedTreesToCutAndReplant;
 	}
 
+	/**
+	 * Test for the <code>Logarithmic Wheater Model</code> with 2 different models
+	 *
+	 * @return a boolean value if the test was correct or wrong
+	 */
 	public boolean testLogarithmicWeatherModel() {
 		LogarithmicWeatherModel logarithmicWeatherModel = new LogarithmicWeatherModel(
 				3, 0.5, 3, 0.5);
@@ -266,6 +263,11 @@ public class Test {
 		return true;
 	}
 
+	/**
+	 * Test for the <code>Exponential Wheater Model</code> with 2 different models
+	 *
+	 * @return a boolean value if the test was correct or wrong
+	 */
 	public boolean testExponentialWeatherModel() {
 
 		ExponentialWeatherModel exponentialWeatherModel = new ExponentialWeatherModel(
@@ -306,6 +308,12 @@ public class Test {
 		return true;
 	}
 
+	/**
+	 * Test for the <code>Linear Wheater Model</code> with 2 different models
+	 *
+	 * @return a boolean value if the test was correct or wrong
+	 */
+
 	public boolean testLinearWeahterModel() {
 
 		LinearWeatherModel linearWeatherModel = new LinearWeatherModel(0.5, 8,
@@ -343,6 +351,11 @@ public class Test {
 		return true;
 	}
 
+	/**
+	 * Test for the <code>Economic Model</code> with 2 different models for each method
+	 *
+	 * @return a boolean value if the test was correct or wrong
+	 */
 	public boolean testEconomicModel() {
 
 		DummyEconomicModel economicModel = new DummyEconomicModel();

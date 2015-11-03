@@ -15,6 +15,7 @@ public class Simulator {
 	 * 
 	 * @param req
 	 *            the request holding all simulation input params
+	 *            BAD: actions are performed on the forest, without taking a further copy to ensure the statelessness of the Request
 	 * @param years
 	 *            the number of years to simulate
 	 * @return a <code>SimulationResult</code> describing the state of the wood
@@ -26,6 +27,7 @@ public class Simulator {
 		double totalDeadWoodpast = 0;
 		double totalHarvestedWoodpast = 0;
 		double totalProcessedWoodpast = 0;
+
 		Forest forest = req.getForest();
 
 		SimulationResult retVal = new SimulationResult(years);
@@ -37,18 +39,37 @@ public class Simulator {
 
 			// Intials values saved for displaying it.
 			if (i == 0) {
+
+				/**
+				 *		Set the total amount of living wood in the record for one year
+				 * 		Get current amount of living wood from the client (forest) the
+				 */
 				rec.setTotalLivingWood(forest.getTotalLivingWood());
 				totalLivingWoodpast = forest.getTotalLivingWood();
 
+				/**
+				 * 		Set the total amount of dead wood in the forest in the simulation record for one year
+				 * 		Get the current amount of dead wood from the client (forest)
+				 */
 				rec.setTotalDeadWood(forest.getTotalDeadWood());
 				totalDeadWoodpast = forest.getTotalDeadWood();
 
+				/**
+				 * 		At the initial state of the simulation can't be a already harvested wood
+				 */
 				rec.setTotalHarvestedWood(0.0);
 				totalHarvestedWoodpast = 0.0;
 
+				/**
+				 * 		At the initial state of the simulation can't be a already processed wood
+				 */
 				rec.setTotalProcessedWood(0.0);
 				totalProcessedWoodpast = 0.0;
 
+				/**
+				 * 		Set the total bound CO2 in the record for one year
+				 * 		Get the current amount of living and dead wood from the forest
+				 */
 				rec.setTotalBoundCO2(forest.getTotalLivingWood()
 						+ forest.getTotalDeadWood());
 				rec.setLivingTreesByType(forest
@@ -75,6 +96,10 @@ public class Simulator {
 
 				double harvestedWood = 0.0;
 				for (WoodUsageAction action : woodUsageActionList) {
+
+					/**
+					 * BAD: minor issues: the logic which action should be performed should better be in the forest
+					 */
 					if (action.getType() == WoodUsageAction.ActionType.CUT_TREES) {
 						harvestedWood += forest.harvestTrees(
 								action.getNumTreesToActOn(),
