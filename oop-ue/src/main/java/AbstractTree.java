@@ -1,15 +1,15 @@
 /**
  * 
- * TODO
- * 
  * @author Ines
  *
  */
 public abstract class AbstractTree {
 
 	/**
-	 * The age of a tree. tree height diameter of the tree trunk in 1.3m height
-	 * wood amount when state was changed
+	 * The age of a tree. (necessary for grow function)
+     * tree height
+     * diameter of the tree trunk in 1.3m height
+	 * wood amount when state has been changed
 	 */
 	private int age;
 	private double height;
@@ -17,10 +17,7 @@ public abstract class AbstractTree {
 	private double deathwood;
 
 	/**
-	 * Possible states of a tree. A living tree grows, a dead one rots.
-	 *
-	 * @author michael
-	 *
+	 * Possible states of a tree. A living tree grows, a dead one rots.	 *
 	 */
 	public enum TreeState {
 		LIVING, DEAD;
@@ -76,6 +73,11 @@ public abstract class AbstractTree {
 				* Math.pow(Math.E, -0.1 * this.getAge()));
 	}
 
+    /**
+     * Lets the trees be "harvested" (changes state and wood of tree).
+     * The remaining wood is the amount which couldn't be harvested (branches and stub).
+     * @return the amount of harvested wood (profit bringing wood)
+     */
 	public double harvest() {
 		this.state = TreeState.DEAD;
 		double retVal = this.useablePercentage * this.wood;
@@ -86,7 +88,11 @@ public abstract class AbstractTree {
 		return retVal;
 	}
 
-	public void destroy() {
+	/**
+     * TODO delete destroy
+     *      isn't used
+	 */
+    public void destroy() {
 		// assumption: if a tree is destroyed,
 		// the percentage of dead wood remaining is the same as when it is
 		// harvested

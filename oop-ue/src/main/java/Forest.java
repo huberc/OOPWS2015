@@ -7,7 +7,9 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 /**
- * 
+ * The Forest contains a number of trees and can let them be planted or harvested or let them grow or rot.
+ * In general it manages all trees within the forest.
+ *
  * @author Ines
  *
  */
@@ -20,9 +22,18 @@ public class Forest {
 	 */
 	private static final double ROTTEN_TREE_REMOVE_TRESHOLD = 0.01;
 
+    /**
+     * The Map contains every tree, living or dead, of the forest.
+     */
+
 	private Map<Class<? extends AbstractTree>, List<AbstractTree>> trees = new HashMap<>();
 
-	public Forest(double sizeSqMeters,
+    /**
+     *
+     * @param sizeSqMeters  The size of the whole property in squaremeters.
+     * @param trees     amount of trees
+     */
+    public Forest(double sizeSqMeters,
 			Map<Class<? extends AbstractTree>, Integer> trees) {
 		this.forestSize = sizeSqMeters;
 		for (Entry<Class<? extends AbstractTree>, Integer> entry : trees
@@ -31,10 +42,6 @@ public class Forest {
 		}
 		this.percentGroundShadowed = this.calculateShadowed();
 	}
-
-	// @Ines - Eventuell hier statt der Liste eine Map verwenden (nachdem ja
-	// harvest und plant types verwenden), zB:
-	// Map<Class<? extends AbstractTree>, List<? extends AbstractTree>> trees;
 
 	/**
 	 * The size of the forest (in square meters)

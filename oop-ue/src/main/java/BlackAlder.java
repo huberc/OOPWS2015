@@ -1,16 +1,36 @@
 /**
- * Created by ines on 26.10.2015.
+ * The Black Alder is a common broadleaf tree i Europe.
+ * It grows fast and uses a lot of space like most broadleafs.
+ *
+ * more commen in recovery wood
+ *
+ * @author Ines
+ *
  */
 public class BlackAlder extends AbstractTree {
-	
-	public BlackAlder(){
+
+    /**
+     * A new Black Alder is created and variables are set.
+     */
+    public BlackAlder(){
 		super();
 		// initial values for functions
 		this.setHeight(0.2);
 		this.setDiameter(0.02);
 	}
-	
-	public void grow(WeatherConditions weather, double spaceAvailable) {
+
+    /**
+     * Every year a tree grows or rots depending on it's state (see AbstractTree)
+     *
+     * @param weather
+     *            the current <code>WeatherConditions</code> influences the grow of the tree
+     *              (if bad it can slow down the growth or even kill the tree)
+     * @param spaceAvailable
+     *            the space (in square meters) by which this tree can grow
+     *            before touching another tree. If zero, the tree cannot grow in
+     *            width anymore (but may still grow in height)
+     */
+    public void grow(WeatherConditions weather, double spaceAvailable) {
 		this.setAge(this.getAge() + 1);
 
 		// Influence weather conditions
@@ -39,7 +59,7 @@ public class BlackAlder extends AbstractTree {
 			return;
 		}
 
-		// height grow
+		// height growth
 		if (this.getAge() <= 10) {
 			this.setHeight(this.getHeight() + 1 * inf);
 		} else {
@@ -47,7 +67,7 @@ public class BlackAlder extends AbstractTree {
 					+ ((12 - this.getAge() / 15) / this.getAge()) * inf);
 		}
 
-		// diameter grow
+		// diameter growth
 		if (spaceAvailable > 0.1) {
 			if (this.getAge() <= 10) {
 				this.setDiameter(this.getDiameter()
@@ -79,7 +99,11 @@ public class BlackAlder extends AbstractTree {
 		this.setUsedSpace(Math.pow(r, 2) * Math.PI);
 	}
 
-	public String toString() {
+    /**
+     * needed String for output in console
+     * @return german name of the tree
+     */
+    public String toString() {
 		return "Schwarzerle";
 	}
 }

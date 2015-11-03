@@ -1,16 +1,36 @@
 /**
- * Created by ines on 27.10.2015.
+ * The Spruce is one of the most common evergreen trees in Austria.
+ * It grows slower then most trees but uses little space and can be used to a big percentage.
+ *
+ * more common in energy wood
+ *
+ * @author Ines
+ *
  */
 public class Spruce extends AbstractTree {
 
+    /**
+     * A new Spruce is created and variables are set.
+     */
 	public Spruce(){
 		super();
 		// initial values for functions
 		this.setHeight(0.2);
 		this.setDiameter(0.02);
 	}
-	
-	public void grow(WeatherConditions weather, double spaceAvailable) {
+
+    /**
+     * Every year a tree grows or rots depending on it's state (see AbstractTree)
+     *
+     * @param weather
+     *            the current <code>WeatherConditions</code> influences the grow of the tree
+     *              (if bad it can slow down the growth or even kill the tree)
+     * @param spaceAvailable
+     *            the space (in square meters) by which this tree can grow
+     *            before touching another tree. If zero, the tree cannot grow in
+     *            width anymore (but may still grow in height.
+     */
+    public void grow(WeatherConditions weather, double spaceAvailable) {
 		this.setAge(this.getAge() + 1);
 		// Influence weather conditions
 		double temp = weather.getAvgTemperature();
@@ -38,12 +58,12 @@ public class Spruce extends AbstractTree {
 			return;
 		}
 
-		// height grow
+		// height growth
 		this.setHeight(this.getHeight() + 0.02
 				* Math.pow(this.getAge(), 2)
 				* Math.pow(Math.E, (-0.1 * this.getAge())) * inf);
 
-		// diameter grow
+		// diameter growth
 		if (spaceAvailable > 0.1) {
 			this.setDiameter(1 / (1 + Math.pow(Math.E,
 					(-0.05 * (this.getAge() - 60)))));
@@ -56,7 +76,7 @@ public class Spruce extends AbstractTree {
 			this.setUseablePercentage(0.84);
 		}
 
-		// wood grow
+		// wood growth
 		double useableWood = Math.pow(this.getDiameter() / 2, 2) * Math.PI
 				* (double) this.getHeight();
 		this.setWood(useableWood);
@@ -66,7 +86,11 @@ public class Spruce extends AbstractTree {
 		this.setUsedSpace(Math.pow(r, 2) * Math.PI);
 	}
 
-	public String toString(){
+    /**
+     * needed String for output in console
+     * @return german name of the tree
+     */
+    public String toString(){
 		return "Fichte";
 	}
 }
