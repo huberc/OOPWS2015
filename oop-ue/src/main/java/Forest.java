@@ -7,8 +7,12 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 /**
- * The Forest contains a number of trees and can let them be planted or harvested or let them grow or rot.
- * In general it manages all trees within the forest.
+ * The Forest contains a number of trees and can let them be planted or
+ * harvested or let them grow or rot. In general it manages all trees within the
+ * forest.
+ * 
+ * GOOD: Low object coupling - forest is a container for trees, but doesnt know
+ * about internal behavior of trees (see delegation in grow and harvest)
  *
  * @author Ines
  *
@@ -22,18 +26,20 @@ public class Forest {
 	 */
 	private static final double ROTTEN_TREE_REMOVE_TRESHOLD = 0.01;
 
-    /**
-     * The Map contains every tree, living or dead, of the forest.
-     */
+	/**
+	 * The Map contains every tree, living or dead, of the forest.
+	 */
 
 	private Map<Class<? extends AbstractTree>, List<AbstractTree>> trees = new HashMap<>();
 
-    /**
-     *
-     * @param sizeSqMeters  The size of the whole property in squaremeters.
-     * @param trees     amount of trees
-     */
-    public Forest(double sizeSqMeters,
+	/**
+	 *
+	 * @param sizeSqMeters
+	 *            The size of the whole property in squaremeters.
+	 * @param trees
+	 *            amount of trees
+	 */
+	public Forest(double sizeSqMeters,
 			Map<Class<? extends AbstractTree>, Integer> trees) {
 		this.forestSize = sizeSqMeters;
 		for (Entry<Class<? extends AbstractTree>, Integer> entry : trees
@@ -201,8 +207,8 @@ public class Forest {
 		int treeCnt;
 		for (Entry<Class<? extends AbstractTree>, List<AbstractTree>> t : mySet) {
 			treeCnt = 0;
-			for(AbstractTree tree : t.getValue()){
-				if(tree.getState() == requestedState){
+			for (AbstractTree tree : t.getValue()) {
+				if (tree.getState() == requestedState) {
 					treeCnt++;
 				}
 			}

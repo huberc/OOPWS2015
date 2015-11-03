@@ -2,7 +2,7 @@
  * The Black Alder is a common broadleaf tree i Europe.
  * It grows fast and uses a lot of space like most broadleafs.
  *
- * more commen in recovery wood
+ * more common in recovery wood
  *
  * @author Ines
  *
@@ -14,7 +14,6 @@ public class BlackAlder extends AbstractTree {
      */
     public BlackAlder(){
 		super();
-		// initial values for functions
 		this.setHeight(0.2);
 		this.setDiameter(0.02);
 	}
@@ -33,7 +32,6 @@ public class BlackAlder extends AbstractTree {
     public void grow(WeatherConditions weather, double spaceAvailable) {
 		this.setAge(this.getAge() + 1);
 
-		// Influence weather conditions
 		double temp = weather.getAvgTemperature();
 		double rain = weather.getRainfall();
 		double inf = 1.0;
@@ -59,7 +57,6 @@ public class BlackAlder extends AbstractTree {
 			return;
 		}
 
-		// height growth
 		if (this.getAge() <= 10) {
 			this.setHeight(this.getHeight() + 1 * inf);
 		} else {
@@ -67,7 +64,6 @@ public class BlackAlder extends AbstractTree {
 					+ ((12 - this.getAge() / 15) / this.getAge()) * inf);
 		}
 
-		// diameter growth
 		if (spaceAvailable > 0.1) {
 			if (this.getAge() <= 10) {
 				this.setDiameter(this.getDiameter()
@@ -83,18 +79,15 @@ public class BlackAlder extends AbstractTree {
 			}
 		}
 
-		// usable from the age of 4
 		if (this.getAge() < 4) {
 			this.setUseablePercentage(0);
 		} else if (this.getAge() == 4) {
 			this.setUseablePercentage(0.75);
 		}
 
-		// wood grow
 		this.setWood(Math.pow(this.getDiameter() / 2, 2) * Math.PI
 				* (double) this.getHeight());
 
-		// change of used space
 		double r = 0.1675 * Math.pow(this.getDiameter() * 100, 0.97);
 		this.setUsedSpace(Math.pow(r, 2) * Math.PI);
 	}

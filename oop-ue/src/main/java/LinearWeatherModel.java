@@ -2,6 +2,7 @@
  * Implementation of <code>IWeatherModel</code> that models temperature and
  * rainfall development based on a linear function
  * 
+ * 
  * Created by Christoph on 27.10.2015.
  */
 public class LinearWeatherModel implements IWeatherModel {

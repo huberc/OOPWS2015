@@ -12,9 +12,10 @@ import java.util.Map;
  *
  * GOOD:
  * 		- the class cohesion overall the project is quite good
- * 		- good dynamic binding for example the <code>Simulator</code> and the <ocde>Weathermodels</ocde>
+ * 		- good dynamic binding for example the <code>Simulator</code> and the <code>Weathermodels</code>
  * BAD:
- * 		- We don't think that there are bad things overall the project, but some selective mistakes.
+ * 		- Apart from a few punctual cases (e.g. Evaluation of wood actions in simulator) we havent found any fundamental errors
+ * 		 and believe the overall design to be OK. Cases where improvements could be implemented are noted as such in the code ("BAD")
  */
 public class Test {
 

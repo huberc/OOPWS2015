@@ -88,12 +88,12 @@ public abstract class AbstractTree {
 		return retVal;
 	}
 
-	/**
-     * TODO delete destroy
-     *      isn't used
+	/** 
+     * BAD: This method was initially planned to be used for e.g. natural events such as thunderstorms.
+     * As this feature was not implemented, the method should be deleted.
 	 */
     public void destroy() {
-		// assumption: if a tree is destroyed,
+		// NOTE: assumption: if a tree is destroyed,
 		// the percentage of dead wood remaining is the same as when it is
 		// harvested
 		this.harvest();

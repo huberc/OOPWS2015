@@ -45,16 +45,16 @@ public class RecoveryWoodUsageModel implements IWoodUsageModel {
 			totalTrees += entry.getValue();
 		}
 		if (this.targetTreeCount == -1) {
-			// no tree count set yet
+			// NOTE: no tree count set yet
 			this.targetTreeCount = totalTrees;
 		}
 		if (totalTrees > this.targetTreeCount) {
-			// too many trees, cut them and return
+			// NOTE: too many trees, cut them and return
 			return this.calcDistributedCuttingAction(totalTrees
 					- this.targetTreeCount, false, currentTrees);
 		} else if (totalTrees == this.targetTreeCount) {
 			if (avgGroundShadowing > this.groundShadowedTreshold) {
-				// cut a few trees and replant them
+				// NOTE: cut a few trees and replant them
 				int treesToCut = (int) Math.round((double) totalTrees
 						* (1 - this.groundShadowedTreshold));
 				return this.calcDistributedCuttingAction(treesToCut, true,

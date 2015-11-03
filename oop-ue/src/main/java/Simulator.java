@@ -2,6 +2,9 @@ import java.util.List;
 
 /**
  *
+ * GOOD: Replacability: All weather-, wood usage-, and economic models are
+ * encapsulated through the used interfaces, <code>Simulator</code> does not
+ * have to deal with internal workings of any specific model
  *
  * @author Christoph
  *
@@ -14,8 +17,9 @@ public class Simulator {
 	 * for a given number of years.
 	 * 
 	 * @param req
-	 *            the request holding all simulation input params
-	 *            BAD: actions are performed on the forest, without taking a further copy to ensure the statelessness of the Request
+	 *            the request holding all simulation input params BAD: actions
+	 *            are performed on the forest, without taking a further copy to
+	 *            ensure the statelessness of the Request
 	 * @param years
 	 *            the number of years to simulate
 	 * @return a <code>SimulationResult</code> describing the state of the wood
@@ -37,38 +41,41 @@ public class Simulator {
 
 			rec = retVal.new SimulationRecord();
 
-			// Intials values saved for displaying it.
 			if (i == 0) {
 
 				/**
-				 *		Set the total amount of living wood in the record for one year
-				 * 		Get current amount of living wood from the client (forest) the
+				 * Set the total amount of living wood in the record for one
+				 * year Get current amount of living wood from the client
+				 * (forest) the
 				 */
 				rec.setTotalLivingWood(forest.getTotalLivingWood());
 				totalLivingWoodpast = forest.getTotalLivingWood();
 
 				/**
-				 * 		Set the total amount of dead wood in the forest in the simulation record for one year
-				 * 		Get the current amount of dead wood from the client (forest)
+				 * Set the total amount of dead wood in the forest in the
+				 * simulation record for one year Get the current amount of dead
+				 * wood from the client (forest)
 				 */
 				rec.setTotalDeadWood(forest.getTotalDeadWood());
 				totalDeadWoodpast = forest.getTotalDeadWood();
 
 				/**
-				 * 		At the initial state of the simulation can't be a already harvested wood
+				 * At the initial state of the simulation cant be a already
+				 * harvested wood
 				 */
 				rec.setTotalHarvestedWood(0.0);
 				totalHarvestedWoodpast = 0.0;
 
 				/**
-				 * 		At the initial state of the simulation can't be a already processed wood
+				 * At the initial state of the simulation cant be a already
+				 * processed wood
 				 */
 				rec.setTotalProcessedWood(0.0);
 				totalProcessedWoodpast = 0.0;
 
 				/**
-				 * 		Set the total bound CO2 in the record for one year
-				 * 		Get the current amount of living and dead wood from the forest
+				 * Set the total bound CO2 in the record for one year Get the
+				 * current amount of living and dead wood from the forest
 				 */
 				rec.setTotalBoundCO2(forest.getTotalLivingWood()
 						+ forest.getTotalDeadWood());
@@ -80,7 +87,8 @@ public class Simulator {
 				rec.setWeather(req.getWeatherModel().calcWeatherForYear(i));
 			} else {
 
-				// due to the results of the models the specific forest methode
+				// NOTE: due to the results of the models the specific forest
+				// methode
 				// have to be called
 				rec.setWeather(req.getWeatherModel().calcWeatherForYear(i));
 				forest.grow(req.getWeatherModel().calcWeatherForYear(i));
@@ -98,7 +106,8 @@ public class Simulator {
 				for (WoodUsageAction action : woodUsageActionList) {
 
 					/**
-					 * BAD: minor issues: the logic which action should be performed should better be in the forest
+					 * BAD: minor issues: the logic which action should be
+					 * performed should better be in the forest
 					 */
 					if (action.getType() == WoodUsageAction.ActionType.CUT_TREES) {
 						harvestedWood += forest.harvestTrees(
@@ -130,8 +139,7 @@ public class Simulator {
 								.getAvgProcessedWoodYearly());
 
 				rec.setTotalBoundCO2(rec.getTotalLivingWood()
-						+ rec.getTotalDeadWood()
-						+ rec.getTotalHarvestedWood());
+						+ rec.getTotalDeadWood() + rec.getTotalHarvestedWood());
 
 				rec.setProfitMade(req.getEconomicModel()
 						.calcProfit(

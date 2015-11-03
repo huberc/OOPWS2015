@@ -14,7 +14,6 @@ public class Spruce extends AbstractTree {
      */
 	public Spruce(){
 		super();
-		// initial values for functions
 		this.setHeight(0.2);
 		this.setDiameter(0.02);
 	}
@@ -32,7 +31,7 @@ public class Spruce extends AbstractTree {
      */
     public void grow(WeatherConditions weather, double spaceAvailable) {
 		this.setAge(this.getAge() + 1);
-		// Influence weather conditions
+		
 		double temp = weather.getAvgTemperature();
 		double rain = weather.getRainfall();
 		double inf = 1.0;
@@ -58,30 +57,25 @@ public class Spruce extends AbstractTree {
 			return;
 		}
 
-		// height growth
 		this.setHeight(this.getHeight() + 0.02
 				* Math.pow(this.getAge(), 2)
 				* Math.pow(Math.E, (-0.1 * this.getAge())) * inf);
 
-		// diameter growth
 		if (spaceAvailable > 0.1) {
 			this.setDiameter(1 / (1 + Math.pow(Math.E,
 					(-0.05 * (this.getAge() - 60)))));
 		}
 
-		// usable from the age of 9
 		if (this.getAge() < 9) {
 			this.setUseablePercentage(0);
 		} else if (this.getAge() == 9) {
 			this.setUseablePercentage(0.84);
 		}
 
-		// wood growth
 		double useableWood = Math.pow(this.getDiameter() / 2, 2) * Math.PI
 				* (double) this.getHeight();
 		this.setWood(useableWood);
 
-		// change of used space
 		double r = 0.0466 * Math.pow(this.getDiameter() * 100, 1.1778);
 		this.setUsedSpace(Math.pow(r, 2) * Math.PI);
 	}

@@ -49,7 +49,7 @@ public class EnergyWoodUsageModel implements IWoodUsageModel {
 		final List<WoodUsageAction> retVal = new ArrayList<>();
 		for (Class<? extends AbstractTree> clazz : types) {
 			if (!this.preferredTrees.contains(clazz)) {
-				// "undesired" tree type - cut down
+				// NOTE: "undesired" tree type - cut down
 				retVal.add(new WoodUsageAction(
 						WoodUsageAction.ActionType.CUT_TREES, currentTrees
 								.get(clazz), clazz));
@@ -68,7 +68,7 @@ public class EnergyWoodUsageModel implements IWoodUsageModel {
 			}
 			int treesToCut = (int) Math.round((double) totalTrees
 					* (1 - this.groundShadowedTreshold));
-			// starting with the first tree type in the preferred list,
+			// NOTE: starting with the first tree type in the preferred list,
 			// cut trees until the total is reached
 			int treesOfType;
 			for (Class<? extends AbstractTree> clazz : this.preferredTrees) {
