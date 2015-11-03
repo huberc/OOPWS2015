@@ -11,8 +11,8 @@ import java.util.Set;
  * means that pinewood is preferred over broadleaf trees in general. Trees of
  * undesired types are cut down and replaced with newly planted preferred ones
  * Trees are cut when a certain (high) percentage of ground is shadowed, i.e.
- * trees dont have much space left to grow. If trees of preferred types are
- * cut, new ones are planted.
+ * trees dont have much space left to grow. If trees of preferred types are cut,
+ * new ones are planted.
  * 
  * @author michael
  *
@@ -22,6 +22,15 @@ public class EnergyWoodUsageModel implements IWoodUsageModel {
 	private List<Class<? extends AbstractTree>> preferredTrees;
 	private double groundShadowedTreshold;
 
+	/**
+	 * Creates a new <code>EnergyWoodUsageModel</code>.
+	 * 
+	 * @param shadowTreshold
+	 *            value (in percent of the forest ground floor) over which trees
+	 *            are cut. must be a positive value between 0 and 1
+	 * @param clazzez
+	 *            the tree types that are planted in the forest by this model
+	 */
 	@SafeVarargs
 	public EnergyWoodUsageModel(double shadowTreshold,
 			Class<? extends AbstractTree>... clazzez) {
@@ -29,6 +38,9 @@ public class EnergyWoodUsageModel implements IWoodUsageModel {
 		this.groundShadowedTreshold = shadowTreshold;
 	}
 
+	/**
+	 * @see IWoodUsageModel#calcAction(java.util.Map, double, double)
+	 */
 	@Override
 	public List<WoodUsageAction> calcAction(
 			Map<Class<? extends AbstractTree>, Integer> currentTrees,

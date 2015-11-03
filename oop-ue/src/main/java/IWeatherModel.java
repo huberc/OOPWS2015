@@ -14,7 +14,7 @@ public interface IWeatherModel {
 	 * 
 	 * @param simulationYear
 	 *            the year for which to calculate the weather conditions
-	 * @return an instance of <code>WeatherConditions</code>
+	 * @return a fully initialized instance of <code>WeatherConditions</code>
 	 */
 	WeatherConditions calcWeatherForYear(int simulationYear);
 

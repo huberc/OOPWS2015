@@ -20,10 +20,21 @@ public class RecoveryWoodUsageModel implements IWoodUsageModel {
 	private double groundShadowedTreshold;
 	private int targetTreeCount = -1;
 
+	/**
+	 * Creates a new <code>RecoveryWoodUsageModel</code>
+	 * 
+	 * @param shadowTreshold
+	 *            the treshold value (in percent of the forest ground floor)
+	 *            over which trees are cut. must be a positive value between 0
+	 *            and 1
+	 */
 	public RecoveryWoodUsageModel(double shadowTreshold) {
 		this.groundShadowedTreshold = shadowTreshold;
 	}
 
+	/**
+	 * @see IWoodUsageModel#calcAction(java.util.Map, double, double)
+	 */
 	@Override
 	public List<WoodUsageAction> calcAction(
 			Map<Class<? extends AbstractTree>, Integer> currentTrees,
@@ -64,12 +75,16 @@ public class RecoveryWoodUsageModel implements IWoodUsageModel {
 		for (int i = 0; i < numTrees; i++) {
 			rand = (int) (Math.random() * entryArr.length);
 			retVal.add(new WoodUsageAction(
-					WoodUsageAction.ActionType.CUT_TREES, 1, ((Entry<Class<? extends AbstractTree>, Integer>) entryArr[rand])
+					WoodUsageAction.ActionType.CUT_TREES,
+					1,
+					((Entry<Class<? extends AbstractTree>, Integer>) entryArr[rand])
 							.getKey()));
 			if (replant) {
 				retVal.add(new WoodUsageAction(
-						WoodUsageAction.ActionType.PLANT_TREES, 1,
-						((Entry<Class<? extends AbstractTree>, Integer>) entryArr[rand]).getKey()));
+						WoodUsageAction.ActionType.PLANT_TREES,
+						1,
+						((Entry<Class<? extends AbstractTree>, Integer>) entryArr[rand])
+								.getKey()));
 			}
 		}
 		return retVal;

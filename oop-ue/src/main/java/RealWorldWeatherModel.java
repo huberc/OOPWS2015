@@ -31,6 +31,7 @@ public class RealWorldWeatherModel implements IWeatherModel {
 	/**
 	 * Enum defining the apporach for approximative temperature and rainfall
 	 * calculations done by a <code>RealWorldClimateModel</code>
+	 * ModelingApproaches can be linear, logarithmic or epxonential
 	 * 
 	 * @author michael
 	 *
@@ -73,11 +74,23 @@ public class RealWorldWeatherModel implements IWeatherModel {
 	private Random randomNumberGen = new Random(
 			(long) (Math.random() * System.currentTimeMillis()));
 
+	/**
+	 * Creates a new <code>RealWorldWeatherModel</code>.
+	 * 
+	 * @param approach
+	 *            the modeling approach (i.e. function type) to use
+	 * @param doSpreading
+	 *            if true, a random (gauss-distributed) value is added to
+	 *            calculated temperature and rainfall values
+	 */
 	public RealWorldWeatherModel(ModelingApproach approach, boolean doSpreading) {
 		this.approach = approach;
 		this.addSpreading = doSpreading;
 	}
 
+	/**
+	 * @see IWeatherModel#calcWeatherForYear(int)
+	 */
 	@Override
 	public WeatherConditions calcWeatherForYear(int simulationYear) {
 		WeatherConditions tmpConditions = this.approach.getInternalModel()
