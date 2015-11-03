@@ -1,15 +1,15 @@
 /**
  * Utility class to display simulation results
  *
- * @author michael
+ * @author michael, christoph
  */
 public class SimulationDisplay {
 
     /**
      * Creates an ASCII Table from a <code>SimulationResult</code>
      *
-     * @param res
-     * @return
+     * @param res the <code>SimulationResult</code> which should be formatted as a table
+     * @return the formatted table for the result as a String
      */
     public static String formatAsTable(SimulationResult res) {
         int yearSpace = 6;
@@ -47,6 +47,12 @@ public class SimulationDisplay {
         return zusatzinfo + output;
     }
 
+    /**
+     * Formats the <code>SimulationRecord</code> for one year appropriated in the whole result table
+     *
+     * @param rec <code>SimulationRecord</code> of one year
+     * @return the column for the given year as a String
+     */
     private static String formatAsTable(SimulationResult.SimulationRecord rec) {
         int livingWoodspace = 30;
         int deadWoodspace = 30;
@@ -136,6 +142,12 @@ public class SimulationDisplay {
         return line + "| \n";
     }
 
+    /**
+     *
+     * @param rec <code>SimulationRecord</code> of one year
+     * @param year the appropriated year
+     * @return The formatted Actions per year
+     */
     private static String actionsPerfomed(SimulationResult.SimulationRecord rec, int year) {
         String output = "";
 
