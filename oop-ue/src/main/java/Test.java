@@ -511,4 +511,8 @@ public class Test {
 		return (Math.abs(d1 - d2) < Test.CONSIDER_EQUAL_TRESHOLD) ? true
 				: false;
 	}
+	
+	public static String formatDate(int year, int month, int day){
+	    return ""; // TODO Michi
+	}
 }
