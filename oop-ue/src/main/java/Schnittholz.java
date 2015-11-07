@@ -1,6 +1,11 @@
 
 
-public class Schnittholz implements Etikett, Saegbar{
+public class Schnittholz extends AbstractHolz implements Saegbar{
+
+    public Schnittholz(int laenge) {
+        super(laenge);
+        // TODO Auto-generated constructor stub
+    }
 
     private int dicke;
     private int breite;
