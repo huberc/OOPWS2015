@@ -1,6 +1,5 @@
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Test class for the environment simulation.
@@ -24,6 +23,7 @@ public class Test {
 
 	public static void main(String[] args) {
 
+	    System.out.println(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()));
 	}
 
 
