@@ -2,20 +2,26 @@
 
 public class Energieholz extends AbstractHolz{
 
-    public Energieholz(int laenge) {
+    public Energieholz(int laenge, double volumen) {
         super(laenge);
-        // TODO Auto-generated constructor stub
+        this.volumen = volumen;
     }
 
-    private int volumen;
+    private double volumen;
 
     
-    public int getVolumen() {
+    public double getVolumen() {
         return volumen;
     }
 
-    public void setVolumen(int volumen) {
+    public void setVolumen(double volumen) {
         this.volumen = volumen;
+    }
+
+    @Override
+    public AbstractHolz neu(Class<? extends AbstractHolz> newType) {
+        // TODO Auto-generated method stub
+        return null;
     }
     
 }
