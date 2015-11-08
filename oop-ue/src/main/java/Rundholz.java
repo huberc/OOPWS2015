@@ -17,9 +17,4 @@ public class Rundholz extends AbstractHolz{
         this.staerke = staerke;
     }
 
-    @Override
-    public AbstractHolz neu(Class<? extends AbstractHolz> newType) {
-        return null;
-    }
-    
 }

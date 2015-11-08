@@ -17,12 +17,5 @@ public class Energieholz extends AbstractHolz{
     public void setVolumen(int volumen) {
         this.volumen = volumen;
     }
-
-    @Override
-    public AbstractHolz neu(Class<? extends AbstractHolz> newType) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
     
 }

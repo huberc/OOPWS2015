@@ -33,10 +33,4 @@ public class Schnittholz extends AbstractHolz implements Saegbar{
         return null;
     }
 
-    @Override
-    public AbstractHolz neu(Class<? extends AbstractHolz> newType) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }
