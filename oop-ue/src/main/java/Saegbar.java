@@ -2,5 +2,6 @@
 
 public interface Saegbar {
 
-    Etikett[] saegen(Class<? extends Etikett>... types);
+    Etikett[] saegen(Class<? extends AbstractHolz>... types);
+    
 }

@@ -23,23 +23,22 @@ public abstract class AbstractHolz implements Etikett {
      * @param laenge
      *            die Laenge des Holzstuecks
      */
-    public AbstractHolz(int laenge) {
-        this(null);
+    public AbstractHolz(int laenge){
         this.laenge = laenge;
         this.datum = AbstractHolz.DATE_FORMAT.format(new Date());
     }
 
-    /**
-     * Protected Konstruktor fuer Historisierung (aktualisiert alt), wird NICHT direkt verwendet, muss in
-     * geerbten Klassen vorhanden sein und aus fuer den noetigen Param-Typ ueberladenem Konstruktor
-     * aufgerufen werden.
-     * 
-     * @param holz
-     *            Das alte Etikett (= Etikett vor aktuellem Verarbeitungsschritt)
-     */
-    protected AbstractHolz(AbstractHolz holz) {
-        this.alt = holz;
-    }
+//    /**
+//     * Protected Konstruktor fuer Historisierung (aktualisiert alt), wird NICHT direkt verwendet, muss in
+//     * geerbten Klassen vorhanden sein und aus fuer den noetigen Param-Typ ueberladenem Konstruktor
+//     * aufgerufen werden.
+//     * 
+//     * @param holz
+//     *            Das alte Etikett (= Etikett vor aktuellem Verarbeitungsschritt)
+//     */
+//    protected AbstractHolz(AbstractHolz holz) {
+//        this.alt = holz;
+//    }
 
     @Override
     public int laenge() {

@@ -1,6 +1,11 @@
 
 
-public class Energieholz implements Etikett{
+public class Energieholz extends AbstractHolz{
+
+    public Energieholz(int laenge) {
+        super(laenge);
+        // TODO Auto-generated constructor stub
+    }
 
     private int volumen;
 
@@ -13,26 +18,5 @@ public class Energieholz implements Etikett{
         this.volumen = volumen;
     }
 
-    @Override
-    public int laenge() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public String datum() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Etikett alt() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-    
-    public Etikett neu(){
-        return null;
-    }
     
 }

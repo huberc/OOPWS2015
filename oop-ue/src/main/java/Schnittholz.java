@@ -2,9 +2,10 @@
 
 public class Schnittholz extends AbstractHolz implements Saegbar{
 
-    public Schnittholz(int laenge) {
+    public Schnittholz(int laenge, int dicke, int breite) {
         super(laenge);
-        // TODO Auto-generated constructor stub
+        this.dicke = dicke;
+        this.breite = breite;
     }
 
     private int dicke;
@@ -27,30 +28,9 @@ public class Schnittholz extends AbstractHolz implements Saegbar{
     }
 
     @Override
-    public int laenge() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public String datum() {
+    public Etikett[] saegen(Class<? extends AbstractHolz>... types) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
-    public Etikett alt() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Etikett[] saegen(Class<? extends Etikett>... types) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-    
-    public Etikett neu(){
-        return null;
-    }
 }

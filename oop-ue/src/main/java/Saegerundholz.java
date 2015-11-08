@@ -13,7 +13,7 @@ public class Saegerundholz extends Rundholz implements Saegbar {
     }
 
     @Override
-    public Etikett[] saegen(Class<? extends Etikett>... types) {
+    public Etikett[] saegen(Class<? extends AbstractHolz>... types) {
         // TODO Auto-generated method stub
         return null;
     }
