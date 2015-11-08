@@ -23,22 +23,22 @@ public abstract class AbstractHolz implements Etikett {
      * @param laenge
      *            die Laenge des Holzstuecks
      */
-    public AbstractHolz(int laenge){
+    public AbstractHolz(int laenge) {
         this.laenge = laenge;
         this.datum = AbstractHolz.DATE_FORMAT.format(new Date());
     }
 
-//    /**
-//     * Protected Konstruktor fuer Historisierung (aktualisiert alt), wird NICHT direkt verwendet, muss in
-//     * geerbten Klassen vorhanden sein und aus fuer den noetigen Param-Typ ueberladenem Konstruktor
-//     * aufgerufen werden.
-//     * 
-//     * @param holz
-//     *            Das alte Etikett (= Etikett vor aktuellem Verarbeitungsschritt)
-//     */
-//    protected AbstractHolz(AbstractHolz holz) {
-//        this.alt = holz;
-//    }
+    //    /**
+    //     * Protected Konstruktor fuer Historisierung (aktualisiert alt), wird NICHT direkt verwendet, muss in
+    //     * geerbten Klassen vorhanden sein und aus fuer den noetigen Param-Typ ueberladenem Konstruktor
+    //     * aufgerufen werden.
+    //     * 
+    //     * @param holz
+    //     *            Das alte Etikett (= Etikett vor aktuellem Verarbeitungsschritt)
+    //     */
+    //    protected AbstractHolz(AbstractHolz holz) {
+    //        this.alt = holz;
+    //    }
 
     @Override
     public int laenge() {
@@ -55,17 +55,6 @@ public abstract class AbstractHolz implements Etikett {
         return this.alt;
     }
 
-    public AbstractHolz neu(Class<? extends AbstractHolz> newType) {
-        Constructor<? extends AbstractHolz> c;
-        try {
-            c = newType.getDeclaredConstructor(this.getClass());
-            return c.newInstance(this); // alt wird im Konstruktor gesetzt
-        } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
-                | IllegalArgumentException | InvocationTargetException ex) {
-            throw new IllegalArgumentException("Erstellen von " + newType.getSimpleName() + " aus "
-                                               + this.getClass().getSimpleName() + " nicht moeglich ("
-                                               + ex.getMessage() + ")");
-        }
+    public abstract AbstractHolz neu(Class<? extends AbstractHolz> newType);
 
-    }
 }

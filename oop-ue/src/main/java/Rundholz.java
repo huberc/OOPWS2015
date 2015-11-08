@@ -16,5 +16,10 @@ public class Rundholz extends AbstractHolz{
     public void setStaerke(int staerke) {
         this.staerke = staerke;
     }
+
+    @Override
+    public AbstractHolz neu(Class<? extends AbstractHolz> newType) {
+        return null;
+    }
     
 }

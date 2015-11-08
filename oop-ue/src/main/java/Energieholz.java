@@ -18,5 +18,11 @@ public class Energieholz extends AbstractHolz{
         this.volumen = volumen;
     }
 
+    @Override
+    public AbstractHolz neu(Class<? extends AbstractHolz> newType) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
     
 }
