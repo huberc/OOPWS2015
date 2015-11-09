@@ -15,7 +15,7 @@ public class Schnittholz extends AbstractHolz implements Saegbar{
         return dicke;
     }
     
-    public void setDicke(int dicke) {
+    protected void setDicke(int dicke) {
         this.dicke = dicke;
     }
     
@@ -23,14 +23,20 @@ public class Schnittholz extends AbstractHolz implements Saegbar{
         return breite;
     }
     
-    public void setBreite(int breite) {
+    protected void setBreite(int breite) {
         this.breite = breite;
     }
 
     @Override
     public Etikett[] saegen(Class<? extends AbstractHolz>... types) {
-        // TODO Auto-generated method stub
+        // TODO Teil-Etiketten mit HolzFactory.getInstance().createFromSchnittholz(types[i]) holen,
+        // alt auf this setzen, danach Werte auf errechnete setzen (ueber protected setter)
         return null;
+    }
+
+    @Override
+    protected AbstractHolz internalNeu(Class<? extends AbstractHolz> newType) {
+        return HolzFactory.getInstance().createFromSchnittholz(this, newType);
     }
 
 }

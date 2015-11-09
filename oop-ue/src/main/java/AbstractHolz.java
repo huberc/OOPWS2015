@@ -13,20 +13,15 @@ public abstract class AbstractHolz implements Etikett {
 
     private int                             laenge;
     private String                          datum;
-    protected Etikett                       alt;
+    private Etikett                         alt;
 
     /**
      * Public Konstruktor zum Erstellen eines neuen Etiketts OHNE vorherige Bearbeitungsschritte
      * 
-     * @param alt
-     *            das alte Etikett, d.h. die Repraesentation des vorherigen Verarbeitungsschritts, null bei
-     *            neuem Etikett, das nicht durch Vorverarbeitung entstanden ist
-     * 
      * @param laenge
      *            die Laenge des Holzstuecks
      */
-    public AbstractHolz(AbstractHolz alt, int laenge) {
-        this.alt = alt;
+    public AbstractHolz(int laenge) {
         this.laenge = laenge;
         this.datum = AbstractHolz.DATE_FORMAT.format(new Date());
     }
@@ -46,5 +41,16 @@ public abstract class AbstractHolz implements Etikett {
         return this.alt;
     }
 
-    public abstract AbstractHolz neu(Class<? extends AbstractHolz> clazz);
+    protected void setAlt(AbstractHolz alt){
+        this.alt = alt;
+    }
+    
+    protected abstract AbstractHolz internalNeu(Class<? extends AbstractHolz> newType);
+    
+    // TODO document!
+    public final  AbstractHolz neu(Class<? extends AbstractHolz> clazz){
+        AbstractHolz retVal = this.internalNeu(clazz);
+        retVal.setAlt(this);
+        return retVal;
+    }
 }

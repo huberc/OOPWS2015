@@ -1,17 +1,15 @@
 
-
 public class Industrieholz extends Rundholz {
 
     public Industrieholz(int laenge, int staerke) {
         super(laenge, staerke);
-        // TODO Auto-generated constructor stub
     }
 
-    public void mahlen(){
-        
+    public void mahlen() {
+        // TODO - Holz ist danach "weg" - flag setzen?
     }
-    
-    public void fasen(){
-        
+
+    public void fasen() {
+        // TODO - Holz ist danach "weg" - flag setzen?
     }
 }

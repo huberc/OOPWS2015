@@ -14,14 +14,13 @@ public class Energieholz extends AbstractHolz{
         return volumen;
     }
 
-    public void setVolumen(double volumen) {
+    protected void setVolumen(double volumen) {
         this.volumen = volumen;
     }
 
     @Override
-    public AbstractHolz neu(Class<? extends AbstractHolz> newType) {
-        // TODO Auto-generated method stub
-        return null;
+    public AbstractHolz internalNeu(Class<? extends AbstractHolz> newType) {
+        return HolzFactory.getInstance().createFromEnergieholz(this, newType);
     }
     
 }
