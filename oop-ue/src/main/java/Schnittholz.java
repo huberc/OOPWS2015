@@ -39,4 +39,5 @@ public class Schnittholz extends AbstractHolz implements Saegbar{
         return HolzFactory.getInstance().createFromSchnittholz(this, newType);
     }
 
+    
 }

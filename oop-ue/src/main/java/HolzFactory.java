@@ -12,6 +12,7 @@ public class HolzFactory {
     // TODO Holzkonverter hierhin!
 
     private HolzFactory() {
+        // Rundholz Converter
         this.rundholzConverters.put(Energieholz.class, new IHolzConverter<Rundholz, Energieholz>() {
 
             @Override
@@ -45,6 +46,17 @@ public class HolzFactory {
             }
             
         });
+        this.rundholzConverters.put(BauRundholz.class, new IHolzConverter<Rundholz, BauRundholz>(){
+
+            @Override
+            public BauRundholz createFrom(Rundholz input) {
+                return new BauRundholz(input.laenge(), input.getStaerke());
+            }
+            
+        });
+        
+        // Energieholz Converter
+        
     }
 
     public static HolzFactory getInstance() {
