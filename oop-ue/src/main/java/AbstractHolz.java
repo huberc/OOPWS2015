@@ -44,10 +44,6 @@ public abstract class AbstractHolz implements Etikett {
         this.alt = alt;
     }
 
-    protected int getLaenge() {
-        return this.laenge;
-    }
-
     protected abstract AbstractHolz internalNeu(Class<? extends AbstractHolz> newType);
 
     // TODO document!
@@ -68,4 +64,7 @@ public abstract class AbstractHolz implements Etikett {
     public void setEtikettierbar(boolean etiketierbar) {
         this.etikettierbar = etiketierbar;
     }
+
+    @Override
+    public abstract String toString();
 }
