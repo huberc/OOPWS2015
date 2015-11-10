@@ -42,27 +42,14 @@ public class Saegerundholz extends Rundholz implements Saegbar {
     @SuppressWarnings("unchecked")
     @Override
     public AbstractHolz[] saegen(Class<? extends AbstractHolz>... types) {
-        AbstractHolz[] zersaegt = new AbstractHolz[types.length];
-        AbstractHolz tmp;
-
-        for (int i = 0; i <= types.length; i++) {
-
-            tmp = HolzFactory.getInstance().createFromRundholz(this,types[i]);
-            if(tmp instanceof Schnittholz){
-                int dicke = this.getStaerke() * (1/types.length);
-                ((Schnittholz) tmp).setDicke(dicke);
-                ((Schnittholz) tmp).setBreite(this.getStaerke());
-                zersaegt[i] = tmp;
-            }
-            else if(HolzFactory.getInstance().createFromRundholz(this,types[i]) instanceof Energieholz){
-                double volumen = this.laenge() * (Math.pow(this.getStaerke()* (1/types.length)* (1/types.length),2) * Math.PI);
-                ((Energieholz) tmp).setVolumen(volumen);
-                zersaegt[i] = tmp;
-            }
-
-            zersaegt[i].setAlt(this);
+        if(!this.isEtikettierbar()){
+            throw new IllegalStateException("Nicht etikettierbar!");
         }
-        return zersaegt;
+        AbstractHolz[] retVal = HolzFactory.getInstance().saegeHelper(this, types);
+        for(AbstractHolz holz : retVal){
+            holz.setAlt(this);
+        }
+        return retVal;
     }
 
     

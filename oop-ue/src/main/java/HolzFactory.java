@@ -3,15 +3,95 @@ import java.util.Map;
 
 public class HolzFactory {
 
-    private static final HolzFactory                                                                INSTANCE              = new HolzFactory();
+    private static final HolzFactory                                                                INSTANCE                        = new HolzFactory();
 
-    private Map<Class<? extends AbstractHolz>, IHolzConverter<Rundholz, ? extends AbstractHolz>>    rundholzConverters    = new HashMap<>();
-    private Map<Class<? extends AbstractHolz>, IHolzConverter<Energieholz, ? extends AbstractHolz>> energieholzConverters = new HashMap<>();
-    private Map<Class<? extends AbstractHolz>, IHolzConverter<Schnittholz, ? extends AbstractHolz>> schnittholzConverters = new HashMap<>();
+    private Map<Class<? extends AbstractHolz>, IHolzConverter<Rundholz, ? extends AbstractHolz>>    rundholzConverters              = new HashMap<>();
+    private Map<Class<? extends AbstractHolz>, IHolzConverter<Energieholz, ? extends AbstractHolz>> energieholzConverters           = new HashMap<>();
+    private Map<Class<? extends AbstractHolz>, IHolzConverter<Schnittholz, ? extends AbstractHolz>> schnittholzConverters           = new HashMap<>();
 
-    // TODO Holzkonverter hierhin!
+    // in saegeHelper benutzt, nicht in rundholzConverters wg korrektem Verhalten von neu
+    private Map<Class<? extends AbstractHolz>, IHolzConverter<Rundholz, ? extends Schnittholz>>     rundholzToSchnittholzConverters = new HashMap<>();
 
     private HolzFactory() {
+        this.initConverters();
+    }
+
+    public static HolzFactory getInstance() {
+        return HolzFactory.INSTANCE;
+    }
+
+    // NOTE: Beinahe identischer code zu createFrom<some holz> - 
+    // Um Type-Safety Checking im Kompiliervorgang weitestgehend zu ermoeglichen trotzdem separate Methoden
+    // -> Alternativen: Generics auf Level der Factory (Aufwand in keinem Verhaeltnis zum nutzen)
+    //                  Methode createFrom mit AbstractHolz als Input - muesste Downcasts zum Delegieren benutzen, 
+    //                  dadurch Type-Safety vom Compiler nicht pruefbar
+    //   
+    public AbstractHolz createFromRundholz(Rundholz input, Class<? extends AbstractHolz> targetType) {
+        IHolzConverter<Rundholz, ? extends AbstractHolz> conv = this.rundholzConverters.get(targetType);
+        if (conv != null) {
+            return conv.createFrom(input);
+        } else {
+            throw new IllegalArgumentException("Kann nicht " + targetType.getSimpleName() + " aus "
+                                               + input.getClass() + " erstellen!");
+        }
+    }
+
+    public AbstractHolz createFromEnergieholz(Energieholz input, Class<? extends AbstractHolz> targetType) {
+        IHolzConverter<Energieholz, ? extends AbstractHolz> conv = this.energieholzConverters.get(targetType);
+        if (conv != null) {
+            return conv.createFrom(input);
+        } else {
+            throw new IllegalArgumentException("Kann nicht " + targetType.getSimpleName() + " aus "
+                                               + input.getClass() + " erstellen!");
+        }
+    }
+
+    public AbstractHolz createFromSchnittholz(Schnittholz input, Class<? extends AbstractHolz> targetType) {
+        IHolzConverter<Schnittholz, ? extends AbstractHolz> conv = this.schnittholzConverters.get(targetType);
+        if (conv != null) {
+            return conv.createFrom(input);
+        } else {
+            throw new IllegalArgumentException("Kann nicht " + targetType.getSimpleName() + " aus "
+                                               + input.getClass() + " erstellen!");
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public AbstractHolz[] saegeHelper(Rundholz input, Class<? extends AbstractHolz>... types) {
+        AbstractHolz[] zersaegt = new AbstractHolz[types.length];
+        AbstractHolz tmp = null;
+        for (int i = 0; i < types.length; i++) {
+            if (HolzFactory.isSubtypeOf(types[i], Energieholz.class)) {
+                tmp = this.rundholzConverters.get(types[i]).createFrom(input);
+                double volumen = input.laenge()
+                                 * (Math.pow(input.getStaerke() * (1 / types.length) * (1 / types.length), 2) * Math.PI);
+                ((Energieholz) tmp).setVolumen(volumen);
+            } else if (HolzFactory.isSubtypeOf(types[i], Schnittholz.class)) {
+                tmp = this.rundholzToSchnittholzConverters.get(types[i]).createFrom(input);
+                int dicke = input.getStaerke() * (1 / types.length);
+                ((Schnittholz) tmp).setDicke(dicke);
+                ((Schnittholz) tmp).setBreite(input.getStaerke());
+            } else {
+                throw new IllegalArgumentException("Kann " + input.getClass().getSimpleName() + " nicht in "
+                                                   + types[i].getSimpleName() + " zersaegen!");
+            }
+            zersaegt[i] = tmp;
+        }
+        return zersaegt;
+    }
+
+    private static boolean isSubtypeOf(Class<?> c1, Class<?> c2) {
+        Class<?> supertype = c1.getSuperclass();
+        if (null == supertype) {
+            return false;
+        } else if (supertype == c2) {
+            return true;
+        } else {
+            return HolzFactory.isSubtypeOf(supertype, c2);
+        }
+    }
+
+    private void initConverters() {
         // Rundholz Converter
         this.rundholzConverters.put(Energieholz.class, new IHolzConverter<Rundholz, Energieholz>() {
 
@@ -144,48 +224,51 @@ public class HolzFactory {
             }
 
         });
-    }
 
-    public static HolzFactory getInstance() {
-        return HolzFactory.INSTANCE;
-    }
+        // rundholz to Schnittholz
+        this.rundholzToSchnittholzConverters.put(Schnittholz.class,
+                new IHolzConverter<Rundholz, Schnittholz>() {
 
-    // NOTE: Beinahe identischer code zu createFrom<some holz> - 
-    // Um Type-Safety Checking im Kompiliervorgang weitestgehend zu ermoeglichen trotzdem separate Methoden
-    // -> Alternativen: Generics auf Level der Factory (Aufwand in keinem Verhaeltnis zum nutzen)
-    //                  Methode createFrom mit AbstractHolz als Input - muesste Downcasts zum Delegieren benutzen, 
-    //                  dadurch Type-Safety vom Compiler nicht pruefbar
-    //   
-    public AbstractHolz createFromRundholz(Rundholz input, Class<? extends AbstractHolz> targetType) {
-        IHolzConverter<Rundholz, ? extends AbstractHolz> conv = this.rundholzConverters.get(targetType);
-        if (conv != null) {
-            return conv.createFrom(input);
-        } else {
-            throw new IllegalArgumentException("Kann nicht " + targetType.getSimpleName() + " aus "
-                                               + input.getClass() + " erstellen!");
-        }
-    }
+                    @Override
+                    public Schnittholz createFrom(Rundholz input) {
+                        double grundflaeche = Math.pow((double) input.getStaerke() / 2.0, 2) * Math.PI;
+                        return new Schnittholz(input.laenge(), (int) Math.round(Math.sqrt(grundflaeche)),
+                                (int) Math.round(Math.sqrt(grundflaeche)));
+                    }
 
-    public AbstractHolz createFromEnergieholz(Energieholz input, Class<? extends AbstractHolz> targetType) {
-        IHolzConverter<Energieholz, ? extends AbstractHolz> conv = this.energieholzConverters.get(targetType);
-        if (conv != null) {
-            return conv.createFrom(input);
-        } else {
-            throw new IllegalArgumentException("Kann nicht " + targetType.getSimpleName() + " aus "
-                                               + input.getClass() + " erstellen!");
-        }
-    }
+                });
+        this.rundholzToSchnittholzConverters.put(Vollkantschnittholz.class,
+                new IHolzConverter<Rundholz, Vollkantschnittholz>() {
 
-    public AbstractHolz createFromSchnittholz(Schnittholz input, Class<? extends AbstractHolz> targetType) {
-        IHolzConverter<Schnittholz, ? extends AbstractHolz> conv = this.schnittholzConverters.get(targetType);
-        if (conv != null) {
-            return conv.createFrom(input);
-        } else {
-            throw new IllegalArgumentException("Kann nicht " + targetType.getSimpleName() + " aus "
-                                               + input.getClass() + " erstellen!");
-        }
+                    @Override
+                    public Vollkantschnittholz createFrom(Rundholz input) {
+                        double grundflaeche = Math.pow((double) input.getStaerke() / 2.0, 2) * Math.PI;
+                        return new Vollkantschnittholz(input.laenge(), (int) Math.round(Math
+                                .sqrt(grundflaeche)), (int) Math.round(Math.sqrt(grundflaeche)));
+                    }
+
+                });
+        this.rundholzToSchnittholzConverters.put(Kantholz.class, new IHolzConverter<Rundholz, Kantholz>() {
+
+            @Override
+            public Kantholz createFrom(Rundholz input) {
+                double grundflaeche = Math.pow((double) input.getStaerke() / 2.0, 2) * Math.PI;
+                return new Kantholz(input.laenge(), (int) Math.round(Math.sqrt(grundflaeche)), (int) Math
+                        .round(Math.sqrt(grundflaeche)));
+            }
+
+        });
+        this.rundholzToSchnittholzConverters.put(Brett.class, new IHolzConverter<Rundholz, Brett>() {
+
+            @Override
+            public Brett createFrom(Rundholz input) {
+                double grundflaeche = Math.pow((double) input.getStaerke() / 2.0, 2) * Math.PI;
+                return new Brett(input.laenge(), (int) Math.round(Math.sqrt(grundflaeche)), (int) Math
+                        .round(Math.sqrt(grundflaeche)));
+            }
+
+        });
+
     }
-    
-    
 
 }
