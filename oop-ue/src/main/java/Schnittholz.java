@@ -43,7 +43,7 @@ public class Schnittholz extends AbstractHolz implements Saegbar{
 
             }
             else if(HolzFactory.getInstance().createFromSchnittholz(this,types[i]) instanceof Energieholz){
-                double volumen = this.getLaenge() * this.getBreite() * this.getDicke() * (1/types.length);
+                double volumen = this.laenge() * this.getBreite() * this.getDicke() * (1/types.length);
                 ((Energieholz) tmp).setVolumen(volumen);
                 zersaegt[i] = tmp;
             }
@@ -57,5 +57,10 @@ public class Schnittholz extends AbstractHolz implements Saegbar{
         return HolzFactory.getInstance().createFromSchnittholz(this, newType);
     }
 
-    
+    public String toString() {
+        return "Schnittholz{\n"+
+                "\n\t laenge:\t\t"+this.laenge()+
+                "\n\t dicke:\t\t"+this.getDicke()+
+                "\n\t breite:\t\t"+this.getBreite()+"\n}";
+    }
 }

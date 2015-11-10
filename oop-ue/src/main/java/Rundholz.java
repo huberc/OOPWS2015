@@ -21,4 +21,9 @@ public class Rundholz extends AbstractHolz {
         return HolzFactory.getInstance().createFromRundholz(this, clazz);
     }
 
+    public String toString() {
+        return "Rundholz{\n"+
+                "\n\t laenge:\t\t"+this.laenge()+
+                "\n\t staerke:\t\t"+this.getStaerke()+"\n}";
+    }
 }

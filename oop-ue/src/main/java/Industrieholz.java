@@ -12,4 +12,10 @@ public class Industrieholz extends Rundholz {
     public void fasen() {
         this.setEtikettierbar(false);
     }
+
+    public String toString() {
+        return "Industrieholz{\n"+
+                "\n\t laenge:\t\t"+this.laenge()+
+                "\n\t staerke:\t\t"+this.getStaerke()+"\n}";
+    }
 }
