@@ -17,8 +17,7 @@ import java.util.Map.Entry;
  */
 public class Test {
 
-	private static final double CONSIDER_EQUAL_TRESHOLD = 0.001;
-
+    private static final double                                                                  CONSIDER_EQUAL_TRESHOLD = 0.001;
 
     private static final Map<Class<? extends AbstractHolz>, List<Class<? extends AbstractHolz>>> VALID_CONVERSIONS       = new HashMap<>();
 
@@ -46,55 +45,52 @@ public class Test {
         Test.VALID_CONVERSIONS.put(Schnittholz.class, schnittholzTargetTypes);
     }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-	    System.out.println(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()));
-		System.out.println("Bauholzarten-Test: "+testBauHolzArten());
-		testAllgemein();
-		System.out.println();
-		System.out.println("Test der Saegen-Methoden:"+testSaegen());
-		System.out.println("Test der Neu-Methode ist: "+testNeu());
-		System.out.println("Test der Schaelen-Methode ist: "+testSchaelen());
-		System.out.println("Test der Fasen-Methode ist: "+testFasen());
-		System.out.println("Test der Mahlen-Methode ist: "+testMahlen());
-		System.out.println("Test der Hacken-Methode ist: "+testHacken());
-	}
+        System.out.println(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()));
+        System.out.println("Bauholzarten-Test: " + testBauHolzArten());
+        testAllgemein();
+        System.out.println();
+        System.out.println("Test der Saegen-Methoden:" + testSaegen());
+        System.out.println("Test der Neu-Methode ist: " + testNeu());
+        System.out.println("Test der Schaelen-Methode ist: " + testSchaelen());
+        System.out.println("Test der Fasen-Methode ist: " + testFasen());
+        System.out.println("Test der Mahlen-Methode ist: " + testMahlen());
+        System.out.println("Test der Hacken-Methode ist: " + testHacken());
+    }
 
-	/**
-	 * Wenn keine Exception geworfen wird, dann ist der Test falsch
-	 *
-	 * @return true wenn der Test OK ist
+    /**
+     * Wenn keine Exception geworfen wird, dann ist der Test falsch
+     *
+     * @return true wenn der Test OK ist
      */
-	private static boolean testBauHolzArten(){
+    private static boolean testBauHolzArten() {
 
-		try {
-			Brett brett = new Brett(10, 1, 0);
+        try {
+            Brett brett = new Brett(10, 1, 0);
 
-			return false;
-		}
-		catch (Exception e){
-			System.out.println(e.getMessage());
-		}
+            return false;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
-		try {
-			BauRundholz bauRundholz = new BauRundholz(10,10);
-			return false;
-		}
-		catch (Exception e){
-			System.out.println(e.getMessage());
-		}
+        try {
+            BauRundholz bauRundholz = new BauRundholz(10, 10);
+            return false;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
-		try {
-			Kantholz kantholz = new Kantholz(10,1,0);
-			return false;
-		}
-		catch (Exception e){
-			System.out.println(e.getMessage());
-		}
-		return true;
-	}
+        try {
+            Kantholz kantholz = new Kantholz(10, 1, 0);
+            return false;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return true;
+    }
 
-	private static void testAllgemein() {
+    private static void testAllgemein() {
 
         try {
             Rundholz rundholz = new Rundholz(100, 80);
@@ -118,7 +114,8 @@ public class Test {
             System.out.println(e.getMessage());
         }
     }
-    private static boolean testSaegen(){
+
+    private static boolean testSaegen() {
         try {
             Saegerundholz saegerundholz = new Saegerundholz(100, 60);
             Etikett[] saegen = saegerundholz.saegen(Schnittholz.class, Schnittholz.class, Energieholz.class);
@@ -127,15 +124,15 @@ public class Test {
                 return false;
             }
             if (saegen[2] instanceof Energieholz) {
-                if ((!areEqual(((Energieholz) saegen[2]).getVolumen(), 31415.92654)) || (saegen[2].laenge() != 100)) {
+                if ((!areEqual(((Energieholz) saegen[2]).getVolumen(), 31415.92654))
+                    || (saegen[2].laenge() != 100)) {
                     return false;
                 }
             } else {
                 return false;
             }
             return true;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         try {
@@ -143,16 +140,15 @@ public class Test {
             Etikett[] saegen = schnittholz.saegen(Energieholz.class, Schnittholz.class);
             Energieholz tmp1 = new Energieholz(100, 20000);
             Schnittholz tmp2 = new Schnittholz(100, 10, 20);
-            if((saegen.length != 2) || (saegen[0] != tmp1) || (saegen[1] != tmp2)) {
+            if ((saegen.length != 2) || (saegen[0] != tmp1) || (saegen[1] != tmp2)) {
                 return false;
             }
             return true;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
         }
-        return true;
-	}
+    }
 
     /**
      *
@@ -166,9 +162,9 @@ public class Test {
                 if (entry.getKey() == Rundholz.class) {
                     tmp = new Rundholz(10, 10);
 
-                } else if(entry.getKey() == Energieholz.class){
+                } else if (entry.getKey() == Energieholz.class) {
                     tmp = new Energieholz(10, 10);
-                } else if(entry.getKey() == Schnittholz.class){
+                } else if (entry.getKey() == Schnittholz.class) {
                     tmp = new Schnittholz(10, 10, 10);
                 }
                 for (Class<? extends AbstractHolz> target : entry.getValue()) {
@@ -181,82 +177,76 @@ public class Test {
         }
     }
 
-	private static boolean testSchaelen(){
-		Saegerundholz saegerundholz = new Saegerundholz(1000,100,0.1);
-		BauRundholz bauRundholz = saegerundholz.schaelen();
-		if(bauRundholz.getStaerke() == 100*(1-0.1))
-			return true;
-		else
-			return false;
-	}
+    private static boolean testSchaelen() {
+        Saegerundholz saegerundholz = new Saegerundholz(1000, 100, 0.1);
+        BauRundholz bauRundholz = saegerundholz.schaelen();
+        if (bauRundholz.getStaerke() == 100 * (1 - 0.1))
+            return true;
+        else
+            return false;
+    }
 
-	private static boolean testFasen(){
-		Industrieholz industrieholz = new Industrieholz(100,10);
+    private static boolean testFasen() {
+        Industrieholz industrieholz = new Industrieholz(100, 10);
 
-		try {
-			industrieholz.fasen();
-			industrieholz.neu(Energieholz.class);
-			return false;
-		}
-		catch (Exception e){
-			System.out.println(e.getMessage());
-			return true;
-		}
-	}
+        try {
+            industrieholz.fasen();
+            industrieholz.neu(Energieholz.class);
+            return false;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+    }
 
-	private static boolean testMahlen(){
+    private static boolean testMahlen() {
 
-		Industrieholz industrieholz = new Industrieholz(100,10);
+        Industrieholz industrieholz = new Industrieholz(100, 10);
 
-		try {
-			industrieholz.mahlen();
-			industrieholz.neu(Energieholz.class);
-			return false;
-		}
-		catch (Exception e){
-			System.out.println(e.getMessage());
-			return true;
-		}
+        try {
+            industrieholz.mahlen();
+            industrieholz.neu(Energieholz.class);
+            return false;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
 
-	}
+    }
 
-	private static boolean testHacken(){
-		Energieholz energieholz = new Energieholz(100,89.25);
+    private static boolean testHacken() {
+        Energieholz energieholz = new Energieholz(100, 89.25);
 
-		try {
-			energieholz.hacken();
-			energieholz.neu(Rundholz.class);
-			return false;
-		}
-		catch (Exception e){
-			System.out.println(e.getMessage());
-			return true;
-		}
-	}
+        try {
+            energieholz.hacken();
+            energieholz.neu(Rundholz.class);
+            return false;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+    }
 
-	/**
-	 * Comparison method for <code>double</code> values which uses a treshold
-	 * defined in <code>Test.CONSIDER_EQUAL_TRESHOLD</code> for comparison.
-	 * Doubles whose difference is below this treshold are considered to be
-	 * equal. Implementing this here rather than in
-	 * <code>SimulationResult.equals</code> because that would also require a
-	 * <code>hashCode</code> implementation which would be unnecessarily complex
-	 * in htis case, as comparison of <code>SimulationResult</code>s is at the
-	 * moment only relevant for testing purposes.
-	 *
-	 * @param d1
-	 *            the first double
-	 * @param d2
-	 *            the second double
-	 * @return <code>true</code> if d1 and d2 are equal according to the
-	 *         criteria above, <code>false</code> otherwise.
-	 */
-	private static boolean areEqual(double d1, double d2) {
-		return (Math.abs(d1 - d2) < Test.CONSIDER_EQUAL_TRESHOLD) ? true
-				: false;
-	}
+    /**
+     * Comparison method for <code>double</code> values which uses a treshold defined in
+     * <code>Test.CONSIDER_EQUAL_TRESHOLD</code> for comparison. Doubles whose difference is below this
+     * treshold are considered to be equal. Implementing this here rather than in
+     * <code>SimulationResult.equals</code> because that would also require a <code>hashCode</code>
+     * implementation which would be unnecessarily complex in htis case, as comparison of
+     * <code>SimulationResult</code>s is at the moment only relevant for testing purposes.
+     *
+     * @param d1
+     *            the first double
+     * @param d2
+     *            the second double
+     * @return <code>true</code> if d1 and d2 are equal according to the criteria above, <code>false</code>
+     *         otherwise.
+     */
+    private static boolean areEqual(double d1, double d2) {
+        return (Math.abs(d1 - d2) < Test.CONSIDER_EQUAL_TRESHOLD) ? true : false;
+    }
 
-	public static String formatDate(int year, int month, int day){
-	    return ""; // TODO Michi
-	}
+    public static String formatDate(int year, int month, int day) {
+        return ""; // TODO Michi
+    }
 }

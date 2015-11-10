@@ -81,13 +81,12 @@ public class HolzFactory {
     }
 
     private static boolean isSubtypeOf(Class<?> c1, Class<?> c2) {
-        Class<?> supertype = c1.getSuperclass();
-        if (null == supertype) {
-            return false;
-        } else if (supertype == c2) {
+        if (c1 == c2){
             return true;
+        } else if (c1 == null) {
+            return false;
         } else {
-            return HolzFactory.isSubtypeOf(supertype, c2);
+            return HolzFactory.isSubtypeOf(c1.getSuperclass(), c2);
         }
     }
 
