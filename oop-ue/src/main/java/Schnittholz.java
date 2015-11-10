@@ -33,7 +33,7 @@ public class Schnittholz extends AbstractHolz implements Saegbar{
         AbstractHolz[] zersaegt = new AbstractHolz[types.length];
         AbstractHolz tmp;
 
-        for (int i = 0; i <= types.length; i++) {
+        for (int i = 0; i < types.length; i++) {
             tmp = HolzFactory.getInstance().createFromSchnittholz(this,types[i]);
             if(HolzFactory.getInstance().createFromSchnittholz(this,types[i]) instanceof Schnittholz){
                 int dick = this.dicke / types.length;
