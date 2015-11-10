@@ -60,7 +60,7 @@ public class Schnittholz extends AbstractHolz implements Saegbar{
     public String toString() {
         return "\tSchnittholz{"+
                 "\n\t\tLaenge:\t\t"+this.laenge()+
-                "\n\t\tDicke:\t\t\t"+this.getDicke()+
-                "\n\t\tBreite:\t\t"+this.getBreite()+"\n}";
+                "\n\t\tDicke:\t\t"+this.getDicke()+
+                "\n\t\tBreite:\t\t"+this.getBreite()+"\n\t}";
     }
 }

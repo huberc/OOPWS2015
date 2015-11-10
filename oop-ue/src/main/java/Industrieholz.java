@@ -17,6 +17,6 @@ public class Industrieholz extends Rundholz {
     public String toString() {
         return "\tIndustrieholz{"+
                 "\n\t\tLaenge:\t\t"+this.laenge()+
-                "\n\t\tStaerke:\t\t"+this.getStaerke()+"\n}";
+                "\n\t\tStaerke:\t"+this.getStaerke()+"\n\t}";
     }
 }

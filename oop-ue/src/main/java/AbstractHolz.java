@@ -53,7 +53,7 @@ public abstract class AbstractHolz implements Etikett {
             retVal.setAlt(this);
             return retVal;
         } else {
-            throw new IllegalStateException("Das Holzstueck ist nicht mehr eteketierbar");
+            throw new IllegalStateException("\tDas Holzstueck ist nicht mehr eteketierbar");
         }
     }
 

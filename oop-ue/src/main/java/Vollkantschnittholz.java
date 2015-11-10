@@ -10,6 +10,6 @@ public class Vollkantschnittholz extends Schnittholz {
         return "\tVollkantschnittholz{"+
                 "\n\t\tLaenge:\t\t"+this.laenge()+
                 "\n\t\tDicke:\t\t"+this.getDicke()+
-                "\n\t\tBreite:\t\t"+this.getBreite()+"\n}";
+                "\n\t\tBreite:\t\t"+this.getBreite()+"\n\t}";
     }
 }

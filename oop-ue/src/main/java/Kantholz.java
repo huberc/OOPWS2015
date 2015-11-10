@@ -7,9 +7,9 @@ public class Kantholz extends Vollkantschnittholz implements Bauholz {
 
 
         if (dicke < 4)
-            throw new IllegalArgumentException("Ein Kantholz muss mindestens eine dicke von 4 cm aufweisen\n");
+            throw new IllegalArgumentException("\tEin Kantholz muss mindestens eine dicke von 4 cm aufweisen\n");
         if ((breite > (dicke * 3)) || breite < 1)
-            throw new IllegalArgumentException("Ein Kantholz darf nicht breiter als maximal die dreifache Dicke sein und auch nicht schmaeler als 1 cm\n");
+            throw new IllegalArgumentException("\tEin Kantholz darf nicht breiter als maximal die dreifache Dicke sein und auch nicht schmaeler als 1 cm\n");
     }
 
     @Override
@@ -17,6 +17,6 @@ public class Kantholz extends Vollkantschnittholz implements Bauholz {
         return "\tKantholz{"+
                 "\n\t\tLaenge:\t\t"+this.laenge()+
                 "\n\t\tDicke:\t\t"+this.getDicke()+
-                "\n\t\tBreite:\t\t"+this.getBreite()+"\n)";
+                "\n\t\tBreite:\t\t"+this.getBreite()+"\n\t)";
     }
 }
