@@ -24,6 +24,6 @@ public class Rundholz extends AbstractHolz {
     public String toString() {
         return "\tRundholz{"+
                 "\n\t\tLaenge:\t\t"+this.laenge()+
-                "\n\t\tStaerke:\t\t"+this.getStaerke()+"\n}";
+                "\n\t\tStaerke:\t"+this.getStaerke()+"\n\t}";
     }
 }
