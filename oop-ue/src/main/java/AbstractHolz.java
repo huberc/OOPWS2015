@@ -3,24 +3,22 @@ import java.util.Date;
 
 /**
  * Abstrakte Superklasse aller Holztypen, Template-Implementierung von neu + "Template"-Konstruktor
- * 
- * @author Michael Langowski, e1426581@student.tuwien.ac.at
  *
+ * @author Michael Langowski, e1426581@student.tuwien.ac.at
  */
 public abstract class AbstractHolz implements Etikett {
 
     protected static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
-    private int                             laenge;
-    private String                          datum;
-    private Etikett                         alt;
-    private boolean etiketierbar = true;
+    private int laenge;
+    private String datum;
+    private Etikett alt;
+    private boolean etikettierbar = true;
 
     /**
      * Public Konstruktor zum Erstellen eines neuen Etiketts OHNE vorherige Bearbeitungsschritte
-     * 
-     * @param laenge
-     *            die Laenge des Holzstuecks
+     *
+     * @param laenge die Laenge des Holzstuecks
      */
     public AbstractHolz(int laenge) {
         this.laenge = laenge;
@@ -42,26 +40,32 @@ public abstract class AbstractHolz implements Etikett {
         return this.alt;
     }
 
-    protected void setAlt(AbstractHolz alt){
+    protected void setAlt(AbstractHolz alt) {
         this.alt = alt;
     }
 
-    protected int getLaenge() { return this.laenge; }
-    
+    protected int getLaenge() {
+        return this.laenge;
+    }
+
     protected abstract AbstractHolz internalNeu(Class<? extends AbstractHolz> newType);
-    
+
     // TODO document!
-    public final  AbstractHolz neu(Class<? extends AbstractHolz> clazz){
-        AbstractHolz retVal = this.internalNeu(clazz);
-        retVal.setAlt(this);
-        return retVal;
+    public final AbstractHolz neu(Class<? extends AbstractHolz> clazz) {
+        if (isEtikettierbar()) {
+            AbstractHolz retVal = this.internalNeu(clazz);
+            retVal.setAlt(this);
+            return retVal;
+        } else {
+            throw new IllegalStateException("Das Holzstueck ist nicht mehr eteketierbar");
+        }
     }
 
-    public boolean isEtiketierbar() {
-        return etiketierbar;
+    public boolean isEtikettierbar() {
+        return etikettierbar;
     }
 
-    public void setEtiketierbar(boolean etiketierbar) {
-        this.etiketierbar = etiketierbar;
+    public void setEtikettierbar(boolean etiketierbar) {
+        this.etikettierbar = etiketierbar;
     }
 }
