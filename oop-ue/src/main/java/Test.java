@@ -160,15 +160,27 @@ public class Test {
             for (Entry<Class<? extends AbstractHolz>, List<Class<? extends AbstractHolz>>> entry : Test.VALID_CONVERSIONS
                     .entrySet()) {
                 if (entry.getKey() == Rundholz.class) {
-                    tmp = new Rundholz(10, 10);
+                    tmp = new Rundholz(10, 33);
 
                 } else if (entry.getKey() == Energieholz.class) {
-                    tmp = new Energieholz(10, 10);
+                    tmp = new Energieholz(10, 100000);
                 } else if (entry.getKey() == Schnittholz.class) {
-                    tmp = new Schnittholz(10, 10, 10);
+                    tmp = new Schnittholz(10, 1, 9);
                 }
                 for (Class<? extends AbstractHolz> target : entry.getValue()) {
-                    tmp.neu(target);
+                    //                    try {
+                    //                        System.err.println("Testing conversion of " + tmp.getClass() + " to " + target);
+                        if (target == Kantholz.class) {
+                            // bypass validation, this is about types only
+                            AbstractHolz tmp1 = new Schnittholz(10, 5, 5);
+                            tmp1.neu(target);
+                        } else {
+                            tmp.neu(target);
+                        }
+//                    } catch (IllegalArgumentException ex) {
+//                        System.err.println("Got exception: " + ex.getMessage());
+//                        throw ex;
+//                    }
                 }
             }
             return true;
