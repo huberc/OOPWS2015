@@ -22,7 +22,7 @@ public class Saegerundholz extends Rundholz implements Saegbar {
      * <code>rindenDicke</code> Prozent Rindendicke
      * 
      * @param laenge laenge des Holzstuecks in cm
-     * @param staerke laenge des Holzstuecks in cm
+     * @param staerke staerke des Holzstuecks in cm
      * @param rindenDicke Anteil an <code>staerke</code>, der auf Rinde entfaellt - Prozentwert zw. 0 und 1
      */
     public Saegerundholz(int laenge, int staerke, double rindenDicke) {
@@ -43,9 +43,11 @@ public class Saegerundholz extends Rundholz implements Saegbar {
         // TODO Teil-Etiketten mit HolzFactory.getInstance().createFromRundholz(types[i]) holen,
         // alt auf this setzen, danach Werte auf errechnete setzen (ueber protected setter)
 
+        //TODO Ines, der Auruf würde so gehen, der michi hat nur einen Parameter vergessen HolzFactory.getInstance().createFromRundholz(this,types[i]);
         //nachdem der oben vorgeschlagene Aufruf für Teil-Etiketten nicht funktioniert, hab ich es einmal hardgecoded
         Etikett[] zersaegt = new Etikett[types.length];
         for (int i = 0; i <= types.length; i++) {
+
             Etikett help;
             if (types[i] instanceof Schnittholz ) {
                 int dicke = this.getStaerke() * (1/types.length);
