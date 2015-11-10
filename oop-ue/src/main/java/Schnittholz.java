@@ -30,22 +30,22 @@ public class Schnittholz extends AbstractHolz implements Saegbar{
     @SuppressWarnings("unchecked")
     @Override
     public AbstractHolz[] saegen(Class<? extends AbstractHolz>... types) {
-        // TODO Teil-Etiketten mit HolzFactory.getInstance().createFromRundholz(types[i]) holen,
-        // alt auf this setzen, danach Werte auf errechnete setzen (ueber protected setter)
-
-        //TODO Ines, der Auruf würde so gehen, der michi hat nur einen Parameter vergessen HolzFactory.getInstance().createFromRundholz(this,types[i]);
-        //nachdem der oben vorgeschlagene Aufruf für Teil-Etiketten nicht funktioniert, hab ich es einmal hardgecoded
         AbstractHolz[] zersaegt = new AbstractHolz[types.length];
-        for (int i = 0; i <= types.length; i++) {
+        AbstractHolz tmp;
 
+        for (int i = 0; i <= types.length; i++) {
+            tmp = HolzFactory.getInstance().createFromSchnittholz(this,types[i]);
             if(HolzFactory.getInstance().createFromSchnittholz(this,types[i]) instanceof Schnittholz){
-                int laenge = this.laenge() * (1/types.length);
-                zersaegt[i] = new Schnittholz(laenge,this.getDicke(),this.getBreite());
+                int dick = this.dicke* (1/types.length);
+                ((Schnittholz) tmp).setDicke(dick);
+                ((Schnittholz) tmp).setBreite(this.breite);
+                zersaegt[i] = tmp;
 
             }
             else if(HolzFactory.getInstance().createFromSchnittholz(this,types[i]) instanceof Energieholz){
-                int volumen = this.getLaenge() * this.getBreite() * this.getDicke() * (1/types.length);
-                zersaegt[i] = new Energieholz(this.getLaenge(), volumen);
+                double volumen = this.getLaenge() * this.getBreite() * this.getDicke() * (1/types.length);
+                ((Energieholz) tmp).setVolumen(volumen);
+                zersaegt[i] = tmp;
             }
             zersaegt[i].setAlt(this);
         }
