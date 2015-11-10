@@ -43,14 +43,19 @@ public class Saegerundholz extends Rundholz implements Saegbar {
         // TODO Teil-Etiketten mit HolzFactory.getInstance().createFromRundholz(types[i]) holen,
         // alt auf this setzen, danach Werte auf errechnete setzen (ueber protected setter)
 
-        //TODO Ines, der Auruf würde so gehen, der michi hat nur einen Parameter vergessen HolzFactory.getInstance().createFromRundholz(this,types[i]);
-        //nachdem der oben vorgeschlagene Aufruf für Teil-Etiketten nicht funktioniert, hab ich es einmal hardgecoded
+        //TODO Ines, der Auruf wuerde so gehen, der michi hat nur einen Parameter vergessen HolzFactory.getInstance().createFromRundholz(this,types[i]);
+        //nachdem der oben vorgeschlagene Aufruf fuer Teil-Etiketten nicht funktioniert, hab ich es einmal hardgecoded
         AbstractHolz[] zersaegt = new AbstractHolz[types.length];
+        AbstractHolz tmp;
+        int breite = -1;
         for (int i = 0; i <= types.length; i++) {
 
-            if(HolzFactory.getInstance().createFromRundholz(this,types[i]) instanceof Schnittholz){
+            tmp = HolzFactory.getInstance().createFromRundholz(this,types[i]);
+            if(tmp instanceof Schnittholz){
                 int dicke = this.getStaerke() * (1/types.length);
-                zersaegt[i] = new Schnittholz(this.getLaenge(),dicke,this.getStaerke());
+                ((Schnittholz) tmp).setDicke(dicke);
+                ((Schnittholz) tmp).setBreite(breite);
+                zersaegt[i] = tmp;
 
             }
             else if(HolzFactory.getInstance().createFromRundholz(this,types[i]) instanceof Energieholz){
