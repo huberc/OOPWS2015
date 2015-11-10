@@ -60,30 +60,64 @@ public class Test {
 		return true;
 	}
 
-	private static void testAllgemein(){
+	private static void testAllgemein() {
 
-		try {
-			Rundholz rundholz = new Rundholz(100, 80);
-			System.out.println(rundholz.toString());
-			Schnittholz schnittholz = new Schnittholz(100,30,10);
-			System.out.println(schnittholz.toString());
-			Saegerundholz saegerundholz = new Saegerundholz(100,10,0.05);
-			System.out.println(saegerundholz);
-			Industrieholz industrieholz = new Industrieholz(1000,20);
-			System.out.println(industrieholz);
-			Brett brett = new Brett(100,3,10);
-			System.out.println(brett);
-			Vollkantschnittholz vollkantschnittholz = new Vollkantschnittholz(1000,120,78);
-			System.out.println(vollkantschnittholz);
-			Kantholz kantholz = new Kantholz(1000,12,20);
-			System.out.println(kantholz);
-			Energieholz energieholz = new Energieholz(100,66.18);
-			System.out.println(energieholz);
-		}
-		catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+        try {
+            Rundholz rundholz = new Rundholz(100, 80);
+            System.out.println(rundholz.toString());
+            Schnittholz schnittholz = new Schnittholz(100, 30, 10);
+            System.out.println(schnittholz.toString());
+            Saegerundholz saegerundholz = new Saegerundholz(100, 10, 0.05);
+            System.out.println(saegerundholz);
+            Industrieholz industrieholz = new Industrieholz(1000, 20);
+            System.out.println(industrieholz);
+            Brett brett = new Brett(100, 3, 10);
+            System.out.println(brett);
+            Vollkantschnittholz vollkantschnittholz = new Vollkantschnittholz(1000, 120, 78);
+            System.out.println(vollkantschnittholz);
+            Kantholz kantholz = new Kantholz(1000, 12, 20);
+            System.out.println(kantholz);
+            Energieholz energieholz = new Energieholz(100, 66.18);
+            System.out.println(energieholz);
 
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    private static boolean testSaegen(){
+        try {
+            Saegerundholz saegerundholz = new Saegerundholz(100, 60);
+            Etikett[] saegen = saegerundholz.saegen(Schnittholz.class, Schnittholz.class, Energieholz.class);
+            Schnittholz tmp = new Schnittholz(100, 20, 60);
+            if ((saegen.length != 3) || (saegen[0].equals(tmp)) || (saegen[1].equals(tmp))) {
+                return false;
+            }
+            if (saegen[2] instanceof Energieholz) {
+                if ((!areEqual(((Energieholz) saegen[2]).getVolumen(), 31415.92654)) || (saegen[2].laenge() != 100)) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+            return true;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            Schnittholz schnittholz = new Schnittholz(100, 20, 20);
+            Etikett[] saegen = schnittholz.saegen(Energieholz.class, Schnittholz.class);
+            Energieholz tmp1 = new Energieholz(100, 20000);
+            Schnittholz tmp2 = new Schnittholz(100, 10, 20);
+            if((saegen.length != 2) || (saegen[0] != tmp1) || (saegen[1] != tmp2)) {
+                return false;
+            }
+            return true;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return true;
 	}
 
 	/**
