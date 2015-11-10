@@ -25,5 +25,10 @@ public class Energieholz extends AbstractHolz{
     public AbstractHolz internalNeu(Class<? extends AbstractHolz> newType) {
         return HolzFactory.getInstance().createFromEnergieholz(this, newType);
     }
-    
+
+    public String toString() {
+        return "Energieholz{\n"+
+                "\n\t laenge:\t\t"+this.laenge()+
+                "\n\t volumen:\t\t"+this.getVolumen()+"\n}";
+    }
 }
