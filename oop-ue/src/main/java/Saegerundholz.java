@@ -39,29 +39,37 @@ public class Saegerundholz extends Rundholz implements Saegbar {
 
     @SuppressWarnings("unchecked")
     @Override
-    public Etikett[] saegen(Class<? extends AbstractHolz>... types) {
+    public AbstractHolz[] saegen(Class<? extends AbstractHolz>... types) {
         // TODO Teil-Etiketten mit HolzFactory.getInstance().createFromRundholz(types[i]) holen,
         // alt auf this setzen, danach Werte auf errechnete setzen (ueber protected setter)
 
         //TODO Ines, der Auruf würde so gehen, der michi hat nur einen Parameter vergessen HolzFactory.getInstance().createFromRundholz(this,types[i]);
         //nachdem der oben vorgeschlagene Aufruf für Teil-Etiketten nicht funktioniert, hab ich es einmal hardgecoded
-        Etikett[] zersaegt = new Etikett[types.length];
+        AbstractHolz[] zersaegt = new AbstractHolz[types.length];
         for (int i = 0; i <= types.length; i++) {
 
-            Etikett help;
-            if (types[i] instanceof Schnittholz ) {
+            if(HolzFactory.getInstance().createFromRundholz(this,types[i]) instanceof Schnittholz){
+                int dicke = this.getStaerke() * (1/types.length);
+                zersaegt[i] = new Schnittholz(this.getLaenge(),dicke,this.getStaerke());
+
+            }
+            else if(HolzFactory.getInstance().createFromRundholz(this,types[i]) instanceof Energieholz){
+                int volumen = this.getLaenge() * this.getStaerke() * this.getStaerke() * 2 * (1/types.length);
+                zersaegt[i] = new Energieholz(this.getLaenge(), volumen);
+            }
+            zersaegt[i].setAlt(this);
+           /* if (types[i] instanceof Schnittholz ) {
                 int dicke = this.getStaerke() * (1/types.length);
                 help = new types[i](this.getLaenge(), dicke,this.getStaerke());     //kann Schnittholz oder Vollkantschnittholz
             }
             else if (types[i] instanceof Energieholz) {
-                int volumen = this.getLaenge() * this.getStaerke() * this.getStaerke() * 2 * (1/types.length);
-                help = new Energieholz(this.getLaenge(), volumen);
+
             }
             // else { throw exception } ???
             help.setAlt(this);
-            zersaegt[i] = help;
+            zersaegt[i] = help;*/
         }
-        return null;
+        return zersaegt;
     }
 
     
