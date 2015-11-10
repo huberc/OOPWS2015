@@ -13,9 +13,9 @@ public class BauRundholz extends Saegerundholz implements Bauholz {
     }
 
     public String toString() {
-        return "Baurundholz{\n"+
-                "\n\tlaenge:\t\t"+this.laenge()+
-                "\n\tstaerke:\t\t"+this.getStaerke()+"\n}";
+        return "\tBaurundholz{\n"+
+                "\n\t\tLaenge:\t\t"+this.laenge()+
+                "\n\t\tStaerke:\t\t"+this.getStaerke()+"\n}";
     }
 
 }

@@ -14,9 +14,9 @@ public class Kantholz extends Vollkantschnittholz implements Bauholz {
 
     @Override
     public String toString() {
-        return "Kantholz{"+
-                "\n\tlaenge:\t\t"+this.laenge()+
-                "\n\tdicke:\t\t"+this.getDicke()+
-                "\n\tbreite:\t\t"+this.getBreite()+"\n)";
+        return "\tKantholz{"+
+                "\n\t\tLaenge:\t\t"+this.laenge()+
+                "\n\t\tDicke:\t\t"+this.getDicke()+
+                "\n\t\tBreite:\t\t"+this.getBreite()+"\n)";
     }
 }

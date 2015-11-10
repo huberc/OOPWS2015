@@ -31,8 +31,10 @@ public class Saegerundholz extends Rundholz implements Saegbar {
     }
 
     public BauRundholz schaelen() {
+
         int staerkeGeschaelt = (int) (this.getStaerke() * (1-rindenDicke));
-        BauRundholz geschaelt = new BauRundholz(this.laenge(), staerkeGeschaelt);
+        BauRundholz geschaelt = (BauRundholz) this.neu(BauRundholz.class);
+        geschaelt.setStaerke(staerkeGeschaelt);
         geschaelt.setAlt(this);
         return geschaelt;
     }
@@ -74,9 +76,9 @@ public class Saegerundholz extends Rundholz implements Saegbar {
 
     @Override
     public String toString() {
-        return "Saegerundholz{\n" +
-                "\tRindendicke:\t" + rindenDicke +
-                "\n\tLaenge:\t\t\t"+this.laenge()+
-                "\n\tStaerke:\t\t"+this.getStaerke()+"\n}";
+        return "\tSaegerundholz{\n" +
+                "\t\tRindendicke:\t" + rindenDicke +
+                "\n\t\tLaenge:\t\t\t"+this.laenge()+
+                "\n\t\tStaerke:\t\t"+this.getStaerke()+"\n}";
     }
 }

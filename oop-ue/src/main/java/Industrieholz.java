@@ -11,11 +11,12 @@ public class Industrieholz extends Rundholz {
 
     public void fasen() {
         this.setEtikettierbar(false);
+        System.out.println("\tDas Industrieholz wurde durch fasen in ein Endprodukt umgewandelt");
     }
 
     public String toString() {
-        return "Industrieholz{"+
-                "\n\t laenge:\t\t"+this.laenge()+
-                "\n\t staerke:\t\t"+this.getStaerke()+"\n}";
+        return "\tIndustrieholz{"+
+                "\n\t\tLaenge:\t\t"+this.laenge()+
+                "\n\t\tStaerke:\t\t"+this.getStaerke()+"\n}";
     }
 }

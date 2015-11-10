@@ -27,8 +27,8 @@ public class Energieholz extends AbstractHolz{
     }
 
     public String toString() {
-        return "Energieholz{"+
-                "\n\t laenge:\t\t"+this.laenge()+
-                "\n\t volumen:\t\t"+this.getVolumen()+"\n}";
+        return "\tEnergieholz{"+
+                "\n\t\tLaenge:\t\t"+this.laenge()+
+                "\n\t\tVolumen:\t\t"+this.getVolumen()+"\n}";
     }
 }

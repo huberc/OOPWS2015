@@ -19,6 +19,11 @@ public class Test {
 
 	    System.out.println(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()));
 		System.out.println("Bauholzarten-Test: "+testBauHolzArten());
+		testAllgemein();
+		System.out.println();
+		System.out.println("Test der Neu-Methode ist: "+testNeu());
+		System.out.println("Test der Schaelen-Methode ist: "+testSchaelen());
+		System.out.println("Test der Fasen-Methode ist: "+testFasen());
 	}
 
 	/**
@@ -55,19 +60,76 @@ public class Test {
 		return true;
 	}
 
-	private static boolean testSaegen(){
+	private static void testAllgemein(){
 
 		try {
 			Rundholz rundholz = new Rundholz(100, 80);
-			Schnittholz schnittholz = (Schnittholz) rundholz.neu(Schnittholz.class);
-			Brett brett = (Brett) schnittholz.neu(Brett.class);
-
+			System.out.println(rundholz.toString());
+			Schnittholz schnittholz = new Schnittholz(100,30,10);
+			System.out.println(schnittholz.toString());
+			Saegerundholz saegerundholz = new Saegerundholz(100,10,0.05);
+			System.out.println(saegerundholz);
+			Industrieholz industrieholz = new Industrieholz(1000,20);
+			System.out.println(industrieholz);
+			Brett brett = new Brett(100,3,10);
+			System.out.println(brett);
+			Vollkantschnittholz vollkantschnittholz = new Vollkantschnittholz(1000,120,78);
+			System.out.println(vollkantschnittholz);
+			Kantholz kantholz = new Kantholz(1000,12,20);
+			System.out.println(kantholz);
+			Energieholz energieholz = new Energieholz(100,66.18);
+			System.out.println(energieholz);
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 
-		return false;
+	}
+
+	/**
+	 *
+	 * @return
+     */
+	private static boolean testNeu(){
+		System.out.println("\nTest Neu-Mehode:");
+		try {
+
+			Rundholz rundholz = new Rundholz(100, 80);
+			System.out.println(rundholz.toString());
+			Saegerundholz saegerundholz = (Saegerundholz) rundholz.neu(Saegerundholz.class);
+			System.out.println(saegerundholz);
+			Energieholz energieholz = (Energieholz) rundholz.neu(Energieholz.class);
+			System.out.println(energieholz.toString());
+			return true;
+		}
+		catch (Exception e){
+			System.out.println(e.getMessage());
+			return false;
+		}
+
+	}
+
+	private static boolean testSchaelen(){
+		Saegerundholz saegerundholz = new Saegerundholz(1000,100,0.1);
+		BauRundholz bauRundholz = saegerundholz.schaelen();
+		if(bauRundholz.getStaerke() == 100*(1-0.1))
+			return true;
+		else
+			return false;
+	}
+
+	private static boolean testFasen(){
+		Industrieholz industrieholz = new Industrieholz(100,10);
+
+		try {
+			industrieholz.fasen();
+			industrieholz.neu(Energieholz.class);
+			return false;
+		}
+		catch (Exception e){
+			System.out.println(e.getMessage());
+			return true;
+		}
 	}
 
 	/**
