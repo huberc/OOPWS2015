@@ -11,6 +11,7 @@ public class Energieholz extends AbstractHolz{
 
     public void hacken() {
         this.setEtikettierbar(false);
+        System.out.println("\tDas Energieholz wurde durch hacken in Hackschnizel umgewandelt");
     }
     
     public double getVolumen() {

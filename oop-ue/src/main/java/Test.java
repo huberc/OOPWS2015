@@ -21,9 +21,12 @@ public class Test {
 		System.out.println("Bauholzarten-Test: "+testBauHolzArten());
 		testAllgemein();
 		System.out.println();
+		System.out.println("Test der Saegen-Methoden:"+testSaegen());
 		System.out.println("Test der Neu-Methode ist: "+testNeu());
 		System.out.println("Test der Schaelen-Methode ist: "+testSchaelen());
 		System.out.println("Test der Fasen-Methode ist: "+testFasen());
+		System.out.println("Test der Mahlen-Methode ist: "+testMahlen());
+		System.out.println("Test der Hacken-Methode ist: "+testHacken());
 	}
 
 	/**
@@ -166,6 +169,36 @@ public class Test {
 		}
 	}
 
+	private static boolean testMahlen(){
+
+		Industrieholz industrieholz = new Industrieholz(100,10);
+
+		try {
+			industrieholz.mahlen();
+			industrieholz.neu(Energieholz.class);
+			return false;
+		}
+		catch (Exception e){
+			System.out.println(e.getMessage());
+			return true;
+		}
+
+	}
+
+	private static boolean testHacken(){
+		Energieholz energieholz = new Energieholz(100,89.25);
+
+		try {
+			energieholz.hacken();
+			energieholz.neu(Rundholz.class);
+			return false;
+		}
+		catch (Exception e){
+			System.out.println(e.getMessage());
+			return true;
+		}
+	}
+
 	/**
 	 * Comparison method for <code>double</code> values which uses a treshold
 	 * defined in <code>Test.CONSIDER_EQUAL_TRESHOLD</code> for comparison.
@@ -175,7 +208,7 @@ public class Test {
 	 * <code>hashCode</code> implementation which would be unnecessarily complex
 	 * in htis case, as comparison of <code>SimulationResult</code>s is at the
 	 * moment only relevant for testing purposes.
-	 * 
+	 *
 	 * @param d1
 	 *            the first double
 	 * @param d2
@@ -187,7 +220,7 @@ public class Test {
 		return (Math.abs(d1 - d2) < Test.CONSIDER_EQUAL_TRESHOLD) ? true
 				: false;
 	}
-	
+
 	public static String formatDate(int year, int month, int day){
 	    return ""; // TODO Michi
 	}

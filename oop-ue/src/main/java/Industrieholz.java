@@ -7,6 +7,7 @@ public class Industrieholz extends Rundholz {
 
     public void mahlen() {
         this.setEtikettierbar(false);
+        System.out.println("\tDas Industrieholz wurde durch mahlen in ein Endprodukt umgewandelt");
     }
 
     public void fasen() {
