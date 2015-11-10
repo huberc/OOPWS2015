@@ -17,7 +17,8 @@ public class HolzFactory {
 
             @Override
             public Energieholz createFrom(Rundholz input) {
-                double volume = Math.pow(((double) input.getStaerke())/2.0, 2) * Math.PI * (double) input.laenge();
+                double volume = Math.pow(((double) input.getStaerke()) / 2.0, 2) * Math.PI
+                                * (double) input.laenge();
                 return new Energieholz(input.laenge(), volume);
             }
 
@@ -30,80 +31,119 @@ public class HolzFactory {
             }
 
         });
-        this.rundholzConverters.put(Industrieholz.class, new IHolzConverter<Rundholz, Industrieholz>(){
+        this.rundholzConverters.put(Industrieholz.class, new IHolzConverter<Rundholz, Industrieholz>() {
 
             @Override
             public Industrieholz createFrom(Rundholz input) {
                 return new Industrieholz(input.laenge(), input.getStaerke());
             }
-            
+
         });
-        this.rundholzConverters.put(Saegerundholz.class, new IHolzConverter<Rundholz, Saegerundholz>(){
+        this.rundholzConverters.put(Saegerundholz.class, new IHolzConverter<Rundholz, Saegerundholz>() {
 
             @Override
             public Saegerundholz createFrom(Rundholz input) {
                 return new Saegerundholz(input.laenge(), input.getStaerke());
             }
-            
+
         });
-        this.rundholzConverters.put(BauRundholz.class, new IHolzConverter<Rundholz, BauRundholz>(){
+        this.rundholzConverters.put(BauRundholz.class, new IHolzConverter<Rundholz, BauRundholz>() {
 
             @Override
             public BauRundholz createFrom(Rundholz input) {
                 return new BauRundholz(input.laenge(), input.getStaerke());
             }
-            
+
         });
-        
+
         // Energieholz Converter
-        this.energieholzConverters.put(Rundholz.class, new IHolzConverter<Energieholz, Rundholz>(){
+        this.energieholzConverters.put(Rundholz.class, new IHolzConverter<Energieholz, Rundholz>() {
 
             @Override
             public Rundholz createFrom(Energieholz input) {
-                int staerke = (int)Math.round(Math.sqrt(input.getVolumen()/(Math.PI*input.getLaenge())));
-                return new Rundholz(input.getLaenge(), staerke);
+                int staerke = (int) Math.round(Math.sqrt(input.getVolumen() / (Math.PI * input.laenge())));
+                return new Rundholz(input.laenge(), staerke);
             }
-            
+
         });
-        this.energieholzConverters.put(Saegerundholz.class, new IHolzConverter<Energieholz, Saegerundholz>(){
+        this.energieholzConverters.put(Saegerundholz.class, new IHolzConverter<Energieholz, Saegerundholz>() {
 
             @Override
             public Saegerundholz createFrom(Energieholz input) {
-                int staerke = (int)Math.round(Math.sqrt(input.getVolumen()/(Math.PI*input.getLaenge())));
-                return new Saegerundholz(input.getLaenge(), staerke);
+                int staerke = (int) Math.round(Math.sqrt(input.getVolumen() / (Math.PI * input.laenge())));
+                return new Saegerundholz(input.laenge(), staerke);
             }
-            
+
         });
-        this.energieholzConverters.put(Industrieholz.class, new IHolzConverter<Energieholz, Industrieholz>(){
+        this.energieholzConverters.put(Industrieholz.class, new IHolzConverter<Energieholz, Industrieholz>() {
 
             @Override
             public Industrieholz createFrom(Energieholz input) {
-                int staerke = (int)Math.round(Math.sqrt(input.getVolumen()/(Math.PI*input.getLaenge())));
-                return new Industrieholz(input.getLaenge(), staerke);
+                int staerke = (int) Math.round(Math.sqrt(input.getVolumen() / (Math.PI * input.laenge())));
+                return new Industrieholz(input.laenge(), staerke);
             }
-            
+
         });
-        this.energieholzConverters.put(BauRundholz.class, new IHolzConverter<Energieholz, BauRundholz>(){
+        this.energieholzConverters.put(BauRundholz.class, new IHolzConverter<Energieholz, BauRundholz>() {
 
             @Override
             public BauRundholz createFrom(Energieholz input) {
-                int staerke = (int)Math.round(Math.sqrt(input.getVolumen()/(Math.PI*input.getLaenge())));
-                return new BauRundholz(input.getLaenge(), staerke);
+                int staerke = (int) Math.round(Math.sqrt(input.getVolumen() / (Math.PI * input.laenge())));
+                return new BauRundholz(input.laenge(), staerke);
             }
-            
+
         });
-        this.energieholzConverters.put(Energieholz.class, new IHolzConverter<Energieholz, Energieholz>(){
+        this.energieholzConverters.put(Energieholz.class, new IHolzConverter<Energieholz, Energieholz>() {
 
             @Override
             public Energieholz createFrom(Energieholz input) {
-                return new Energieholz(input.getLaenge(), input.getVolumen());
+                return new Energieholz(input.laenge(), input.getVolumen());
             }
-            
+
         });
-        
+
         // Schnittholz Converter
-        this.schnittholzConverters.put(key, value)
-        
+        this.schnittholzConverters.put(Schnittholz.class, new IHolzConverter<Schnittholz, Schnittholz>() {
+
+            @Override
+            public Schnittholz createFrom(Schnittholz input) {
+                return new Schnittholz(input.laenge(), input.getDicke(), input.getBreite());
+            }
+
+        });
+        this.schnittholzConverters.put(Vollkantschnittholz.class,
+                new IHolzConverter<Schnittholz, Vollkantschnittholz>() {
+
+                    @Override
+                    public Vollkantschnittholz createFrom(Schnittholz input) {
+                        return new Vollkantschnittholz(input.laenge(), input.getDicke(), input.getBreite());
+                    }
+
+                });
+        this.schnittholzConverters.put(Brett.class, new IHolzConverter<Schnittholz, Brett>() {
+
+            @Override
+            public Brett createFrom(Schnittholz input) {
+                return new Brett(input.laenge(), input.getDicke(), input.getBreite());
+            }
+
+        });
+        this.schnittholzConverters.put(Kantholz.class, new IHolzConverter<Schnittholz, Kantholz>() {
+
+            @Override
+            public Kantholz createFrom(Schnittholz input) {
+                return new Kantholz(input.laenge(), input.getDicke(), input.getBreite());
+            }
+
+        });
+        this.schnittholzConverters.put(Energieholz.class, new IHolzConverter<Schnittholz, Energieholz>() {
+
+            @Override
+            public Energieholz createFrom(Schnittholz input) {
+                return new Energieholz(input.laenge(), input.getBreite() * input.getDicke() * input.laenge());
+            }
+
+        });
     }
 
     public static HolzFactory getInstance() {
@@ -145,5 +185,7 @@ public class HolzFactory {
                                                + input.getClass() + " erstellen!");
         }
     }
+    
+    
 
 }
