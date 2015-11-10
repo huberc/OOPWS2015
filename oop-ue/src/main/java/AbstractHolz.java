@@ -14,6 +14,7 @@ public abstract class AbstractHolz implements Etikett {
     private int                             laenge;
     private String                          datum;
     private Etikett                         alt;
+    private boolean etiketierbar = true;
 
     /**
      * Public Konstruktor zum Erstellen eines neuen Etiketts OHNE vorherige Bearbeitungsschritte
@@ -44,6 +45,8 @@ public abstract class AbstractHolz implements Etikett {
     protected void setAlt(AbstractHolz alt){
         this.alt = alt;
     }
+
+    protected int getLaenge() { return this.laenge; }
     
     protected abstract AbstractHolz internalNeu(Class<? extends AbstractHolz> newType);
     
@@ -52,5 +55,13 @@ public abstract class AbstractHolz implements Etikett {
         AbstractHolz retVal = this.internalNeu(clazz);
         retVal.setAlt(this);
         return retVal;
+    }
+
+    public boolean isEtiketierbar() {
+        return etiketierbar;
+    }
+
+    public void setEtiketierbar(boolean etiketierbar) {
+        this.etiketierbar = etiketierbar;
     }
 }

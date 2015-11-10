@@ -30,9 +30,11 @@ public class Saegerundholz extends Rundholz implements Saegbar {
         this.rindenDicke = rindenDicke;
     }
 
-    public Saegerundholz schaelen() {
-        // TODO neues Etikett, schaelen ist ein Verarbeitungsschritt!
-        return null;
+    public BauRundholz schaelen() {
+        int staerkeGeschaelt = (int) (this.getStaerke() * (1-rindenDicke));
+        BauRundholz geschaelt = new BauRundholz(this.getLaenge(), staerkeGeschaelt);
+        geschaelt.setAlt(this);
+        return geschaelt;
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +42,23 @@ public class Saegerundholz extends Rundholz implements Saegbar {
     public Etikett[] saegen(Class<? extends AbstractHolz>... types) {
         // TODO Teil-Etiketten mit HolzFactory.getInstance().createFromRundholz(types[i]) holen,
         // alt auf this setzen, danach Werte auf errechnete setzen (ueber protected setter)
+
+        //nachdem der oben vorgeschlagene Aufruf für Teil-Etiketten nicht funktioniert, hab ich es einmal hardgecoded
+        Etikett[] zersaegt = new Etikett[types.length];
+        for (int i = 0; i <= types.length; i++) {
+            Etikett help;
+            if (types[i] instanceof Schnittholz ) {
+                int dicke = this.getStaerke() * (1/types.length);
+                help = new types[i](this.getLaenge(), dicke,this.getStaerke());     //kann Schnittholz oder Vollkantschnittholz
+            }
+            else if (types[i] instanceof Energieholz) {
+                int volumen = this.getLaenge() * this.getStaerke() * this.getStaerke() * 2 * (1/types.length);
+                help = new Energieholz(this.getLaenge(), volumen);
+            }
+            // else { throw exception } ???
+            help.setAlt(this);
+            zersaegt[i] = help;
+        }
         return null;
     }
 
@@ -48,7 +67,6 @@ public class Saegerundholz extends Rundholz implements Saegbar {
         return rindenDicke;
     }
 
-    
     protected void setRindenDicke(double rindenDicke) {
         this.rindenDicke = rindenDicke;
     }
