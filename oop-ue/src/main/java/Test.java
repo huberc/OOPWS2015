@@ -1,5 +1,10 @@
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Test class for the environment simulation.
@@ -14,6 +19,32 @@ public class Test {
 
 	private static final double CONSIDER_EQUAL_TRESHOLD = 0.001;
 
+
+    private static final Map<Class<? extends AbstractHolz>, List<Class<? extends AbstractHolz>>> VALID_CONVERSIONS       = new HashMap<>();
+
+    static {
+        List<Class<? extends AbstractHolz>> rundholzTargetTypes = new ArrayList<>();
+        rundholzTargetTypes.add(Rundholz.class);
+        rundholzTargetTypes.add(Energieholz.class);
+        rundholzTargetTypes.add(Saegerundholz.class);
+        rundholzTargetTypes.add(BauRundholz.class);
+        Test.VALID_CONVERSIONS.put(Rundholz.class, rundholzTargetTypes);
+
+        List<Class<? extends AbstractHolz>> energieholzTargetTypes = new ArrayList<>();
+        energieholzTargetTypes.add(Rundholz.class);
+        energieholzTargetTypes.add(Energieholz.class);
+        energieholzTargetTypes.add(Saegerundholz.class);
+        energieholzTargetTypes.add(BauRundholz.class);
+        Test.VALID_CONVERSIONS.put(Energieholz.class, energieholzTargetTypes);
+
+        List<Class<? extends AbstractHolz>> schnittholzTargetTypes = new ArrayList<>();
+        schnittholzTargetTypes.add(Schnittholz.class);
+        schnittholzTargetTypes.add(Vollkantschnittholz.class);
+        schnittholzTargetTypes.add(Brett.class);
+        schnittholzTargetTypes.add(Kantholz.class);
+        schnittholzTargetTypes.add(Energieholz.class);
+        Test.VALID_CONVERSIONS.put(Schnittholz.class, schnittholzTargetTypes);
+    }
 
 	public static void main(String[] args) {
 
@@ -123,28 +154,32 @@ public class Test {
         return true;
 	}
 
-	/**
-	 *
-	 * @return
+    /**
+     *
+     * @return
      */
-	private static boolean testNeu(){
-		System.out.println("\nTest Neu-Mehode:");
-		try {
+    private static boolean testNeu() {
+        try {
+            AbstractHolz tmp = null;
+            for (Entry<Class<? extends AbstractHolz>, List<Class<? extends AbstractHolz>>> entry : Test.VALID_CONVERSIONS
+                    .entrySet()) {
+                if (entry.getKey() == Rundholz.class) {
+                    tmp = new Rundholz(10, 10);
 
-			Rundholz rundholz = new Rundholz(100, 80);
-			System.out.println(rundholz.toString());
-			Saegerundholz saegerundholz = (Saegerundholz) rundholz.neu(Saegerundholz.class);
-			System.out.println(saegerundholz);
-			Energieholz energieholz = (Energieholz) rundholz.neu(Energieholz.class);
-			System.out.println(energieholz.toString());
-			return true;
-		}
-		catch (Exception e){
-			System.out.println(e.getMessage());
-			return false;
-		}
-
-	}
+                } else if(entry.getKey() == Energieholz.class){
+                    tmp = new Energieholz(10, 10);
+                } else if(entry.getKey() == Schnittholz.class){
+                    tmp = new Schnittholz(10, 10, 10);
+                }
+                for (Class<? extends AbstractHolz> target : entry.getValue()) {
+                    tmp.neu(target);
+                }
+            }
+            return true;
+        } catch (IllegalArgumentException ex) {
+            return false;
+        }
+    }
 
 	private static boolean testSchaelen(){
 		Saegerundholz saegerundholz = new Saegerundholz(1000,100,0.1);
