@@ -10,7 +10,7 @@ public class Energieholz extends AbstractHolz{
     private double volumen;
 
     public void hacken() {
-        this.setEtiketierbar(false);
+        this.setEtikettierbar(false);
     }
     
     public double getVolumen() {

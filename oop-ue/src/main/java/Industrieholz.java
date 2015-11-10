@@ -6,10 +6,10 @@ public class Industrieholz extends Rundholz {
     }
 
     public void mahlen() {
-        this.setEtiketierbar(false);
+        this.setEtikettierbar(false);
     }
 
     public void fasen() {
-        this.setEtiketierbar(false);
+        this.setEtikettierbar(false);
     }
 }

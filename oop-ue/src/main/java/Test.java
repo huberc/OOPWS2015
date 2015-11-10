@@ -4,17 +4,11 @@ import java.util.Date;
 /**
  * Test class for the environment simulation.
  *
- * @author Michael Langowski, e1426581@student.tuwien.ac.at All Interfaces, WeatherConditions, WoodUsageAction, RecorveryWoodUsageModel, RealWeatherModel, EnergyWoodUsageModel, DummyWeatherModel
- * @author Christoph Huber, e1427322@student.tuwien.ac.at Simulator, SimulatorRequest, SimulationDisplay, LinearWeatherModel, ExponentialWeatherModel, LogarithmicWeathermodel, DummyEconomicModel
- * @author Ines Rieder, e1425000@student.tuwien.ac.at Forest, BlackAlder, Spruce, SimulationDisplay, AbstractTree
+ * @author Michael Langowski, e1426581@student.tuwien.ac.at
+ * @author Christoph Huber, e1427322@student.tuwien.ac.at
+ * @author Ines Rieder, e1425000@student.tuwien.ac.at
  *
  *
- * GOOD:
- * 		- the class cohesion overall the project is quite good
- * 		- good dynamic binding for example the <code>Simulator</code> and the <code>Weathermodels</code>
- * BAD:
- * 		- Apart from a few punctual cases (e.g. Evaluation of wood actions in simulator) we havent found any fundamental errors
- * 		 and believe the overall design to be OK. Cases where improvements could be implemented are noted as such in the code ("BAD")
  */
 public class Test {
 
@@ -24,8 +18,57 @@ public class Test {
 	public static void main(String[] args) {
 
 	    System.out.println(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()));
+		System.out.println("Bauholzarten-Test: "+testBauHolzArten());
 	}
 
+	/**
+	 * Wenn keine Exception geworfen wird, dann ist der Test falsch
+	 *
+	 * @return true wenn der Test OK ist
+     */
+	private static boolean testBauHolzArten(){
+
+		try {
+			Brett brett = new Brett(10, 1, 0);
+
+			return false;
+		}
+		catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+
+		try {
+			BauRundholz bauRundholz = new BauRundholz(10,10);
+			return false;
+		}
+		catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+
+		try {
+			Kantholz kantholz = new Kantholz(10,1,0);
+			return false;
+		}
+		catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+		return true;
+	}
+
+	private static boolean testSaegen(){
+
+		try {
+			Rundholz rundholz = new Rundholz(100, 80);
+			Schnittholz schnittholz = (Schnittholz) rundholz.neu(Schnittholz.class);
+			Brett brett = (Brett) schnittholz.neu(Brett.class);
+
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+		return false;
+	}
 
 	/**
 	 * Comparison method for <code>double</code> values which uses a treshold
