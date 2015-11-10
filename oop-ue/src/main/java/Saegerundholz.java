@@ -71,4 +71,12 @@ public class Saegerundholz extends Rundholz implements Saegbar {
     protected void setRindenDicke(double rindenDicke) {
         this.rindenDicke = rindenDicke;
     }
+
+    @Override
+    public String toString() {
+        return "Saegerundholz{\n" +
+                "\tRindendicke:\t" + rindenDicke +
+                "\n\tLaenge:\t\t\t"+this.laenge()+
+                "\n\tStaerke:\t\t"+this.getStaerke()+"\n}";
+    }
 }
