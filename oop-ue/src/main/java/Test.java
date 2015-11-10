@@ -120,35 +120,47 @@ public class Test {
             Saegerundholz saegerundholz = new Saegerundholz(100, 60);
             Etikett[] saegen = saegerundholz.saegen(Schnittholz.class, Schnittholz.class, Energieholz.class);
             Schnittholz tmp = new Schnittholz(100, 20, 60);
-            if ((saegen.length != 3) || (saegen[0].equals(tmp)) || (saegen[1].equals(tmp))) {
+            if ((saegen.length != 3) || !(saegen[0] instanceof Schnittholz) || !(saegen[1] instanceof Schnittholz)) {
+                return false;
+            }
+            if((saegen[0].laenge() != 100) || (saegen[1].laenge() != 100) ||
+                    (((Schnittholz) saegen[0]).getDicke() != 20) || (((Schnittholz) saegen[1]).getDicke() != 20) ||
+                    (((Schnittholz) saegen[0]).getBreite() != 60) || (((Schnittholz) saegen[1]).getBreite() != 60)) {
                 return false;
             }
             if (saegen[2] instanceof Energieholz) {
-                if ((!areEqual(((Energieholz) saegen[2]).getVolumen(), 31415.92654))
-                    || (saegen[2].laenge() != 100)) {
+                if (!(areEqual(((Energieholz) saegen[2]).getVolumen(), 31415.92654)) || (saegen[2].laenge() != 100)) {
                     return false;
                 }
             } else {
                 return false;
             }
-            return true;
-        } catch (Exception e) {
+
+        }
+        catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
         }
         try {
             Schnittholz schnittholz = new Schnittholz(100, 20, 20);
             Etikett[] saegen = schnittholz.saegen(Energieholz.class, Schnittholz.class);
             Energieholz tmp1 = new Energieholz(100, 20000);
             Schnittholz tmp2 = new Schnittholz(100, 10, 20);
-            if ((saegen.length != 2) || (saegen[0] != tmp1) || (saegen[1] != tmp2)) {
+            if((saegen.length != 2) || !(saegen[0] instanceof Energieholz) || !(saegen[1] instanceof Schnittholz)) {
+                return false;
+            }
+            if((((Energieholz)saegen[0]).getVolumen() != 20000) || (saegen[0].laenge() != 100) ||
+                    (saegen[1].laenge() != 100) || (((Schnittholz) saegen[1]).getBreite() != 20) ||
+                    (((Schnittholz) saegen[1]).getDicke() != 10)) {
                 return false;
             }
             return true;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
         }
-    }
+	}
 
     /**
      *

@@ -64,11 +64,11 @@ public class HolzFactory {
             if (HolzFactory.isSubtypeOf(types[i], Energieholz.class)) {
                 tmp = this.rundholzConverters.get(types[i]).createFrom(input);
                 double volumen = input.laenge()
-                                 * (Math.pow(input.getStaerke() * (1 / types.length) * (1 / types.length), 2) * Math.PI);
+                                 * (Math.pow((input.getStaerke())/2.0 * (1.0 / (double)types.length), 2) * Math.PI);
                 ((Energieholz) tmp).setVolumen(volumen);
             } else if (HolzFactory.isSubtypeOf(types[i], Schnittholz.class)) {
                 tmp = this.rundholzToSchnittholzConverters.get(types[i]).createFrom(input);
-                int dicke = input.getStaerke() * (1 / types.length);
+                int dicke = input.getStaerke() / types.length;
                 ((Schnittholz) tmp).setDicke(dicke);
                 ((Schnittholz) tmp).setBreite(input.getStaerke());
             } else {
