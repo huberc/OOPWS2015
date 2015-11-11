@@ -1,5 +1,6 @@
-
-
+/**
+ * @author Ines Rieder, e1425000@student.tuwien.ac.at
+ */
 public class Schnittholz extends AbstractHolz implements Saegbar{
 
     public Schnittholz(int laenge, int dicke, int breite) {
@@ -27,7 +28,6 @@ public class Schnittholz extends AbstractHolz implements Saegbar{
         this.breite = breite;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public AbstractHolz[] saegen(Class<? extends AbstractHolz>... types) {
         AbstractHolz[] zersaegt = new AbstractHolz[types.length];

@@ -1,5 +1,6 @@
-
-
+/**
+ * @author Christoph Huber, e1427322@student.tuwien.ac.at
+ */
 public class Brett extends Vollkantschnittholz implements Bauholz{
 
     public Brett(int laenge, int dicke, int breite) {

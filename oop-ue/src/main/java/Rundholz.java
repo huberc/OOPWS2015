@@ -1,4 +1,6 @@
-
+/**
+ * @author Ines Rieder, e1425000@student.tuwien.ac.at
+ */
 public class Rundholz extends AbstractHolz {
 
     public Rundholz(int laenge, int staerke) {

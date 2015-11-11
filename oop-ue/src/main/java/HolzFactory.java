@@ -1,3 +1,7 @@
+/**
+ * @author Michael Langowski, e1426581@student.tuwien.ac.at
+ */
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,7 +60,6 @@ public class HolzFactory {
         }
     }
 
-    @SuppressWarnings("unchecked")
     public AbstractHolz[] saegeHelper(Rundholz input, Class<? extends AbstractHolz>... types) {
         AbstractHolz[] zersaegt = new AbstractHolz[types.length];
         AbstractHolz tmp = null;

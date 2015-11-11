@@ -1,4 +1,6 @@
-
+/**
+ * @author Christoph Huber, e1427322@student.tuwien.ac.at
+ */
 public class Saegerundholz extends Rundholz implements Saegbar {
 
     /**
@@ -30,6 +32,10 @@ public class Saegerundholz extends Rundholz implements Saegbar {
         this.rindenDicke = rindenDicke;
     }
 
+    /**
+     *
+     * @return produced <code>Baurundholz</code>
+     */
     public BauRundholz schaelen() {
 
         int staerkeGeschaelt = (int) (this.getStaerke() * (1-rindenDicke));
@@ -39,7 +45,11 @@ public class Saegerundholz extends Rundholz implements Saegbar {
         return geschaelt;
     }
 
-    @SuppressWarnings("unchecked")
+    /**
+     * @author Ines Rieder, e1425000@student.tuwien.ac.at
+     * @param types Array of classes, in which the wood should be processed in
+     * @return Array of the produced woods
+     */
     @Override
     public AbstractHolz[] saegen(Class<? extends AbstractHolz>... types) {
         if(!this.isEtikettierbar()){

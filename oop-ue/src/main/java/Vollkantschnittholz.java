@@ -1,4 +1,6 @@
-
+/**
+ * @author Christoph Huber, e1427322@student.tuwien.ac.at
+ */
 public class Vollkantschnittholz extends Schnittholz {
 
     public Vollkantschnittholz(int laenge, int dicke, int breite) {

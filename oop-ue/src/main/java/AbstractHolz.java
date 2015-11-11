@@ -46,7 +46,6 @@ public abstract class AbstractHolz implements Etikett {
 
     protected abstract AbstractHolz internalNeu(Class<? extends AbstractHolz> newType);
 
-    // TODO document!
     public final AbstractHolz neu(Class<? extends AbstractHolz> clazz) {
         if (isEtikettierbar()) {
             AbstractHolz retVal = this.internalNeu(clazz);

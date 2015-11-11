@@ -1,4 +1,6 @@
-
+/**
+ * @author Christoph Huber, e1427322@student.tuwien.ac.at
+ */
 
 public class BauRundholz extends Saegerundholz implements Bauholz {
 
@@ -7,9 +9,6 @@ public class BauRundholz extends Saegerundholz implements Bauholz {
 
         if (staerke < 20)
             throw new IllegalArgumentException("\tEin Holz mit der Staerke " + staerke + " cm kann kein Bau-Rundholz sein\n");
-//        if (laenge < 50)
-//            throw new IllegalArgumentException("\tEin Holz der laenge " + laenge + " cm ist zu kurz um als Bau-Rundholz verwendet werden zu koennen\n");
-
     }
 
     public String toString() {

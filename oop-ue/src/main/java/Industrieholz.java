@@ -1,4 +1,6 @@
-
+/**
+ * @author Ines Rieder, e1425000@student.tuwien.ac.at
+ */
 public class Industrieholz extends Rundholz {
 
     public Industrieholz(int laenge, int staerke) {

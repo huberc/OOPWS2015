@@ -1,5 +1,6 @@
-
-
+/**
+ * @author Christoph Huber, e1427322@student.tuwien.ac.at
+ */
 public class Kantholz extends Vollkantschnittholz implements Bauholz {
 
     public Kantholz(int laenge, int dicke, int breite) {

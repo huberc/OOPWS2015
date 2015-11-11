@@ -1,8 +1,9 @@
-
+/**
+ * @author Michael Langowski, e1426581@student.tuwien.ac.at
+ */
 
 public interface Saegbar {
 
-    @SuppressWarnings("unchecked")
     Etikett[] saegen(Class<? extends AbstractHolz>... types);
     
 }
