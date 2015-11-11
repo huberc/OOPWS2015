@@ -75,7 +75,7 @@ public class Saegerundholz extends Rundholz implements Saegbar {
     public String toString() {
         return "\tSaegerundholz{\n" +
                 "\t\tRindendicke:\t" + rindenDicke +
-                "\n\t\tLaenge:\t\t\t"+this.laenge()+
-                "\n\t\tStaerke:\t\t"+this.getStaerke()+"\n\t}";
+                "\n\t\tLaenge:\t\t"+this.laenge()+
+                "\n\t\tStaerke:\t"+this.getStaerke()+"\n\t}";
     }
 }
