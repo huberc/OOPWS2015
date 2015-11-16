@@ -12,7 +12,7 @@ public class Baurundholz extends Bauholz{
 
     @Override
     double festmeter() {
-        return Double.valueOf(Math.pow((diameter/2),2)* Math.PI);
+        return Double.valueOf((Math.pow((Double.valueOf(diameter)/2),2)* Math.PI)*this.getLength());
     }
 
     @Override

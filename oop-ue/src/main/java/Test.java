@@ -17,17 +17,16 @@ public class Test {
     public static BasicSet<Bauholz> bauholzBasicSet = new BasicSet<>();
 
     public static void main(String[] args) {
-      test1();
+        test1();
     }
 
-    public static void test1(){
+    public static void test1() {
 
         // create Sets
-        integerBasicSet.add(1);
-        integerBasicSet.add(1);
-        integerBasicSet.add(5);
-        integerBasicSet.add(2);
-        integerBasicSet.add(8);
+        integerBasicSet.add(new Integer(1));
+        integerBasicSet.add(new Integer(5));
+        integerBasicSet.add(new Integer(2));
+        integerBasicSet.add(new Integer(8));
 
         integerSortedSet.add(new MyInteger(1));
         integerSortedSet.add(new MyInteger(9));
@@ -53,13 +52,34 @@ public class Test {
 
         // remove and add new on
         Iterator<Integer> it = integerBasicSet.iterator();
-        it.next();
+        Integer test = new Integer(it.next());
         it.remove();
+        Iterator<Integer> it1 = integerBasicSet.iterator();
+        while (it1.hasNext()) {
+            if (it1.next() == test) {
+                System.out.println("The deleted Element is still present in the BasicSet of Integers");
+                return;
+            }
+        }
+        int toTest1 = 10;
+        integerBasicSet.add(toTest1);
+        Iterator<Integer> it2 = integerBasicSet.iterator();
+        while (it2.hasNext()) {
+            if(it2.next() != toTest1){
+                if(!(it2.hasNext())) {
+                    System.out.println("The new inserted value is not preseent in the BasicSet of Integers");
+                    return;
+                }
+            }
+        }
+
+        System.out.println(integerBasicSet.toString());
+
 
     }
 
-    public boolean test2(){
-        
+    public boolean test2() {
+
         for (Baurundholz tmp : baurundholzSortedSet) {
             bauholzSortedSet.add(tmp);
         }
@@ -69,65 +89,63 @@ public class Test {
 
         SortedSet.ListElem<Baurundholz> currentBaurundholz = baurundholzSortedSet.head;
         SortedSet.ListElem<Baukantholz> currentBaukantholz = baukantholzSortedSet.head;
-        
+
         for (Bauholz tmp : bauholzSortedSet) {
             if (tmp instanceof Baurundholz) {
                 if (tmp != currentBaurundholz.getValue()) {
                     return false;
                 }
                 currentBaurundholz = currentBaurundholz.getNext();
-            }
-            else {
+            } else {
                 if (tmp != currentBaukantholz.getValue()) {
                     return false;
                 }
                 currentBaukantholz = currentBaukantholz.getNext();
             }
         }
-        
+
         return true;
     }
-    
-    public boolean test3(){
-        
+
+    public boolean test3() {
+
         bauholzBasicSet = bauholzSortedSet;
 
         SortedSet.ListElem<Baurundholz> currentBaurundholz = baurundholzSortedSet.head;
         SortedSet.ListElem<Baukantholz> currentBaukantholz = baukantholzSortedSet.head;
-        
+
         for (Bauholz tmp : bauholzBasicSet) {
             if (tmp instanceof Baurundholz) {
                 if (tmp != currentBaurundholz.getValue()) {
                     return false;
                 }
                 currentBaurundholz = currentBaurundholz.getNext();
-            }
-            else {
+            } else {
                 if (tmp != currentBaukantholz.getValue()) {
                     return false;
                 }
                 currentBaukantholz = currentBaukantholz.getNext();
             }
         }
-        
+
         return true;
-        
+
     }
-    
-    public boolean test4(){
-    	// Tests for smaller
-    	MyInteger i1 = new MyInteger(3);
-    	MyInteger i2 = new MyInteger(4);
-    	Baurundholz brh1 = new Baurundholz(5, 10);
-    	Baurundholz brh2 = new Baurundholz(4, 10);
-    	Baukantholz bkh1 = new Baukantholz(5, 5, 10);
-    	Baukantholz bkh2 = new Baukantholz(5, 4, 10);
-    	return this.testSmallerLogic(i1, i2)
-    			&& this.testSmallerLogic(brh1, brh2)
-    			&& this.testSmallerLogic(bkh1, bkh2);
+
+    public boolean test4() {
+        // Tests for smaller
+        MyInteger i1 = new MyInteger(3);
+        MyInteger i2 = new MyInteger(4);
+        Baurundholz brh1 = new Baurundholz(5, 10);
+        Baurundholz brh2 = new Baurundholz(4, 10);
+        Baukantholz bkh1 = new Baukantholz(5, 5, 10);
+        Baukantholz bkh2 = new Baukantholz(5, 4, 10);
+        return this.testSmallerLogic(i1, i2)
+                && this.testSmallerLogic(brh1, brh2)
+                && this.testSmallerLogic(bkh1, bkh2);
     }
-    
-    private <T extends Smaller<? super T>> boolean testSmallerLogic(T s1, T s2){
-    	return ((s1.smaller(s2)) && !(s2.smaller(s1)));
+
+    private <T extends Smaller<? super T>> boolean testSmallerLogic(T s1, T s2) {
+        return ((s1.smaller(s2)) && !(s2.smaller(s1)));
     }
 }

@@ -81,9 +81,8 @@ public class BasicSet<T> implements Iterable<T>{
         
         StringBuilder result = new StringBuilder();
         for(T tmp : this) {
-            result.append(tmp.toString());
+            result.append(tmp.toString()+"\t");
         }
-        
         return result.toString();
     }
 

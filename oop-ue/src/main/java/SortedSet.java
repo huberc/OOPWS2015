@@ -21,7 +21,7 @@ public class SortedSet<T extends Smaller<? super T>> extends BasicSet<T> {
 				if (previous != null) {
 					previous.setNext(elem);
 				} else {
-					this.head.setNext(elem);
+					this.head = elem;
 				}
 				return;
 			}

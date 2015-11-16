@@ -19,4 +19,11 @@ public class MyInteger implements Smaller<MyInteger>{
     public int getValue() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return "MyInteger{\n" +
+                "\t\tWert:\t" + value +
+                "\n\t}\n";
+    }
 }
