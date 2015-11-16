@@ -18,14 +18,13 @@ public class BasicSet<T> implements Iterable<T>{
             head = new ListElem<T>(elem);
         }
         else {
-            ListElem<T> last = head;
-            for (ListElem<T> tmp = head; tmp.getNext() != null; tmp = tmp.getNext()) {
+            ListElem<T> tmp = head;
+            for (;tmp.getNext() != null; tmp = tmp.getNext()) {
                 if (tmp.getValue() == elem){
                     return;
                 }
-                last = tmp;
             }
-            last.setNext(new ListElem(elem));
+            tmp.setNext(new ListElem<T>(elem));
         }
         
         
@@ -56,23 +55,24 @@ public class BasicSet<T> implements Iterable<T>{
     
     private class BasicSetIterator implements Iterator<T>{
 
-        private ListElem<T> currentElem = head;
-        private ListElem<T> priviousElem = null;
+        private ListElem<T> nextElem = head;
+        private ListElem<T> previousElem = null;
         
         @Override
         public boolean hasNext() {
-            return currentElem.next != null;
+            return nextElem != null;
         }
 
         @Override
         public T next() {
-            priviousElem = currentElem;
-            currentElem = currentElem.next;
-            return priviousElem.value;
+            T retVal = nextElem.value;
+            previousElem = nextElem;
+            nextElem = nextElem.next;
+            return retVal;
         }
         
         public void remove() {
-            priviousElem.next = currentElem.next;
+            previousElem.setNext((nextElem != null) ? nextElem.getNext() : null);
         }
         
     }
