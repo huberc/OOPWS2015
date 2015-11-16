@@ -13,16 +13,22 @@ public class BasicSet<T> implements Iterable<T>{
         return tmp;
     }
     
-    public void add(T elem) {   
-        ListElem<T> last = null;
-        for (ListElem<T> tmp = head; tmp.next != null; tmp = tmp.next) {
-            if (tmp.value == elem){
-                return;
-            }
-            last = tmp;
+    public void add(T elem) {
+        if (head == null) {
+            head.value = elem;
         }
-        ListElem<T> tmp = last.next;
-        tmp.next.value = elem;
+        else {
+            ListElem<T> last = null;
+            for (ListElem<T> tmp = head; tmp.next != null; tmp = tmp.next) {
+                if (tmp.value == elem){
+                    return;
+                }
+                last = tmp;
+            }
+            ListElem<T> tmp = last.next;
+            tmp.next.value = elem;
+        }
+        
         
     }
     
