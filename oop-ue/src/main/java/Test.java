@@ -4,25 +4,26 @@ import java.util.Iterator;
  * @author Christoph Huber e1427322@student.tuwien.ac.at
  */
 public class Test {
-    private BasicSet<Integer> integerBasicSet = new BasicSet<>();
+    public static BasicSet<Integer> integerBasicSet = new BasicSet<>();
 
-    private SortedSet<MyInteger> integerSortedSet = new SortedSet<>();
+    public static SortedSet<MyInteger> integerSortedSet = new SortedSet<>();
 
-    private SortedSet<Baurundholz> baurundholzSortedSet = new SortedSet<>();
+    public static SortedSet<Baurundholz> baurundholzSortedSet = new SortedSet<>();
 
-    private SortedSet<Baukantholz> baukantholzSortedSet = new SortedSet<>();
-    
-    private SortedSet<Bauholz> bauholzSortedSet = new SortedSet<>();
-    
-    private BasicSet<Bauholz> bauholzBasicSet = new BasicSet<>();
+    public static SortedSet<Baukantholz> baukantholzSortedSet = new SortedSet<>();
+
+    public static SortedSet<Bauholz> bauholzSortedSet = new SortedSet<>();
+
+    public static BasicSet<Bauholz> bauholzBasicSet = new BasicSet<>();
 
     public static void main(String[] args) {
-
+      test1();
     }
 
-    public void Test1(){
+    public static void test1(){
 
         // create Sets
+        integerBasicSet.add(1);
         integerBasicSet.add(1);
         integerBasicSet.add(5);
         integerBasicSet.add(2);
@@ -51,11 +52,13 @@ public class Test {
         System.out.println(baukantholzSortedSet.toString());
 
         // remove and add new on
-
+        Iterator<Integer> it = integerBasicSet.iterator();
+        it.next();
+        it.remove();
 
     }
 
-    public boolean Test2(){
+    public boolean test2(){
         
         for (Baurundholz tmp : baurundholzSortedSet) {
             bauholzSortedSet.add(tmp);
@@ -85,7 +88,7 @@ public class Test {
         return true;
     }
     
-    public boolean Test3(){
+    public boolean test3(){
         
         bauholzBasicSet = bauholzSortedSet;
 
