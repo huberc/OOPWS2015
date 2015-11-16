@@ -1,5 +1,12 @@
 import java.util.Iterator;
-
+/**
+ * 
+ * @author Ines Rieder
+ *
+ * Das BasicSet ist eine einfach verlinkte Liste ungeordneter Elemente von dem Typ
+ * @param <T>
+ * 
+ */
 
 
 public class BasicSet<T> implements Iterable<T>{
@@ -13,6 +20,11 @@ public class BasicSet<T> implements Iterable<T>{
         return tmp;
     }
     
+    /**
+     * fuegt ein
+     * @param elem
+     * der Liste hinzu (fuegt keine identen Elemente ein)
+     */
     public void add(T elem) {
         if (head == null) {
             head = new ListElem<T>(elem);
@@ -30,6 +42,10 @@ public class BasicSet<T> implements Iterable<T>{
         
     }
     
+    /**
+     *ein Listen Element mit 
+     * @param <T> als Wert und verweis auf das naechste Element
+     */
     protected static class ListElem<T> {
         
         private ListElem<T> next;
@@ -53,6 +69,10 @@ public class BasicSet<T> implements Iterable<T>{
         
     }
     
+    /**
+     * ein Iterator fuer die selbstgebaute Liste
+     *
+     */
     private class BasicSetIterator implements Iterator<T>{
 
         private ListElem<T> nextElem = head;

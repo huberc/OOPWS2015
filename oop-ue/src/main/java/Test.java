@@ -1,8 +1,12 @@
 import java.util.Iterator;
 
 /**
- * @author Christoph Huber e1427322@student.tuwien.ac.at
+ * Arbeitsaufteilung: 
+ *  Christoph Huber: test1, test5, Bauholz, Baurundholz, Baukantholz, MyInteger
+ *  Michael Langowksi: test4, SortedList, Smaller
+ *  Ines Rieder: test2, test3, BasicSet
  */
+
 public class Test {
     public static BasicSet<Integer> integerBasicSet = new BasicSet<>();
 
