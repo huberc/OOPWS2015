@@ -8,11 +8,22 @@ public class BasicSet<T> implements Iterable<T>{
     
     @Override
     public Iterator<T> iterator() {
-        // TODO Auto-generated method stub
-        return null;
+        
+        Iterator<T> tmp = new BasicSetIterator();
+        return tmp;
     }
     
     public void add(T elem) {
+        
+        ListElem<T> last = null;
+        for (ListElem<T> tmp = head; tmp.next != null; tmp = tmp.next) {
+            if (tmp.value == elem){
+                return;
+            }
+            last = tmp;
+        }
+        ListElem<T> tmp = last.next;
+        tmp.next.value = elem;
         
     }
     
@@ -26,6 +37,7 @@ public class BasicSet<T> implements Iterable<T>{
     private class BasicSetIterator implements Iterator<T>{
 
         private ListElem<T> currentElem = head;
+        private ListElem<T> priviousElem = null;
         
         @Override
         public boolean hasNext() {
@@ -34,15 +46,25 @@ public class BasicSet<T> implements Iterable<T>{
 
         @Override
         public T next() {
-            ListElem<T> tmp = currentElem;
+            priviousElem = currentElem;
             currentElem = currentElem.next;
-            return tmp.value;
+            return priviousElem.value;
         }
         
         public void remove() {
-            
+            priviousElem.next = currentElem.next;
         }
         
+    }
+    
+    public String toString() {
+        
+        StringBuilder result = new StringBuilder();
+        for(T tmp : this) {
+            result.append(tmp.toString());
+        }
+        
+        return result.toString();
     }
 
 }
