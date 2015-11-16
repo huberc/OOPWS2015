@@ -19,13 +19,13 @@ public class BasicSet<T> implements Iterable<T>{
         }
         else {
             ListElem<T> last = null;
-            for (ListElem<T> tmp = head; tmp.next != null; tmp = tmp.next) {
-                if (tmp.value == elem){
+            for (ListElem<T> tmp = head; tmp.getNext() != null; tmp = tmp.getNext()) {
+                if (tmp.getValue() == elem){
                     return;
                 }
                 last = tmp;
             }
-            last.next = new ListElem(elem);
+            last.setNext(new ListElem(elem));
         }
         
         
