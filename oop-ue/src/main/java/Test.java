@@ -110,4 +110,21 @@ public class Test {
         return true;
         
     }
+    
+    public boolean test4(){
+    	// Tests for smaller
+    	MyInteger i1 = new MyInteger(3);
+    	MyInteger i2 = new MyInteger(4);
+    	Baurundholz brh1 = new Baurundholz(5, 10);
+    	Baurundholz brh2 = new Baurundholz(4, 10);
+    	Baukantholz bkh1 = new Baukantholz(5, 5, 10);
+    	Baukantholz bkh2 = new Baukantholz(5, 4, 10);
+    	return this.testSmallerLogic(i1, i2)
+    			&& this.testSmallerLogic(brh1, brh2)
+    			&& this.testSmallerLogic(bkh1, bkh2);
+    }
+    
+    private <T extends Smaller<? super T>> boolean testSmallerLogic(T s1, T s2){
+    	return ((s1.smaller(s2)) && !(s2.smaller(s1)));
+    }
 }
