@@ -15,7 +15,7 @@ public class BasicSet<T> implements Iterable<T>{
     
     public void add(T elem) {
         if (head == null) {
-            head.value = elem;
+            head = new ListElem<T>(elem);
         }
         else {
             ListElem<T> last = null;
@@ -25,8 +25,7 @@ public class BasicSet<T> implements Iterable<T>{
                 }
                 last = tmp;
             }
-            ListElem<T> tmp = last.next;
-            tmp.next.value = elem;
+            last.next = new ListElem(elem);
         }
         
         
