@@ -13,6 +13,8 @@ public class Test {
     private SortedSet<Baukantholz> baukantholzSortedSet = new SortedSet<>();
     
     private SortedSet<Bauholz> bauholzSortedSet = new SortedSet<>();
+    
+    private BasicSet<Bauholz> bauholzBasicSet = new BasicSet<>();
 
     public static void main(String[] args) {
 
@@ -81,5 +83,31 @@ public class Test {
         }
         
         return true;
+    }
+    
+    public boolean Test3(){
+        
+        bauholzBasicSet = bauholzSortedSet;
+
+        SortedSet.ListElem<Baurundholz> currentBaurundholz = baurundholzSortedSet.head;
+        SortedSet.ListElem<Baukantholz> currentBaukantholz = baukantholzSortedSet.head;
+        
+        for (Bauholz tmp : bauholzBasicSet) {
+            if (tmp instanceof Baurundholz) {
+                if (tmp != currentBaurundholz.getValue()) {
+                    return false;
+                }
+                currentBaurundholz = currentBaurundholz.getNext();
+            }
+            else {
+                if (tmp != currentBaukantholz.getValue()) {
+                    return false;
+                }
+                currentBaukantholz = currentBaukantholz.getNext();
+            }
+        }
+        
+        return true;
+        
     }
 }
