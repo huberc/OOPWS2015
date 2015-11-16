@@ -10,7 +10,6 @@ public abstract class Bauholz implements Smaller<Bauholz> {
     }
 
     /**
-     *
      * @return das Volumen in Festmeter
      */
     abstract double festmeter();
