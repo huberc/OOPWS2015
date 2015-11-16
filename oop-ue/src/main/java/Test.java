@@ -17,10 +17,14 @@ public class Test {
     public static BasicSet<Bauholz> bauholzBasicSet = new BasicSet<>();
 
     public static void main(String[] args) {
-        test1();
+        Test test = new Test();
+        test.test1();
+        System.out.println(test.test2());
+        System.out.println(test.test3());
+        System.out.println(test.test4());
     }
 
-    public static void test1() {
+    public void test1() {
 
         // create Sets
         integerBasicSet.add(new Integer(1));
@@ -74,6 +78,8 @@ public class Test {
         }
 
         System.out.println(integerBasicSet.toString());
+
+
 
 
     }
