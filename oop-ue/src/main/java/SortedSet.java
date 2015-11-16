@@ -4,7 +4,7 @@
  *
  * @param <T>
  */
-public class SortedSet<T extends Smaller<T>> extends BasicSet<T> {
+public class SortedSet<T extends Smaller<? super T>> extends BasicSet<T> {
 
 	@Override
 	public void add(T value) {

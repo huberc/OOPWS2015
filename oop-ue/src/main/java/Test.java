@@ -47,7 +47,7 @@ public class Test {
         System.out.println(baukantholzSortedSet.toString());
 
         // remove and add new on
-        integerBasicSet.iterator().next().re,p;
+
 
     }
 
