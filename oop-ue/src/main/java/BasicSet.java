@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public class BasicSet<T> implements Iterable<T>{
 
-    private ListElem<T> head;
+    protected ListElem<T> head;
     
     @Override
     public Iterator<T> iterator() {
@@ -13,8 +13,7 @@ public class BasicSet<T> implements Iterable<T>{
         return tmp;
     }
     
-    public void add(T elem) {
-        
+    public void add(T elem) {   
         ListElem<T> last = null;
         for (ListElem<T> tmp = head; tmp.next != null; tmp = tmp.next) {
             if (tmp.value == elem){
@@ -27,10 +26,26 @@ public class BasicSet<T> implements Iterable<T>{
         
     }
     
-    private static class ListElem<T> {
+    protected static class ListElem<T> {
         
         private ListElem<T> next;
         private T value;
+        
+        public ListElem(T val){
+        	this.value = val;
+        }
+        
+        public T getValue(){
+        	return this.value;
+        }
+        
+        public ListElem<T> getNext(){
+        	return this.next;
+        }
+        
+        public void setNext(ListElem<T> next){
+        	this.next = next;
+        }
         
     }
     
