@@ -1,11 +1,18 @@
 /**
  * 
+ * Aufsteigend sortierte Single-Linked-List
+ * 
  * @author Michael Langowski, e1426581@student.tuwien.ac.at
  *
  * @param <T>
  */
 public class SortedSet<T extends Smaller<? super T>> extends BasicSet<T> {
 
+	/**
+	 * Fuegt ein Element so ein, dass die Liste aufsteigend sortiert bleibt.
+	 * Nachdem kein Schreibzugriff ausser ueber add moeglich ist ist damit die
+	 * korrekte Reihenfolge im Iterator gesichert.
+	 */
 	@Override
 	public void add(T value) {
 		ListElem<T> elem = new ListElem<>(value);
@@ -30,29 +37,6 @@ public class SortedSet<T extends Smaller<? super T>> extends BasicSet<T> {
 		} while (current != null);
 		// element must be added at last position
 		previous.setNext(elem);
-
-		// if(this.head.getNext() == null){
-		// if(value.smaller(this.head.getValue())){
-		// elem.setNext(this.head);
-		// this.head = elem;
-		// }else{
-		// this.head.setNext(elem);
-		// }
-		// return;
-		// }
-		// ListElem<T> current = this.head;
-		// while(current != null){
-		// if(value.smaller(current.getValue())){
-		// if(current.getNext() == null ||
-		// current.getNext().getValue().smaller(value)){
-		// // insert here
-		// elem.setNext(current.getNext());
-		// current.setNext(elem);
-		// break;
-		// }
-		// current = current.getNext();
-		// }
-		// }
 	}
 
 }
