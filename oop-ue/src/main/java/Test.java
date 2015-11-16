@@ -26,6 +26,7 @@ public class Test {
         System.out.println("Teststate of Test2:\t"+test.test2());
         System.out.println("Teststate of Test3:\t"+test.test3());
         System.out.println("Teststate of Test4:\t"+test.test4());
+        System.out.println("Teststate of Test5:\t"+test.test5());
     }
 
     public boolean test1() {
@@ -177,6 +178,59 @@ public class Test {
         return this.testSmallerLogic(i1, i2)
                 && this.testSmallerLogic(brh1, brh2)
                 && this.testSmallerLogic(bkh1, bkh2);
+    }
+    public boolean test5(){
+        BasicSet<Integer> integerBasicSet1 = new BasicSet<>();
+
+        Integer integer1 = new Integer(1);
+        integerBasicSet1.add(integer1);
+        integerBasicSet1.add(integer1);
+        integerBasicSet1.add(new Integer(2));
+        integerBasicSet1.add(new Integer(8));
+        integerBasicSet1.add(new Integer(1));
+        //zwei gleiche Zahlen im BasicSet, aber nicht gleiche Speicherstelle
+
+        System.out.println("IntegerBasicSet in Test5:\t"+integerBasicSet1.toString());
+
+        boolean state=false;
+        Iterator<Integer> it = integerBasicSet1.iterator();
+        while (it.hasNext()){
+            if(it.next() == integer1){
+                if (state==false){
+                    state = true;
+                }else{
+                    System.out.println("An identical value occurs twice in the Set");
+                    return false;
+                }
+            }
+        }
+
+        SortedSet<MyInteger> integerSortedSet1 = new SortedSet<>();
+
+        MyInteger myInteger1 = new MyInteger(1);
+
+        integerSortedSet1.add(myInteger1);
+        integerSortedSet1.add(myInteger1);
+        integerSortedSet1.add(new MyInteger(4));
+        integerSortedSet1.add(new MyInteger(3));
+        integerSortedSet1.add(new MyInteger(1));
+        //zwei gleiche Zahlen im SortedSet, aber nicht gleiche Speicherstelle
+
+        System.out.println("IntegerSortedSet in Test5:\n"+integerSortedSet1.toString());
+        state=false;
+        Iterator<MyInteger> i = integerSortedSet1.iterator();
+        while (i.hasNext()){
+            if(i.next() == myInteger1){
+                if (state==false){
+                    state = true;
+                }else{
+                    System.out.println("An identical value occurs twice in the Set");
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     private <T extends Smaller<? super T>> boolean testSmallerLogic(T s1, T s2) {

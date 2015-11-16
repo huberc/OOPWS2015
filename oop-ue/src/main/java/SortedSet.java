@@ -24,9 +24,12 @@ public class SortedSet<T extends Smaller<? super T>> extends BasicSet<T> {
 		ListElem<T> current = this.head;
 		do {
 			if (!(current.getValue().smaller(value))) {
-				elem.setNext(current);
+				if(current.getValue() == value)
+					return;
+				else
+					elem.setNext(current);
 				if (previous != null) {
-					previous.setNext(elem);
+						previous.setNext(elem);
 				} else {
 					this.head = elem;
 				}
@@ -36,6 +39,7 @@ public class SortedSet<T extends Smaller<? super T>> extends BasicSet<T> {
 			current = current.getNext();
 		} while (current != null);
 		// element must be added at last position
+
 		previous.setNext(elem);
 	}
 

@@ -9,6 +9,10 @@ public abstract class Bauholz implements Smaller<Bauholz> {
         this.length = length;
     }
 
+    /**
+     *
+     * @return das Volumen in Festmeter
+     */
     abstract double festmeter();
 
     public int getLength() {

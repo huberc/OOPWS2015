@@ -1,25 +1,25 @@
 import java.util.Iterator;
 /**
- * 
+ *
  * @author Ines Rieder
  *
  * Das BasicSet ist eine einfach verlinkte Liste ungeordneter Elemente von dem Typ
  * @param <T>
- * 
+ *
  */
 
-
-public class BasicSet<T> implements Iterable<T>{
+public class BasicSet<T> implements Iterable<T> {
 
     protected ListElem<T> head;
-    
+
     @Override
     public Iterator<T> iterator() {
-        
+
         Iterator<T> tmp = new BasicSetIterator();
         return tmp;
     }
-    
+
+
     /**
      * fuegt ein
      * @param elem
@@ -28,45 +28,47 @@ public class BasicSet<T> implements Iterable<T>{
     public void add(T elem) {
         if (head == null) {
             head = new ListElem<T>(elem);
-        }
-        else {
+        } else {
             ListElem<T> tmp = head;
-            for (;tmp.getNext() != null; tmp = tmp.getNext()) {
-                if (tmp.getValue() == elem){
+            for (; tmp.getNext() != null; tmp = tmp.getNext()) {
+                if (tmp.getValue() == elem) {
                     return;
                 }
             }
-            tmp.setNext(new ListElem<T>(elem));
+            if(tmp.getValue() == elem)
+                return;
+            else
+                tmp.setNext(new ListElem<T>(elem));
         }
-        
-        
+
+
     }
-    
+
     /**
-     *ein Listen Element mit 
+     *ein Listen Element mit
      * @param <T> als Wert und verweis auf das naechste Element
      */
     protected static class ListElem<T> {
-        
+
         private ListElem<T> next;
         private T value;
-        
-        public ListElem(T val){
-        	this.value = val;
+
+        public ListElem(T val) {
+            this.value = val;
         }
-        
-        public T getValue(){
-        	return this.value;
+
+        public T getValue() {
+            return this.value;
         }
-        
-        public ListElem<T> getNext(){
-        	return this.next;
+
+        public ListElem<T> getNext() {
+            return this.next;
         }
-        
-        public void setNext(ListElem<T> next){
-        	this.next = next;
+
+        public void setNext(ListElem<T> next) {
+            this.next = next;
         }
-        
+
     }
     
     /**
