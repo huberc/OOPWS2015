@@ -1,5 +1,5 @@
 
 
-public interface Bauholz extends Etikett {
+public class Bauholz {
 
 }
