@@ -17,11 +17,11 @@ public class Baurundholz extends Bauholz{
 
     @Override
     public String toString() {
-        return "\tBaurundholz{\n" +
+        return "Baurundholz{\n" +
                 "\t\tLaenge:\t\t"+ this.getLength()+ "\n"+
                 "\t\tDurchmesser:\t" + diameter +"\n"+
                 "\t\tFestmeter:\t"+ this.festmeter()+"\n"+
-                "\t}";
+                "\t}\n";
     }
 
     @Override

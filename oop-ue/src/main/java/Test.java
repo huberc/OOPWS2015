@@ -18,13 +18,13 @@ public class Test {
 
     public static void main(String[] args) {
         Test test = new Test();
-        test.test1();
-        System.out.println(test.test2());
-        System.out.println(test.test3());
-        System.out.println(test.test4());
+        System.out.println("Teststate of Test1:\t"+test.test1());
+        System.out.println("Teststate of Test2:\t"+test.test2());
+        System.out.println("Teststate of Test3:\t"+test.test3());
+        System.out.println("Teststate of Test4:\t"+test.test4());
     }
 
-    public void test1() {
+    public boolean test1() {
 
         // create Sets
         integerBasicSet.add(new Integer(1));
@@ -49,10 +49,10 @@ public class Test {
         baukantholzSortedSet.add(new Baukantholz(20,55,45));
 
 
-        System.out.println(integerBasicSet.toString());
-        System.out.println(integerSortedSet.toString());
-        System.out.println(baurundholzSortedSet.toString());
-        System.out.println(baukantholzSortedSet.toString());
+        System.out.println("IntergerBasicSet:"+integerBasicSet.toString());
+        System.out.println("IntergerSortedSet:\n"+integerSortedSet.toString());
+        System.out.println("BaurundholzSortedSet:\n"+baurundholzSortedSet.toString());
+        System.out.println("BaukantholzSortedSet:\n"+baukantholzSortedSet.toString());
 
         // remove and add new on
         Iterator<Integer> it = integerBasicSet.iterator();
@@ -62,7 +62,7 @@ public class Test {
         while (it1.hasNext()) {
             if (it1.next() == test) {
                 System.out.println("The deleted Element is still present in the BasicSet of Integers");
-                return;
+                return false;
             }
         }
         int toTest1 = 10;
@@ -72,16 +72,40 @@ public class Test {
             if(it2.next() != toTest1){
                 if(!(it2.hasNext())) {
                     System.out.println("The new inserted value is not preseent in the BasicSet of Integers");
-                    return;
+                    return false;
                 }
             }
         }
 
-        System.out.println(integerBasicSet.toString());
+        System.out.println("new correct IntegerBasicSet:\t"+integerBasicSet.toString());
 
 
+        Iterator<MyInteger> i = integerSortedSet.iterator();
+        MyInteger toTestIntergerSortedSet = new MyInteger(it.next());
+        it.remove();
+        Iterator<MyInteger> i1 = integerSortedSet.iterator();
+        while (i1.hasNext()) {
+            if (i1.next() == toTestIntergerSortedSet) {
+                System.out.println("The deleted Element is still present in the SortedSet of Integers");
+                return false;
+            }
+        }
 
+        MyInteger toTestIntegerSortedSet1 = new MyInteger(12);
+        integerSortedSet.add(toTestIntegerSortedSet1);
+        Iterator<MyInteger> i2 = integerSortedSet.iterator();
+        while (i2.hasNext()) {
+            if(i2.next() != toTestIntegerSortedSet1){
+                if(!(i2.hasNext())) {
+                    System.out.println("The new inserted value is not preseent in the SortedSet of Integers");
+                    return false;
+                }
+            }
+        }
 
+        System.out.println("new correct IntegerSortedSet:\n"+integerSortedSet);
+
+        return true;
     }
 
     public boolean test2() {

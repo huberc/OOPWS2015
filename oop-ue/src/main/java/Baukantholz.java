@@ -18,12 +18,12 @@ public class Baukantholz extends Bauholz{
 
     @Override
     public String toString() {
-        return "\tBaukantholz{\n" +
+        return "Baukantholz{\n" +
                 "\t\tLaenge:\t\t"+ this.getLength()+ "\n"+
                 "\t\tHoehe:\t\t" + height + "\n" +
                 "\t\tBreite:\t\t" + width +"\n"+
                 "\t\tFestmeter:\t"+ this.festmeter()+"\n"+
-                "\t}";
+                "\t}\n";
     }
 
     @Override

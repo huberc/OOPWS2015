@@ -80,6 +80,7 @@ public class BasicSet<T> implements Iterable<T>{
     public String toString() {
         
         StringBuilder result = new StringBuilder();
+        result.append("\t");
         for(T tmp : this) {
             result.append(tmp.toString()+"\t");
         }
