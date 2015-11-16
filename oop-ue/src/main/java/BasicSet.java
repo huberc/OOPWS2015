@@ -18,7 +18,7 @@ public class BasicSet<T> implements Iterable<T>{
             head = new ListElem<T>(elem);
         }
         else {
-            ListElem<T> last = null;
+            ListElem<T> last = head;
             for (ListElem<T> tmp = head; tmp.getNext() != null; tmp = tmp.getNext()) {
                 if (tmp.getValue() == elem){
                     return;
