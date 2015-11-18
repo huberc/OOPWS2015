@@ -1,4 +1,7 @@
-
+/**
+ * @author Michael Langowksi
+ * @param <T>
+ */
 
 public interface Smaller<T> {
 

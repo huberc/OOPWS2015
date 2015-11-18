@@ -1,4 +1,6 @@
-
+/**
+ * @author Christoph Huber
+ */
 
 public class MyInteger implements Smaller<MyInteger>{
 
