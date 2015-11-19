@@ -29,7 +29,7 @@ public class ObjectList {
     }
 
 
-    static class ObjectListNode{
+    class ObjectListNode{
         private ObjectListNode next=null;
         private Object value;
 
@@ -43,12 +43,12 @@ public class ObjectList {
     }
 
     /**
-     *  Die Methode überprüft, ob das übergebene Element bereits in der "Liste" vorhanden ist.
+     *  Die Methode ueberprueft, ob das uebergebene Element bereits in der "Liste" vorhanden ist.
      *
      * @param elem
      *          vom Typ Object
      *
-     * @return true, falls das übergebene Element schon vorhanden ist, ansonsten false
+     * @return true, falls das uebergebene Element schon vorhanden ist, ansonsten false
      */
     boolean contains(Object elem){
         ObjectListNode cur = head;
