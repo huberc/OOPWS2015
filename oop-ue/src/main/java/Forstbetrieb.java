@@ -4,12 +4,15 @@
 public class Forstbetrieb implements Listable {
 
     private String name;
-    private CustomList customList = new CustomList();
+    private static CustomList customList = new CustomList();
 
     public Forstbetrieb(String name) {
 
     }
 
+    private final static boolean checkName(String name){
+        if(customList.contains())
+    }
 
     public void addHolzvollernter(Holzvollernter holzvollernter) {
 
