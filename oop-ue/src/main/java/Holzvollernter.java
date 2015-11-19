@@ -12,7 +12,7 @@ public abstract class Holzvollernter implements Listable {
      *         (1-based). After the current id value was fetched, the sequence is incremented. This method is
      *         thread-safe
      */
-    protected static final int fetchId() {
+    private static final int fetchId() {
         int retVal;
         synchronized (Holzvollernter.idSequence) {
             retVal = Holzvollernter.idSequence++;
@@ -22,7 +22,7 @@ public abstract class Holzvollernter implements Listable {
 
     private int                 id;
     private AbstractArbeitskopf arbeitskopf;
-    private Number              distanceMoved;
+    protected Number              distanceMoved;
     private int                 betriebsstunden;
 
     public AbstractArbeitskopf getArbeitskopf() {
