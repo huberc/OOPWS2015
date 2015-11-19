@@ -1,7 +1,6 @@
 /**
  * Klasse fuer Eigenschaften von Verarbeitungskoepfen. 
  * 
- * 
  * @author Michael Langowski, e1426581@student.tuwien.ac.at
  *
  */
