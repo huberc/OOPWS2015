@@ -56,6 +56,10 @@ public class CustomList {
         public CustomListNode(Listable value) {
             this.value = value;
         }
+        public CustomListNode getNext() {
+            return this.next;
+        }
+        public Listable getValue() { return this.value; }
     }
 
     /**
