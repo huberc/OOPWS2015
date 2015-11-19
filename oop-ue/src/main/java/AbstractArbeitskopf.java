@@ -1,6 +1,6 @@
 
 public abstract class AbstractArbeitskopf {
 
-    public abstract WoodConstraint getConstraint();
+    public abstract HolzConstraint getConstraint();
     
 }

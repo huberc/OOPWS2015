@@ -1,7 +1,7 @@
 /**
  * @author Michael Langowski
  */
-public abstract class Holzvollernter {
+public abstract class Holzvollernter implements Listable{
 
 	private static Integer idSequence = 1;
 
