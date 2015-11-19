@@ -2,9 +2,9 @@ import java.util.Iterator;
 
 /**
  * Arbeitsaufteilung: 
- *  Christoph Huber: test1, test5, Bauholz, Baurundholz, Baukantholz, MyInteger
- *  Michael Langowksi: test4, SortedList, Smaller
- *  Ines Rieder: test2, test3, BasicSet
+ *  Christoph Huber: Forstbetrieb, ObjectList
+ *  Michael Langowksi: Holzvollernter, Abstractarbeitskopf
+ *  Ines Rieder: Gemeinde, Test
  */
 
 public class Test {
