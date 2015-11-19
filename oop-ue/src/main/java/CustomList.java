@@ -8,8 +8,7 @@ public class CustomList {
     /**
      * VB: elem darf nicht null sein NB: elem ist Bestandteil der Liste
      *
-     * @param elem
-     *            das einzufuegende Element in die "Liste"
+     * @param elem das einzufuegende Element in die "Liste"
      */
     void insert(Listable elem) {
 
@@ -26,18 +25,35 @@ public class CustomList {
     /**
      * VB: name darf nicht null sein NB: null oder das entsprechende Objekt wird dem Client zurueckgegeben.
      *
-     * @param name
-     *            String in der Liste
+     * @param name String in der Liste
      * @return Object oder null fals der Name nicht vorhanden ist
      */
     Listable removeByName(String name) {
 
         CustomListNode cur = head;
+        CustomListNode tmp = head;
 
         while (cur.next != null) {
             if (cur.value.getName().equals(name)) {
+                tmp.next = cur.next;
                 return cur.value;
             } else {
+                tmp = cur;
+                cur = cur.next;
+            }
+        }
+        return null;
+    }
+
+    public Listable getElement(String name){
+
+        CustomListNode cur = head;
+
+        while (cur.next != null){
+            if(cur.getValue().equals(name)){
+                return cur.getValue();
+            }
+            else{
                 cur = cur.next;
             }
         }
@@ -51,24 +67,27 @@ public class CustomList {
     class CustomListNode {
 
         private CustomListNode next = null;
-        private Listable       value;
+        private Listable value;
 
         public CustomListNode(Listable value) {
             this.value = value;
         }
+
         public CustomListNode getNext() {
             return this.next;
         }
-        public Listable getValue() { return this.value; }
+
+        public Listable getValue() {
+            return this.value;
+        }
     }
 
     /**
      * Die Methode ueberprueft, ob das uebergebene Element bereits in der "Liste" vorhanden ist.
-     *
+     * <p>
      * VB: elem darf nicht null sein
      *
-     * @param elem
-     *            vom Typ Object
+     * @param elem vom Typ Object
      * @return true, falls das uebergebene Element schon vorhanden ist, ansonsten false
      */
     boolean contains(Listable elem) {
