@@ -3,9 +3,11 @@
  */
 public class Forstbetrieb {
 
+
     public Forstbetrieb() {
 
     }
+
 
     public void addHolzvollernter(Holzvollernter holzvollernter) {
 
@@ -20,7 +22,7 @@ public class Forstbetrieb {
         return false;
     }
 
-    //TODO zu überlegen, was ich da zurückgeben, weil eine Aufschlüsselung, nach bestimmten Kriterien
+    //TODO zu überlegen, was ich da zurückgebe, weil eine Aufschlüsselung, nach bestimmten Kriterien
     //TODO gefordert ist. Mein Vorschlag: eine Map als key die entsprechende Aufschlüsselung
     //NOTE: jz erstmals als String definiert.
     public String getAvgWorkingHoursOfAll() {

@@ -1,5 +1,5 @@
 /**
- * Created by Christoph on 18.11.2015.
+ * @author Michael Langowski
  */
 public abstract class Holzvollernter {
 
