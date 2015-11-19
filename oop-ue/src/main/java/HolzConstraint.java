@@ -20,5 +20,11 @@ public class HolzConstraint {
 
     ConstraintType type;
     Number         constraintValue;
+    
+    public HolzConstraint(ConstraintType type, Number constraintValue){
+        this.type = type;
+        this.constraintValue = constraintValue;
+    }
+    
 
 }
