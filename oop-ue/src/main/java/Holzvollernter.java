@@ -23,6 +23,7 @@ public abstract class Holzvollernter implements Listable{
 	private int id;
 	private AbstractArbeitskopf arbeitskopf;
 	private Number distanceMoved;
+	private int betriebsstunden;
 
 	public AbstractArbeitskopf getArbeitskopf() {
 		return arbeitskopf;
@@ -54,4 +55,13 @@ public abstract class Holzvollernter implements Listable{
 	public int getId() {
 		return id;
 	}
+   
+    public int getBetriebsstunden() {
+        return betriebsstunden;
+    }
+  
+    public void setBetriebsstunden(int betriebsstunden) {
+        this.betriebsstunden = betriebsstunden;
+    }
+    
 }
