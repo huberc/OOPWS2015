@@ -1,21 +1,12 @@
 /**
  * @author Christoph Huber
  */
-public class Forstbetrieb {
+public class Forstbetrieb implements Listable {
 
-    private static String name="";
+    private String name;
+    private CustomList customList = new CustomList();
 
-    protected static final String fetchName() {
-        String retVal;
-        synchronized (Forstbetrieb.name) {
-            retVal = Holzvollernter.idSequence++;
-        }
-        return retVal;
-    }
-
-
-
-    public Forstbetrieb() {
+    public Forstbetrieb(String name) {
 
     }
 
@@ -33,8 +24,8 @@ public class Forstbetrieb {
         return false;
     }
 
-    //TODO zu überlegen, was ich da zurückgebe, weil eine Aufschlüsselung, nach bestimmten Kriterien
-    //TODO gefordert ist. Mein Vorschlag: eine Map als key die entsprechende Aufschlüsselung
+    //TODO zu ueberlegen, was ich da zurueckgebe, weil eine Aufschluesselung, nach bestimmten Kriterien
+    //TODO gefordert ist. Mein Vorschlag: eine Map als key die entsprechende Aufschluesselung
     //NOTE: jz erstmals als String definiert.
     public String getAvgWorkingHoursOfAll() {
 
@@ -63,5 +54,10 @@ public class Forstbetrieb {
     public String getAvgTreeThickness() {
 
         return null;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }
