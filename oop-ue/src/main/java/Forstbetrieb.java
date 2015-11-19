@@ -3,6 +3,17 @@
  */
 public class Forstbetrieb {
 
+    private static String name="";
+
+    protected static final String fetchName() {
+        String retVal;
+        synchronized (Forstbetrieb.name) {
+            retVal = Holzvollernter.idSequence++;
+        }
+        return retVal;
+    }
+
+
 
     public Forstbetrieb() {
 
