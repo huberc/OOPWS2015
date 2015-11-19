@@ -12,7 +12,7 @@ public abstract class Holzvollernter {
 	 *         to a new "Vollernter" (1-based). After the current id value was
 	 *         fetched, the sequence is incremented. This method is thread-safe
 	 */
-	protected final int fetchId() {
+	protected static final int fetchId() {
 		int retVal;
 		synchronized (Holzvollernter.idSequence) {
 			retVal = Holzvollernter.idSequence++;
