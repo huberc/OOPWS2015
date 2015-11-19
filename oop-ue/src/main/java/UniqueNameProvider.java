@@ -3,7 +3,7 @@ public class UniqueNameProvider {
 
     private static final CustomList customList = new CustomList();
 
-    private static final boolean checkName(final String name) {
+    public static final boolean checkName(final String name) {
         Listable listable = new Listable() {
 
             public String getName() {
