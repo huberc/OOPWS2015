@@ -3,10 +3,19 @@
  */
 public class ListableNumber implements Listable {
 
+    private Number number;
+
+    public ListableNumber(Number number){
+        this.number = number;
+    }
+
     @Override
     public String getName() {
-        return null;
+        return ""+this.number;
     }
 
 
+    public Number getNumber() {
+        return number;
+    }
 }

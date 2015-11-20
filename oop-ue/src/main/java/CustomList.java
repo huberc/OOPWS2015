@@ -10,7 +10,7 @@ public class CustomList {
      *
      * @param elem das einzufuegende Element in die "Liste"
      */
-    void insert(Listable elem) {
+    public void insert(Listable elem) {
 
         if (head == null)
             this.head = new CustomListNode(elem);
@@ -28,7 +28,7 @@ public class CustomList {
      * @param name String in der Liste
      * @return Object oder null fals der Name nicht vorhanden ist
      */
-    Listable removeByName(String name) {
+    public Listable removeByName(String name) {
 
         CustomListNode cur = head;
         CustomListNode tmp = head;
@@ -87,10 +87,10 @@ public class CustomList {
      * <p>
      * VB: elem darf nicht null sein
      *
-     * @param elem vom Typ Object
+     * @param elem vom Typ Listable
      * @return true, falls das uebergebene Element schon vorhanden ist, ansonsten false
      */
-    boolean contains(Listable elem) {
+    public boolean contains(Listable elem) {
         CustomListNode cur = head;
         while ((cur.next != null)) {
             if (cur.equals(elem)) {
@@ -100,6 +100,13 @@ public class CustomList {
             }
         }
         return false;
+    }
+
+    public boolean isEmpty(){
+        if(this.head == null)
+            return true;
+        else
+            return false;
     }
 
 }
