@@ -1,5 +1,11 @@
 /**
- * @author Michael Langowski
+ * Abstrakte Definition eines "Holzvollernters". Ein Holzvollernter kann mit verschiedenen Arbeitskoepfen (@see
+ * <code>AbstractArbeitskopf</code>) ausgeruestet werden, die die Art der Verarbeitung von geerntetem Holz
+ * festlegen. Weiters gibt es unterschideliche Arten von Holzvollernten, die sich unterschiedlich fortbewegen.
+ * Implementierungen muessen abhaengig von der jeweiligen Art der Fortbewegung <code>addDistanceMoved</code>
+ * entsprechend implementieren
+ * 
+ * @author Michael Langowski, e1426581@student.tuwien.ac.at
  */
 public abstract class Holzvollernter implements Listable {
 
