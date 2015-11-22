@@ -22,8 +22,17 @@ public abstract class Holzvollernter implements Listable {
 
     private int                 id;
     private AbstractArbeitskopf arbeitskopf;
-    protected Number              distanceMoved;
-    private int                 betriebsstunden;
+    protected Number            distanceMoved   = 0;
+    private int                 betriebsstunden = 0;
+
+    /**
+     * Legt einen neuen Holzvollernter mit einer global eindeutigen Id an. Die zurueckgelegten Schritte
+     * (distanceMoved) sowie die Betriebsstunden des Ernters werden mit 0 initialisiert. Der Konstruktor setzt
+     * keine Arbeitskopf, dieser muss von der aufrufenden Komponente separat gesetzt werden.
+     */
+    public Holzvollernter() {
+        this.id = Holzvollernter.fetchId();
+    }
 
     public AbstractArbeitskopf getArbeitskopf() {
         return arbeitskopf;
@@ -62,6 +71,7 @@ public abstract class Holzvollernter implements Listable {
         this.betriebsstunden = betriebsstunden;
     }
 
+    @Override
     public String getName() {
         return Integer.toString(this.id);
     }
