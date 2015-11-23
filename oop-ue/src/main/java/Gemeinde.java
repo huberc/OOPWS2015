@@ -71,10 +71,11 @@ public class Gemeinde {
         }
         StringBuilder result = new StringBuilder();
         CustomList.CustomListNode head = betriebe.getHead();
-        result.append(head.getValue().toString());
-        while (betriebe.getHead().getNext() != null) {
+        result.append(this.name+":\n");
+        result.append("\t" + head.getValue().getName());
+        while (head.getNext() != null) {
             head = head.getNext();
-            result.append(head.getValue().toString());
+            result.append("\n\t" + head.getValue().getName());
         }
         System.out.println(result.toString());
     }
