@@ -8,33 +8,33 @@
 
 public class Test {
 
-    Gemeinde     gemeinde1      = new Gemeinde("gemeinde1");
-    Gemeinde     gemeinde2      = new Gemeinde("gemeinde2");
-    Gemeinde     gemeinde3      = new Gemeinde("gemeinde3");
+    private Gemeinde     gemeinde1      = new Gemeinde("gemeinde1");
+    private Gemeinde     gemeinde2      = new Gemeinde("gemeinde2");
+    private Gemeinde     gemeinde3      = new Gemeinde("gemeinde3");
 
-    Forstbetrieb forstbetrieb11 = new Forstbetrieb("forstbetrieb11");
-    Forstbetrieb forstbetrieb12 = new Forstbetrieb("forstbetrieb12");
-    Forstbetrieb forstbetrieb13 = new Forstbetrieb("forstbetrieb13");
+    private Forstbetrieb forstbetrieb11 = new Forstbetrieb("forstbetrieb11");
+    private Forstbetrieb forstbetrieb12 = new Forstbetrieb("forstbetrieb12");
+    private Forstbetrieb forstbetrieb13 = new Forstbetrieb("forstbetrieb13");
 
-    Forstbetrieb forstbetrieb21 = new Forstbetrieb("forstbetrieb21");
-    Forstbetrieb forstbetrieb22 = new Forstbetrieb("forstbetrieb22");
-    Forstbetrieb forstbetrieb23 = new Forstbetrieb("forstbetrieb23");
+    private Forstbetrieb forstbetrieb21 = new Forstbetrieb("forstbetrieb21");
+    private Forstbetrieb forstbetrieb22 = new Forstbetrieb("forstbetrieb22");
+    private Forstbetrieb forstbetrieb23 = new Forstbetrieb("forstbetrieb23");
 
-    Forstbetrieb forstbetrieb31 = new Forstbetrieb("forstbetrieb31");
-    Forstbetrieb forstbetrieb32 = new Forstbetrieb("forstbetrieb32");
-    Forstbetrieb forstbetrieb33 = new Forstbetrieb("forstbetrieb33");
+    private Forstbetrieb forstbetrieb31 = new Forstbetrieb("forstbetrieb31");
+    private Forstbetrieb forstbetrieb32 = new Forstbetrieb("forstbetrieb32");
+    private Forstbetrieb forstbetrieb33 = new Forstbetrieb("forstbetrieb33");
 
-    Radernter    ernter1        = new Radernter();
-    Schreiter    ernter2        = new Schreiter();
-    Radernter    ernter3        = new Radernter();
-    Schreiter    ernter4        = new Schreiter();
-    Radernter    ernter5        = new Radernter();
-    Schreiter    ernter6        = new Schreiter();
-    Radernter    ernter7        = new Radernter();
-    Schreiter    ernter8        = new Schreiter();
-    Radernter    ernter9        = new Radernter();
-    Schreiter    ernter10       = new Schreiter();
-    Radernter    ernter11       = new Radernter();
+    private Radernter    ernter1        = new Radernter();
+    private Schreiter    ernter2        = new Schreiter();
+    private Radernter    ernter3        = new Radernter();
+    private Schreiter    ernter4        = new Schreiter();
+    private Radernter    ernter5        = new Radernter();
+    private Schreiter    ernter6        = new Schreiter();
+    private Radernter    ernter7        = new Radernter();
+    private Schreiter    ernter8        = new Schreiter();
+    private Radernter    ernter9        = new Radernter();
+    private Schreiter    ernter10       = new Schreiter();
+    private Radernter    ernter11       = new Radernter();
 
     public static void main(String[] args) {
         Test test = new Test();
@@ -44,7 +44,7 @@ public class Test {
         System.out.println("UniqueNames Test:\t" + test.testUniqueNames());
     }
 
-    public boolean test() {
+    private boolean test() {
         //3 Gemeinden erstellen, je 3 Forstbetriebe hinzufuegen und einen wieder entfernen (ueber eindeutigen Namen)
 
         gemeinde1.addBetrieb(forstbetrieb11);
@@ -169,18 +169,18 @@ public class Test {
         return true;
     }
 
-    public boolean testUniqueNames() {
+    private boolean testUniqueNames() {
         // unique namen fuer Gemeinden
         boolean gemeindeExceptionCaught = false;
         boolean forstbetriebExceptionCaught = false;
-        Gemeinde g1 = new Gemeinde("G1");
+        new Gemeinde("G1");
         try {
             new Gemeinde("G1");
         } catch (IllegalArgumentException ex) {
             gemeindeExceptionCaught = true;
         }
         // unique namen fuer forstbetriebe
-        Forstbetrieb f1 = new Forstbetrieb("F1");
+        new Forstbetrieb("F1");
         try {
             new Forstbetrieb("F1");
         } catch (IllegalArgumentException ex) {
@@ -189,7 +189,7 @@ public class Test {
         return gemeindeExceptionCaught && forstbetriebExceptionCaught;
     }
 
-    public boolean testListFunctionality() {
+    private boolean testListFunctionality() {
         // rests auf empty liste
         CustomList l = new CustomList();
         if (!l.isEmpty()) {
@@ -221,7 +221,7 @@ public class Test {
         return true;
     }
 
-    public boolean testListTypeSafety() {
+    private boolean testListTypeSafety() {
         CustomList l = new CustomList();
         l.insert(new Radernter());
         // typen duerfen innerhalb der Liste nicht gemischt werden
@@ -230,7 +230,7 @@ public class Test {
         return !l.contains(new StringListable("Blubb"));
     }
 
-    public boolean testStatistiken() {
+    private boolean testStatistiken() {
         return false;
     }
 
