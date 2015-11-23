@@ -84,4 +84,6 @@ public class Gemeinde {
         return (Forstbetrieb) betriebe.getElement(betrieb);
     }
 
+    public boolean containsBetrieb(Forstbetrieb betrieb) { System.out.println(betrieb.getName() + betriebe.contains(betrieb)); return betriebe.contains(betrieb); }
+
 }

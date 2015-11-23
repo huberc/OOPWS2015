@@ -334,4 +334,8 @@ public class Forstbetrieb implements Listable {
         return name;
     }
 
+    public boolean containsHolzvollernter(Holzvollernter holzvollernter) {
+        return customListHolzvollernert.contains(holzvollernter);
+    }
+
 }

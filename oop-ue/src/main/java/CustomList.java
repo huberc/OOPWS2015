@@ -91,13 +91,20 @@ public class CustomList {
      * @return true, falls das uebergebene Element schon vorhanden ist, ansonsten false
      */
     public boolean contains(Listable elem) {
+        if (head == null) {
+            return false;
+        }
+
         CustomListNode cur = head;
         while ((cur.next != null)) {
-            if (cur.equals(elem)) {
+            if (cur.getValue().equals(elem)) {
                 return true;
             } else {
                 cur = cur.next;
             }
+        }
+        if (cur.getValue().equals(elem)) {
+            return true;
         }
         return false;
     }
