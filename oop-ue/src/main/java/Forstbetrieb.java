@@ -40,7 +40,7 @@ public class Forstbetrieb implements Listable {
      * @param arbeitskopf     der neue Arbeitskopf
      */
     public void changeInformationOfHolzvollernter(int id, int betriebsstunden, Number distanceMoved, AbstractArbeitskopf arbeitskopf) {
-        Holzvollernter tmp = (Holzvollernter) customListHolzvollernert.getElement("" + id);
+        Holzvollernter tmp = (Holzvollernter) customListHolzvollernert.getElement(Integer.toString(id));
         tmp.setBetriebsstunden(betriebsstunden);
         tmp.addDistanceMoved(distanceMoved);
         tmp.setArbeitskopf(arbeitskopf);

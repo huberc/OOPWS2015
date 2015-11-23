@@ -58,10 +58,13 @@ public abstract class Holzvollernter implements Listable {
      * implementations my treat the passed-in number differently.
      * 
      * @param distanceMoved
-     *            a <code>Number</code> describing the distance this vollernter moved during its time in
-     *            service. Depending on the actual distance unit used by the implementation loss of precision
-     *            in input number is possible. The value passed here is added to the current total distance
-     *            the vollernter moved
+     *            Ein Wert vom typ <code>Number</code> der die seit dem letzten Aufruf von
+     *            <code>addDistanceMoved</code> zurueckgelegte Distanz repraesentiert. Muss > 0 sein - Von
+     *            Implementierungen zu pruefen!
+     * 
+     * @throws IllegalArgumentException
+     *             falls <code>distanceMoved</code> nicht der Spezifikation entspricht, d.h. <= 0 ist oder
+     *             sonstige implementierungsspezifische Vorgaben verletzt
      */
     public abstract void addDistanceMoved(Number distanceMoved);
 
