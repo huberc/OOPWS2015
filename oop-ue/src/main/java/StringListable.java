@@ -16,7 +16,7 @@ public class StringListable implements Listable {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Holzvollernter)) {
+        if (!(o instanceof StringListable)) {
             return false;
         }
         return ((StringListable) o).getName().equals(this.getName());

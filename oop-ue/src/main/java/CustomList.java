@@ -55,10 +55,17 @@ public class CustomList {
             return null;
         }
 
-        CustomListNode cur = head;
+        if(this.head.next == null){
+            // nur ein Element in der Liste
+            Listable retVal = this.head.getValue();
+            this.head = null;
+            return retVal;
+        }
+        
+        CustomListNode cur = head.next;
         CustomListNode tmp = head;
-
-        while (cur.next != null) {
+        
+        while (cur != null) {
             if (cur.value.getName().equals(name)) {
                 tmp.next = cur.next;
                 return cur.value;
@@ -67,29 +74,22 @@ public class CustomList {
                 cur = cur.next;
             }
         }
-        if (cur.value.getName().equals(name)) {
-            tmp.next = cur.next;
-            return cur.value;
-        }
         return null;
     }
 
     public Listable getElement(String name) {
-        if (!this.isEmpty()) {
+        if (this.isEmpty()) {
             return null;
         }
 
         CustomListNode cur = head;
 
-        while (cur.next != null) {
+        while (cur != null) {
             if (cur.getValue().getName().equals(name)) {
                 return cur.getValue();
             } else {
                 cur = cur.next;
             }
-        }
-        if (cur.getValue().getName().equals(name)) {
-            return cur.getValue();
         }
         return null;
     }
@@ -131,15 +131,12 @@ public class CustomList {
         }
 
         CustomListNode cur = head;
-        while ((cur.next != null)) {
+        while ((cur != null)) {
             if (cur.getValue().equals(elem)) {
                 return true;
             } else {
                 cur = cur.next;
             }
-        }
-        if (cur.getValue().equals(elem)) {
-            return true;
         }
         return false;
     }
