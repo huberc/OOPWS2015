@@ -1,7 +1,6 @@
 /**
- * Arbeitsaufteilung: Christoph Huber: Forstbetrieb, CustomList, ListableNumber,
- * Michael Langowksi: Holzvollernter, Abstractarbeitskopf
- * Ines Rieder: Gemeinde, Test
+ * Arbeitsaufteilung: Christoph Huber: Forstbetrieb, CustomList, ListableNumber, Michael Langowksi:
+ * Holzvollernter, Abstractarbeitskopf Ines Rieder: Gemeinde, Test
  */
 
 public class Test {
@@ -65,7 +64,6 @@ public class Test {
             System.out.println("Fehler beim Einfuegen/ Entfernen von Forstbetrieben. ");
             return false;
         }
-
 
         gemeinde3.addBetrieb(forstbetrieb31);
         gemeinde3.addBetrieb(forstbetrieb32);
@@ -219,9 +217,15 @@ public class Test {
             return false;
         }
 
-        // elemente einfuegen
-
-        return false;
+        l.insert(new StringListable("Bla"));
+        if (!l.contains(new StringListable("Bla"))) {
+            return false;
+        }
+        l.removeByName("Bla");
+        if (!l.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     public boolean testStatistiken() {
