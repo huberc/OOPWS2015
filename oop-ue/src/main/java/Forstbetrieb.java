@@ -3,14 +3,27 @@
  */
 public class Forstbetrieb implements Listable {
 
-    private CustomList         customListHolzvollernert = new CustomList();
-    private UniqueNameProvider uniqueNameProvider       = new UniqueNameProvider();
-    private String             name;
+    private static final UniqueNameProvider NAME_PROVIDER            = new UniqueNameProvider();
 
-    public Forstbetrieb(String name) {
-        if (!(uniqueNameProvider.checkName(name))) {
-            this.name = name;
+    private CustomList                      customListHolzvollernert = new CustomList();
+    private String                          name;
+
+    /**
+     * Erzeugt einen neuen <code>Forstbetrieb</code>. Dabei wird sichergestellt, dass der benutzte Name
+     * eindeutig ist, bzw. falls das nicht der Falls sein sollte eine Exception geworfen
+     * 
+     * @param name
+     *            der name dieses <code>Forstbetrieb</code>es
+     * @throws IllegalArgumentException
+     *             falls der angegebene Name bereits fuer einen anderen <code>Forstbetrieb</code> benutzt
+     *             wurde
+     */
+    public Forstbetrieb(String name) throws IllegalArgumentException {
+        if (Forstbetrieb.NAME_PROVIDER.nameUsed(name)) {
+            throw new IllegalArgumentException("Name " + name + " ist bereits in Verwendung!");
         }
+        this.name = name;
+        Forstbetrieb.NAME_PROVIDER.registerName(name);
     }
 
     public void addHolzvollernter(Holzvollernter holzvollernter) {
