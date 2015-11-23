@@ -1,5 +1,3 @@
-import java.io.FileOutputStream;
-
 /**
  * @author Ines Rieder
  *
@@ -10,7 +8,9 @@ import java.io.FileOutputStream;
 public class Gemeinde {
 
     //unveraenderlicher Name - keine Set-Methode
+    //einzigartiger Name - uniqueNameProvider testem beim Erstellen ob Name bereits vorhanden
     private String name;
+    private UniqueNameProvider uniqueNameProvider = new UniqueNameProvider();
     private CustomList betriebe;
 
     /**
@@ -21,8 +21,10 @@ public class Gemeinde {
      * NB: die Gemeinde wurde erstellt, der Name zugeteilt und eine neue Objectlist zur Verwaltung der Forstbetriebe erstellt
      */
     public Gemeinde(String name) {
-        this.name = name;
-        this.betriebe = new CustomList();
+        if(!uniqueNameProvider.checkName(name)) {
+            this.name = name;
+            this.betriebe = new CustomList();
+        }
     }
 
     /**
@@ -32,8 +34,9 @@ public class Gemeinde {
      * VB: betrieb != null
      * NB: betrieb ist Bestandteil der Liste (Gemeinde)
      */
-    public void addBetrieb (Forstbetrieb betrieb) {
-        betriebe.insert(betrieb);
+    public void addBetrieb (String betrieb) {
+        Forstbetrieb result = new Forstbetrieb(betrieb);
+        betriebe.insert(result);
     }
 
     /**
@@ -52,7 +55,6 @@ public class Gemeinde {
     /**
      * Anzeigen aller Forstbetriebe einer Gemeinde auf dem Bildschirm
      *
-     * VB:
      * NB: alle beinhalteten Betriebe wurden ausgegeben
      */
     public void show() {
@@ -67,6 +69,10 @@ public class Gemeinde {
             result.append(head.getValue().toString());
         }
         System.out.println(result.toString());
+    }
+
+    public Forstbetrieb getBetriebByName (String betrieb) {
+        return (Forstbetrieb) betriebe.getElement(betrieb);
     }
 
 }
