@@ -360,5 +360,9 @@ public class Forstbetrieb implements Listable {
         else
             return false;
     }
+    @Override
+    public int hashCode() {
+        return this.getName().hashCode();
+    }
 
 }
