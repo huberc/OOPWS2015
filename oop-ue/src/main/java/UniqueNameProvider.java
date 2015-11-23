@@ -48,14 +48,8 @@ public final class UniqueNameProvider {
      * @return eine neue Instanz eines anonym implementierten <code>Listable</code>, dessen
      *         <code>getName</code>-Methode <code>str</code> zurueckgibt
      */
-    private static Listable toListable(final String str) {
-        return new Listable() {
-
-            @Override
-            public String getName() {
-                return str;
-            }
-        };
+    private static StringListable toListable(final String str) {
+        return new StringListable(str);
     }
 
 }
