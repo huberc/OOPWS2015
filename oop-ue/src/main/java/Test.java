@@ -43,6 +43,7 @@ public class Test {
         System.out.println("CustomList Typesafety Test:\t" + test.testListTypeSafety());
         System.out.println("UniqueNames Test:\t" + test.testUniqueNames());
         System.out.println("Statistiken Test\t"+ test.testStatistiken());
+        System.out.println("Minimum, Maximum Test\t"+ test.testMinMax());
     }
 
     private boolean test() {
@@ -506,6 +507,61 @@ public class Test {
         }
         if(keyValueListable5.getValue() != 14.0){
             System.out.println("Im "+forstbetrieb34.getName()+" ist die durchschnittliche Baumdicke bei  "+keyValueListable5.getKey()+" falsch");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean testMinMax(){
+        Forstbetrieb forstbetrieb = new Forstbetrieb("Minimum Maximum Test - Forstbetrieb");
+        Radernter radernter = new Radernter();
+        Radernter radernter1 = new Radernter();
+        Radernter radernter2 = new Radernter();
+        Schreiter schreiter = new Schreiter();
+        Schreiter schreiter1 = new Schreiter();
+        Schreiter schreiter2 = new Schreiter();
+
+        forstbetrieb.addHolzvollernter(radernter);
+        forstbetrieb.addHolzvollernter(radernter1);
+        forstbetrieb.addHolzvollernter(radernter2);
+        forstbetrieb.addHolzvollernter(schreiter);
+        forstbetrieb.addHolzvollernter(schreiter1);
+        forstbetrieb.addHolzvollernter(schreiter2);
+
+        forstbetrieb.changeInformationOfHolzvollernter(radernter.getId(),10,10.0,new Schneidearbeitskopf(40.0));
+        forstbetrieb.changeInformationOfHolzvollernter(radernter1.getId(),10,10.0,new Schneidearbeitskopf(15.0));
+        forstbetrieb.changeInformationOfHolzvollernter(radernter2.getId(),10,10.0,new Schneidearbeitskopf(5.0));
+        forstbetrieb.changeInformationOfHolzvollernter(schreiter.getId(),10,10.0,new Schneidearbeitskopf(40.0));
+        forstbetrieb.changeInformationOfHolzvollernter(schreiter1.getId(),10,10.0,new Schneidearbeitskopf(89.0));
+        forstbetrieb.changeInformationOfHolzvollernter(schreiter2.getId(),10,10.0,new Schneidearbeitskopf(35.0));
+
+
+        CustomList customListForstbetrieb = forstbetrieb.getMaxAndMinPieceLength();
+
+        KeyValueListable keyValueListable4 = (KeyValueListable)customListForstbetrieb.getElement("Radernter Minimum");
+        KeyValueListable keyValueListable5 = (KeyValueListable)customListForstbetrieb.getElement("Radernter Maximum");
+        KeyValueListable keyValueListable6 = (KeyValueListable)customListForstbetrieb.getElement("Schreiter Minimum");
+        KeyValueListable keyValueListable7 = (KeyValueListable)customListForstbetrieb.getElement("Schreiter Maximum");
+        System.out.println("\tTest minimale und maximale Stuecklaenge von Schneidearbeitskoepfen:");
+        System.out.println("\t\t"+keyValueListable4.getKey()+":\t"+keyValueListable4.getValue());
+        System.out.println("\t\t"+keyValueListable5.getKey()+":\t"+keyValueListable5.getValue());
+        System.out.println("\t\t"+keyValueListable6.getKey()+":\t"+keyValueListable6.getValue());
+        System.out.println("\t\t"+keyValueListable7.getKey()+":\t"+keyValueListable7.getValue());
+
+        if(keyValueListable4.getValue() != 5.0) {
+            System.out.println("Im "+forstbetrieb.getName()+" ist das "+keyValueListable4.getKey()+" falsch");
+            return false;
+        }
+        if(keyValueListable5.getValue() != 40.0) {
+            System.out.println("Im "+forstbetrieb.getName()+" ist das "+keyValueListable4.getKey()+" falsch");
+            return false;
+        }
+        if(keyValueListable6.getValue() != 35.0) {
+            System.out.println("Im "+forstbetrieb.getName()+" ist das "+keyValueListable4.getKey()+" falsch");
+            return false;
+        }
+        if(keyValueListable7.getValue() != 89.0) {
+            System.out.println("Im "+forstbetrieb.getName()+" ist das "+keyValueListable4.getKey()+" falsch");
             return false;
         }
         return true;

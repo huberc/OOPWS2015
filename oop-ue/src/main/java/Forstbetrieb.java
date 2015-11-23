@@ -300,9 +300,9 @@ public class Forstbetrieb implements Listable {
                             maxrad = tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue();
                         } else {
                             if (tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue() > maxrad) {
-                                minrad = tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue();
-                            } else if (tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue() < minrad) {
                                 maxrad = tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue();
+                            } else if (tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue() < minrad) {
+                                minrad = tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue();
                             }
                         }
                     } else if (tmp instanceof Schreiter) {
@@ -311,9 +311,9 @@ public class Forstbetrieb implements Listable {
                             maxschreit = tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue();
                         } else {
                             if (tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue() > maxschreit) {
-                                minrad = tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue();
+                                maxschreit = tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue();
                             } else if (tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue() < minschreit) {
-                                maxrad = tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue();
+                                minschreit = tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue();
                             }
                         }
                     }
