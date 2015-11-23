@@ -1,17 +1,15 @@
 import java.util.Iterator;
 
 /**
- * Arbeitsaufteilung: 
- *  Christoph Huber: Forstbetrieb, CustomList, ListableNumber,
- *  Michael Langowksi: Holzvollernter, Abstractarbeitskopf
- *  Ines Rieder: Gemeinde, Test
+ * Arbeitsaufteilung: Christoph Huber: Forstbetrieb, CustomList, ListableNumber, Michael Langowksi:
+ * Holzvollernter, Abstractarbeitskopf Ines Rieder: Gemeinde, Test
  */
 
 public class Test {
 
     public static void main(String[] args) {
         Test test = new Test();
-        System.out.println("Teststate:\t"+test.test());
+        System.out.println("Teststate:\t" + test.test());
     }
 
     public boolean test() {
@@ -44,34 +42,49 @@ public class Test {
         gemeinde3.deleteBetrieb("forstbetrieb32");
 
         //Holzvollernter hinzufuegen/ entfernen/ Informationen aendern (ueber Name und Nummer)
+        // TODO Ines die Ernter muessen extern angelegt werden und geaddet, z.B
+        Radernter ernter1 = new Radernter();
+        ernter1.setArbeitskopf(new Schneidearbeitskopf(20.5));
+        gemeinde1.getBetriebByName("forstbetrieb11").addHolzvollernter(ernter1); // TODO anpassen
+
         gemeinde1.getBetriebByName("forstbetrieb11").addHolzvollernter(1);
-        gemeinde1.getBetriebByName("forstbetrieb11").changeInformationOfHolzvollernter(1, 24, 15, new Schneidearbeitskopf(100.0));
+        gemeinde1.getBetriebByName("forstbetrieb11").changeInformationOfHolzvollernter(1, 24, 15,
+                new Schneidearbeitskopf(100.0));
         gemeinde1.getBetriebByName("forstbetrieb13").addHolzvollernter(2);
-        gemeinde1.getBetriebByName("forstbetrieb13").changeInformationOfHolzvollernter(2, 32, 10.0, new HackschnitzelArbeitskopf(10));
+        gemeinde1.getBetriebByName("forstbetrieb13").changeInformationOfHolzvollernter(2, 32, 10.0,
+                new HackschnitzelArbeitskopf(10));
         gemeinde1.getBetriebByName("forstbetrieb13").addHolzvollernter(3);
-        gemeinde1.getBetriebByName("forstbetrieb13").changeInformationOfHolzvollernter(3, 48, 13.0, new Schneidearbeitskopf(75.0));
+        gemeinde1.getBetriebByName("forstbetrieb13").changeInformationOfHolzvollernter(3, 48, 13.0,
+                new Schneidearbeitskopf(75.0));
         gemeinde1.getBetriebByName("forstbetrieb13").addHolzvollernter(4);
-        gemeinde1.getBetriebByName("forstbetrieb13").changeInformationOfHolzvollernter(4, 60, 20, new HackschnitzelArbeitskopf(10));
+        gemeinde1.getBetriebByName("forstbetrieb13").changeInformationOfHolzvollernter(4, 60, 20,
+                new HackschnitzelArbeitskopf(10));
         gemeinde1.getBetriebByName("forstbetrieb13").addHolzvollernter(5);
-        gemeinde1.getBetriebByName("forstbetrieb13").changeInformationOfHolzvollernter(5, 72, 13.0, new Schneidearbeitskopf(125.0));
+        gemeinde1.getBetriebByName("forstbetrieb13").changeInformationOfHolzvollernter(5, 72, 13.0,
+                new Schneidearbeitskopf(125.0));
         gemeinde1.getBetriebByName("forstbetrieb13").deleteHolzvollernter(2);
 
         gemeinde2.getBetriebByName("forstbetrieb21").addHolzvollernter(1);
-        gemeinde2.getBetriebByName("forstbetrieb21").changeInformationOfHolzvollernter(1, 24, 32, new Schneidearbeitskopf(100.0));
+        gemeinde2.getBetriebByName("forstbetrieb21").changeInformationOfHolzvollernter(1, 24, 32,
+                new Schneidearbeitskopf(100.0));
         gemeinde2.getBetriebByName("forstbetrieb23").addHolzvollernter(2);
-        gemeinde2.getBetriebByName("forstbetrieb23").changeInformationOfHolzvollernter(2, 32, 10.0, new HackschnitzelArbeitskopf(10));
+        gemeinde2.getBetriebByName("forstbetrieb23").changeInformationOfHolzvollernter(2, 32, 10.0,
+                new HackschnitzelArbeitskopf(10));
         gemeinde2.getBetriebByName("forstbetrieb23").addHolzvollernter(3);
-        gemeinde2.getBetriebByName("forstbetrieb23").changeInformationOfHolzvollernter(3, 28, 13.0, new HackschnitzelArbeitskopf(10));
+        gemeinde2.getBetriebByName("forstbetrieb23").changeInformationOfHolzvollernter(3, 28, 13.0,
+                new HackschnitzelArbeitskopf(10));
         gemeinde2.getBetriebByName("forstbetrieb23").deleteHolzvollernter(2);
 
         gemeinde3.getBetriebByName("forstbetrieb31").addHolzvollernter(1);
-        gemeinde3.getBetriebByName("forstbetrieb31").changeInformationOfHolzvollernter(1, 24, 32, new Schneidearbeitskopf(100.0));
+        gemeinde3.getBetriebByName("forstbetrieb31").changeInformationOfHolzvollernter(1, 24, 32,
+                new Schneidearbeitskopf(100.0));
         gemeinde3.getBetriebByName("forstbetrieb33").addHolzvollernter(2);
-        gemeinde3.getBetriebByName("forstbetrieb33").changeInformationOfHolzvollernter(2, 32, 10.0, new HackschnitzelArbeitskopf(10));
+        gemeinde3.getBetriebByName("forstbetrieb33").changeInformationOfHolzvollernter(2, 32, 10.0,
+                new HackschnitzelArbeitskopf(10));
         gemeinde3.getBetriebByName("forstbetrieb33").addHolzvollernter(3);
-        gemeinde3.getBetriebByName("forstbetrieb33").changeInformationOfHolzvollernter(3, 48, 13.0, new HackschnitzelArbeitskopf(10));
+        gemeinde3.getBetriebByName("forstbetrieb33").changeInformationOfHolzvollernter(3, 48, 13.0,
+                new HackschnitzelArbeitskopf(10));
         gemeinde3.getBetriebByName("forstbetrieb33").deleteHolzvollernter(2);
-
 
         //TODO: Tests
         //statistische Werte - ALLER Forstbetriebe?!?
