@@ -42,9 +42,8 @@ public class Gemeinde {
      *
      *            VB: betrieb != null NB: betrieb ist Bestandteil der Liste (Gemeinde)
      */
-    public void addBetrieb(String betrieb) {
-        Forstbetrieb result = new Forstbetrieb(betrieb);
-        betriebe.insert(result);
+    public void addBetrieb(Forstbetrieb betrieb) {
+        betriebe.insert(betrieb);
     }
 
     /**
