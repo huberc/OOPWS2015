@@ -86,8 +86,8 @@ public abstract class Holzvollernter implements Listable {
     }
 
     /**
-     * Equals basierend auf der in <code>Listable</code> festgelegten <code>getName</code>.
-     * Zwei <code>Holzvollernter</code> sind gleich wenn sie die gleiche Id haben
+     * Equals basierend auf der in <code>Listable</code> festgelegten <code>getName</code>. Zwei
+     * <code>Holzvollernter</code> sind gleich wenn sie die gleiche Id haben
      */
     @Override
     public boolean equals(Object o) {
@@ -95,6 +95,11 @@ public abstract class Holzvollernter implements Listable {
             return false;
         }
         return ((Holzvollernter) o).getName().equals(this.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getName().hashCode();
     }
 
 }
