@@ -75,6 +75,9 @@ public class CustomList {
     }
 
     public Listable getElement(String name) {
+        if (!this.isEmpty()) {
+            return null;
+        }
 
         CustomListNode cur = head;
 
