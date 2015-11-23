@@ -7,7 +7,7 @@ public class CustomList {
 
     /**
      * VB: elem darf nicht null sein NB: elem ist Bestandteil der Liste
-     *
+     * NB: elem ist Teil der Liste
      * @param elem
      *            das einzufuegende Element in die "Liste"
      */
