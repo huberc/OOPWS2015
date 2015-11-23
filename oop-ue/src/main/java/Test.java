@@ -38,7 +38,10 @@ public class Test {
 
     public static void main(String[] args) {
         Test test = new Test();
-        System.out.println("Teststate:\t" + test.test());
+        System.out.println("Genereller Test:\t" + test.test());
+        System.out.println("CustomList Test:\t" + test.testListFunctionality());
+        System.out.println("CustomList Typesafety Test:\t" + test.testListTypeSafety());
+        System.out.println("UniqNames Test:\t" + test.testUniqueNames());
     }
 
     public boolean test() {
