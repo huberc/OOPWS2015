@@ -1,8 +1,7 @@
-import java.util.Iterator;
-
 /**
- * Arbeitsaufteilung: Christoph Huber: Forstbetrieb, CustomList, ListableNumber, Michael Langowksi:
- * Holzvollernter, Abstractarbeitskopf Ines Rieder: Gemeinde, Test
+ * Arbeitsaufteilung: Christoph Huber: Forstbetrieb, CustomList, ListableNumber,
+ * Michael Langowksi: Holzvollernter, Abstractarbeitskopf
+ * Ines Rieder: Gemeinde, Test
  */
 
 public class Test {
@@ -38,7 +37,7 @@ public class Test {
 
         Gemeinde gemeinde3 = new Gemeinde("gemeinde3");
         gemeinde3.addBetrieb("forstbetrieb31");
-        gemeinde1.addBetrieb("forstbetrieb32");
+        gemeinde3.addBetrieb("forstbetrieb32");
         gemeinde3.addBetrieb("forstbetrieb33");
         gemeinde3.deleteBetrieb("forstbetrieb32");
 
@@ -48,7 +47,6 @@ public class Test {
         }
 
         //Holzvollernter hinzufuegen/ entfernen/ Informationen aendern (ueber Name und Nummer)
-        // TODO Ines die Ernter muessen extern angelegt werden und geaddet, z.B
         Radernter ernter1 = new Radernter();
         ernter1.setArbeitskopf(new Schneidearbeitskopf(20.5));
         gemeinde1.getBetriebByName("forstbetrieb11").addHolzvollernter(ernter1); // TODO anpassen
@@ -75,6 +73,11 @@ public class Test {
                 (!gemeinde1.getBetriebByName("forstbetrieb13").containsHolzvollernter(ernter3)) || (!gemeinde1.getBetriebByName("forstbetrieb13").containsHolzvollernter(ernter4)) ||
                 (!gemeinde1.getBetriebByName("forstbetrieb13").containsHolzvollernter(ernter5))) {
             System.out.println("Fehler beim Einfuegen/ Entfernen von Holzvollerntern. ");
+            return false;
+        }
+
+        if (!(ernter1.getName().equals(1)) || (!(ernter1.getBetriebsstunden() == 24)) || (!((double) ernter1.getDistanceMoved()==10.0)) ||
+                (!(ernter1.getArbeitskopf() instanceof Schneidearbeitskopf))) {
             return false;
         }
 
@@ -118,14 +121,18 @@ public class Test {
             return false;
         }
 
-        //TODO: Tests
+        /*
         //statistische Werte - ALLER Forstbetriebe?!?
-        gemeinde1.getBetriebByName("forstbetrieb13").getAvgWorkingHoursOfAll();
+        CustomList avgWorkingHoursOfAll = gemeinde1.getBetriebByName("forstbetrieb13").getAvgWorkingHoursOfAll();
+        if ((avgWorkingHoursOfAll.getElement(""))){
+            return false;
+        }
+
         gemeinde1.getBetriebByName("forstbetrieb13").getAvgWorkingHoursOfSpecific(new Schreiter()); //wieder ueber ID?
         gemeinde1.getBetriebByName("forstbetrieb13").getAvgDistance();
         gemeinde1.getBetriebByName("forstbetrieb13").getAvgSteps();
         gemeinde1.getBetriebByName("forstbetrieb13").getMaxAndMinPieceLength();
-        gemeinde1.getBetriebByName("forstbetrieb13").getAvgTreeThickness();
+        gemeinde1.getBetriebByName("forstbetrieb13").getAvgTreeThickness(); */
 
         return true;
     }

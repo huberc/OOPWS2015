@@ -42,6 +42,10 @@ public class CustomList {
                 cur = cur.next;
             }
         }
+        if (cur.value.getName().equals(name)) {
+            tmp.next = cur.next;
+            return cur.value;
+        }
         return null;
     }
 
