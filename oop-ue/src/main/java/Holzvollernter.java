@@ -85,6 +85,10 @@ public abstract class Holzvollernter implements Listable {
         return Integer.toString(this.id);
     }
 
+    /**
+     * Equals basierend auf der in <code>Listable</code> festgelegten <code>getName</code>.
+     * Zwei <code>Holzvollernter</code> sind gleich wenn sie die gleiche Id haben
+     */
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Holzvollernter)) {
