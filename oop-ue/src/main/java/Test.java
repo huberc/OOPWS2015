@@ -137,4 +137,50 @@ public class Test {
         return true;
     }
 
+    public boolean testUniqueNames() {
+        // unique namen fuer Gemeinden
+        boolean gemeindeExceptionCaught = false;
+        boolean forstbetriebExceptionCaught = false;
+        Gemeinde g1 = new Gemeinde("G1");
+        try {
+            new Gemeinde("G1");
+        } catch (IllegalArgumentException ex) {
+            gemeindeExceptionCaught = true;
+        }
+        // unique namen fuer forstbetriebe
+        Forstbetrieb f1 = new Forstbetrieb("F1");
+        try {
+            new Forstbetrieb("F1");
+        } catch (IllegalArgumentException ex) {
+            forstbetriebExceptionCaught = true;
+        }
+        return gemeindeExceptionCaught && forstbetriebExceptionCaught;
+    }
+
+    public boolean testListFunctionality() {
+        // rests auf empty liste
+        CustomList l = new CustomList();
+        if (!l.isEmpty()) {
+            return false;
+        }
+        if (l.removeByName("something") != null) {
+            return false;
+        }
+        try {
+            if (l.getElement("some element") != null) {
+                return false;
+            }
+        } catch (NullPointerException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        if(l.contains(new ListableNumber(5))){
+            return false;
+        }
+        
+        // elemente einfuegen
+        
+        return false;
+    }
+
 }
