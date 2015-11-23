@@ -76,6 +76,7 @@ public class Forstbetrieb implements Listable {
     //TODO gefordert ist. Mein Vorschlag: eine Map als key die entsprechende Aufschluesselung
 
     /**
+     * VB: der Forstbetrien enthaelt Holzvollernter
      * NB: es wird eine CustomList mit zwei Elementen zurueckgegeben, wo sichergestellt ist, dass das erste
      * Element die durschnittlichen Arbeitsstunden der Einsatzart "in Stuecke schneiden" und das zweite
      * Element die durschnittlichen Arbeitsstunden der Einsatzart "Hackschnizel erzeugen" representiert.
@@ -157,6 +158,15 @@ public class Forstbetrieb implements Listable {
         return customListWorkingHoursSpecific;
     }
 
+    /**
+     * VB: Forstbetrieb enthaelt Holzvollernter
+     * NB: es wird eine CustomList mit zwei Elementen zurueckgegeben, wo sichergestellt ist, dass das erste
+     * Element die durschnittlich zurueckgelegte Wegstrecke der Einsatzart "in Stuecke schneiden" und das zweite
+     * Element die durschnittlich zurueckgelegte Wegstrecke der Einsatzart "Hackschnizel erzeugen" representiert.
+     *
+     * @return eine Liste mit zwei Element, die die geforderte Aufschluesselung der durchschnittlich zurueckgelegten Wegstrecke
+     * nach Arbeitskoepfen beinhaltet
+     */
     public CustomList getAvgDistance() {
         CustomList customListAvgDistance = new CustomList();
         if (!(customListHolzvollernert.isEmpty())) {
@@ -197,9 +207,10 @@ public class Forstbetrieb implements Listable {
     }
 
     /**
+     * VB: der Forstbetrieb enthaelt Holzvollernter des Typs "Schreiter"
      * NB: es wird eine CustomList mit zwei Elementen zurueckgegeben, wo sichergestellt ist, dass das erste
-     * Element die durschnittlichen Arbeitsstunden der Einsatzart "in Stuecke schneiden" und das zweite
-     * Element die durschnittlichen Arbeitsstunden der Einsatzart "Hackschnizel erzeugen" representiert.
+     * Element die durschnittliche Anzahl an Schritte der Einsatzart "in Stuecke schneiden" und das zweite
+     * Element die durschnittliche Anzahl an Schritten der Einsatzart "Hackschnizel erzeugen" representiert.
      *
      * @return Eine Liste mit zwei Elementen die entsprechend aufgeschluesselt wurden und die die
      *         durchschnittlichen Schritte enthalten.
@@ -242,7 +253,8 @@ public class Forstbetrieb implements Listable {
     }
 
     /**
-     * NB: der erste wert in der Liste ist min der Radernter, der zweite max der Radernter. 3 und 4 min, max
+     * VB: der Forstbetrien enthaelt min. einen Holzvollernter mit einem Schneidearbeitskopf
+     * NB: der erste Wert in der Liste ist min der Radernter, der zweite max der Radernter. 3 und 4 min, max
      * fuer Schreiter
      *
      * @return
@@ -302,6 +314,10 @@ public class Forstbetrieb implements Listable {
         return customListMinMax;
     }
 
+    /**
+     * VB: der Forstbetrieb enthaelt min. einen Holzvollernter mit einem Hackschnitzelkopf
+     * @return
+     */
     public CustomList getAvgTreeThickness() {
 
         int thicknessrad = 0, thicknessschreit = 0;

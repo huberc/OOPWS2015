@@ -36,6 +36,13 @@ public class CustomList {
 
     }
 
+    /**
+     * Hilfsmethode fuer instert(Listable elem)
+     * VB: elem darf nicht null sein
+     * NB: elem ist Bestandteil der Liste
+     *
+     * @param elem das einzufuegende Element in die "Liste"
+     */
     private void internInster(Listable elem){
         CustomListNode tmp = head;
         this.head = new CustomListNode(elem);
@@ -69,6 +76,13 @@ public class CustomList {
         return null;
     }
 
+    /**
+     * VB: Element mit gegebenem Namen ist Teil der Liste
+     * NB: Element mit gewuenschtem Namen wird zurueckgegeben
+     *
+     * @param name der Name des gewuenschten Elements
+     * @return Element mit gefordertem Namen
+     */
     public Listable getElement(String name){
 
         CustomListNode cur = head;
@@ -91,6 +105,9 @@ public class CustomList {
         return this.head;
     }
 
+    /**
+     * Listenelement
+     */
     class CustomListNode {
 
         private CustomListNode next = null;
@@ -136,6 +153,10 @@ public class CustomList {
         return false;
     }
 
+    /**
+     * ueberprueft ob Liste leer ist
+     * @return ob Liste leer ist
+     */
     public boolean isEmpty(){
         if(this.head == null)
             return true;
