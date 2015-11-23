@@ -92,7 +92,9 @@ public class Forstbetrieb implements Listable {
             int cnthackschnitzel = 0;
             int cntschneide = 0;
 
-            while (customListNode.getNext() != null) {
+
+
+            while (customListNode != null) {
                 Holzvollernter tmp = (Holzvollernter) customListHolzvollernert.getElement(customListNode
                         .getValue().getName());
 
@@ -106,7 +108,14 @@ public class Forstbetrieb implements Listable {
                 customListNode = customListNode.getNext();
             }
 
-            KeyValueListable keyValueListableHackschnitzelArbeitskopf = new KeyValueListable(HackschnitzelArbeitskopf.class.getName(),(double)(hackschnitzelarbeitskopf/cnthackschnitzel));
+            if(cnthackschnitzel == 0) {
+                cnthackschnitzel =1;
+            }
+            KeyValueListable  keyValueListableHackschnitzelArbeitskopf = new KeyValueListable(HackschnitzelArbeitskopf.class.getName(),(double)(hackschnitzelarbeitskopf/cnthackschnitzel));
+
+            if(cntschneide == 0 )
+                cntschneide =1;
+
             KeyValueListable keyValueListableSchneideArbeitskopf = new KeyValueListable(Schneidearbeitskopf.class.getName(), (double) (schneidearbeitskopf/cntschneide));
 
             customListWorkingHoursAll.insert(keyValueListableHackschnitzelArbeitskopf);
@@ -133,7 +142,7 @@ public class Forstbetrieb implements Listable {
             int cntradernter = 0;
             int cntschreiter =0;
 
-            while (customListNode.getNext() != null) {
+            while (customListNode != null) {
                 Holzvollernter tmp = (Holzvollernter) customListHolzvollernert.getElement(customListNode
                         .getValue().getName());
 
@@ -147,6 +156,11 @@ public class Forstbetrieb implements Listable {
                 customListNode = customListNode.getNext();
 
             }
+
+            if(cntradernter == 0)
+                cntradernter=1;
+            if(cntschreiter == 0)
+                cntschreiter=1;
 
             KeyValueListable keyValueListableradernter = new KeyValueListable(Radernter.class.getName(),(double) (radernterhours/cntradernter));
             KeyValueListable keyValueListableschreiter = new KeyValueListable(Schreiter.class.getName(), (double)(schreiterhours/cntschreiter));
@@ -177,11 +191,11 @@ public class Forstbetrieb implements Listable {
             int cnthack = 0;
             int cntschneide = 0;
 
-            while (customListNode.getNext() != null) {
+            while (customListNode != null) {
                 Holzvollernter tmp = (Holzvollernter) customListHolzvollernert.getElement(customListNode
                         .getValue().getName());
 
-                if (tmp instanceof Schreiter) {
+                if (tmp instanceof Radernter) {
                     if (tmp.getArbeitskopf() instanceof HackschnitzelArbeitskopf) {
                         distancehack += (double) tmp.getDistanceMoved();
                         cnthack++;
@@ -195,6 +209,11 @@ public class Forstbetrieb implements Listable {
                 customListNode = customListNode.getNext();
 
             }
+
+            if(cnthack == 0)
+                cnthack =1;
+            if(cntschneide == 0)
+                cntschneide=1;
 
             KeyValueListable keyValueListableHackschnitzelArbeitskopf = new KeyValueListable(HackschnitzelArbeitskopf.class.getName(), (distancehack/cnthack));
             KeyValueListable keyValueListableSchneideArbeitskopf = new KeyValueListable(Schneidearbeitskopf.class.getName(), (distanceschneide/cntschneide));
@@ -225,22 +244,27 @@ public class Forstbetrieb implements Listable {
             int cnthack = 0;
             int cntschneide = 0;
 
-            while (customListNode.getNext() != null) {
+            while (customListNode != null) {
                 Holzvollernter tmp = (Holzvollernter) customListHolzvollernert.getElement(customListNode
                         .getValue().getName());
 
-                if (tmp instanceof Radernter) {
+                if (tmp instanceof Schreiter) {
                     if (tmp.getArbeitskopf() instanceof HackschnitzelArbeitskopf) {
-                        distancehack += (double) tmp.getDistanceMoved();
+                        distancehack += tmp.getDistanceMoved().doubleValue();
                         cnthack++;
                     } else if(tmp.getArbeitskopf() instanceof  Schneidearbeitskopf) {
-                        distanceschneide += (double) tmp.getDistanceMoved();
+                        distanceschneide += tmp.getDistanceMoved().doubleValue();
                         cntschneide++;
                     }
 
                 }
                 customListNode = customListNode.getNext();
             }
+
+            if(cnthack == 0)
+                cnthack=1;
+            if(cntschneide == 0)
+                cntschneide=1;
 
             KeyValueListable keyValueListableHackschnitzelArbeitskopf = new KeyValueListable(HackschnitzelArbeitskopf.class.getName(), (distancehack/cnthack));
             KeyValueListable keyValueListableSchneideArbeitskopf = new KeyValueListable(Schneidearbeitskopf.class.getName(), (distanceschneide/cntschneide));
@@ -265,13 +289,13 @@ public class Forstbetrieb implements Listable {
         if (!(customListHolzvollernert.isEmpty())) {
             CustomList.CustomListNode customListNode = customListHolzvollernert.getHead();
 
-            while (customListNode.getNext() != null) {
+            while (customListNode != null) {
                 Holzvollernter tmp = (Holzvollernter) customListHolzvollernert.getElement(customListNode
                         .getValue().getName());
 
                 if (tmp.getArbeitskopf() instanceof Schneidearbeitskopf) {
                     if (tmp instanceof Radernter) {
-                        if (minrad == 0 && maxrad == 0) {
+                        if (minrad == 0.0 && maxrad == 0.0) {
                             minrad = tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue();
                             maxrad = tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue();
                         } else {
@@ -282,7 +306,7 @@ public class Forstbetrieb implements Listable {
                             }
                         }
                     } else if (tmp instanceof Schreiter) {
-                        if (minschreit == 0 && maxschreit == 0) {
+                        if (minschreit == 0.0 && maxschreit == 0.0) {
                             minschreit = tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue();
                             maxschreit = tmp.getArbeitskopf().getConstraint().constraintValue.doubleValue();
                         } else {
@@ -299,10 +323,10 @@ public class Forstbetrieb implements Listable {
                 customListNode = customListNode.getNext();
             }
 
-            KeyValueListable keyValueListableRadernterMin = new KeyValueListable(Radernter.class.getName()+"min", minrad);
-            KeyValueListable keyValueListableRadernterMax = new KeyValueListable(Radernter.class.getName()+"max", maxrad);
-            KeyValueListable keyValueListableSchreiterMin = new KeyValueListable(Schreiter.class.getName()+"min", minschreit);
-            KeyValueListable keyValueListableSchreiterMax = new KeyValueListable(Schreiter.class.getName()+"max", maxrad);
+            KeyValueListable keyValueListableRadernterMin = new KeyValueListable(Radernter.class.getName()+" Minimum", minrad);
+            KeyValueListable keyValueListableRadernterMax = new KeyValueListable(Radernter.class.getName()+" Maximum", maxrad);
+            KeyValueListable keyValueListableSchreiterMin = new KeyValueListable(Schreiter.class.getName()+" Minimum", minschreit);
+            KeyValueListable keyValueListableSchreiterMax = new KeyValueListable(Schreiter.class.getName()+" Maximum", maxschreit);
 
             customListMinMax.insert(keyValueListableRadernterMin);
             customListMinMax.insert(keyValueListableRadernterMax);
@@ -328,7 +352,7 @@ public class Forstbetrieb implements Listable {
         if (!(customListHolzvollernert.isEmpty())) {
             CustomList.CustomListNode customListNode = customListHolzvollernert.getHead();
 
-            while (customListNode.getNext() != null) {
+            while (customListNode != null) {
                 Holzvollernter tmp = (Holzvollernter) customListHolzvollernert.getElement(customListNode
                         .getValue().getName());
 
@@ -345,6 +369,11 @@ public class Forstbetrieb implements Listable {
 
                 customListNode = customListNode.getNext();
             }
+
+            if(cntradernter == 0)
+                cntradernter=1;
+            if(cntschreiter == 0)
+                cntschreiter=1;
 
             KeyValueListable keyValueListableRadernter = new KeyValueListable(Radernter.class.getName(), (double) (thicknessrad/cntradernter));
             KeyValueListable keyValueListableSchreiter = new KeyValueListable(Schreiter.class.getName(), (double) (thicknessschreit/cntschreiter));
