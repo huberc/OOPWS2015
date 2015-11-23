@@ -20,11 +20,11 @@ public class Schreiter extends Holzvollernter {
      */
     @Override
     public void addDistanceMoved(Number distanceMoved) throws IllegalArgumentException {
-        if ((int) distanceMoved <= 0) {
+        if (distanceMoved.intValue() <= 0) {
             throw new IllegalArgumentException("Zurueckgelegte Distanz muss groesser 0 sein");
         }
-        int dist = (int) this.distanceMoved;
-        dist += (int) distanceMoved;
+        int dist = this.distanceMoved.intValue();
+        dist += distanceMoved.intValue();
         this.distanceMoved = dist;
     }
 

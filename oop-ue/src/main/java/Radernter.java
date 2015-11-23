@@ -20,11 +20,11 @@ public class Radernter extends Holzvollernter {
      */
     @Override
     public void addDistanceMoved(Number distanceMoved) throws IllegalArgumentException {
-        if ((double) distanceMoved <= 0.0) {
+        if (distanceMoved.doubleValue() <= 0.0) {
             throw new IllegalArgumentException("distanceMoved muss groesser 0 sein!");
         }
-        double dist = (double) this.distanceMoved;
-        dist += (double) distanceMoved;
+        double dist = this.distanceMoved.doubleValue();
+        dist += distanceMoved.doubleValue();
         this.distanceMoved = dist;
     }
 

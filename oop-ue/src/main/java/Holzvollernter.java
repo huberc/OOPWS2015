@@ -85,4 +85,12 @@ public abstract class Holzvollernter implements Listable {
         return Integer.toString(this.id);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Holzvollernter)) {
+            return false;
+        }
+        return ((Holzvollernter) o).getName().equals(this.getName());
+    }
+
 }
