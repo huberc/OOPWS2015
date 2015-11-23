@@ -213,7 +213,7 @@ public class Test {
             ex.printStackTrace();
             return false;
         }
-        if (l.contains(new ListableNumber(5))) {
+        if (l.contains(new StringListable("Hallo"))) {
             return false;
         }
 
