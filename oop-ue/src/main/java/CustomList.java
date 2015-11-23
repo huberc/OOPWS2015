@@ -15,11 +15,31 @@ public class CustomList {
         if (head == null)
             this.head = new CustomListNode(elem);
         else if (!(contains(elem))) {
-            CustomListNode tmp = head;
-            this.head = new CustomListNode(elem);
-            this.head.next = tmp;
+            if(head.getValue() instanceof Holzvollernter){
+                if(elem instanceof Holzvollernter){
+                    internInster(elem);
+                }
+            }else if(head.getValue() instanceof Forstbetrieb) {
+                if (elem instanceof Forstbetrieb) {
+                    internInster(elem);
+                }
+            }else if(head.getValue() instanceof KeyValueListable){
+                if(elem instanceof KeyValueListable){
+                    internInster(elem);
+                }
+            }else if(head.getValue() instanceof StringListable){
+                if(elem instanceof StringListable){
+                    internInster(elem);
+                }
+            }
         }
 
+    }
+
+    private void internInster(Listable elem){
+        CustomListNode tmp = head;
+        this.head = new CustomListNode(elem);
+        this.head.next = tmp;
     }
 
     /**
