@@ -228,6 +228,15 @@ public class Test {
         return true;
     }
 
+    public boolean testListTypeSafety() {
+        CustomList l = new CustomList();
+        l.insert(new Radernter());
+        // typen duerfen innerhalb der Liste nicht gemischt werden
+        // Expected: nichts passiert, Element nicht in der Liste
+        l.insert(new StringListable("Blubb"));
+        return !l.contains(new StringListable("Blubb"));
+    }
+
     public boolean testStatistiken() {
         return false;
     }
