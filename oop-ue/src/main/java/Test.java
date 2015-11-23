@@ -1,6 +1,7 @@
 /**
- * Arbeitsaufteilung: Christoph Huber: Forstbetrieb, CustomList, ListableNumber, Michael Langowksi:
- * Holzvollernter, Abstractarbeitskopf Ines Rieder: Gemeinde, Test
+ * Arbeitsaufteilung: Christoph Huber: Forstbetrieb, CustomList, ListableNumber,
+ * Michael Langowksi: Holzvollernter, Abstractarbeitskopf
+ * Ines Rieder: Gemeinde, Test
  */
 
 public class Test {
@@ -41,9 +42,9 @@ public class Test {
     public boolean test() {
         //3 Gemeinden erstellen, je 3 Forstbetriebe hinzufuegen und einen wieder entfernen (ueber eindeutigen Namen)
 
-        gemeinde1.addBetrieb();
-        gemeinde1.addBetrieb();
-        gemeinde1.addBetrieb();
+        gemeinde1.addBetrieb(forstbetrieb11);
+        gemeinde1.addBetrieb(forstbetrieb12);
+        gemeinde1.addBetrieb(forstbetrieb13);
         gemeinde1.deleteBetrieb("forstbetrieb12");
 
         if ((!gemeinde1.containsBetrieb(gemeinde1.getBetriebByName("forstbetrieb11")))
@@ -53,9 +54,9 @@ public class Test {
             return false;
         }
 
-        gemeinde2.addBetrieb();
-        gemeinde2.addBetrieb();
-        gemeinde2.addBetrieb();
+        gemeinde2.addBetrieb(forstbetrieb21);
+        gemeinde2.addBetrieb(forstbetrieb22);
+        gemeinde2.addBetrieb(forstbetrieb23);
         gemeinde2.deleteBetrieb("forstbetrieb22");
 
         if ((!gemeinde2.containsBetrieb(gemeinde2.getBetriebByName("forstbetrieb21")))
@@ -65,9 +66,10 @@ public class Test {
             return false;
         }
 
-        gemeinde3.addBetrieb();
-        gemeinde3.addBetrieb();
-        gemeinde3.addBetrieb("forstbetrieb33");
+
+        gemeinde3.addBetrieb(forstbetrieb31);
+        gemeinde3.addBetrieb(forstbetrieb32);
+        gemeinde3.addBetrieb(forstbetrieb33);
         gemeinde3.deleteBetrieb("forstbetrieb32");
 
         if ((!gemeinde3.containsBetrieb(gemeinde3.getBetriebByName("forstbetrieb31")))
@@ -113,6 +115,7 @@ public class Test {
         if (!(ernter1.getName().equals(1)) || (!(ernter1.getBetriebsstunden() == 24))
             || (!((double) ernter1.getDistanceMoved() == 10.0))
             || (!(ernter1.getArbeitskopf() instanceof Schneidearbeitskopf))) {
+            System.out.println("Fehler bei changeInformationOfHolzvollernter. ");
             return false;
         }
 
@@ -169,6 +172,9 @@ public class Test {
         gemeinde1.getBetriebByName("forstbetrieb13").getMaxAndMinPieceLength();
         gemeinde1.getBetriebByName("forstbetrieb13").getAvgTreeThickness(); */
 
+        gemeinde1.show();
+        gemeinde2.show();
+        gemeinde3.show();
         return true;
     }
 
