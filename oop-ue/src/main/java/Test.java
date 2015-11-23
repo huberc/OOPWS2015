@@ -173,14 +173,14 @@ public class Test {
         // unique namen fuer Gemeinden
         boolean gemeindeExceptionCaught = false;
         boolean forstbetriebExceptionCaught = false;
-        Gemeinde g1 = new Gemeinde("G1");
+        new Gemeinde("G1");
         try {
             new Gemeinde("G1");
         } catch (IllegalArgumentException ex) {
             gemeindeExceptionCaught = true;
         }
         // unique namen fuer forstbetriebe
-        Forstbetrieb f1 = new Forstbetrieb("F1");
+        new Forstbetrieb("F1");
         try {
             new Forstbetrieb("F1");
         } catch (IllegalArgumentException ex) {
