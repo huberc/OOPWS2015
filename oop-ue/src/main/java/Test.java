@@ -41,7 +41,7 @@ public class Test {
         System.out.println("Genereller Test:\t" + test.test());
         System.out.println("CustomList Test:\t" + test.testListFunctionality());
         System.out.println("CustomList Typesafety Test:\t" + test.testListTypeSafety());
-        System.out.println("UniqNames Test:\t" + test.testUniqueNames());
+        System.out.println("UniqueNames Test:\t" + test.testUniqueNames());
     }
 
     public boolean test() {
