@@ -50,12 +50,15 @@ public class CustomList {
         CustomListNode cur = head;
 
         while (cur.next != null){
-            if(cur.getValue().equals(name)){
+            if(cur.getValue().getName().equals(name)){
                 return cur.getValue();
             }
             else{
                 cur = cur.next;
             }
+        }
+        if (cur.getValue().getName().equals(name)) {
+            return cur.getValue();
         }
         return null;
     }
