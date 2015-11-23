@@ -1,6 +1,9 @@
 /**
- * Arbeitsaufteilung: Christoph Huber: Forstbetrieb, CustomList, ListableNumber, Michael Langowksi:
- * Holzvollernter, Abstractarbeitskopf Ines Rieder: Gemeinde, Test
+ * Arbeitsaufteilung:
+ *  Christoph Huber: Forstbetrieb, CustomList, ListableNumber, Listable,
+ *  Michael Langowksi: Holzvollernter, Radernter, Schreiter, Abstractarbeitskopf, Schneidearbeitskopf, Hackschnitzelarbeitskopf,
+ *      HolzConstraint, KeyValueListable, StringListable, UniqueNameProvider
+ *  Ines Rieder: Gemeinde, Test, Zusicherungen
  */
 
 public class Test {
@@ -110,7 +113,7 @@ public class Test {
             return false;
         }
 
-        if (!(ernter1.getName().equals(1)) || (!(ernter1.getBetriebsstunden() == 24))
+        if (!(ernter1.getId()==1) || (!(ernter1.getBetriebsstunden() == 24))
             || (!((double) ernter1.getDistanceMoved() == 10.0))
             || (!(ernter1.getArbeitskopf() instanceof Schneidearbeitskopf))) {
             System.out.println("Fehler bei changeInformationOfHolzvollernter. ");
@@ -156,19 +159,6 @@ public class Test {
             System.out.println("Fehler beim Einfuegen/ Entfernen von Holzvollerntern. ");
             return false;
         }
-
-        /*
-        //statistische Werte - ALLER Forstbetriebe?!?
-        CustomList avgWorkingHoursOfAll = gemeinde1.getBetriebByName("forstbetrieb13").getAvgWorkingHoursOfAll();
-        if ((avgWorkingHoursOfAll.getElement(""))){
-            return false;
-        }
-
-        gemeinde1.getBetriebByName("forstbetrieb13").getAvgWorkingHoursOfSpecific(new Schreiter()); //wieder ueber ID?
-        gemeinde1.getBetriebByName("forstbetrieb13").getAvgDistance();
-        gemeinde1.getBetriebByName("forstbetrieb13").getAvgSteps();
-        gemeinde1.getBetriebByName("forstbetrieb13").getMaxAndMinPieceLength();
-        gemeinde1.getBetriebByName("forstbetrieb13").getAvgTreeThickness(); */
 
         gemeinde1.show();
         gemeinde2.show();
