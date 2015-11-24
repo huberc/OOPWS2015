@@ -10,7 +10,7 @@ public class Forstbetrieb implements Listable {
 
     /**
      * Erzeugt einen neuen <code>Forstbetrieb</code>. Dabei wird sichergestellt, dass der benutzte Name
-     * eindeutig ist, bzw. falls das nicht der Falls sein sollte eine Exception geworfen
+     * eindeutig ist, bzw. falls das nicht der Fall sein sollte eine Exception geworfen wird.
      * 
      * @param name
      *            der name dieses <code>Forstbetrieb</code>es
@@ -39,7 +39,8 @@ public class Forstbetrieb implements Listable {
     }
 
     /**
-     * VB: der uebergebene Holzvollernter darf nicht null sein NB: Holzvollernter ist aus der Liste entfernt
+     * VB: der uebergebene Holzvollernter darf nicht null sein
+     * NB: Holzvollernter ist aus der Liste entfernt
      *
      * @param id
      *            Die eindeutige Id des zu loeschenden Holzvollernters
@@ -72,16 +73,13 @@ public class Forstbetrieb implements Listable {
         tmp.setArbeitskopf(arbeitskopf);
     }
 
-    //TODO zu ueberlegen, was ich da zurueckgebe, weil eine Aufschluesselung, nach bestimmten Kriterien
-    //TODO gefordert ist. Mein Vorschlag: eine Map als key die entsprechende Aufschluesselung
-
     /**
      * VB: der Forstbetrien enthaelt Holzvollernter
-     * NB: es wird eine CustomList mit zwei Elementen zurueckgegeben, wo sichergestellt ist, dass das erste
-     * Element die durschnittlichen Arbeitsstunden der Einsatzart "in Stuecke schneiden" und das zweite
-     * Element die durschnittlichen Arbeitsstunden der Einsatzart "Hackschnizel erzeugen" representiert.
+     * NB: es wird eine CustomList mit zwei Elementen zurueckgegeben, wobei die CustomList hier wie eine Map funktioniert.
+     *  Die Elemente haben als key "HackschnitzelArbeitskopf" bzw. "Schneidearbeitskopf" und als value die durchschnittlichen
+     *  Betriebsstunden.
      *
-     * @return Eine Liste mit zwei Elementen die die Arbeitsstunden enthalten.
+     * @return Eine "Map" mit zwei Elementen mit geforderter Aufschliesselung nach Arbeitskopf die die Arbeitsstunden enthalten.
      */
     public CustomList getAvgWorkingHoursOfAll() {
         CustomList customListWorkingHoursAll = new CustomList();
@@ -126,10 +124,11 @@ public class Forstbetrieb implements Listable {
 
     /**
      * VB: der uebergebene Holzvollernter darf nicht null sein
+     * NB: es wird eine CustomList mit zwei Elementen zurueckgegeben, wobei die CustomList hier wie eine Map funktioniert.
+     *  Die Elemente haben als key "Schreiter" bzw. "Radernter" und als value die durchschnittlichen
+     *  Betriebsstunden.
      *
-     * NB: es wird eine CustomList mit zwei Elementen zurueckgegeben,
-     *
-     * @return eine Liste mit zwei Element die die geforderte Aufschluesselung nach Arbeitskoepfen beinhaltet
+     * @return eine "Map" mit zwei Element die die geforderte Aufschluesselung nach Art des Holzvollernters zurueckgegeben
      */
     public CustomList getAvgWorkingHoursOfSpecific() {
         CustomList customListWorkingHoursSpecific = new CustomList();
@@ -174,11 +173,11 @@ public class Forstbetrieb implements Listable {
 
     /**
      * VB: Forstbetrieb enthaelt Holzvollernter
-     * NB: es wird eine CustomList mit zwei Elementen zurueckgegeben, wo sichergestellt ist, dass das erste
-     * Element die durschnittlich zurueckgelegte Wegstrecke der Einsatzart "in Stuecke schneiden" und das zweite
-     * Element die durschnittlich zurueckgelegte Wegstrecke der Einsatzart "Hackschnizel erzeugen" representiert.
+     * NB: es wird eine CustomList mit zwei Elementen zurueckgegeben, wobei die CustomList hier wie eine Map funktioniert.
+     *  Die Elemente haben als key "HackschnitzelArbeitskopf" bzw. "Schneidearbeitskopf" und als value die durchschnittlich
+     *  zurueckgelegte Wegstrecke.
      *
-     * @return eine Liste mit zwei Element, die die geforderte Aufschluesselung der durchschnittlich zurueckgelegten Wegstrecke
+     * @return eine "Map" mit zwei Element, die die geforderte Aufschluesselung der durchschnittlich zurueckgelegten Wegstrecke
      * nach Arbeitskoepfen beinhaltet
      */
     public CustomList getAvgDistance() {
@@ -227,11 +226,11 @@ public class Forstbetrieb implements Listable {
 
     /**
      * VB: der Forstbetrieb enthaelt Holzvollernter des Typs "Schreiter"
-     * NB: es wird eine CustomList mit zwei Elementen zurueckgegeben, wo sichergestellt ist, dass das erste
-     * Element die durschnittliche Anzahl an Schritte der Einsatzart "in Stuecke schneiden" und das zweite
-     * Element die durschnittliche Anzahl an Schritten der Einsatzart "Hackschnizel erzeugen" representiert.
+     * NB: es wird eine CustomList mit zwei Elementen zurueckgegeben, wobei die CustomList hier wie eine Map funktioniert.
+     *  Die Elemente haben als key "HackschnitzelArbeitskopf" bzw. "Schneidearbeitskopf" und als value die durchschnittliche
+     *  Anzahl an zurueckgelegten Schritten.
      *
-     * @return Eine Liste mit zwei Elementen die entsprechend aufgeschluesselt wurden und die die
+     * @return Eine "Map" mit zwei Elementen die entsprechend nach Arbeitskopf aufgeschluesselt wurden und die die
      *         durchschnittlichen Schritte enthalten.
      */
     public CustomList getAvgSteps() {
@@ -278,10 +277,12 @@ public class Forstbetrieb implements Listable {
 
     /**
      * VB: der Forstbetrien enthaelt min. einen Holzvollernter mit einem Schneidearbeitskopf
-     * NB: der erste Wert in der Liste ist min der Radernter, der zweite max der Radernter. 3 und 4 min, max
-     * fuer Schreiter
+     * NB: es wird eine CustomList mit vier Elementen zurueckgegeben, wobei die CustomList hier wie eine Map funktioniert.
+     *  Die Elemente haben als key "Schreiter Minimum", "Schreiter Maximum", "Radernter Maximum" bzw. "Radernter Minimum"
+     *  und als Value die entsprechende minimale/ maximale Stücklänge aller Holzvollernter.
      *
-     * @return
+     * @return Eine "Map" mit vier Elementen die die entsprechende minimale/ maximale Stücklänge aller Holzvollernter
+     *      aufgeschluesselt zurueck gibt.
      */
     public CustomList getMaxAndMinPieceLength() {
         double minrad = 0, minschreit = 0, maxrad = 0, maxschreit = 0;
@@ -340,7 +341,11 @@ public class Forstbetrieb implements Listable {
 
     /**
      * VB: der Forstbetrieb enthaelt min. einen Holzvollernter mit einem Hackschnitzelkopf
-     * @return
+     * NB: es wird eine CustomList mit zwei Elementen zurueckgegeben, wobei die CustomList hier wie eine Map funktioniert.
+     *  Die Elemente haben als key "Schreiter" bzw. "Radernter" und als Value die durhschnittliche Baumdicke aller Holzvollernter.
+     *
+     * @return Eine "Map" mit zwei Elementen, die entsprechend nach Art des Holzvollernters aufgeschluesselt wurden und
+     *      die durchschnittliche Baumdicke enthaelt.
      */
     public CustomList getAvgTreeThickness() {
 

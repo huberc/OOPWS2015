@@ -18,6 +18,9 @@ public final class UniqueNameProvider {
     /**
      * Ueberprueft ob ein Name bei diesem <code>UniqueNameProvider</code> bereits registriert ist (d.h. in der
      * Liste der verwendeten Namen existiert)
+     *
+     * VB: name ist nicht null
+     * NB: ein Wahrheitswert wird zurueckgegeben ob der Name einzigartig ist oder nicht
      * 
      * @param name
      *            der zu ueberpruefende Name
@@ -30,6 +33,9 @@ public final class UniqueNameProvider {
     /**
      * Registriert einen Namen als verwendet. Der uebergebene Wert wird damit in die Liste der bereits
      * registrierten Namen eingetragen
+     *
+     * VB: name ist nicht null, der Name ist noch nicht in der Liste der registrierten Namen enthalten
+     * NB: name wurde der Liste der registrierten Namen hinzugefuegt
      * 
      * @param name
      *            der zu registrierende name

@@ -17,8 +17,8 @@ public class Gemeinde {
     /**
      * Erzeugen einer Gemeinde
      * 
-     * VB: es existiert noch keine Gemeinde mit demselben Namen, name != null NB: die Gemeinde wurde erstellt,
-     * der Name zugeteilt und eine neue Liste zur Verwaltung der Forstbetriebe erstellt
+     * VB: es existiert noch keine Gemeinde mit demselben Namen, name != null
+     * NB: die Gemeinde wurde erstellt, der Name zugeteilt und eine neue Liste zur Verwaltung der Forstbetriebe erstellt
      * 
      * @param name
      *            Name der zu erzeugende Gemeinde (String)
@@ -36,11 +36,12 @@ public class Gemeinde {
 
     /**
      * Hinzufuegen von Forstbetrieben einer Gemeinde
+     *
+     * VB: betrieb != null
+     * NB: betrieb ist Bestandteil der Liste (Gemeinde)
      * 
      * @param betrieb
      *            der zu hinzufuegende Betrieb als Parameter (Forstbetrieb)
-     *
-     *            VB: betrieb != null NB: betrieb ist Bestandteil der Liste (Gemeinde)
      */
     public void addBetrieb(Forstbetrieb betrieb) {
         betriebe.insert(betrieb);
@@ -48,12 +49,13 @@ public class Gemeinde {
 
     /**
      * Entfernen von Forstbetrieben einer Gemeinde
-     * 
+     *
+     * VB: betrieb != null
+     * NB: betrieb ist KEIN Bestandteil der Liste (Gemeinde)
+     *
      * @param betrieb
      *            Name des zu entfernende Betrieb (String)
      * @return null (falls nicht enthalten) oder Forstbetrieb
-     *
-     *         VB: betrieb != null NB: betrieb ist KEIN Bestandteil der Liste (Gemeinde)
      */
     public Forstbetrieb deleteBetrieb(String betrieb) {
         //kann auf Forstbetrieb Casten, da in der Gemeinde nur Forstbetriebe eingefuegt werden

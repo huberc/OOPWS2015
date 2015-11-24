@@ -1,8 +1,20 @@
+/**
+ * Eine Unterklasse von Listable um eine Map nachzubilden.
+ * Da sie nur fuer die Ausgabe statistischer Werte verwendet wird, ist der value als double definiert.
+ */
+
 public class KeyValueListable implements Listable {
 
     private String key;
     private double value;
 
+    /**
+     * Erzeugen eines neuen KeyValueListable
+     * VB: parameter sind nicht null
+     * NB: ein neues KeyValueListable wurde erzeugt
+     * @param key
+     * @param value
+     */
     public KeyValueListable(String key, double value) {
         this.key = key;
         this.value = value;

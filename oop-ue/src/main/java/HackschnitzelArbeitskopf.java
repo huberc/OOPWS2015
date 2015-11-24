@@ -10,6 +10,9 @@ public class HackschnitzelArbeitskopf extends AbstractArbeitskopf {
 
     /**
      * Erzeugt einen neuen <code>HackschnitzelArbeitskopf</code> mit der angegebenen maximalen Holzdicke
+     *
+     * VB: maxDiameter ist ein int-Wert groesser 0
+     * NB: ein neuer HackschnitzelArbeitskopf mit gegebenem maxDiameter wurde erzeugt
      * 
      * @param maxDiameter
      *            int-Wert ( > 0), der die fuer diesen Arbeitskopf maximal zulaessige Holzdicke in Zentimetern

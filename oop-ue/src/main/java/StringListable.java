@@ -1,10 +1,19 @@
 /**
- * Created by Christoph on 23.11.2015.
+ * Eine Unterklasse von Listable um eine Liste aus Strings bilden zu koennen.
+ *
+ * @author Christoph Huber
  */
 public class StringListable implements Listable {
 
     private String value;
 
+    /**
+     * Erzeugen eines neuen StringListable
+     *
+     * VB: value ist nicht null
+     * NB: ein neues StringListable mit dem gegebenem value wurder erzeugt
+     * @param value
+     */
     public StringListable(String value) {
         this.value = value;
     }

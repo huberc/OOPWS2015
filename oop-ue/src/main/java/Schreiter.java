@@ -10,6 +10,9 @@ public class Schreiter extends Holzvollernter {
     /**
      * Addiert einen gegebenen Wert zur aktuell zurueckgelegten Distanz des Ernters. Die Distanz wird dabei
      * nicht ueberschrieben sondern erhoeht
+     *
+     * VB: distanceMpved ist ein int groesser 0
+     * NB: distancedMoved wurde der aktuell zurueckgelegten Distanz hinzugefuegt
      * 
      * @param distanceMoved
      *            Ganze Zahl, der die seit dem letzten Aufruf von <code>addDistanceMoved</code> zurueckgelegte

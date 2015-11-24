@@ -6,8 +6,9 @@ public class CustomList {
     private CustomListNode head = null;
 
     /**
-     * VB: elem darf nicht null sein NB: elem ist Bestandteil der Liste
-     * NB: elem ist Teil der Liste
+     * VB: elem darf nicht null sein
+     * NB: elem ist Bestandteil der Liste
+     *
      * @param elem
      *            das einzufuegende Element in die "Liste"
      */
@@ -40,7 +41,7 @@ public class CustomList {
     /**
      * Hilfsmethode fuer instert(Listable elem)
      * VB: elem darf nicht null sein
-     * NB: elem ist Bestandteil der Liste
+     * NB: head wurde richtig gesetzt
      *
      * @param elem das einzufuegende Element in die "Liste"
      */
@@ -51,7 +52,8 @@ public class CustomList {
     }
 
     /**
-     * VB: name darf nicht null sein NB: null oder das entsprechende Objekt wird dem Client zurueckgegeben.
+     * VB: name darf nicht null sein
+     * NB: null oder das entsprechende Objekt wird dem Client zurueckgegeben.
      *
      * @param name
      *            String in der Liste
@@ -137,6 +139,7 @@ public class CustomList {
      * Die Methode ueberprueft, ob das uebergebene Element bereits in der "Liste" vorhanden ist.
      * <p>
      * VB: elem darf nicht null sein
+     * NB: boolean ob elem Teil der Liste ist wurde zurueckgegeben
      *
      * @param elem
      *            vom Typ Listable

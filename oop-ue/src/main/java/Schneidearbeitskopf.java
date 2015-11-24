@@ -10,6 +10,9 @@ public class Schneidearbeitskopf extends AbstractArbeitskopf {
     /**
      * Erzeugt einen neuen <code>Schneidearbeitskopf</code> mit der angegebenen Maximallaenge fuer
      * verarbeitbare Holzstuecke
+     *
+     * VB: die maxLength ist ein double groesser 0
+     * NB: eine Schneidearbeitskopf mit der geforderten Maximallaenge wurde erzeugt
      * 
      * @param maxLength
      *            die maximal Laenge ( > 0) in Metern fuer Holzstuecke, die dieser Arbeitskopf verarbeiten
