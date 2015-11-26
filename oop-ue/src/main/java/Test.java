@@ -1,8 +1,8 @@
 /**
  * Arbeitsaufteilung:
- *  Christoph Huber: Forstbetrieb, CustomList, ListableNumber, Listable,
+ *  Christoph Huber: Forstbetrieb, CustomList, ListableNumber, Listable, statistikenTest, KeyValueListable
  *  Michael Langowksi: Holzvollernter, Radernter, Schreiter, Abstractarbeitskopf, Schneidearbeitskopf, Hackschnitzelarbeitskopf,
- *      HolzConstraint, KeyValueListable, StringListable, UniqueNameProvider
+ *      HolzConstraint, StringListable, UniqueNameProvider
  *  Ines Rieder: Gemeinde, Test, Zusicherungen
  */
 
