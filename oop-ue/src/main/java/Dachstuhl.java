@@ -1,5 +1,7 @@
 
 
-public class Dachstuhl {
+public abstract class Dachstuhl {
+
+    public abstract Bauholz get(BauholzLager bauholzLager);
 
 }
