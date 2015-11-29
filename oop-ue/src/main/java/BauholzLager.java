@@ -117,7 +117,7 @@ public class BauholzLager {
         for (Bauholz h : d.getHolz()) {
             price += h.getPreis();
         }
-        System.out.println("\tDachstuhl " + d.getClass().getSimpleName() + " kostet: ");
+        System.out.println("\tDachstuhl " + d.getClass().getSimpleName() + " kostet: "+price);
     }
 
 }
