@@ -82,29 +82,29 @@ public class BauholzLager {
     }
 
     public void list() {
-        System.out.println("RundholzGehobelt:");
+        System.out.println("\tRundholzGehobelt:");
         for (RundholzGehobelt h : this.listRundholzGehobelt) {
-            System.out.println("\t" + h.getLaenge());
+            System.out.println("\t\t" + h.getLaenge());
         }
-        System.out.println("RundholzSaegerauh:");
+        System.out.println("\tRundholzSaegerauh:");
         for (RundholzSaegerauh h : this.listRundholzSaegerauh) {
-            System.out.println("\t" + h.getLaenge());
+            System.out.println("\t\t" + h.getLaenge());
         }
-        System.out.println("KantholzGehobelt:");
+        System.out.println("\tKantholzGehobelt:");
         for (KantholzGehobelt h : this.listKantholzGehobelt) {
-            System.out.println("\t" + h.getLaenge());
+            System.out.println("\t\t" + h.getLaenge());
         }
-        System.out.println("KantholzSaegerauh:");
+        System.out.println("\tKantholzSaegerauh:");
         for (KantholzSaegerauh h : this.listKantholzSaegerauh) {
-            System.out.println("\t" + h.getLaenge());
+            System.out.println("\t\t" + h.getLaenge());
         }
     }
     
     public void list(Dachstuhl d){
-        System.out.println("Fuer "+d.getClass().getSimpleName()+":");
+        System.out.println("\tFuer "+d.getClass().getSimpleName()+":");
 
         for(Bauholz b : d.getHolz()){
-            System.out.println("\t"+b.getLaenge());
+            System.out.println("\t\t"+b.getLaenge());
         }
     }
 
@@ -113,7 +113,7 @@ public class BauholzLager {
         for (Bauholz h : d.getHolz()) {
             price += h.getPreis();
         }
-        System.out.println("Dachstuhl " + d.getClass().getSimpleName() + " kostet: ");
+        System.out.println("\tDachstuhl " + d.getClass().getSimpleName() + " kostet: ");
     }
 
 }
