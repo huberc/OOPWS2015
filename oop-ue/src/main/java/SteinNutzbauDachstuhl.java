@@ -10,6 +10,11 @@ public class SteinNutzbauDachstuhl extends Dachstuhl{
         return bauholzLager.get(this);
     }
 
+    @Override
+    public List getList() {
+        return kantholz;
+    }
+
     public void add(Kantholz kantholz){
         this.kantholz.add(kantholz);
     }

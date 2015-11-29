@@ -10,6 +10,11 @@ public class HolzNutzbauDachstuhl extends Dachstuhl{
         return bauholzLager.get(this);
     }
 
+    @Override
+    public List getList() {
+        return saegerauhList;
+    }
+
     public void add(Rundholz rundholz){
         saegerauhList.add(rundholz);
     }
