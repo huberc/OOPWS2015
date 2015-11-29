@@ -4,5 +4,9 @@
 public abstract class Rundholz extends Bauholz{
     
     private int durchmesser;
-    
+
+    public Rundholz(int laenge, int preis, int durchmesser) {
+        super(laenge, preis);
+        this.durchmesser = durchmesser;
+    }
 }
