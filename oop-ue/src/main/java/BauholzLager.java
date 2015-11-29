@@ -5,6 +5,10 @@ public class BauholzLager {
 
     private List list = new ArrayList<>();
 
+    public void add(Bauholz bauholz){
+        bauholz.add(this);
+    }
+
     public void add(RundholzGehobelt rundholzGehobelt){
         list.add(rundholzGehobelt);
     }

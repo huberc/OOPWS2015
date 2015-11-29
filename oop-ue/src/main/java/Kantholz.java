@@ -5,5 +5,4 @@ public abstract class Kantholz extends Bauholz{
     
     private int breite;
     private int hoehe;
-    
 }
