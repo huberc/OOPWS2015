@@ -4,6 +4,6 @@ public abstract class Dachstuhl {
 
     public abstract Bauholz get(BauholzLager bauholzLager);
 
-    public abstract List getList();
+    public abstract List<? extends Bauholz> getHolz();
 
 }

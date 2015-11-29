@@ -11,7 +11,7 @@ public class HolzWohnbauDachstuhl extends Dachstuhl{
     }
 
     @Override
-    public List getList() {
+    public List<RundholzGehobelt> getHolz() {
         return gehobeltList;
     }
 
