@@ -5,7 +5,7 @@ public class BauholzLager {
 
     private List<RundholzGehobelt>  listRundholzGehobelt  = new ArrayList<>();
     private List<RundholzSaegerauh> listRundholzSaegerauh = new ArrayList<>();
-    private List<KantholzGehobelt>  listKantholzGehobelt  = new ArrayList<>();
+    private List<KantholzGehobelt> listKantholzGehobelt = new ArrayList<>();
     private List<KantholzSaegerauh> listKantholzSaegerauh = new ArrayList<>();
 
     public void add(Bauholz bauholz) {
@@ -99,9 +99,14 @@ public class BauholzLager {
             System.out.println("\t" + h.getLaenge());
         }
     }
+    
+    public void list(Dachstuhl d){
+        System.out.println("Fuer "+d.getClass().getSimpleName()+":");
+        List<? extends Bauholz> list = d.getHolz();
 
-    public void list(Dachstuhl d) {
-
+        for(Bauholz b : list){
+            System.out.println("\t"+b.getLaenge());
+        }
     }
 
     public void price(Dachstuhl d) {
