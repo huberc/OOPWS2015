@@ -10,6 +10,11 @@ public class HolzWohnbauDachstuhl extends Dachstuhl{
         return bauholzLager.get(this);
     }
 
+    @Override
+    public List<RundholzGehobelt> getHolz() {
+        return gehobeltList;
+    }
+
     public void add(RundholzGehobelt rundholzGehobelt){
         gehobeltList.add(rundholzGehobelt);
     }
