@@ -102,9 +102,8 @@ public class BauholzLager {
     
     public void list(Dachstuhl d){
         System.out.println("Fuer "+d.getClass().getSimpleName()+":");
-        List<? extends Bauholz> list = d.getHolz();
 
-        for(Bauholz b : list){
+        for(Bauholz b : d.getHolz()){
             System.out.println("\t"+b.getLaenge());
         }
     }
