@@ -3,7 +3,7 @@ import java.util.List;
 
 public class BauholzLager {
 
-    private List<RundholzGehobelt>  listRundholzGehobelt  = new ArrayList<>();
+    private List<RundholzGehobelt> listRundholzGehobelt = new ArrayList<>();
     private List<RundholzSaegerauh> listRundholzSaegerauh = new ArrayList<>();
     private List<KantholzGehobelt> listKantholzGehobelt = new ArrayList<>();
     private List<KantholzSaegerauh> listKantholzSaegerauh = new ArrayList<>();
@@ -34,77 +34,81 @@ public class BauholzLager {
     }
 
     public KantholzGehobelt get(SteinWohnbauDachstuhl steinWohnbauDachstuhl) {
-        KantholzGehobelt kantholzGehobelt = listKantholzGehobelt.get(0);
-        if (kantholzGehobelt != null) {
-            listKantholzGehobelt.remove(kantholzGehobelt);
-        }
 
-        steinWohnbauDachstuhl.add(kantholzGehobelt);
+        KantholzGehobelt kantholzGehobelt=null;
+
+        if(!(listKantholzGehobelt.isEmpty())) {
+            kantholzGehobelt = listKantholzGehobelt.get(0);
+            listKantholzGehobelt.remove(kantholzGehobelt);
+            steinWohnbauDachstuhl.add(kantholzGehobelt);
+        }
         return kantholzGehobelt;
     }
 
     public Kantholz get(SteinNutzbauDachstuhl steinNutzbauDachstuhl) {
-        Kantholz kantholz = listKantholzSaegerauh.get(0);
-        if (kantholz == null) {
+        Kantholz kantholz =null;
+        if(!(listKantholzSaegerauh.isEmpty())) {
+            kantholz = listKantholzSaegerauh.get(0);
+            listKantholzSaegerauh.remove(kantholz);
+            steinNutzbauDachstuhl.add(kantholz);
+        }else if(!(listKantholzGehobelt.isEmpty())){
             kantholz = listKantholzGehobelt.get(0);
-            if (kantholz != null) {
-                listKantholzGehobelt.remove(kantholz);
-            }
-        } else {
-            listKantholzSaegerauh.remove(0);
+            listKantholzGehobelt.remove(kantholz);
+            steinNutzbauDachstuhl.add(kantholz);
         }
-        steinNutzbauDachstuhl.add(kantholz);
         return kantholz;
     }
 
     public RundholzGehobelt get(HolzWohnbauDachstuhl holzWohnbauDachstuhl) {
-        RundholzGehobelt rundholzGehobelt = listRundholzGehobelt.get(0);
-        if (rundholzGehobelt != null) {
+        RundholzGehobelt rundholzGehobelt =null;
+        if(!(listRundholzGehobelt.isEmpty())) {
+            rundholzGehobelt = listRundholzGehobelt.get(0);
             listRundholzGehobelt.remove(rundholzGehobelt);
+            holzWohnbauDachstuhl.add(rundholzGehobelt);
         }
-        holzWohnbauDachstuhl.add(rundholzGehobelt);
         return rundholzGehobelt;
     }
 
+    //SIDE EFFECT
     public Rundholz get(HolzNutzbauDachstuhl holzNutzbauDachstuhl) {
-        Rundholz rundholz = listRundholzSaegerauh.get(0);
-        if (rundholz == null) {
-            rundholz = listRundholzGehobelt.get(0);
-            if (rundholz != null) {
-                listRundholzGehobelt.remove(rundholz);
-            }
-        } else {
+        Rundholz rundholz = null;
+        if(!(listRundholzSaegerauh.isEmpty())){
+            rundholz = listRundholzSaegerauh.get(0);
             listRundholzSaegerauh.remove(rundholz);
+            holzNutzbauDachstuhl.add(rundholz);
+        }else if(!(listRundholzGehobelt.isEmpty())){
+            rundholz = listRundholzGehobelt.get(0);
+            listRundholzGehobelt.remove(rundholz);
+            holzNutzbauDachstuhl.add(rundholz);
         }
 
-        holzNutzbauDachstuhl.add(rundholz);
         return rundholz;
     }
 
     public void list() {
-        System.out.println("RundholzGehobelt:");
+        System.out.println("\tRundholzGehobelt:");
         for (RundholzGehobelt h : this.listRundholzGehobelt) {
-            System.out.println("\t" + h.getLaenge());
+            System.out.println("\t\t" + h.getLaenge());
         }
-        System.out.println("RundholzSaegerauh:");
+        System.out.println("\tRundholzSaegerauh:");
         for (RundholzSaegerauh h : this.listRundholzSaegerauh) {
-            System.out.println("\t" + h.getLaenge());
+            System.out.println("\t\t" + h.getLaenge());
         }
-        System.out.println("KantholzGehobelt:");
+        System.out.println("\tKantholzGehobelt:");
         for (KantholzGehobelt h : this.listKantholzGehobelt) {
-            System.out.println("\t" + h.getLaenge());
+            System.out.println("\t\t" + h.getLaenge());
         }
-        System.out.println("KantholzSaegerauh:");
+        System.out.println("\tKantholzSaegerauh:");
         for (KantholzSaegerauh h : this.listKantholzSaegerauh) {
-            System.out.println("\t" + h.getLaenge());
+            System.out.println("\t\t" + h.getLaenge());
         }
     }
-    
-    public void list(Dachstuhl d){
-        System.out.println("Fuer "+d.getClass().getSimpleName()+":");
 
-        for(Bauholz b : d.getHolz()){
-            System.out.println("\t"+b.getLaenge());
+    public void list(Dachstuhl d) {
+        System.out.println("\tFuer " + d.getClass().getSimpleName() + ":");
+
+        for (Bauholz b : d.getHolz()) {
+            System.out.println("\t\t" + b.getLaenge());
         }
     }
 
@@ -113,7 +117,7 @@ public class BauholzLager {
         for (Bauholz h : d.getHolz()) {
             price += h.getPreis();
         }
-        System.out.println("Dachstuhl " + d.getClass().getSimpleName() + " kostet: " + price);
+        System.out.println("\tDachstuhl " + d.getClass().getSimpleName() + " kostet: "+price);
     }
 
 }
