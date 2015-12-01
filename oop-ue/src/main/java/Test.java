@@ -2,7 +2,7 @@
  * Arbeitsaufteilung: Design und test wurde gemeinsam entwickelt und geschrieben
  *  Christoph Huber: add
  *  Michael Langowksi: get
- *  Ines Rieder: list, price
+ *  Ines Rieder: list, price, Zusicherungen
  */
 
 public class Test {

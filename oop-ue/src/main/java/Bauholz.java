@@ -1,4 +1,6 @@
-
+/**
+ * Oberklasser aller Stuecke Bauholz
+ */
 public abstract class Bauholz {
 
     /* Laenge und Preis des Bauholzes */
@@ -18,9 +20,10 @@ public abstract class Bauholz {
     }
 
     /**
+     * lagert dieses Stueck Bauholz im uebergebenem bauholzLager ein
      * VB: bauholzLager ist nicht null
      * NB: dieses Bauholz wurde dem bauholzLager hinzugefuegt
-     * @param bauholzLager  Bauholzlager wo dieses Bauholz hinzugeuegt werden soll
+     * @param bauholzLager  Bauholzlager wo dieses Bauholz hinzugefuegt werden soll
      */
     abstract void add(BauholzLager bauholzLager);
     

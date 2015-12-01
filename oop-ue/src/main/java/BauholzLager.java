@@ -24,7 +24,7 @@ public class BauholzLager {
 
     /**
      * lagert ein Stueck gehobeltes Rundholz im Lager ein
-     * VB: rundholzGehobelt ist ein Objekt der Klasse RundholzGehobelt und nicht null, verwendete Liste muss inizialisiert sein
+     * VB: rundholzGehobelt ist ein Objekt der Klasse RundholzGehobelt und nicht null, verwendete Liste muss initialisiert sein
      * NB: rundholzGehobelt wurde der Liste ListRundholzGehobelt hinzugefuegt
      * @param rundholzGehobelt  hinzuzufuegendes gehobeltes Rundholz
      */
@@ -34,7 +34,7 @@ public class BauholzLager {
 
     /**
      * lagert ein Stueck saegerauhes Rundholz im Lager ein
-     * VB: rundholzSaegerauh ist ein Objekt der Klasse RundholzSaegerauh und nicht null, verwendete Liste muss inizialisiert sein
+     * VB: rundholzSaegerauh ist ein Objekt der Klasse RundholzSaegerauh und nicht null, verwendete Liste muss initialisiert sein
      * NB: rundholzSaegerauh wurde der Liste ListRundholzSaegerauh hinzugefuegt
      * @param rundholzSaegerauh  hinzuzufuegendes saegerauhes Rundholz
      */
@@ -44,7 +44,7 @@ public class BauholzLager {
 
     /**
      * lagert ein Stueck gehobeltes Kantholz im Lager ein
-     * VB: kantholzGehobelt ist ein Objekt der Klasse KantholzGehobelt und nicht null, verwendete Liste muss inizialisiert sein
+     * VB: kantholzGehobelt ist ein Objekt der Klasse KantholzGehobelt und nicht null, verwendete Liste muss initialisiert sein
      * NB: kantholzGehobelt wurde der Liste ListKantholzGehobelt hinzugefuegt
      * @param kantholzGehobelt  hinzuzufuegendes gehobeltes Kantholz
      */
@@ -54,7 +54,7 @@ public class BauholzLager {
 
     /**
      * lagert ein Stueck saegerauhes Kantholz im Lager ein
-     * VB: kantholzSaegerauh ist ein Objekt der Klasse KantholzSaegerauh und nicht null, verwendete Liste muss inizialisiert sein
+     * VB: kantholzSaegerauh ist ein Objekt der Klasse KantholzSaegerauh und nicht null, verwendete Liste muss initialisiert sein
      * NB: kantholzSaegerauh wurde der Liste ListKantholzSaegerauh hinzugefuegt
      * @param kantholzSaegerauh  hinzuzufuegendes saegerauhes Kantholz
      */
@@ -66,6 +66,7 @@ public class BauholzLager {
      * liefert ein passendes Stueck Bauholz fuer einen Dachstuhl und entfernt dieses aus dem Lager
      * VB: dachstuhl ist nicht null
      * NB: ein passendes Stueck Bauholz (oder null, wenn kein Passendes vorhanden ist) wurde zurueckgegeben
+     * SIDE EFFECT: dem Dachstuhl wird das zurueckgegebene Stueck Bauholz hinzugefuegt
      * @param dachstuhl Dachstuhl fuer den ein passendes Bauholz gesucht wird
      * @return  passendes Stueck Bauholz fuer den uebergebenen Dachstuhl, wenn kein passendes vorhanden ist wird null zurueckgegeben
      */
@@ -76,8 +77,9 @@ public class BauholzLager {
 
     /**
      * liefert ein gehobeltes Kantholz fuer einen Dachstuhl eines Wohnbaues aus Stein zurueck
-     * VB: steinWohnbauDachstuhl ist nicht null, verwendeten Listen muessen inizialisiert sein
+     * VB: steinWohnbauDachstuhl ist nicht null, verwendeten Listen muessen initialisiert sein
      * NB: ein gehobeltes Kantholz (oder null, wenn kein gehobeltes Kantholz vorhanden ist) wurde zurueckgegeben
+     * SIDE EFFECT: dem Dachstuhl wird das zurueckgegebene Stueck Bauholz hinzugefuegt
      * @param steinWohnbauDachstuhl Dachstuhl eines Wohnbaues aus Stein fuer den ein gehobeltes Kantholz gesucht wird
      * @return ein gehobeltes Kantholz fuer den uebergebenem Dachstuhl wird zurueckgegeben, wenn keines vorhanden ist wird null zurueckgegeben
      */
@@ -95,8 +97,9 @@ public class BauholzLager {
 
     /**
      * liefert ein passendes Steuck Kantholz fuer einen Dachstuhl eines Nutzbaues mit Steinbau
-     * VB: steinNutzbauDachstuhl ist nicht null, verwendeten Listen muessen inizialisiert sein
+     * VB: steinNutzbauDachstuhl ist nicht null, verwendeten Listen muessen initialisiert sein
      * NB: ein passendes Kantholz (oder null, wenn kein passendes vorhanden ist) wurde zurueckgegeben
+     * SIDE EFFECT: dem Dachstuhl wird das zurueckgegebene Stueck Bauholz hinzugefuegt
      * @param steinNutzbauDachstuhl Dachstuhl eines Nutzbaues aus Stein fuer den ein passendes Kantholz gesucht wird
      * @return ein passendes Stueck Kantholz fuer den uebergebenem Dachstuhl, wenn kein passendes vorhanden ist wird null zurueckgegeben
      */
@@ -116,8 +119,9 @@ public class BauholzLager {
 
     /**
      * liefert ein gehobeltes Rundholz fuer einen Dachstuhl eines Wohnbaues aus Holz zurueck
-     * VB: holzWohnbauDachstuhl ist nicht null, verwendeten Listen muessen inizialisiert sein
+     * VB: holzWohnbauDachstuhl ist nicht null, verwendeten Listen muessen initialisiert sein
      * NB: ein gehobeltes Rundholz (oder null, wenn kein gehobeltes Rundholz vorhanden ist) wurde zurueckgegeben
+     * SIDE EFFECT: dem Dachstuhl wird das zurueckgegebene Stueck Bauholz hinzugefuegt
      * @param holzWohnbauDachstuhl Dachstuhl eines Wohnbaues aus Holz fuer den ein gehobeltes Rundholz gesucht wird
      * @return ein gehobeltes Rundholz fuer den uebergebenem Dachstuhl wird zurueckgegeben, wenn keines vorhanden ist wird null zurueckgegeben
      */
@@ -131,12 +135,11 @@ public class BauholzLager {
         return rundholzGehobelt;
     }
 
-    //SIDE EFFECT
-
     /**
      * liefert ein passendes Steuck Rundholz fuer einen Dachstuhl eines Nutzbaues aus
-     * VB: holzNutzbauDachstuhl ist nicht null, verwendeten Listen muessen inizialisiert sein
+     * VB: holzNutzbauDachstuhl ist nicht null, verwendeten Listen muessen initialisiert sein
      * NB: ein passendes Rundholz (oder null, wenn kein passendes vorhanden ist) wurde zurueckgegeben
+     * SIDE EFFECT: dem Dachstuhl wird das zurueckgegebene Stueck Bauholz hinzugefuegt
      * @param holzNutzbauDachstuhl Dachstuhl eines Nutzbaues aus Holz fuer den ein passendes Rundholz gesucht wird
      * @return ein passendes Stueck Rundholz fuer den uebergebenem Dachstuhl, wenn kein passendes vorhanden ist wird null zurueckgegeben
      */
@@ -157,7 +160,7 @@ public class BauholzLager {
 
     /**
      * zeigt die Laenge aller Stuecke von Bauholz eines Lagers auf dem Bildschirm an
-     * VB: verwendeten Listen muessen inizialisiert sein
+     * VB: verwendeten Listen muessen initialisiert sein
      * NB: die Laengen aller Stuecke von Bauholz des Lagers wurden ausgegeben
      */
     public void list() {
