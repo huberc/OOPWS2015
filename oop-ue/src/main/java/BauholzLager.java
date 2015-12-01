@@ -164,21 +164,25 @@ public class BauholzLager {
      * NB: die Laengen aller Stuecke von Bauholz des Lagers wurden ausgegeben
      */
     public void list() {
+        int cnt=0;
         System.out.println("\tRundholzGehobelt:");
         for (RundholzGehobelt h : this.listRundholzGehobelt) {
-            System.out.println("\t\t" + h.getLaenge());
+            System.out.println("\t\tStueck "+ ++cnt +": " + h.getLaenge()+" cm");
         }
+        cnt=0;
         System.out.println("\tRundholzSaegerauh:");
         for (RundholzSaegerauh h : this.listRundholzSaegerauh) {
-            System.out.println("\t\t" + h.getLaenge());
+            System.out.println("\t\tStueck "+ ++cnt +": " + h.getLaenge()+" cm");
         }
+        cnt=0;
         System.out.println("\tKantholzGehobelt:");
         for (KantholzGehobelt h : this.listKantholzGehobelt) {
-            System.out.println("\t\t" + h.getLaenge());
+            System.out.println("\t\tStueck "+ ++cnt +": " + h.getLaenge()+" cm");
         }
+        cnt=0;
         System.out.println("\tKantholzSaegerauh:");
         for (KantholzSaegerauh h : this.listKantholzSaegerauh) {
-            System.out.println("\t\t" + h.getLaenge());
+            System.out.println("\t\tStueck "+ ++cnt +": " + h.getLaenge()+" cm");
         }
     }
 
@@ -189,10 +193,11 @@ public class BauholzLager {
      * @param d Dachstuhl dessen Holzlaengen augegeben werden sollen
      */
     public void list(Dachstuhl d) {
-        System.out.println("\tFuer " + d.getClass().getSimpleName() + ":");
+        System.out.println("\tAktueller Lagerbestand fuer " + d.getClass().getSimpleName() + ":");
+        int cnt=0;
 
         for (Bauholz b : d.getHolz()) {
-            System.out.println("\t\t" + b.getLaenge());
+            System.out.println("\t\tStueck "+ ++cnt +": " + b.getLaenge()+" cm");
         }
     }
 
@@ -207,7 +212,7 @@ public class BauholzLager {
         for (Bauholz h : d.getHolz()) {
             price += h.getPreis();
         }
-        System.out.println("\tDachstuhl " + d.getClass().getSimpleName() + " kostet: "+price);
+        System.out.println("\tDachstuhl " + d.getClass().getSimpleName() + " kostet: "+price+" cent");
     }
 
 }
