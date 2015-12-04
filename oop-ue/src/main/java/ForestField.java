@@ -35,6 +35,14 @@ public class ForestField {
 		return upperNeighbors && middleNeighbors && lowerNeighbors;
 	}
 
+	public int getHealthyNeighbors(){
+	    return -1;
+	}
+	
+	public int getInfectedNeighbors(){
+	    return -1;
+	}
+	
 	public BugColony getColony() {
 		return colony;
 	}
