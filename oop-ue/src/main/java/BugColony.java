@@ -9,6 +9,10 @@ public class BugColony implements Runnable{
 	public BugColony(ForestField home){
 		this.home = home;
 	}
+	
+	public BugColony(ForestField home, BugColony origin){
+		this(home);
+	}
 
 	@Override
 	public void run() {
