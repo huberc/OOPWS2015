@@ -1,86 +1,158 @@
 
 public class ForestField {
 
-	private BugColony colony;
-	private ForestField left;
-	private ForestField right;
-	private ForestField up;
-	private ForestField down;
+    private BugColony colony = null;
+    private ForestField left = null;
+    private ForestField right = null;
+    private ForestField up = null;
+    private ForestField down = null;
 
-	/**
-	 * Verifies if all eight neighboring fields of this field are free in terms
-	 * of not being infested by bugs. If the field is at the edge of the
-	 * forest, i.e. has less than eight neighbors, the non-existing fields are
-	 * counted as non-free.
-	 * 
-	 * Preconditions: All field pointers (left, right, up and down) are properly intitialized, i.e. != null unless
-	 * this field is an edge field where some neighbors might not exist.
-	 * Postconditions: All neighboring fields checked for existence of bug colonies on them
-	 *
-	 * @return true if no forestField in an 8-neighborhood of this field is occupied (field.getColony() == null), 
-	 * false otherwise
-	 */
-	public boolean checkNeighborhoodFree() {
-		boolean upperNeighbors =
-				((this.up != null) && (this.up.colony == null)
-				&& (this.up.left != null)) && (this.up.left.colony == null)
-				&& (this.up.right != null) && (this.up.right.colony == null);
-		boolean middleNeighbors =
-				(this.left != null) && (this.left.colony == null)
-				&& (this.right != null) && (this.right.colony == null);
-		boolean lowerNeighbors =
-				(this.down != null) && (this.down.colony == null)
-				&& (this.down.left != null) && (this.down.left.colony == null)
-				&& (this.down.right != null) && (this.down.right.colony == null);
-		return upperNeighbors && middleNeighbors && lowerNeighbors;
-	}
+    /**
+     * Verifies if all eight neighboring fields of this field are free in terms
+     * of not being infested by bugs. If the field is at the edge of the
+     * forest, i.e. has less than eight neighbors, the non-existing fields are
+     * counted as non-free.
+     * <p>
+     * Preconditions: All field pointers (left, right, up and down) are properly intitialized, i.e. != null unless
+     * this field is an edge field where some neighbors might not exist.
+     * Postconditions: All neighboring fields checked for existence of bug colonies on them
+     *
+     * @return true if no forestField in an 8-neighborhood of this field is occupied (field.getColony() == null),
+     * false otherwise
+     */
+    public boolean checkNeighborhoodFree() {
+        boolean upperNeighbors =
+                ((this.up != null) && (this.up.colony == null)
+                        && (this.up.left != null)) && (this.up.left.colony == null)
+                        && (this.up.right != null) && (this.up.right.colony == null);
+        boolean middleNeighbors =
+                (this.left != null) && (this.left.colony == null)
+                        && (this.right != null) && (this.right.colony == null);
+        boolean lowerNeighbors =
+                (this.down != null) && (this.down.colony == null)
+                        && (this.down.left != null) && (this.down.left.colony == null)
+                        && (this.down.right != null) && (this.down.right.colony == null);
+        return upperNeighbors && middleNeighbors && lowerNeighbors;
+    }
 
-	public int getHealthyNeighbors(){
-	    return -1;
-	}
-	
-	public int getInfectedNeighbors(){
-	    return -1;
-	}
-	
-	public BugColony getColony() {
-		return colony;
-	}
+    /**
+     * Preconditions: All field pointers (left, right, up and down) are properly intitialized, i.e. != null unless
+     * this field is an edge field where some neighbors might not exist.
+     * <p>
+     * Postconditions: All healthy neighbors are counted.
+     *
+     * @return number of healthy neighbors
+     */
+    public synchronized int getHealthyNeighbors() {
+        int cntHealthyNeighbors = 0;
 
-	public void setColony(BugColony colony) {
-		this.colony = colony;
-	}
+        if (this.up != null && this.up.getColony().isHealthy()) {
+            cntHealthyNeighbors++;
+        }
+        if (this.up.left != null && this.up.left.getColony().isHealthy()) {
+            cntHealthyNeighbors++;
+        }
+        if (this.up.right != null && this.up.right.getColony().isHealthy()) {
+            cntHealthyNeighbors++;
+        }
+        if (this.left != null && this.left.getColony().isHealthy()) {
+            cntHealthyNeighbors++;
+        }
+        if (this.down != null && this.down.getColony().isHealthy()) {
+            cntHealthyNeighbors++;
+        }
+        if (this.down.left != null && this.down.left.getColony().isHealthy()) {
+            cntHealthyNeighbors++;
+        }
+        if (this.down.right != null && this.down.right.getColony().isHealthy()) {
+            cntHealthyNeighbors++;
+        }
+        if (this.right != null && this.right.getColony().isHealthy()) {
+            cntHealthyNeighbors++;
+        }
 
-	public ForestField getLeft() {
-		return left;
-	}
 
-	public void setLeft(ForestField left) {
-		this.left = left;
-	}
+        return cntHealthyNeighbors;
+    }
 
-	public ForestField getRight() {
-		return right;
-	}
 
-	public void setRight(ForestField right) {
-		this.right = right;
-	}
+    /**
+     * Preconditions: All field pointers (left, right, up and down) are properly intitialized, i.e. != null unless
+     * this field is an edge field where some neighbors might not exist.
+     * <p>
+     * Postconditions: All infected neighbors are counted.
+     *
+     * @return number of infected neighbors
+     */
+    public synchronized int getInfectedNeighbors() {
+        int cntInfectedNeighbors = 0;
 
-	public ForestField getUp() {
-		return up;
-	}
+        if (this.up != null && !this.up.getColony().isHealthy()) {
+            cntInfectedNeighbors++;
+        }
+        if (this.up.left != null && !this.up.left.getColony().isHealthy()) {
+            cntInfectedNeighbors++;
+        }
+        if (this.up.right != null && !this.up.right.getColony().isHealthy()) {
+            cntInfectedNeighbors++;
+        }
+        if (this.left != null && !this.left.getColony().isHealthy()) {
+            cntInfectedNeighbors++;
+        }
+        if (this.down != null && !this.down.getColony().isHealthy()) {
+            cntInfectedNeighbors++;
+        }
+        if (this.down.left != null && !this.down.left.getColony().isHealthy()) {
+            cntInfectedNeighbors++;
+        }
+        if (this.down.right != null && !this.down.right.getColony().isHealthy()) {
+            cntInfectedNeighbors++;
+        }
+        if (this.right != null && !this.right.getColony().isHealthy()) {
+            cntInfectedNeighbors++;
+        }
 
-	public void setUp(ForestField up) {
-		this.up = up;
-	}
+        return cntInfectedNeighbors;
+    }
 
-	public ForestField getDown() {
-		return down;
-	}
+    public BugColony getColony() {
+        return colony;
+    }
 
-	public void setDown(ForestField down) {
-		this.down = down;
-	}
+    public void setColony(BugColony colony) {
+        this.colony = colony;
+    }
+
+    public ForestField getLeft() {
+        return left;
+    }
+
+    public void setLeft(ForestField left) {
+        this.left = left;
+    }
+
+    public ForestField getRight() {
+        return right;
+    }
+
+    public void setRight(ForestField right) {
+        this.right = right;
+    }
+
+    public ForestField getUp() {
+        return up;
+    }
+
+    public void setUp(ForestField up) {
+        this.up = up;
+    }
+
+    public ForestField getDown() {
+        return down;
+    }
+
+    public void setDown(ForestField down) {
+        this.down = down;
+    }
 
 }
