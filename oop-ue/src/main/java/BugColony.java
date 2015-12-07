@@ -24,5 +24,10 @@ public class BugColony implements Runnable{
 	public boolean isHealthy(){
 		return healthy;
 	}
+
+    // only used for testing
+    public void setHealthy(boolean healthy) {
+        this.healthy = healthy;
+    }
 	
 }
