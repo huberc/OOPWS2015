@@ -111,7 +111,8 @@ public class Test {
         if ((forest.getFieldAt(new Point(1,2)).getInfectedNeighbors() != 2) ||
                 (forest.getFieldAt(new Point(1,2)).getHealthyNeighbors() != 2) ||
                 (forest.getFieldAt(new Point(2,2)).getInfectedNeighbors() != 1) ||
-                (forest.getFieldAt(new Point(2,2)).getHealthyNeighbors() != 2) ) {
+                (forest.getFieldAt(new Point(2,2)).getHealthyNeighbors() != 2) ||
+                (forest.getFieldAt(new Point(3,3)).getHealthyNeighbors() != 2)) {
             return false;
         }
 
