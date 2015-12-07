@@ -47,7 +47,6 @@ public class Test {
             }
         }
 
-        // toString zeigt richtig 3 methoden an counter zaehlt aber keine
         Forest forest2 = new Forest(3,3,3);
         int counter = 0;
         for (int x = 0; x < 3; x++) {
