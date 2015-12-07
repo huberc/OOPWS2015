@@ -21,17 +21,72 @@ public class ForestField {
      * false otherwise
      */
     public boolean checkNeighborhoodFree() {
-        boolean upperNeighbors =
-                ((this.up != null) && (this.up.colony == null)
-                        && (this.up.left != null)) && (this.up.left.colony == null)
-                        && (this.up.right != null) && (this.up.right.colony == null);
-        boolean middleNeighbors =
-                (this.left != null) && (this.left.colony == null)
-                        && (this.right != null) && (this.right.colony == null);
-        boolean lowerNeighbors =
-                (this.down != null) && (this.down.colony == null)
-                        && (this.down.left != null) && (this.down.left.colony == null)
-                        && (this.down.right != null) && (this.down.right.colony == null);
+        boolean upperNeighbors = true;
+        boolean middleNeighbors = true;
+        boolean lowerNeighbors = true;
+
+        if(this.up != null){
+            if(this.up.getColony() == null){
+                upperNeighbors = true;
+            }
+            else{
+                upperNeighbors = false;
+            }
+            if(this.up.left != null && upperNeighbors == true){
+                if(this.up.left.getColony() == null){
+                    upperNeighbors = true;
+                }
+                else {
+                    upperNeighbors = false;
+                }
+            }
+            if(this.up.right != null && upperNeighbors == true){
+                if(this.up.right.getColony() == null){
+                    upperNeighbors = true;
+                }else {
+                    upperNeighbors = false;
+                }
+            }
+        }
+       if(this.left != null){
+           if(this.left.getColony() == null){
+               middleNeighbors = true;
+           }else{
+               middleNeighbors = false;
+           }
+       }
+        if(this.right != null && middleNeighbors == true){
+            if(this.right.getColony() == null){
+                middleNeighbors = true;
+            }else{
+                middleNeighbors = false;
+            }
+        }
+
+        if(this.down != null){
+            if(this.down.getColony() == null){
+                lowerNeighbors = true;
+            }
+            else{
+                lowerNeighbors = false;
+            }
+            if(this.down.left != null && lowerNeighbors == true){
+                if(this.down.left.getColony() == null){
+                    lowerNeighbors = true;
+                }
+                else {
+                    lowerNeighbors = false;
+                }
+            }
+            if(this.down.right != null && lowerNeighbors == true){
+                if(this.down.right.getColony() == null){
+                    lowerNeighbors = true;
+                }else {
+                    lowerNeighbors = false;
+                }
+            }
+        }
+
         return upperNeighbors && middleNeighbors && lowerNeighbors;
     }
 

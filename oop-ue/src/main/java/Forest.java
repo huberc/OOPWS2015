@@ -145,8 +145,7 @@ public class Forest {
                     current.setUp(this.getFieldAt(new Point(x, y - 1)));
 
                     if(x != width-1) {
-                       current.setRight(new ForestField());
-                        //-> hast du bereits durch setDown erzeugt, mein versuch es zu aendern ist gescheitert ^^
+                       current.setRight(current.getUp().getRight().getDown());
                     }
                     if(y != height-1){
                         current.setDown(new ForestField());
