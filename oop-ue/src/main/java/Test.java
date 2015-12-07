@@ -2,9 +2,9 @@ import java.awt.*;
 
 /**
  * Arbeitsaufteilung:
- *  Christoph Huber:
- *  Michael Langowksi:
- *  Ines Rieder:
+ *  Christoph Huber: Forest, ForestField
+ *  Michael Langowksi: BugColony
+ *  Ines Rieder: Test und Zusicherungen
  */
 
 public class Test {
@@ -13,6 +13,7 @@ public class Test {
         Test test = new Test();
 
         System.out.println(test.testForest());
+        System.out.println(test.testForestField());
 
        /* Point[] points = new Point[3];
         points[0] = new Point(1,0);
