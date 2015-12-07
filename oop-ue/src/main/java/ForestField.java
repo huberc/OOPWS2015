@@ -101,7 +101,48 @@ public class ForestField {
     public synchronized int getHealthyNeighbors() {
         int cntHealthyNeighbors = 0;
 
-        if (this.up != null && this.up.getColony().isHealthy()) {
+        if (this.up != null) {
+            if (this.up.getColony() != null) {
+                if (this.up.getColony().isHealthy()) { cntHealthyNeighbors++; }
+            }
+        }
+        if (this.up.left != null) {
+            if (this.up.left.getColony() != null) {
+                if (this.up.left.getColony().isHealthy()) { cntHealthyNeighbors++; }
+            }
+        }
+        if (this.up.right != null) {
+            if (this.up.right.getColony() != null) {
+                if (this.up.right.getColony().isHealthy()) { cntHealthyNeighbors++; }
+            }
+        }
+        if (this.left != null) {
+            if (this.left.getColony() != null) {
+                if (this.left.getColony().isHealthy()) { cntHealthyNeighbors++; }
+            }
+        }
+        if (this.down != null) {
+            if (this.down.getColony() != null) {
+                if (this.down.getColony().isHealthy()) { cntHealthyNeighbors++; }
+            }
+        }
+        if (this.down.left != null) {
+            if (this.down.left.getColony() != null) {
+                if (this.down.left.getColony().isHealthy()) { cntHealthyNeighbors++; }
+            }
+        }
+        if (this.down.right != null) {
+            if (this.down.right.getColony() != null) {
+                if (this.down.right.getColony().isHealthy()) { cntHealthyNeighbors++; }
+            }
+        }
+        if (this.right != null) {
+            if (this.right.getColony() != null) {
+                if (this.right.getColony().isHealthy()) { cntHealthyNeighbors++; }
+            }
+        }
+
+     /*   if (this.up != null && this.up.getColony().isHealthy()) {
             cntHealthyNeighbors++;
         }
         if (this.up.left != null && this.up.left.getColony().isHealthy()) {
@@ -124,7 +165,7 @@ public class ForestField {
         }
         if (this.right != null && this.right.getColony().isHealthy()) {
             cntHealthyNeighbors++;
-        }
+        }   */
 
 
         return cntHealthyNeighbors;
@@ -142,7 +183,48 @@ public class ForestField {
     public synchronized int getInfectedNeighbors() {
         int cntInfectedNeighbors = 0;
 
-        if (this.up != null && !this.up.getColony().isHealthy()) {
+        if (this.up != null) {
+            if (this.up.getColony() != null) {
+                if (!this.up.getColony().isHealthy()) { cntInfectedNeighbors++; }
+            }
+        }
+        if (this.up.left != null) {
+            if (this.up.left.getColony() != null) {
+                if (!this.up.left.getColony().isHealthy()) { cntInfectedNeighbors++; }
+            }
+        }
+        if (this.up.right != null) {
+            if (this.up.right.getColony() != null) {
+                if (!this.up.right.getColony().isHealthy()) { cntInfectedNeighbors++; }
+            }
+        }
+        if (this.left != null) {
+            if (this.left.getColony() != null) {
+                if (!this.left.getColony().isHealthy()) { cntInfectedNeighbors++; }
+            }
+        }
+        if (this.down != null) {
+            if (this.down.getColony() != null) {
+                if (!this.down.getColony().isHealthy()) { cntInfectedNeighbors++; }
+            }
+        }
+        if (this.down.left != null) {
+            if (this.down.left.getColony() != null) {
+                if (!this.down.left.getColony().isHealthy()) { cntInfectedNeighbors++; }
+            }
+        }
+        if (this.down.right != null) {
+            if (this.down.right.getColony() != null) {
+                if (!this.down.right.getColony().isHealthy()) { cntInfectedNeighbors++; }
+            }
+        }
+        if (this.right != null) {
+            if (this.right.getColony() != null) {
+                if (!this.right.getColony().isHealthy()) { cntInfectedNeighbors++; }
+            }
+        }
+
+       /* if (this.up != null && !this.up.getColony().isHealthy()) {
             cntInfectedNeighbors++;
         }
         if (this.up.left != null && !this.up.left.getColony().isHealthy()) {
@@ -165,7 +247,7 @@ public class ForestField {
         }
         if (this.right != null && !this.right.getColony().isHealthy()) {
             cntInfectedNeighbors++;
-        }
+        }   */
 
         return cntInfectedNeighbors;
     }

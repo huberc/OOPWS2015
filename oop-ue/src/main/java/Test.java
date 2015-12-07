@@ -12,8 +12,8 @@ public class Test {
     public static void main(String[] args) {
         Test test = new Test();
 
-        System.out.println(test.testForest());
-        System.out.println(test.testForestField());
+        System.out.println("testForest: " + test.testForest());
+        System.out.println("testForestField: " + test.testForestField());
 
        /* Point[] points = new Point[3];
         points[0] = new Point(1,0);
@@ -63,6 +63,24 @@ public class Test {
             return false;
         }
 
+        forest.placeColony(points[0]);
+        forest.placeColony(points[1]);
+        forest.placeColony(points[2]);
+        for(int i = 0; i < 3; i++) {
+            if ((forest.getFieldAt(points[i])) == null) {
+                System.out.println("placeColony(Point pos) not working correctly.");
+                return false;
+            }
+        }
+
+        /**
+         * TODO:
+         *      getFieldAt
+         *      toString
+         *      start
+         *      initFields (ueber Konstruktoren bereits getestet
+         */
+
         return true;
     }
 
@@ -73,32 +91,30 @@ public class Test {
         BugColony colony = new BugColony(forest.getFieldAt(tmp));
         colony.setHealthy(false);
         forest.placeColony(colony, tmp);
-        Point tmp2 = new Point(3,2);
-        BugColony colony2 = new BugColony(forest.getFieldAt(tmp2));
-        forest.placeColony(colony2, tmp2);
+        forest.placeColony(new Point(3,2));
 
-        System.out.println(forest.toString());
-
-        if (forest.getFieldAt(new Point(1,1)).checkNeighborhoodFree() == true) {
-            System.out.println("(1,1) true.");
-        }
-        if (forest.getFieldAt(new Point(2,1)).checkNeighborhoodFree() == true) {
-            System.out.println("(3,0) true.");
-        }
-        if (forest.getFieldAt(new Point(1,2)).checkNeighborhoodFree() == false) {
-            System.out.println("(1,2) false.");
-        }
-        if (forest.getFieldAt(new Point(2,2)).checkNeighborhoodFree() == false) {
-            System.out.println("(2,2) false.");
+        if ((forest.getFieldAt(new Point(1,1)).checkNeighborhoodFree() != true) ||
+                (forest.getFieldAt(new Point(3,0)).checkNeighborhoodFree() != true) ||
+                (forest.getFieldAt(new Point(1,2)).checkNeighborhoodFree() != false) ||
+                (forest.getFieldAt(new Point(2,2)).checkNeighborhoodFree() != false)) {
+            return false;
         }
 
-        if ((forest.getFieldAt(new Point(1,1)).checkNeighborhoodFree() == true) &&
-                (forest.getFieldAt(new Point(3,0)).checkNeighborhoodFree() == true) &&
-                (forest.getFieldAt(new Point(1,2)).checkNeighborhoodFree() == false) &&
-                (forest.getFieldAt(new Point(2,2)).checkNeighborhoodFree() == false)) {
-            return true;
+        //getHealthyNeighbours
+        Point tmp1 = new Point(2,1);
+        BugColony colony1 = new BugColony(forest.getFieldAt(tmp1));
+        colony1.setHealthy(false);
+        forest.placeColony(colony1, tmp1);
+        forest.placeColony(new Point(2,3));
+        forest.placeColony(new Point(0,2));
+
+        if ((forest.getFieldAt(new Point(1,2)).getInfectedNeighbors() != 2) ||
+                (forest.getFieldAt(new Point(1,2)).getHealthyNeighbors() != 2) ||
+                (forest.getFieldAt(new Point(2,2)).getInfectedNeighbors() != 1) ||
+                (forest.getFieldAt(new Point(2,2)).getHealthyNeighbors() != 2) ) {
+            return false;
         }
 
-        return false;
+        return true;
     }
 }
