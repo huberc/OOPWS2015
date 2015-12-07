@@ -52,7 +52,7 @@ public class Test {
         int counter = 0;
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
-                ForestField tmp = forest.getFieldAt(new Point(x,y));
+                ForestField tmp = forest2.getFieldAt(new Point(x,y));
                 if (tmp.getColony() != null) {
                     counter++;
                 }
