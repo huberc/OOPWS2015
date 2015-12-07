@@ -54,6 +54,17 @@ public class Forest {
         }
     }
 
+    /**
+     * used for testing
+     * Preconditions: bugColony and point are not null, point lays in the Forest
+     * Postconditions: bugColony has been set on the given point
+     * @param bugColony colony to be placed at point
+     * @param point position with x- and y-coordinates where bugColony should be placed
+     */
+    public void placeColony(BugColony bugColony, Point point) {
+        getFieldAt(point).setColony(bugColony);
+    }
+
     public ForestField getFieldAt(Point pos) {
         ForestField current = topLeft;
         for (int i = 0; i < pos.getY(); i++) {
