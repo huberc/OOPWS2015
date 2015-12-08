@@ -1,13 +1,38 @@
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * forest consisting of ForestFields layed out in a grid pattern
+ * forest consisting of ForestFields layed out in a grid pattern.
+ * Note that Forest is a Singleton (i.e. there can only be one instance of forest!)
+ * In order for the forest to be properly inititalized, one of the init methods MUST be called
+ * before the first call to getInstance!
  */
 public class Forest {
 
+    private static Forest instance;
+    
+    private List<Thread> colonies = new ArrayList<>();
+    
     private ForestField topLeft = new ForestField();
     private int width,height;
 
+    public static Forest getInstance(){
+        return Forest.instance;
+    }
+    
+    public static void init(int width, int height){
+        Forest.instance = new Forest(width, height);
+    }
+    
+    public static void init(int width, int height, Point... colonies){
+        Forest.instance = new Forest(width, height, colonies);
+    }
+    
+    public static void init(int width, int height, int numColonies){
+        Forest.instance = new Forest(width, height, numColonies);
+    }
+    
     /**
      * generating a new Forest
      * Precondition: width and height are not null and > 0
@@ -15,7 +40,7 @@ public class Forest {
      * @param width     width of new forest
      * @param height    height of new forest
      */
-    public Forest(int width, int height) {
+    private Forest(int width, int height) {
         this.width = width;
         this.height = height;
         this.initFields(width, height);
@@ -30,7 +55,7 @@ public class Forest {
      * @param height    height of new forest
      * @param colonies  List of Points where new colonies should be created
      */
-    public Forest(int width, int height, Point... colonies) {
+    private Forest(int width, int height, Point... colonies) {
         this.width = width;
         this.height = height;
         this.initFields(width, height);
@@ -48,7 +73,7 @@ public class Forest {
      * @param height    height of new forest
      * @param numColonies   number of colonies that should be placed in this forest
      */
-    public Forest(int width, int height, int numColonies) {
+    private Forest(int width, int height, int numColonies) {
         this.width = width;
         this.height = height;
         this.initFields(width, height);
@@ -116,7 +141,7 @@ public class Forest {
      * Postcondition: an illustration of this forest in form of a String has been returned
      * @return  illustration of this forest in form of a String
      */
-    public synchronized String toString() {
+    public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("+");
         for(int i=0;i<width;i++){
@@ -148,14 +173,24 @@ public class Forest {
     }
 
     // starts all simulations
-    public void start() {
+    public void startSimulation() {
+        Thread t;
         for (int y=0;y<height;y++){
             for (int x=0;x<width;x++){
                 ForestField current = getFieldAt(new Point(x,y));
                 if(current.getColony() != null){
-                    current.getColony().run();
+                    t = new Thread(current.getColony());
+                    this.colonies.add(t);
+                    t.start();
                 }
             }
+        }
+    }
+    
+    public void stopSimulation(){
+        System.out.println("Stopping simulation");
+        for(Thread t : this.colonies){
+            t.interrupt();
         }
     }
 
