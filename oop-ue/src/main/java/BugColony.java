@@ -30,39 +30,45 @@ public class BugColony implements Runnable {
         this(home);
         this.steps = origin.steps;
     }
-
+    
     @Override
     public void run() {
         while (this.steps < BugColony.MAX_STEPS) {
             try {
+                System.out.println("Colony waiting..");
                 Thread.sleep((long) BugColony.calcWaitMsecs());
             } catch (InterruptedException ex) {
                 System.err.println("Thread interrupted...");
             }
             // create new colony on neighbor field if possible
+            System.out.println("Starting to do stuff...");
             if (this.healthy && this.home.checkNeighborhoodFree()) {
-                ForestField settlingTarget = this.home.getRandomFreeNeighbor();
+                List<ForestField> fields = this.home.getFreeNeighbors();
+                // TODO do nothing if list size is zero!!
+                ForestField settlingTarget = fields.get((int) (Math.random() * fields.size()));
+                boolean replicated = false;
+                System.out.println("Colony replicating...");
                 synchronized (settlingTarget) {
                     // check again if the settling target is free, 
                     // another thread could try to settle on the same target!
-                    boolean replicated = false;
                     if (settlingTarget.getColony() == null) {
                         BugColony newCol = new BugColony(settlingTarget, this);
                         settlingTarget.setColony(newCol);
                         new Thread(newCol).start();
                         replicated = true;
                     }
-                    if (replicated) {
-                        Forest forest = Forest.getInstance();
-                        synchronized (forest) {
-                            System.out.println(forest.toString());
-                        }
-                    }
                     // if another thread did settle in the meantime, just don't do anything
+                }
+                if (replicated) {
+                    Forest forest = Forest.getInstance();
+                    synchronized (forest) {
+                        System.out.println(forest.toString());
+                    }
                 }
             }
             // if an infected colony has 2 infected neighbors infect them, die afterwards
             if (!this.healthy) {
+                System.out.println("Infected colony infecting...");
                 List<ForestField> healthyNeighbors = this.home.getHealthyNeighbors();
                 if (healthyNeighbors.size() >= 2) {
                     for (int i = 0; i < 2; i++) {
@@ -73,6 +79,7 @@ public class BugColony implements Runnable {
                     }
                 }
                 // let the colony die - detach it from forest field
+                System.out.println("Infected colony dying...");
                 synchronized (this.home) {
                     this.home.setColony(null);
                     break;
@@ -80,6 +87,7 @@ public class BugColony implements Runnable {
             }
             this.steps++;
         }
+        System.out.println("Colony reached max, stopping");
         Forest.getInstance().stopSimulation();
     }
 

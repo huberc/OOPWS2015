@@ -44,49 +44,45 @@ public class ForestField {
     }
 
     /**
-     * Returns a randomly selected neighbor field out of this field's 8-neighborhood that is not yet occupied by bugs
+     * Returns a randomly selected neighbor field out of this field's 8-neighborhood that is not yet occupied
+     * by bugs
      * 
      * Preconditions: All field pointers (left, right, up and down) are properly initialized, i.e. != null
-     * unless this field is an edge field where some neighbors might not exist. 
-     * Postconditions: Randomly selected existing neighbor returned
+     * unless this field is an edge field where some neighbors might not exist. Postconditions: Randomly
+     * selected existing neighbor returned
      * 
      * @return a randomly selected neighboring field of this field that is not null and has no bug colony set
      */
-    public ForestField getRandomFreeNeighbor() {
-        int rand = (int) Math.random() * 8;
-        ForestField retVal = null;
-        do {
-            switch (rand) {
-                case 0:
-                    retVal = (this.up != null) ? this.up.left : null;
-                    break;
-                case 1:
-                    retVal = this.up;
-                    break;
-                case 2:
-                    retVal = (this.up != null) ? this.up.right : null;
-                    break;
-                case 3:
-                    retVal = this.right;
-                    break;
-                case 4:
-                    retVal = (this.down != null) ? this.down.right : null;
-                    break;
-                case 5:
-                    retVal = this.down;
-                    break;
-                case 6:
-                    retVal = (this.down != null) ? this.down.left : null;
-                    break;
-                case 7:
-                    retVal = this.left;
-                    break;
-                default:
-                    // should not happen
-                    throw new IllegalStateException("Not expected random number: " + rand);
+    public List<ForestField> getFreeNeighbors() {
+        List<ForestField> retVal = new ArrayList<>();
+        if (this.up != null) {
+            if (this.up.colony == null) {
+                retVal.add(this.up);
+                if (this.up.left != null && this.up.left.colony == null) {
+                    retVal.add(this.up.left);
+                }
+                if (this.up.right != null && this.up.right.colony == null) {
+                    retVal.add(this.up.right);
+                }
             }
-            rand = (int) Math.random() * 8;
-        } while (retVal == null || retVal.colony != null);
+        }
+        if (this.left != null && this.left.colony == null) {
+            retVal.add(this.left);
+        }
+        if (this.right != null && this.right.colony == null) {
+            retVal.add(this.right);
+        }
+        if (this.down != null) {
+            if (this.down.colony == null) {
+                retVal.add(this.down);
+                if (this.down.left != null && this.down.left.colony == null) {
+                    retVal.add(this.down.left);
+                }
+                if (this.down.right != null && this.down.right.colony == null) {
+                    retVal.add(this.down.right);
+                }
+            }
+        }
         return retVal;
     }
 
@@ -94,12 +90,12 @@ public class ForestField {
      * Returns a randomly selected field out of this field's neighborhood
      * 
      * Preconditions: All field pointers (left, right, up and down) are properly initialized, i.e. != null
-     * unless this field is an edge field where some neighbors might not exist. 
-     * Postconditions: Randomly selected existing neighbor
+     * unless this field is an edge field where some neighbors might not exist. Postconditions: Randomly
+     * selected existing neighbor
      * 
      * @return Randomly selected existing neighbor
      */
-    public ForestField getRandomNeighbor(){
+    public ForestField getRandomNeighbor() {
         int rand = (int) Math.random() * 8;
         ForestField retVal = null;
         do {
@@ -134,9 +130,9 @@ public class ForestField {
             }
             rand = (int) Math.random() * 8;
         } while (retVal == null);
-        return retVal;        
+        return retVal;
     }
-    
+
     /**
      * Preconditions: All field pointers (left, right, up and down) are properly initialized, i.e. != null
      * unless this field is an edge field where some neighbors might not exist.
@@ -278,8 +274,7 @@ public class ForestField {
 
         return retVal;
     }
-    
-    
+
     /**
      * Preconditions: All field pointers (left, right, up and down) are properly initialized, i.e. != null
      * unless this field is an edge field where some neighbors might not exist.
