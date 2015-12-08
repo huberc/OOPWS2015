@@ -30,7 +30,7 @@ public class BugColony implements Runnable {
         this(home);
         this.steps = origin.steps;
     }
-    
+
     @Override
     public void run() {
         while (this.steps < BugColony.MAX_STEPS) {
@@ -44,26 +44,30 @@ public class BugColony implements Runnable {
             System.out.println("Starting to do stuff...");
             if (this.healthy && this.home.checkNeighborhoodFree()) {
                 List<ForestField> fields = this.home.getFreeNeighbors();
-                // TODO do nothing if list size is zero!!
-                ForestField settlingTarget = fields.get((int) (Math.random() * fields.size()));
-                boolean replicated = false;
-                System.out.println("Colony replicating...");
-                synchronized (settlingTarget) {
-                    // check again if the settling target is free, 
-                    // another thread could try to settle on the same target!
-                    if (settlingTarget.getColony() == null) {
-                        BugColony newCol = new BugColony(settlingTarget, this);
-                        settlingTarget.setColony(newCol);
-                        new Thread(newCol).start();
-                        replicated = true;
+                try {
+                    ForestField settlingTarget = fields.get((int) (Math.random() * fields.size()));
+                    boolean replicated = false;
+                    System.out.println("Colony replicating...");
+                    synchronized (settlingTarget) {
+                        // check again if the settling target is free, 
+                        // another thread could try to settle on the same target!
+                        if (settlingTarget.getColony() == null) {
+                            BugColony newCol = new BugColony(settlingTarget, this);
+                            settlingTarget.setColony(newCol);
+                            new Thread(newCol).start();
+                            replicated = true;
+                        }
+                        // if another thread did settle in the meantime, just don't do anything
                     }
-                    // if another thread did settle in the meantime, just don't do anything
-                }
-                if (replicated) {
-                    Forest forest = Forest.getInstance();
-                    synchronized (forest) {
-                        System.out.println(forest.toString());
+                    if (replicated) {
+                        Forest forest = Forest.getInstance();
+                        synchronized (forest) {
+                            System.out.println(forest.toString());
+                        }
                     }
+                } catch (IndexOutOfBoundsException ex) {
+                    // cannot settle because another thread was faster
+                    // TODO maybe print some warning...
                 }
             }
             // if an infected colony has 2 infected neighbors infect them, die afterwards
