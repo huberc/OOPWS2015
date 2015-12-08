@@ -343,30 +343,6 @@ public class ForestField {
             }
         }
 
-        /* if (this.up != null && !this.up.getColony().isHealthy()) {
-             cntInfectedNeighbors++;
-         }
-         if (this.up.left != null && !this.up.left.getColony().isHealthy()) {
-             cntInfectedNeighbors++;
-         }
-         if (this.up.right != null && !this.up.right.getColony().isHealthy()) {
-             cntInfectedNeighbors++;
-         }
-         if (this.left != null && !this.left.getColony().isHealthy()) {
-             cntInfectedNeighbors++;
-         }
-         if (this.down != null && !this.down.getColony().isHealthy()) {
-             cntInfectedNeighbors++;
-         }
-         if (this.down.left != null && !this.down.left.getColony().isHealthy()) {
-             cntInfectedNeighbors++;
-         }
-         if (this.down.right != null && !this.down.right.getColony().isHealthy()) {
-             cntInfectedNeighbors++;
-         }
-         if (this.right != null && !this.right.getColony().isHealthy()) {
-             cntInfectedNeighbors++;
-         }   */
 
         return cntInfectedNeighbors;
     }

@@ -119,4 +119,8 @@ public class BugColony implements Runnable {
     public static final int calcWaitMsecs() {
         return 5 + (int) (Math.random() * 46);
     }
+
+	public String toString(){
+		return "Steps taken: "+steps;
+	}
 }

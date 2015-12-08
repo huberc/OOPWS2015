@@ -192,6 +192,17 @@ public class Forest {
         for(Thread t : this.colonies){
             t.interrupt();
         }
+        for (int y=0;y<height;y++) {
+            for (int x = 0; x < width; x++) {
+                ForestField current = getFieldAt(new Point(x,y));
+                BugColony currentBugColony = current.getColony();
+                if(currentBugColony != null){
+                    if(currentBugColony.isHealthy()){
+                        System.out.println("On position: ("+x+","+y+") a healthy BugColony exists with "+currentBugColony.toString());
+                    }
+                }
+            }
+        }
     }
 
     /**
