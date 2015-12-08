@@ -1,4 +1,6 @@
-
+/**
+ * one Field of the grid pattern of a forest
+ */
 public class ForestField {
 
     private BugColony colony = null;
@@ -91,7 +93,7 @@ public class ForestField {
     }
 
     /**
-     * Preconditions: All field pointers (left, right, up and down) are properly intitialized, i.e. != null unless
+     * Preconditions: All field pointers (left, right, up and down) are properly initialized, i.e. != null unless
      * this field is an edge field where some neighbors might not exist.
      * <p>
      * Postconditions: All healthy neighbors are counted.
@@ -105,15 +107,15 @@ public class ForestField {
             if (this.up.getColony() != null) {
                 if (this.up.getColony().isHealthy()) { cntHealthyNeighbors++; }
             }
-        }
-        if (this.up.left != null) {
-            if (this.up.left.getColony() != null) {
-                if (this.up.left.getColony().isHealthy()) { cntHealthyNeighbors++; }
+            if (this.up.left != null) {
+                if (this.up.left.getColony() != null) {
+                    if (this.up.left.getColony().isHealthy()) { cntHealthyNeighbors++; }
+                }
             }
-        }
-        if (this.up.right != null) {
-            if (this.up.right.getColony() != null) {
-                if (this.up.right.getColony().isHealthy()) { cntHealthyNeighbors++; }
+            if (this.up.right != null) {
+                if (this.up.right.getColony() != null) {
+                    if (this.up.right.getColony().isHealthy()) { cntHealthyNeighbors++; }
+                }
             }
         }
         if (this.left != null) {
@@ -125,15 +127,15 @@ public class ForestField {
             if (this.down.getColony() != null) {
                 if (this.down.getColony().isHealthy()) { cntHealthyNeighbors++; }
             }
-        }
-        if (this.down.left != null) {
-            if (this.down.left.getColony() != null) {
-                if (this.down.left.getColony().isHealthy()) { cntHealthyNeighbors++; }
+            if (this.down.left != null) {
+                if (this.down.left.getColony() != null) {
+                    if (this.down.left.getColony().isHealthy()) { cntHealthyNeighbors++; }
+                }
             }
-        }
-        if (this.down.right != null) {
-            if (this.down.right.getColony() != null) {
-                if (this.down.right.getColony().isHealthy()) { cntHealthyNeighbors++; }
+            if (this.down.right != null) {
+                if (this.down.right.getColony() != null) {
+                    if (this.down.right.getColony().isHealthy()) { cntHealthyNeighbors++; }
+                }
             }
         }
         if (this.right != null) {
@@ -173,7 +175,7 @@ public class ForestField {
 
 
     /**
-     * Preconditions: All field pointers (left, right, up and down) are properly intitialized, i.e. != null unless
+     * Preconditions: All field pointers (left, right, up and down) are properly initialized, i.e. != null unless
      * this field is an edge field where some neighbors might not exist.
      * <p>
      * Postconditions: All infected neighbors are counted.
@@ -187,15 +189,15 @@ public class ForestField {
             if (this.up.getColony() != null) {
                 if (!this.up.getColony().isHealthy()) { cntInfectedNeighbors++; }
             }
-        }
-        if (this.up.left != null) {
-            if (this.up.left.getColony() != null) {
-                if (!this.up.left.getColony().isHealthy()) { cntInfectedNeighbors++; }
+            if (this.up.left != null) {
+                if (this.up.left.getColony() != null) {
+                    if (!this.up.left.getColony().isHealthy()) { cntInfectedNeighbors++; }
+                }
             }
-        }
-        if (this.up.right != null) {
-            if (this.up.right.getColony() != null) {
-                if (!this.up.right.getColony().isHealthy()) { cntInfectedNeighbors++; }
+            if (this.up.right != null) {
+                if (this.up.right.getColony() != null) {
+                    if (!this.up.right.getColony().isHealthy()) { cntInfectedNeighbors++; }
+                }
             }
         }
         if (this.left != null) {
@@ -207,15 +209,15 @@ public class ForestField {
             if (this.down.getColony() != null) {
                 if (!this.down.getColony().isHealthy()) { cntInfectedNeighbors++; }
             }
-        }
-        if (this.down.left != null) {
-            if (this.down.left.getColony() != null) {
-                if (!this.down.left.getColony().isHealthy()) { cntInfectedNeighbors++; }
+            if (this.down.left != null) {
+                if (this.down.left.getColony() != null) {
+                    if (!this.down.left.getColony().isHealthy()) { cntInfectedNeighbors++; }
+                }
             }
-        }
-        if (this.down.right != null) {
-            if (this.down.right.getColony() != null) {
-                if (!this.down.right.getColony().isHealthy()) { cntInfectedNeighbors++; }
+            if (this.down.right != null) {
+                if (this.down.right.getColony() != null) {
+                    if (!this.down.right.getColony().isHealthy()) { cntInfectedNeighbors++; }
+                }
             }
         }
         if (this.right != null) {

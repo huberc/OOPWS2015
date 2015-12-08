@@ -1,17 +1,35 @@
 import java.awt.Point;
 
-
+/**
+ * forest consisting of ForestFields layed out in a grid pattern
+ */
 public class Forest {
 
     private ForestField topLeft = new ForestField();
     private int width,height;
 
+    /**
+     * generating a new Forest
+     * Precondition: width and height are not null and > 0
+     * Postcondition: a new Forest (incl. its ForestFields) with the given width and height has been created
+     * @param width     width of new forest
+     * @param height    height of new forest
+     */
     public Forest(int width, int height) {
         this.width = width;
         this.height = height;
         this.initFields(width, height);
     }
 
+    /**
+     * generating a new Forest
+     * Precondition: width, height and colonies are not null and width and height are > 0
+     * Postcondition: a new Forest (incl. its ForestFields) with the given width and height has been created
+     *  and colonies placed on the given points
+     * @param width     width of new forest
+     * @param height    height of new forest
+     * @param colonies  List of Points where new colonies should be created
+     */
     public Forest(int width, int height, Point... colonies) {
         this.width = width;
         this.height = height;
@@ -21,6 +39,15 @@ public class Forest {
         }
     }
 
+    /**
+     * generating a new Forest
+     * Precondition: width, height and numColonies are not null and > 0
+     * Postcondition: a new Forest (incl. its ForestFields) with the given width and height has been created
+     *  and the given number of colonies have been placed in the forest
+     * @param width     width of new forest
+     * @param height    height of new forest
+     * @param numColonies   number of colonies that should be placed in this forest
+     */
     public Forest(int width, int height, int numColonies) {
         this.width = width;
         this.height = height;
@@ -42,7 +69,8 @@ public class Forest {
     }
 
     /**
-     *
+     * Precondition: pos is not null and lays in the forest (x/y not bigger than width/height)
+     * Postcondition: a new BugColony has been placed on the given position
      * @param pos position with x- and y-coordinates where a new colony should be placed
      */
     public void placeColony(Point pos) {
@@ -65,6 +93,12 @@ public class Forest {
         getFieldAt(point).setColony(bugColony);
     }
 
+    /**
+     * Precondition: pos is not null and lays in the forest (x/y not bigger than width/height)
+     * Postcondition: ForestField at the given position has been returned
+     * @param pos   position with x- and y-coordinates which ForestField should be returned
+     * @return      ForestField at given position
+     */
     public ForestField getFieldAt(Point pos) {
         ForestField current = topLeft;
         for (int i = 0; i < pos.getY(); i++) {
@@ -77,7 +111,11 @@ public class Forest {
         return current;
     }
 
-
+    /**
+     * Precondition: Forest, width, height and all ForestFields of this Forest have been initialized
+     * Postcondition: an illustration of this forest in form of a String has been returned
+     * @return  illustration of this forest in form of a String
+     */
     public synchronized String toString() {
         StringBuilder result = new StringBuilder();
         result.append("+");
@@ -121,6 +159,12 @@ public class Forest {
         }
     }
 
+    /**
+     * Precondition: width and height are not null and > 0
+     * Postcondition: ForestFields for the given width and height have been initialized for this forest
+     * @param width     width of new forest which ForestFields should be initialized
+     * @param height    height of new forest which ForestFields should be initialized
+     */
     public void initFields(int width, int height) {
 
         ForestField currentY = topLeft;

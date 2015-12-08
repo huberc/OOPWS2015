@@ -73,14 +73,6 @@ public class Test {
             }
         }
 
-        /**
-         * TODO:
-         *      getFieldAt
-         *      toString
-         *      start
-         *      initFields (ueber Konstruktoren bereits getestet
-         */
-
         return true;
     }
 
