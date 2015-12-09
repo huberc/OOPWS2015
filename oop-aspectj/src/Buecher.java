@@ -4,4 +4,8 @@
 public class Buecher extends Geschenk{
 	private int breite;
 	private int laenge;
+	
+	public enum supportedSchachteln{
+		Rechteck;
+	}
 }

@@ -15,3 +15,15 @@
 /Wuerfel.class
 /QuadratischeKecksdose.class
 /RechteckigesLebkuchenhaus.class
+/Baelle$supportedSchachteln.class
+/Buecher$supportedSchachteln.class
+/Geschenk$Form.class
+/QuadratischeKecksdose$supportedSchachteln.class
+/QuadratischeSchachtel$supportedSchachteln.class
+/RechteckigeSchachtel$supportedSchachteln.class
+/RechteckigesLebkuchenhaus$supportedSchachteln.class
+/RundeSchachtel$supportedSchachteln.class
+/SechseckigeKerze$supportedSchachteln.class
+/SechseckigeSchachtel$supportedSchachteln.class
+/SechseckigeVase$supportedSchachteln.class
+/Wuerfel$supportedSchachteln.class
