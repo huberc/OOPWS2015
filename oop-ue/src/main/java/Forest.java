@@ -229,6 +229,7 @@ public class Forest {
                 }
             }
         }
+        System.out.println(this.toString());
     }
 
     /**

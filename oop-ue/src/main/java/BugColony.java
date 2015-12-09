@@ -98,10 +98,16 @@ public class BugColony implements Runnable {
                 }
                 // let the colony die - detach it from forest field
                 System.out.println("Infected colony dying...");
+
+                Forest forest1 = Forest.getInstance();
+                synchronized (forest1) {
+                    System.out.println(forest1.toString());
+                }
                 synchronized (this.home) {
                     this.home.setColony(null);
                     break;
                 }
+
             }
             this.steps++;
         }
