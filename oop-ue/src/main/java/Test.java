@@ -151,7 +151,7 @@ public class Test {
         BugColony colony1 = new BugColony(forest.getFieldAt(tmp1));
 
         if ((colony.isHealthy()) || (!colony1.isHealthy())) {
-            System.out.println("BugColony(ForestField home) not working correctly");
+            System.out.println("BugColony(ForestField home) is not working correctly.");
             return false;
         }
 
@@ -162,7 +162,31 @@ public class Test {
         BugColony colony3 = new BugColony(forest.getFieldAt(tmp3), colony2);
 
         if ((colony2.getSteps() != 12) || (colony3.getSteps() != 12) || (!colony2.isHealthy()) || (!colony3.isHealthy())) {
-            System.out.println("BugColony(ForestField home, BugColony origin) not working correctly");
+            System.out.println("BugColony(ForestField home, BugColony origin) is not working correctly.");
+            return false;
+        }
+
+        Forest.init(2,1);
+        forest = Forest.getInstance();
+        Point point = new Point(0,0);
+        BugColony colony4 = new BugColony(forest.getFieldAt(point));
+        forest.placeColony(colony4, point);
+        colony4.run();
+
+        if (forest.getFieldAt(new Point(1,0)).getColony() == null) {
+            System.out.println("run() is not working correctly.");
+            return false;
+        }
+
+        Forest.init(2,1);
+        forest = Forest.getInstance();
+        BugColony colony5 = new BugColony(forest.getFieldAt(point));
+        colony5.setHealthy(false);
+        forest.placeColony(colony5, point);
+        colony5.run();
+
+        if (forest.getFieldAt(new Point(1,0)).getColony() != null) {
+            System.out.println("run() is not working correctly.");
             return false;
         }
 
