@@ -4,4 +4,8 @@
 public class Baelle extends Geschenk{
 	
 	private int radius;
+	
+	public enum supportedSchachteln{
+		Kreis,Quadrat,Sechseck;
+	}
 }
