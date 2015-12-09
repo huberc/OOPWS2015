@@ -23,6 +23,21 @@ public class Test {
     private static boolean testSim(){
         Forest.init(10, 10, 3);
         Forest.getInstance().startSimulation();
+
+        Point[] points = new Point[8];
+        int counter = 0;
+        for (int x = 0; x < 3; x ++) {
+            points[counter] = new Point(x, 0);
+            counter++;
+        }
+        for (int x = 0; x < 3; x ++) {
+            points[counter] = new Point(x, 2);
+            counter++;
+        }
+        points[6] = new Point(0,1);
+        points[7] = new Point(2,1);
+        Forest.init(4,4,points);
+        Forest.getInstance().startSimulation();
         return true;
     }
     
