@@ -190,6 +190,22 @@ public class Test {
             return false;
         }
 
+        Forest.init(2,2);
+        forest = Forest.getInstance();
+        forest.placeColony(new Point(0,1));
+        forest.placeColony(new Point(1,0));
+        BugColony colony6 = new BugColony(forest.getFieldAt(point));
+        colony6.setHealthy(false);
+        forest.placeColony(colony6, point);
+        colony6.run();
+
+        if ((forest.getFieldAt(point).getColony() != null) ||
+                (forest.getFieldAt(new Point(0,1)).getColony().isHealthy()) ||
+                (forest.getFieldAt(new Point(1,0)).getColony().isHealthy())) {
+            System.out.println("run() is not working correctly.");
+            return false;
+        }
+
         return true;
     }
 }

@@ -81,7 +81,7 @@ public class BugColony implements Runnable {
                     }
                 } catch (IndexOutOfBoundsException ex) {
                     // cannot settle because another thread was faster
-                    // TODO maybe print some warning...
+                    System.err.println("Index out of Boundaries.");
                 }
             }
             // if an infected colony has 2 infected neighbors infect them, die afterwards
@@ -113,7 +113,7 @@ public class BugColony implements Runnable {
         return healthy;
     }
 
-    // only used for testing
+    // public for testing
     public void setHealthy(boolean healthy) {
         this.healthy = healthy;
     }
