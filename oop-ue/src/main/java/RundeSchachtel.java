@@ -1,5 +1,5 @@
 /**
  * Created by Christoph on 09.12.2015.
  */
-public class RundeSchachtel {
+public class RundeSchachtel extends Schachtel{
 }

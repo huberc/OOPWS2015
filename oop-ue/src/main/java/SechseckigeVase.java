@@ -1,4 +1,4 @@
 
 public class SechseckigeVase extends Geschenk{
-	private int Seitenlaenge;
+	private int seitenlaenge;
 }
