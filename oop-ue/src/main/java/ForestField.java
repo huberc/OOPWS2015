@@ -25,22 +25,37 @@ public class ForestField {
      *         == null), false otherwise
      */
     public boolean checkNeighborhoodFree() {
-        boolean upperNeighbors = false;
-        boolean middleNeighbors = false;
-        boolean lowerNeighbors = false;
+        boolean upperNeighbors = true;
+        boolean lowerNeighbors = true;
+        boolean leftNeighbor = true;
+        boolean rightNeighbor = true;
 
         if (this.up != null) {
-            upperNeighbors = this.up.colony == null || (this.up.left != null && this.up.left.colony == null)
-                             || (this.up.right != null && this.up.right.colony == null);
+            upperNeighbors = this.up.colony == null;
+            if (this.up.left != null) {
+                upperNeighbors = upperNeighbors && this.up.left.colony == null;
+            }
+            if (this.up.right != null) {
+                upperNeighbors = upperNeighbors && this.up.right.colony == null;
+            }
         }
         if (this.down != null) {
-            lowerNeighbors = this.down.colony == null
-                             || (this.down.left != null && this.down.left.colony == null)
-                             || (this.down.right != null && this.down.right.colony == null);
+            lowerNeighbors = this.down.colony == null;
+            if (this.down.left != null) {
+                lowerNeighbors = lowerNeighbors && this.down.left.colony == null;
+            }
+            if (this.down.right != null) {
+                lowerNeighbors = lowerNeighbors && this.down.right.colony == null;
+            }
         }
-        middleNeighbors = (this.left != null && this.left.colony == null)
-                          || (this.right != null && this.right.colony == null);
-        return upperNeighbors || middleNeighbors || lowerNeighbors;
+        if (this.left != null) {
+            leftNeighbor = this.left.colony == null;
+        }
+        if (this.right != null) {
+            rightNeighbor = this.right.colony == null;
+        }
+
+        return upperNeighbors && leftNeighbor && lowerNeighbors && rightNeighbor;
     }
 
     /**

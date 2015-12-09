@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * forest consisting of ForestFields layed out in a grid pattern.
  * Note that Forest is a Singleton (i.e. there can only be one instance of forest!)
- * In order for the forest to be properly inititalized, one of the init methods MUST be called
+ * In order for the forest to be properly initialized, one of the init methods MUST be called
  * before the first call to getInstance!
  */
 public class Forest {
@@ -20,15 +20,37 @@ public class Forest {
     public static Forest getInstance(){
         return Forest.instance;
     }
-    
+
+    /**
+     * Precondition: width and height are not null and > 0
+     * Postcondition: a new forest instance with the given width and height has been created
+     * @param width width of the new forest instance
+     * @param height height of the new forest instance
+     */
     public static void init(int width, int height){
         Forest.instance = new Forest(width, height);
     }
-    
+
+    /**
+     * Precondition: width, height and colonies are not null and width and height are > 0
+     * Postcondition: a new Forest instance with the given width and height has been created and colonies placed
+     *  on the given points
+     * @param width     width of the new forest instance
+     * @param height    height of the new forest instance
+     * @param colonies  List of Points where new colonies should be created
+     */
     public static void init(int width, int height, Point... colonies){
         Forest.instance = new Forest(width, height, colonies);
     }
-    
+
+    /**
+     * Precondition: width, height and numColonies are not null and > 0
+     * Postcondition: a new Forest instance with the given width and height has been created and the given number
+     *  of colonies have randomly been placed in the forest instance
+     * @param width     width of new forest
+     * @param height    height of new forest
+     * @param numColonies   number of colonies that should be placed in this forest
+     */
     public static void init(int width, int height, int numColonies){
         Forest.instance = new Forest(width, height, numColonies);
     }
@@ -186,7 +208,11 @@ public class Forest {
             }
         }
     }
-    
+
+    /**
+     * Precondition: startSimulation() has been performed
+     * Postcondition: the Simulation of this forest has stopped
+     */
     public void stopSimulation(){
         System.out.println("Stopping simulation");
         for(Thread t : this.colonies){

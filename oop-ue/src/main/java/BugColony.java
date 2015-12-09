@@ -19,6 +19,11 @@ public class BugColony implements Runnable {
 
     private int             steps     = 0;
 
+    /**
+     * Precondition: home is not null and lays in the forest
+     * Postcondition: a BugColony has been created with a set home (infected if all 8 neighbours are healthy, otherwise healty)
+     * @param home  ForestField where colony should be placed
+     */
     public BugColony(ForestField home) {
         this.home = home;
         if (this.home.getNumHealthyNeighbors() == 8) {
@@ -26,12 +31,21 @@ public class BugColony implements Runnable {
         }
     }
 
+    /**
+     * Precondition: home is not null and lays in the forest, origin is not null
+     * Postcondition: a BugColony has been created with a set home and the steps of the origin colony
+     * @param home  ForestField where colony should be placed
+     * @param origin original BugColony which param should be taken
+     */
     public BugColony(ForestField home, BugColony origin) {
         this(home);
         this.steps = origin.steps;
     }
 
-    @Override
+    /**
+     * Precondition: Forest, Forestfield and BugColony have been initialized
+     * Postcondition: the behaviour of this BugColony has been simulated
+     */
     public void run() {
         while (this.steps < BugColony.MAX_STEPS) {
             try {
@@ -106,6 +120,11 @@ public class BugColony implements Runnable {
 
     public int getSteps() {
         return steps;
+    }
+
+    //only used for testing
+    public void setSteps(int setps) {
+        this.steps = setps;
     }
 
     /**
