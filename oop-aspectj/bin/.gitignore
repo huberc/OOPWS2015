@@ -27,3 +27,12 @@
 /SechseckigeSchachtel$supportedSchachteln.class
 /SechseckigeVase$supportedSchachteln.class
 /Wuerfel$supportedSchachteln.class
+/Zylinder.class
+/Kreis.class
+/Rechteck.class
+/Quadrat.class
+/Sechseck.class
+/Form.class
+/forms/
+/core/
+/schachteln/
