@@ -25,7 +25,7 @@ public class RechteckigeSchachtel extends Rechteck implements Schachtel{
 
 	@Override
 	public boolean passtHinein(Geschenk g) {
-		if(this.getHoehe() < g.getHoehe()+1){
+		if(this.getHoehe() < g.getHoehe()+1 || (this.getHoehe() >g.getHoehe()+3)){
 			return false;
 		}else if(g instanceof Rechteck){
 			Rechteck r = (Rechteck) g;

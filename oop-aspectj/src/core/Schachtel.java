@@ -10,4 +10,5 @@ public interface Schachtel {
 	
 	Geschenk getInhalt();
 	
+	String getName();
 }

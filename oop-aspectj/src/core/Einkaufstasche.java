@@ -23,7 +23,7 @@ public class Einkaufstasche {
 		StringBuilder result = new StringBuilder();
 		result.append("\tEinkaufstascheninhalt:\n");
 		for(int i=0;i<einkaufstasche.size();i++){
-			result.append("\t\t"+einkaufstasche.get(i).getInhalt().getName()+"\n");
+			result.append("\t\t- die "+einkaufstasche.get(i).getName()+" beinhaltet "+einkaufstasche.get(i).getInhalt().getName()+"\n");
 		}
 		
 		return result.toString();

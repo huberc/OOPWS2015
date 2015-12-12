@@ -20,12 +20,12 @@ public class SechseckigeSchachtel extends Sechseck implements Schachtel{
 
 	@Override
 	public boolean passtHinein(Geschenk g) {
-		if ((this.getHoehe() < g.getHoehe()+1) || (this.getHoehe() > g.getHoehe()+2)) {
+		if ((this.getHoehe() < g.getHoehe()+1) || (this.getHoehe() > g.getHoehe()+3)) {
 			return false;
 		} else if (g instanceof Sechseck) {
 			Sechseck s = (Sechseck) g;
 			if ((this.getSeitenlaenge() > s.getSeitenlaenge()+1) && 
-					(this.getSeitenlaenge() < s.getSeitenlaenge()+2)) {
+					(this.getSeitenlaenge() < s.getSeitenlaenge()+3)) {
 				return true;
 			} else {
 				return false;
@@ -33,7 +33,7 @@ public class SechseckigeSchachtel extends Sechseck implements Schachtel{
 		} else if (g instanceof Kreis) {
 			Kreis k = (Kreis) g;
 			if ((this.getInkreisDurchmesser() > k.getDurchmesser()+1) &&
-					(this.getInkreisDurchmesser() < k.getDurchmesser()+2)) {
+					(this.getInkreisDurchmesser() < k.getDurchmesser()+3)) {
 				return true;
 			} else {
 				return false;

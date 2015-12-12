@@ -3,8 +3,10 @@ package core;
 import java.util.ArrayList;
 import java.util.List;
 
+import schachteln.QuadratischeSchachtel;
 import schachteln.RechteckigeSchachtel;
 import schachteln.RundeSchachtel;
+import schachteln.SechseckigeSchachtel;
 
 public class Schachtellager {
 
@@ -17,17 +19,17 @@ public class Schachtellager {
 		rundeSchachteln.add(r);
 	}
 	
-//	public void addQuadratischeSchachtel(QuadratischeSchachtel q){
-//		quadratischeSchachteln.add(q);
-//	}
+	public void addQuadratischeSchachtel(QuadratischeSchachtel q){
+		quadratischeSchachteln.add(q);
+	}
 	
 	public void addRechteckigeSchachtel(RechteckigeSchachtel r){
 		rechteckigeSchachteln.add(r);
 	}
 	
-//	public void addSechseckigeSchachtel(SechseckigeSchachtel s){
-//		sechseckigeSchachteln.add(s);
-//	}
+	public void addSechseckigeSchachtel(SechseckigeSchachtel s){
+		sechseckigeSchachteln.add(s);
+	}
 	
 	public void verpacke(Geschenk g, Einkaufstasche e) {
 		g.verpackeGeschenk(this, e);

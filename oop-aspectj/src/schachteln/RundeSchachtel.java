@@ -20,7 +20,7 @@ public class RundeSchachtel extends Kreis implements Schachtel{
 
 	@Override
 	public boolean passtHinein(Geschenk g) {
-		if(this.getHoehe() < g.getHoehe()+1){
+		if(this.getHoehe() < g.getHoehe()+1 || (this.getHoehe() >g.getHoehe()+3)){
 			return false;
 		}else if(g instanceof Kreis){
 			Kreis k = (Kreis) g;
