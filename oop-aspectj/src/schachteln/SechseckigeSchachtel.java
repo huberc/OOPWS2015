@@ -7,7 +7,7 @@ import forms.Sechseck;
 
 public class SechseckigeSchachtel extends Sechseck implements Schachtel{
 
-	Geschenk inhalt;
+	Geschenk inhalt; 
 	
 	public SechseckigeSchachtel(int hoehe, String name, int seitenlaenge) {
 		super(hoehe, name, seitenlaenge);
