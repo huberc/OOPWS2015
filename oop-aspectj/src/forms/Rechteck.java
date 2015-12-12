@@ -7,8 +7,8 @@ import core.Schachtellager;
 public abstract class Rechteck extends Geschenk{
 	
 	@Override
-	public Schachtel<Rechteck> findSchachtel(Schachtellager l){
-		return l.getSchachtelFor(this);
+	public void verpackeGeschenk(Schachtellager l){
+		l.verpackeRechteck(this);
 	}
 	
 }

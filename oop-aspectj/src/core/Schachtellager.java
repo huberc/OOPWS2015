@@ -1,5 +1,8 @@
 package core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import forms.Kreis;
 import forms.Quadrat;
 import forms.Rechteck;
@@ -7,25 +10,28 @@ import forms.Sechseck;
 
 public class Schachtellager {
 
-	public <T extends Geschenk> void verpacke(T g){
-		Schachtel<T> s = g.findSchachtel(this);
-		s.einpacken(g);
+    private List<Schachtel<Kreis>> rundeSchachteln = new ArrayList<>();
+    
+	public Schachtel<? extends Geschenk> verpacke(Geschenk g){
+		return g.verpackeGeschenk(this);
 	}
 	
-	public Schachtel<Kreis> getSchachtelFor(Kreis k){
-		return null;
+	public Schachtel<Kreis> verpackeKreis(Kreis k){
+	    Schachtel<Kreis> box = this.rundeSchachteln.get(0);
+	    box.einpacken(k);
+	    return box;
 	}
 	
-	public Schachtel<Quadrat> getSchachtelFor(Quadrat q){
-		return null;
+	public void verpackeQuadrat(Quadrat q){
+
 	}
 	
-	public Schachtel<Rechteck> getSchachtelFor(Rechteck r){
-		return null;
+	public void verpackeRechteck(Rechteck r){
+
 	}
 	
-	public Schachtel<Sechseck> getSchachtelFor(Sechseck s){
-		return null;
+	public void verpackeSechseck(Sechseck s){
+
 	}
 	
 }
