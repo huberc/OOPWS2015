@@ -1,0 +1,9 @@
+import forms.Rechteck;
+
+public class RechteckigesLebkuchenhaus extends Rechteck {
+
+	public RechteckigesLebkuchenhaus(int hoehe, String name, int breite, int laenge) {
+		super(hoehe, name, breite, laenge);
+	}
+
+}

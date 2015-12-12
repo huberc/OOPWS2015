@@ -41,5 +41,10 @@ public class SechseckigeSchachtel extends Sechseck implements Schachtel{
 		}
 		return false;
 	}
+
+	@Override
+	public Geschenk getInhalt() {
+		return inhalt;
+	}
 	
 }

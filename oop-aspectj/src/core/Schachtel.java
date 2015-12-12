@@ -6,4 +6,8 @@ public interface Schachtel {
 	
 	boolean passtHinein(Geschenk g);
 	
+	double volumen();
+	
+	Geschenk getInhalt();
+	
 }

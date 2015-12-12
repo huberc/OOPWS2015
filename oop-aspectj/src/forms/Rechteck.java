@@ -23,4 +23,8 @@ public abstract class Rechteck extends Geschenk{
 	
 	public int getBreite(){return breite;}
 	
+	public double getFlaeche(){
+		return breite*laenge;
+	}
+	
 }
