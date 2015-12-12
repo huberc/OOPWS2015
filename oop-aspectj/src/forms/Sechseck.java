@@ -26,4 +26,7 @@ public abstract class Sechseck extends Geschenk {
 	public double getInkreisDurchmesser(){
 		return seitenlaenge*Math.sqrt(3);
 	}
+	public double getUmkreisDurchmesser(){
+		return 2.0*seitenlaenge;
+	}
 }

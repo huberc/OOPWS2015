@@ -1,5 +1,3 @@
-import core.Schachtel;
-import core.Schachtellager;
 import forms.Kreis;
 
 public class Weinflasche extends Kreis {
