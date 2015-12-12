@@ -22,16 +22,16 @@ public class Schachtellager {
 	    return box;
 	}
 	
-	public void verpackeQuadrat(Quadrat q){
-
+	public Schachtel<Quadrat> verpackeQuadrat(Quadrat q){
+	    return null;
 	}
 	
-	public void verpackeRechteck(Rechteck r){
-
+	public Schachtel<Rechteck> verpackeRechteck(Rechteck r){
+	    return null;
 	}
 	
-	public void verpackeSechseck(Sechseck s){
-
+	public Schachtel<Sechseck> verpackeSechseck(Sechseck s){
+	    return null;
 	}
 	
 }

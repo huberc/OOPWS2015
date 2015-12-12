@@ -5,7 +5,9 @@ import core.Schachtel;
 import core.Schachtellager;
 
 public abstract class Quadrat extends Geschenk{
-	public void verpackeGeschenk(Schachtellager l){
-		l.verpackeQuadrat(this);
+    
+	public Schachtel<Quadrat> verpackeGeschenk(Schachtellager l){
+		return l.verpackeQuadrat(this);
 	}
+	
 }

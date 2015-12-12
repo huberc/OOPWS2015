@@ -7,7 +7,7 @@ import core.Schachtellager;
 public abstract class Sechseck extends Geschenk {
 	
 	
-	public void verpackeGeschenk(Schachtellager l) {
-		l.verpackeSechseck(this);
+	public Schachtel<Sechseck> verpackeGeschenk(Schachtellager l) {
+		return l.verpackeSechseck(this);
 	}
 }
