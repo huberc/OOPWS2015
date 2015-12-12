@@ -24,14 +24,14 @@ public class RundeSchachtel extends Kreis implements Schachtel{
 			return false;
 		}else if(g instanceof Kreis){
 			Kreis k = (Kreis) g;
-			if(this.getDurchmesser()>k.getDurchmesser()+1){
+			if(this.getDurchmesser()>k.getDurchmesser()+1 && this.getDurchmesser() < k.getDurchmesser()+3){
 				return true;
 			}else{
 				return false;
 			}
 		}else if(g instanceof Sechseck){
 			Sechseck s = (Sechseck) g;
-			if(this.getDurchmesser() > s.getInkreisDurchmesser()+1){
+			if(this.getDurchmesser() > s.getInkreisDurchmesser()+1 && this.getDurchmesser() < s.getInkreisDurchmesser()+3){
 				return true;
 			}else{
 				return false;
