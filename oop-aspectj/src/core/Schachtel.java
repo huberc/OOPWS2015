@@ -1,9 +1,9 @@
 package core;
 
-public interface Schachtel<T extends Geschenk> {
+public interface Schachtel {
 
-	void einpacken(T g);
+	void einpacken(Geschenk g);
 	
-	boolean passtHinein(T g);
+	boolean passtHinein(Geschenk g);
 	
 }
