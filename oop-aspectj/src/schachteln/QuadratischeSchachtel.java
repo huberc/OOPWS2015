@@ -14,7 +14,7 @@ public class QuadratischeSchachtel extends Quadrat implements Schachtel {
 	private Geschenk inhalt;
 	
 	/**
-	 * VB: hoehe, name und seitenlaenge sind nicht null
+	 * VB: hoehe, name und seitenlaenge sind nicht null und hoehe und seitenlaenge >0
 	 * NB: eine QuadratischeSchachtel mit den uebergebenen Parametern wurde erstellt
 	 * 
 	 * @param hoehe		Hoehe der zu erzeugenden Schachtel
@@ -41,6 +41,8 @@ public class QuadratischeSchachtel extends Quadrat implements Schachtel {
 	 * 		passt und ob es auch nicht zu viel Platz hat (damit es nicht verrutscht)
 	 * @param g		Geschenk, dessen Parameter ueberprueft werden ob es in dieser Schachtel 
 	 * 				Platz finden wuerde und ob es auch nicht zu viel Platz hat 
+	 * @return	boolean ob das uebergebene Geschenk in diese Schachtel passt und
+	 * 			ob es nicht zu viel Platz hat
 	 */
 	@Override
 	public boolean passtHinein(Geschenk g) {

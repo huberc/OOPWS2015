@@ -14,7 +14,7 @@ public class RechteckigeSchachtel extends Rechteck implements Schachtel{
 	private Geschenk inhalt;
 	
 	/**
-	 * VB: hoehe, name, breite und laenge sind nicht null
+	 * VB: hoehe, name, breite und laenge sind nicht null und hoehe und breite >0
 	 * NB: eine RechteckigeSchachtel mit den uebergebenen Parametern wurde erzeugt
 	 * @param hoehe		Hoehe der zu erzeugenden Schachtel
 	 * @param name		Name der zu erzeugenden Schachtel
@@ -41,6 +41,8 @@ public class RechteckigeSchachtel extends Rechteck implements Schachtel{
 	 * 		passt und ob es auch nicht zu viel Platz hat (damit es nicht verrutscht)
 	 * @param g		Geschenk, dessen Parameter ueberprueft werden ob es in dieser Schachtel 
 	 * 				Platz finden wuerde und ob es auch nicht zu viel Platz hat 
+	 * @return	boolean ob das uebergebene Geschenk in diese Schachtel passt und
+	 * 			ob es nicht zu viel Platz hat
 	 */
 	@Override
 	public boolean passtHinein(Geschenk g) {

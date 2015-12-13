@@ -14,7 +14,7 @@ public class RundeSchachtel extends Kreis implements Schachtel{
 	private Geschenk inhalt;
 	
 	/**
-	 * VB: hoehe, name und durchmesser sind nicht null
+	 * VB: hoehe, name und durchmesser sind nicht null und hoehe und durchmesser >0
 	 * NB: eine RundeSchachtel mit den uebergebenen Parametern wurde erzeugt
 	 * @param hoehe		Hoehe der zu erzeugenden Schachtel
 	 * @param name		Name der zu erzeugenden Schachtel
@@ -40,6 +40,8 @@ public class RundeSchachtel extends Kreis implements Schachtel{
 	 * 		passt und ob es auch nicht zu viel Platz hat (damit es nicht verrutscht)
 	 * @param g		Geschenk, dessen Parameter ueberprueft werden ob es in dieser Schachtel 
 	 * 				Platz finden wuerde und ob es auch nicht zu viel Platz hat 
+	 * @return	boolean ob das uebergebene Geschenk in diese Schachtel passt und
+	 * 			ob es nicht zu viel Platz hat
 	 */
 	@Override
 	public boolean passtHinein(Geschenk g) {
