@@ -8,7 +8,7 @@ import schachteln.SechseckigeSchachtel;
 public class Test {
 
     public static void main(String[] args){
-        new String("Blubbb");
+    	new String("Blubbb");
         new String("Blaaaa");
         Test test = new Test();
         
@@ -28,7 +28,7 @@ public class Test {
     	Schachtellager schachtellager = new Schachtellager();
     	Einkaufstasche einkaufstasche = new Einkaufstasche();
     	Buecher buch1 = new Buecher(18,"Buch1",14,19);
-    	RechteckigeSchachtel rechteckigeSchachtel = new RechteckigeSchachtel(20, "RechteckigeSchatel 1", 15, 20);
+    	RechteckigeSchachtel rechteckigeSchachtel = new RechteckigeSchachtel(20, "RechteckigeSchachtel 1", 15, 20);
     	
     	schachtellager.addRechteckigeSchachtel(rechteckigeSchachtel);
     	

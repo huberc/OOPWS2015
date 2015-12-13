@@ -1,3 +1,7 @@
+/**
+ * Klasse zur Verwaltung rechteckiger Schachteln
+ */
+
 package schachteln;
 
 import core.Geschenk;
@@ -9,20 +13,35 @@ public class RechteckigeSchachtel extends Rechteck implements Schachtel{
 
 	private Geschenk inhalt;
 	
+	/**
+	 * VB: hoehe, name, breite und laenge sind nicht null
+	 * NB: eine RechteckigeSchachtel mit den uebergebenen Parametern wurde erzeugt
+	 * @param hoehe		Hoehe der zu erzeugenden Schachtel
+	 * @param name		Name der zu erzeugenden Schachtel
+	 * @param breite	Breite der zu erzeugenden Schachtel
+	 * @param laenge	Laenge der zu erzeugenden Schachtel
+	 */
 	public RechteckigeSchachtel(int hoehe, String name, int breite, int laenge) {
 		super(hoehe, name, breite, laenge);	
 	}
 
-	@Override
-	public double getFlaeche() {
-		return this.getBreite()*this.getLaenge();
-	}
-
+	/**
+	 * VB: g ist nicht null
+	 * NB: der Inhalt dieser Schachtel wurde auf g gesetzt
+	 * @param g		Geschenk, das in dieser Schachtel eingepackt werden soll
+	 */
 	@Override
 	public void einpacken(Geschenk g) {
 		inhalt = g;		
 	}
 
+	/**
+	 * VB: g ist nicht null
+	 * NB: ein boolean wurde zurueckgegeben ob das uebergebene Geschenk in diese Schachtel
+	 * 		passt und ob es auch nicht zu viel Platz hat (damit es nicht verrutscht)
+	 * @param g		Geschenk, dessen Parameter ueberprueft werden ob es in dieser Schachtel 
+	 * 				Platz finden wuerde und ob es auch nicht zu viel Platz hat 
+	 */
 	@Override
 	public boolean passtHinein(Geschenk g) {
 		if(this.getHoehe() < g.getHoehe()+1 || (this.getHoehe() >g.getHoehe()+3)){
