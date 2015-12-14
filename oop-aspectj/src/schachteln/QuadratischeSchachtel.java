@@ -46,12 +46,12 @@ public class QuadratischeSchachtel extends Quadrat implements Schachtel {
 	 */
 	@Override
 	public boolean passtHinein(Geschenk g) {
-		if ((this.getHoehe() < g.getHoehe()+1) || (this.getHoehe() >g.getHoehe()+3)) {
+		if ((this.getHoehe() < g.getHoehe()+1) || (this.getHoehe() >= g.getHoehe()+3)) {
 			return false;
 		} else if (g instanceof Quadrat) {
 			Quadrat q = (Quadrat) g;
 			if ((this.getSeitenlaenge() > q.getSeitenlaenge()+1) && 
-					(this.getSeitenlaenge() < q.getSeitenlaenge()+3)) {
+					(this.getSeitenlaenge() <= q.getSeitenlaenge()+3)) {
 				return true;
 			} else {
 				return false;
@@ -59,7 +59,7 @@ public class QuadratischeSchachtel extends Quadrat implements Schachtel {
 		} else if (g instanceof Kreis) {
 			Kreis k = (Kreis) g;
 			if ((this.getSeitenlaenge() > k.getDurchmesser()+1) &&
-					(this.getSeitenlaenge() < k.getDurchmesser()+3)) {
+					(this.getSeitenlaenge() <= k.getDurchmesser()+3)) {
 				return true;
 			} else {
 				return false;

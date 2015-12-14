@@ -111,6 +111,10 @@ public class Test {
     }
     
     private boolean testFallbackAlgorithmus(){
+    	
+    	/**
+    	 * Test runde Geschenk in quadratische Schachtel
+    	 */
     	Schachtellager schachtellager = new Schachtellager();
     	Einkaufstasche einkaufstasche = new Einkaufstasche();
     	
@@ -128,6 +132,72 @@ public class Test {
     	}
     	System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
     	System.out.println(einkaufstasche.inhalt());
+    	
+    	
+    	/**
+    	 *	Test rundes Geschenk in sechseckige Schachtel 
+    	 */
+    	Schachtellager schachtellager1 = new Schachtellager();
+    	
+    	Weinflasche weinflasche = new Weinflasche(10, "Weinflasche", 25);
+    	
+    	SechseckigeSchachtel sechseckigeSchachtel = new SechseckigeSchachtel(12, "SechseckigeSchachtel 1", 16);
+    	
+    	schachtellager1.addSechseckigeSchachtel(sechseckigeSchachtel);
+    	
+    	schachtellager1.verpacke(weinflasche, einkaufstasche);
+    	
+    	if(! ((sechseckigeSchachtel.volumen()+quadratischeSchachtel.volumen()) == einkaufstasche.volumen()))
+    		return false;
+    	if(!(einkaufstasche.inhalt().contains(weinflasche.getName())) && !(einkaufstasche.inhalt().contains(sechseckigeSchachtel.getName()))){
+    		return false;
+    	}
+    	System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
+    	System.out.println(einkaufstasche.inhalt());
+    	
+    	
+    	/**
+    	 *	Test sechseckiges Geschenk in runde Schachtel 
+    	 */
+    	Schachtellager schachtellager2 = new Schachtellager();
+    	
+    	SechseckigeKerze kerze = new SechseckigeKerze(10, "Kerze", 7);
+    	
+    	RundeSchachtel rundeSchachtel = new RundeSchachtel(12, "RundeSchachtel 1", 16);
+    	
+    	schachtellager2.addRundeSchachtel(rundeSchachtel);
+    	
+    	schachtellager2.verpacke(kerze, einkaufstasche);
+    	
+    	if(! ((sechseckigeSchachtel.volumen()+quadratischeSchachtel.volumen()+rundeSchachtel.volumen()) == einkaufstasche.volumen()))
+    		return false;
+    	if(!(einkaufstasche.inhalt().contains(kerze.getName())) && !(einkaufstasche.inhalt().contains(rundeSchachtel.getName()))){
+    		return false;
+    	}
+    	System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
+    	System.out.println(einkaufstasche.inhalt());
+    	
+    	/**
+    	 *	Test sechseckiges Geschenk in rechteckige Schachtel 
+    	 */
+    	Schachtellager schachtellager3 = new Schachtellager();
+    	
+    	SechseckigeVase vase = new SechseckigeVase(10, "Vase", 7);
+    	
+    	RechteckigeSchachtel rechteckigeSchachtel = new RechteckigeSchachtel(12, "RechteckigeSchachtel 1", 16,17);
+    	
+    	schachtellager3.addRechteckigeSchachtel(rechteckigeSchachtel);
+    	
+    	schachtellager3.verpacke(vase, einkaufstasche);
+    	
+    	if(! ((sechseckigeSchachtel.volumen()+quadratischeSchachtel.volumen()+rundeSchachtel.volumen()+rechteckigeSchachtel.volumen()) == einkaufstasche.volumen()))
+    		return false;
+    	if(!(einkaufstasche.inhalt().contains(vase.getName())) && !(einkaufstasche.inhalt().contains(rechteckigeSchachtel.getName()))){
+    		return false;
+    	}
+    	System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
+    	System.out.println(einkaufstasche.inhalt());
+    	
     	
     	return true;
     }

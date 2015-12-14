@@ -73,6 +73,8 @@ public class Schachtellager {
 				box = this.rundeSchachteln.get(i);
 				if (box.passtHinein(g)) {
 					break;
+				}else{
+					box = null;
 				}
 			}
 
@@ -83,6 +85,8 @@ public class Schachtellager {
 					System.out.println(
 							"\tHinweis: es wurde keine passende runde Schachtel gefunden, daher wurde das Geschenk in eine passende quadratische Schachtel gegeben.");
 					break;
+				}else{
+					box = null;
 				}
 			}
 
@@ -92,6 +96,8 @@ public class Schachtellager {
 				if (box.passtHinein(g)) {
 					System.out.println("\tHinweis: es wurde keine passende runde Schachtel gefunden, daher wurde das Geschenk in eine passende sechseckige Schachtel gegeben.");
 					break;
+				}else{
+					box = null;
 				}
 			}
 
@@ -111,6 +117,8 @@ public class Schachtellager {
 				box = this.quadratischeSchachteln.get(i);
 				if (box.passtHinein(g)) {
 					break;
+				}else{
+					box = null;
 				}
 			}
 
@@ -132,6 +140,8 @@ public class Schachtellager {
 				box = this.rechteckigeSchachteln.get(i);
 				if (box.passtHinein(g)) {
 					break;
+				}else{
+					box = null;
 				}
 			}
 		}
@@ -151,6 +161,8 @@ public class Schachtellager {
 				box = this.sechseckigeSchachteln.get(i);
 				if (box.passtHinein(g)) {
 					break;
+				}else{
+					box = null;
 				}
 			}
 
@@ -161,6 +173,8 @@ public class Schachtellager {
 				if (box.passtHinein(g)) {
 					System.out.println("\tHinweis: es wurde keine passende sechseckige Schachtel gefunden, daher wurde das Geschenk in eine passende runde Schachtel gegeben.");
 					break;
+				}else{
+					box = null;
 				}
 			}
 
@@ -171,6 +185,8 @@ public class Schachtellager {
 					System.out.println(
 							"\tHinweis: es wurde keine passende runde Schachtel gefunden, daher wurde das Geschenk in eine passende rechteckige Schachtel gegeben.");
 					break;
+				}else{
+					box = null;
 				}
 			}
 

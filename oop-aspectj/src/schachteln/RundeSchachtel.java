@@ -45,18 +45,18 @@ public class RundeSchachtel extends Kreis implements Schachtel{
 	 */
 	@Override
 	public boolean passtHinein(Geschenk g) {
-		if(this.getHoehe() < g.getHoehe()+1 || (this.getHoehe() >g.getHoehe()+3)){
+		if(this.getHoehe() < g.getHoehe()+1 || (this.getHoehe() >= g.getHoehe()+3)){
 			return false;
 		}else if(g instanceof Kreis){
 			Kreis k = (Kreis) g;
-			if(this.getDurchmesser()>k.getDurchmesser()+1 && this.getDurchmesser() < k.getDurchmesser()+3){
+			if(this.getDurchmesser()>k.getDurchmesser()+1 && this.getDurchmesser() <= k.getDurchmesser()+3){
 				return true;
 			}else{
 				return false;
 			}
 		}else if(g instanceof Sechseck){
 			Sechseck s = (Sechseck) g;
-			if(this.getDurchmesser() > s.getInkreisDurchmesser()+1 && this.getDurchmesser() < s.getInkreisDurchmesser()+3){
+			if(this.getDurchmesser() > s.getUmkreisDurchmesser()+1 && this.getDurchmesser() <= s.getUmkreisDurchmesser()+3){
 				return true;
 			}else{
 				return false;

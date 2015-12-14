@@ -50,15 +50,15 @@ public class RechteckigeSchachtel extends Rechteck implements Schachtel{
 			return false;
 		}else if(g instanceof Rechteck){
 			Rechteck r = (Rechteck) g;
-			if(this.getBreite() >= r.getBreite()+1 && this.getLaenge() >= r.getLaenge()+1 && this.getBreite() < r.getBreite()+3 && this.getLaenge() < r.getLaenge()+3){
+			if(this.getBreite() > r.getBreite()+1 && this.getLaenge() > r.getLaenge()+1 && this.getBreite() <= r.getBreite()+3 && this.getLaenge() <= r.getLaenge()+3){
 				return true;
 			}else{
 				return false;
 			}
 		}else if(g instanceof Sechseck){
 			Sechseck s = (Sechseck) g;
-			if(this.getBreite() >= s.getUmkreisDurchmesser()+1 && this.getBreite() < s.getUmkreisDurchmesser()+3
-					&& this.getLaenge() >= s.getUmkreisDurchmesser()+1 && this.getLaenge() < s.getUmkreisDurchmesser()+3){
+			if(this.getBreite() > s.getUmkreisDurchmesser()+1 && this.getBreite() <= s.getUmkreisDurchmesser()+3
+					&& this.getLaenge() > s.getUmkreisDurchmesser()+1 && this.getLaenge() <= s.getUmkreisDurchmesser()+3){
 				return true;
 			}else{
 				return false;
