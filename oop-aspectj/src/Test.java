@@ -1,4 +1,3 @@
-
 import oop.core.Einkaufstasche;
 import oop.core.Schachtellager;
 import oop.main.Baelle;
@@ -28,6 +27,8 @@ public class Test {
         System.out.println("Test fuer sechseckige Schachtel: "+test.testSeschseckigeSchachtel());
         System.out.println();
         System.out.println("Test fallback Strategie: "+test.testFallbackAlgorithmus());
+		System.out.println();
+		System.out.println("Test keine Schachtel vorhanden: "+test.testKeinSchachtelvorhanden());
         
     }
     
@@ -206,6 +207,26 @@ public class Test {
     	System.out.println(einkaufstasche.inhalt());
     	
     	
+    	return true;
+    }
+    
+    private boolean testKeinSchachtelvorhanden(){
+		Schachtellager schachtellager = new Schachtellager();
+		Einkaufstasche einkaufstasche = new Einkaufstasche();
+		SechseckigeVase vase = new SechseckigeVase(10, "Vase", 7);
+
+		schachtellager.verpacke(vase,einkaufstasche);
+
+		if(!(einkaufstasche.volumen() == vase.volumen())){
+			return false;
+		}
+		if(!(einkaufstasche.inhalt().contains(vase.getName()))){
+			return false;
+		}
+
+		System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
+		System.out.println(einkaufstasche.inhalt());
+
     	return true;
     }
 }
