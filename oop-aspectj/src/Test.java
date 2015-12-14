@@ -1,9 +1,16 @@
-import core.Einkaufstasche;
-import core.Schachtellager;
-import schachteln.QuadratischeSchachtel;
-import schachteln.RechteckigeSchachtel;
-import schachteln.RundeSchachtel;
-import schachteln.SechseckigeSchachtel;
+
+import oop.core.Einkaufstasche;
+import oop.core.Schachtellager;
+import oop.main.Baelle;
+import oop.main.Buecher;
+import oop.main.SechseckigeKerze;
+import oop.main.SechseckigeVase;
+import oop.main.Weinflasche;
+import oop.main.Wuerfel;
+import oop.schachteln.QuadratischeSchachtel;
+import oop.schachteln.RechteckigeSchachtel;
+import oop.schachteln.RundeSchachtel;
+import oop.schachteln.SechseckigeSchachtel;
 
 public class Test {
 
