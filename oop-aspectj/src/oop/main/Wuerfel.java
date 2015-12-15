@@ -2,8 +2,11 @@
  * Wuerfel als Beispiele fuer ein Geschenk mit quadratischen Grundflaechen
  */
 
-import forms.Quadrat;
+package oop.main;
+import oop.core.DevelopedBy;
+import oop.forms.Quadrat;
 
+@DevelopedBy("Ines Rieder")
 public class Wuerfel extends Quadrat{
 
 	/**
@@ -13,6 +16,7 @@ public class Wuerfel extends Quadrat{
 	 * @param name		Name des zu erzeugenden Wuerfels
 	 * @param seitenlaenge	Seitenlaenge des zu erzeugenden Wuerfels
 	 */
+	@DevelopedBy("Ines Rieder")
 	public Wuerfel(int hoehe, String name, int seitenlaenge) {
 		super(hoehe, name, seitenlaenge);
 	}

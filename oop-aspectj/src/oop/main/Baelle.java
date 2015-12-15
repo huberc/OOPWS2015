@@ -2,11 +2,12 @@
  * Baelle als Beispiel fuer Geschenke mit runder Grundflaeche
  */
 
-import forms.Kreis;
+package oop.main;
+import oop.core.DevelopedBy;
+import oop.forms.Kreis;
 
+@DevelopedBy("Ines Rieder")
 public class Baelle extends Kreis{
-	
-	//TODO: ist bei baellen nicht hoehe = durchmesser?
 	
 	/**
 	 * VB: hoehe, name und durchmesser sind nicht null, hoehe und durchmesser sind >0
@@ -15,6 +16,7 @@ public class Baelle extends Kreis{
 	 * @param name		Name des zu erzeugenden Balls
 	 * @param durchmesser	Durchmesser des zu erzeugenden Balls
 	 */
+	@DevelopedBy("Ines Rieder")
 	public Baelle(int hoehe, String name, int durchmesser){
 		super(hoehe,name, durchmesser);
 	}

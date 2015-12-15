@@ -1,8 +1,11 @@
 /**
  * Keksdose als Beispiel fuer ein Geschenk mit quadratischen Grundflaechen
  */
-import forms.Quadrat;
+package oop.main;
+import oop.core.DevelopedBy;
+import oop.forms.Quadrat;
 
+@DevelopedBy("Ines Rieder")
 public class QuadratischeKecksdose extends Quadrat{
 
 	/**
@@ -12,6 +15,7 @@ public class QuadratischeKecksdose extends Quadrat{
 	 * @param name		Name der zu erzeugenden Keksdose
 	 * @param seitenlaenge	Seitenlaenge der zu erzeugenden Keksdose
 	 */
+	@DevelopedBy("Ines Rieder")
 	public QuadratischeKecksdose(int hoehe, String name, int seitenlaenge) {
 		super(hoehe, name, seitenlaenge);
 	}

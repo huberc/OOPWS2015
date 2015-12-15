@@ -2,16 +2,17 @@
  * Klasse zur Verwaltung des Schachtellagers
  */
 
-package core;
+package oop.core;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import schachteln.QuadratischeSchachtel;
-import schachteln.RechteckigeSchachtel;
-import schachteln.RundeSchachtel;
-import schachteln.SechseckigeSchachtel;
+import oop.schachteln.QuadratischeSchachtel;
+import oop.schachteln.RechteckigeSchachtel;
+import oop.schachteln.RundeSchachtel;
+import oop.schachteln.SechseckigeSchachtel;
 
+@DevelopedBy("Michael Langowski, Christoph Huber")
 public class Schachtellager {
 
 	private List<Schachtel> rundeSchachteln = new ArrayList<>();
@@ -24,37 +25,41 @@ public class Schachtellager {
 	 * NB: r wurde diesem Schachtellager hinzugefuegt
 	 * @param r		runde Schachtel die diesem Schachtellager hinzugefuegt werden soll
 	 */
-	public void addRundeSchachtel(RundeSchachtel r){
+	@DevelopedBy("Michael Langowski")
+	public void addRundeSchachtel(RundeSchachtel r) {
 		rundeSchachteln.add(r);
 	}
-	
+
 	/**
 	 * VB: q ist nicht null und quadratischeSchachteln wurde initialisiert
 	 * NB: q wurde diesem Schachtellager hinzugefuegt
 	 * @param q		quadratische Schachtel die diesem Schachtellager hinzugefuegt werden soll
 	 */
-	public void addQuadratischeSchachtel(QuadratischeSchachtel q){
+	@DevelopedBy("Michael Langowski")
+	public void addQuadratischeSchachtel(QuadratischeSchachtel q) {
 		quadratischeSchachteln.add(q);
 	}
-	
+
 	/**
 	 * VB: r ist nicht null und rechteckigeSchachteln wurde initialisiert
 	 * NB: r wurde diesem Schachtellager hinzugefuegt
 	 * @param r		rechteckige Schachtel die diesem Schachtellager hinzugefuegt werden soll
 	 */
-	public void addRechteckigeSchachtel(RechteckigeSchachtel r){
+	@DevelopedBy("Michael Langowski")
+	public void addRechteckigeSchachtel(RechteckigeSchachtel r) {
 		rechteckigeSchachteln.add(r);
 	}
-	
+
 	/**
 	 * VB: s ist nicht null und sechseckigeSchachteln wurde initialisiert
 	 * NB: s wurde diesem Schachtellager hinzugefuegt
 	 * @param s		sechseckige Schachtel die diesem Schachtellager hinzugefuegt werden soll
 	 */
-	public void addSechseckigeSchachtel(SechseckigeSchachtel s){
+	@DevelopedBy("Michael Langowski")
+	public void addSechseckigeSchachtel(SechseckigeSchachtel s) {
 		sechseckigeSchachteln.add(s);
 	}
-	
+
 	/**
 	 * VB: g und e sind nicht null
 	 * NB: Das Geschenk g wurde in einer Schachtel aus diesem Schachtellager verpackt
@@ -62,13 +67,11 @@ public class Schachtellager {
 	 * @param g	Geschenk, das in einer Schachtel aus diesem Schachtellager verpackt werden soll
 	 * @param e Einkaufstasche in die das Geschenk g nach der Verpackung gelegt werden soll
 	 */
+	@DevelopedBy("Christoph Huber")
 	public void verpacke(Geschenk g, Einkaufstasche e) {
 		g.verpackeGeschenk(this, e);
 	}
 
-	//TODO: sollte nicht das unverpackte Geschenk verkauft werden wenn
-	//		keine passende Schachtel gefunden wird?
-	
 	/**
 	 * VB: g und e sind nicht null, g ist eine Unterklasse von Kreis
 	 * NB: Das Geschenk g wurde in einer Schachtel aus diesem Schachtellager verpackt
@@ -76,6 +79,7 @@ public class Schachtellager {
 	 * @param g	rundes Geschenk, das in einer Schachtel aus diesem Schachtellager verpackt werden soll
 	 * @param e Einkaufstasche in die das Geschenk g nach der Verpackung gelegt werden soll
 	 */
+	@DevelopedBy("Christoph Huber")
 	public void verpackeKreis(Geschenk g, Einkaufstasche e) {
 		Schachtel box = null;
 		if (!rundeSchachteln.isEmpty()) {
@@ -83,7 +87,7 @@ public class Schachtellager {
 				box = this.rundeSchachteln.get(i);
 				if (box.passtHinein(g)) {
 					break;
-				}else{
+				} else {
 					box = null;
 				}
 			}
@@ -95,7 +99,7 @@ public class Schachtellager {
 					System.out.println(
 							"\tHinweis: es wurde keine passende runde Schachtel gefunden, daher wurde das Geschenk in eine passende quadratische Schachtel gegeben.");
 					break;
-				}else{
+				} else {
 					box = null;
 				}
 			}
@@ -104,9 +108,10 @@ public class Schachtellager {
 			for (int i = 0; i < this.sechseckigeSchachteln.size(); i++) {
 				box = this.sechseckigeSchachteln.get(i);
 				if (box.passtHinein(g)) {
-					System.out.println("\tHinweis: es wurde keine passende runde Schachtel gefunden, daher wurde das Geschenk in eine passende sechseckige Schachtel gegeben.");
+					System.out.println(
+							"\tHinweis: es wurde keine passende runde Schachtel gefunden, daher wurde das Geschenk in eine passende sechseckige Schachtel gegeben.");
 					break;
-				}else{
+				} else {
 					box = null;
 				}
 			}
@@ -116,7 +121,8 @@ public class Schachtellager {
 			box.einpacken(g);
 			e.addSchachtel(box);
 		} else {
-			System.out.println("\tkeine passende Schachtel vorhanden");
+			e.addGeschenk(g);
+			System.out.println("\tHinweis: keine passende Schachtel vorhanden, Geschenk wird unverpackt verkauft.");
 		}
 	}
 
@@ -127,6 +133,7 @@ public class Schachtellager {
 	 * @param g	quadratisch Geschenk, das in einer Schachtel aus diesem Schachtellager verpackt werden soll
 	 * @param e Einkaufstasche in die das Geschenk g nach der Verpackung gelegt werden soll
 	 */
+	@DevelopedBy("Christoph Huber")
 	public void verpackeQuadrat(Geschenk g, Einkaufstasche e) {
 		Schachtel box = null;
 		if (!quadratischeSchachteln.isEmpty()) {
@@ -134,18 +141,19 @@ public class Schachtellager {
 				box = this.quadratischeSchachteln.get(i);
 				if (box.passtHinein(g)) {
 					break;
-				}else{
+				} else {
 					box = null;
 				}
 			}
 
 		}
-		
+
 		if (box != null) {
 			box.einpacken(g);
 			e.addSchachtel(box);
 		} else {
-			System.out.println("\tkeine passende Schachtel vorhanden");
+			e.addGeschenk(g);
+			System.out.println("\tHinweis: keine passende Schachtel vorhanden, Geschenk wird unverpackt verkauft.");
 		}
 
 	}
@@ -157,6 +165,7 @@ public class Schachtellager {
 	 * @param g	rechteckige Geschenk, das in einer Schachtel aus diesem Schachtellager verpackt werden soll
 	 * @param e Einkaufstasche in die das Geschenk g nach der Verpackung gelegt werden soll
 	 */
+	@DevelopedBy("Christoph Huber")
 	public void verpackeRechteck(Geschenk g, Einkaufstasche e) {
 		Schachtel box = null;
 		if (!rechteckigeSchachteln.isEmpty()) {
@@ -164,17 +173,18 @@ public class Schachtellager {
 				box = this.rechteckigeSchachteln.get(i);
 				if (box.passtHinein(g)) {
 					break;
-				}else{
+				} else {
 					box = null;
 				}
 			}
 		}
-		
+
 		if (box != null) {
 			box.einpacken(g);
 			e.addSchachtel(box);
 		} else {
-			System.out.println("\tkeine passende Schachtel vorhanden");
+			e.addGeschenk(g);
+			System.out.println("\tHinweis: keine passende Schachtel vorhanden, Geschenk wird unverpackt verkauft.");
 		}
 	}
 
@@ -185,6 +195,7 @@ public class Schachtellager {
 	 * @param g	sechseckiges Geschenk, das in einer Schachtel aus diesem Schachtellager verpackt werden soll
 	 * @param e Einkaufstasche in die das Geschenk g nach der Verpackung gelegt werden soll
 	 */
+	@DevelopedBy("Christoph Huber")
 	public void verpackeSechseck(Geschenk g, Einkaufstasche e) {
 		Schachtel box = null;
 		if (!sechseckigeSchachteln.isEmpty()) {
@@ -192,19 +203,19 @@ public class Schachtellager {
 				box = this.sechseckigeSchachteln.get(i);
 				if (box.passtHinein(g)) {
 					break;
-				}else{
+				} else {
 					box = null;
 				}
 			}
 
-		}
-		else if (!rundeSchachteln.isEmpty()) {
+		} else if (!rundeSchachteln.isEmpty()) {
 			for (int i = 0; i < this.rundeSchachteln.size(); i++) {
 				box = this.rundeSchachteln.get(i);
 				if (box.passtHinein(g)) {
-					System.out.println("\tHinweis: es wurde keine passende sechseckige Schachtel gefunden, daher wurde das Geschenk in eine passende runde Schachtel gegeben.");
+					System.out.println(
+							"\tHinweis: es wurde keine passende sechseckige Schachtel gefunden, daher wurde das Geschenk in eine passende runde Schachtel gegeben.");
 					break;
-				}else{
+				} else {
 					box = null;
 				}
 			}
@@ -216,7 +227,7 @@ public class Schachtellager {
 					System.out.println(
 							"\tHinweis: es wurde keine passende runde Schachtel gefunden, daher wurde das Geschenk in eine passende rechteckige Schachtel gegeben.");
 					break;
-				}else{
+				} else {
 					box = null;
 				}
 			}
@@ -226,9 +237,9 @@ public class Schachtellager {
 			box.einpacken(g);
 			e.addSchachtel(box);
 		} else {
-			System.out.println("\tkeine passende Schachtel vorhanden");
+			e.addGeschenk(g);
+			System.out.println("\tHinweis: keine passende Schachtel vorhanden, Geschenk wird unverpackt verkauft.");
 		}
-
 
 	}
 

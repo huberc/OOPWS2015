@@ -2,8 +2,11 @@
  * Vase als Beispiel fuer ein Geschenk mit sechseckiger Grundflaeche
  */
 
-import forms.Sechseck;
+package oop.main;
+import oop.core.DevelopedBy;
+import oop.forms.Sechseck;
 
+@DevelopedBy("Ines Rieder")
 public class SechseckigeVase extends Sechseck{
 
 	/**
@@ -13,6 +16,7 @@ public class SechseckigeVase extends Sechseck{
 	 * @param name		Name der zu erzeugenden Vase
 	 * @param seitenlaenge	Seitenlaenge der zu erzeugenden Vase
 	 */
+	@DevelopedBy("Ines Rieder")
 	public SechseckigeVase(int hoehe, String name, int seitenlaenge) {
 		super(hoehe, name, seitenlaenge);
 	}

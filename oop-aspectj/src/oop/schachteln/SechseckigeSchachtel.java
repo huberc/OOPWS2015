@@ -2,13 +2,15 @@
  * Klasse zur Verwaltung von sechseckigen Schachteln
  */
 
-package schachteln;
+package oop.schachteln;
 
-import core.Geschenk;
-import core.Schachtel;
-import forms.Kreis;
-import forms.Sechseck;
+import oop.core.DevelopedBy;
+import oop.core.Geschenk;
+import oop.core.Schachtel;
+import oop.forms.Kreis;
+import oop.forms.Sechseck;
 
+@DevelopedBy("Christoph Huber")
 public class SechseckigeSchachtel extends Sechseck implements Schachtel{
 
 	Geschenk inhalt; 
@@ -20,6 +22,7 @@ public class SechseckigeSchachtel extends Sechseck implements Schachtel{
 	 * @param name		Name der zu erzeugenden Schachtel
 	 * @param seitenlaenge	Seitenlaenge der zu erzeugenden Schachtel
 	 */
+	@DevelopedBy("Christoph Huber")
 	public SechseckigeSchachtel(int hoehe, String name, int seitenlaenge) {
 		super(hoehe, name, seitenlaenge);
 	}
@@ -30,6 +33,7 @@ public class SechseckigeSchachtel extends Sechseck implements Schachtel{
 	 * @param g		Geschenk, das in dieser Schachtel eingepackt werden soll
 	 */
 	@Override
+	@DevelopedBy("Christoph Huber")
 	public void einpacken(Geschenk g) {
 		this.inhalt = g;
 	}
@@ -44,13 +48,14 @@ public class SechseckigeSchachtel extends Sechseck implements Schachtel{
 	 * 			ob es nicht zu viel Platz hat
 	 */
 	@Override
+	@DevelopedBy("Christoph Huber")
 	public boolean passtHinein(Geschenk g) {
-		if ((this.getHoehe() < g.getHoehe()+1) || (this.getHoehe() > g.getHoehe()+3)) {
+		if ((this.getHoehe() < g.getHoehe()+1) || (this.getHoehe() >= g.getHoehe()+3)) {
 			return false;
 		} else if (g instanceof Sechseck) {
 			Sechseck s = (Sechseck) g;
 			if ((this.getSeitenlaenge() > s.getSeitenlaenge()+1) && 
-					(this.getSeitenlaenge() < s.getSeitenlaenge()+3)) {
+					(this.getSeitenlaenge() <= s.getSeitenlaenge()+3)) {
 				return true;
 			} else {
 				return false;
@@ -58,7 +63,7 @@ public class SechseckigeSchachtel extends Sechseck implements Schachtel{
 		} else if (g instanceof Kreis) {
 			Kreis k = (Kreis) g;
 			if ((this.getInkreisDurchmesser() > k.getDurchmesser()+1) &&
-					(this.getInkreisDurchmesser() < k.getDurchmesser()+3)) {
+					(this.getInkreisDurchmesser() <= k.getDurchmesser()+3)) {
 				return true;
 			} else {
 				return false;
@@ -67,6 +72,7 @@ public class SechseckigeSchachtel extends Sechseck implements Schachtel{
 		return false;
 	}
 
+	@DevelopedBy("Christoph Huber")
 	public Geschenk getInhalt(){return inhalt;}
 	
 }

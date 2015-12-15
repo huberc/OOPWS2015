@@ -2,8 +2,11 @@
  * Buecher als Beispiel fuer Geschenke mit rechteckiger Grundflaeche
  */
 
-import forms.Rechteck;
+package oop.main;
+import oop.core.DevelopedBy;
+import oop.forms.Rechteck;
 
+@DevelopedBy("Ines Rieder")
 public class Buecher extends Rechteck{
 
 	/**
@@ -14,6 +17,7 @@ public class Buecher extends Rechteck{
 	 * @param breite	Breite des zu erzeugenden Buches
 	 * @param laenge	Laenge des zu erzeugenden Buches
 	 */
+	@DevelopedBy("Ines Rieder")
 	public Buecher(int hoehe, String name, int breite, int laenge) {
 		super(hoehe, name, breite, laenge);
 	}
