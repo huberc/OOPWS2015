@@ -4,10 +4,12 @@
 
 package oop.forms;
 
+import oop.core.DevelopedBy;
 import oop.core.Einkaufstasche;
 import oop.core.Geschenk;
 import oop.core.Schachtellager;
 
+@DevelopedBy("Michael Langowski")
 public abstract class Kreis extends Geschenk{
 	private int durchmesser;
 	
@@ -18,6 +20,7 @@ public abstract class Kreis extends Geschenk{
 	 * @param name		Name des zuerzeugenden runden Geschenks
 	 * @param durchmesser Durchmesser des zuerzeugenden runden Geschenks
 	 */
+	@DevelopedBy("Michael Langowski")
 	public Kreis(int hoehe, String name, int durchmesser){
 		super(hoehe, name);
 		this.durchmesser = durchmesser;
@@ -28,6 +31,7 @@ public abstract class Kreis extends Geschenk{
 	 * NB: die Grundflaeche dieses runden Geschenks wurde zurueckgegeben
 	 * @return	Grundlaeche dieses Geschenks
 	 */
+	@DevelopedBy("Michael Langowski")
 	public double getFlaeche(){
 		return ((Math.PI*durchmesser*durchmesser)/4);
 	}
@@ -41,10 +45,12 @@ public abstract class Kreis extends Geschenk{
 	 * @param e		Einkaufstasche in die dieses Geschenk nach der Verpackung gelegt wird
 	 */
 	@Override
+	@DevelopedBy("Michael Langowski")
 	public void verpackeGeschenk(Schachtellager l,Einkaufstasche e){
 		l.verpackeKreis(this, e);
 	}
 	
+	@DevelopedBy("Michael Langowski")
 	public int getDurchmesser(){return durchmesser;}
 	
 }

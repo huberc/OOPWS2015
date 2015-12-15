@@ -4,10 +4,12 @@
 
 package oop.forms;
 
+import oop.core.DevelopedBy;
 import oop.core.Einkaufstasche;
 import oop.core.Geschenk;
 import oop.core.Schachtellager;
 
+@DevelopedBy("Ines Rieder")
 public abstract class Quadrat extends Geschenk{
     
 	private int seitenlaenge;
@@ -19,6 +21,7 @@ public abstract class Quadrat extends Geschenk{
 	 * @param name		Name des zu erzeugenden quadratischen Geschenks
 	 * @param seitenlaenge	Seitenlaenge des zu erzeugenden quadratischen Geschenks
 	 */
+	@DevelopedBy("Ines Rieder")
 	public Quadrat(int hoehe, String name,int seitenlaenge) {
 		super(hoehe, name);
 		this.seitenlaenge = seitenlaenge;
@@ -32,6 +35,7 @@ public abstract class Quadrat extends Geschenk{
 	 * 				Geschenks genommen/ gesucht wird
 	 * @param e		Einkaufstasche in die dieses Geschenk nach der Verpackung gelegt wird
 	 */
+	@DevelopedBy("Ines Rieder")
 	public void verpackeGeschenk(Schachtellager l,Einkaufstasche e){
 		l.verpackeQuadrat(this,e);
 	}
@@ -41,10 +45,12 @@ public abstract class Quadrat extends Geschenk{
 	 * NB: Grundflaeche dieses quadratischen Geschenks wurde zurueckgegeben
 	 * @return	Grundflaeche dieses Geschenks
 	 */
+	@DevelopedBy("Ines Rieder")
 	public double getFlaeche(){
 		return seitenlaenge*seitenlaenge;
 	}
 	
+	@DevelopedBy("Ines Rieder")
 	public int getSeitenlaenge(){
 		return seitenlaenge;
 	}

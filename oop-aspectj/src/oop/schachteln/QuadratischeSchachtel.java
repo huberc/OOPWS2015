@@ -4,11 +4,13 @@
 
 package oop.schachteln;
 
+import oop.core.DevelopedBy;
 import oop.core.Geschenk;
 import oop.core.Schachtel;
 import oop.forms.Kreis;
 import oop.forms.Quadrat;
 
+@DevelopedBy("Christoph Huber")
 public class QuadratischeSchachtel extends Quadrat implements Schachtel {
 	
 	private Geschenk inhalt;
@@ -21,6 +23,7 @@ public class QuadratischeSchachtel extends Quadrat implements Schachtel {
 	 * @param name		Name der zu erzeugenden Schachtel
 	 * @param seitenlaenge	Seitenlaenge der zuerzeugenden Schachtel
 	 */
+	@DevelopedBy("Christoph Huber")
 	public QuadratischeSchachtel(int hoehe, String name, int seitenlaenge) {
 		super(hoehe, name, seitenlaenge);
 	}
@@ -31,6 +34,7 @@ public class QuadratischeSchachtel extends Quadrat implements Schachtel {
 	 * @param g		Geschenk, das in dieser Schachtel eingepackt werden soll
 	 */
 	@Override
+	@DevelopedBy("Christoph Huber")
 	public void einpacken(Geschenk g) {
 		this.inhalt = g;
 	}
@@ -45,6 +49,7 @@ public class QuadratischeSchachtel extends Quadrat implements Schachtel {
 	 * 			ob es nicht zu viel Platz hat
 	 */
 	@Override
+	@DevelopedBy("Christoph Huber")
 	public boolean passtHinein(Geschenk g) {
 		if ((this.getHoehe() < g.getHoehe()+1) || (this.getHoehe() >= g.getHoehe()+3)) {
 			return false;
@@ -68,5 +73,6 @@ public class QuadratischeSchachtel extends Quadrat implements Schachtel {
 		return false;
 	}
 	
+	@DevelopedBy("Christoph Huber")
 	public Geschenk getInhalt(){return inhalt;}
 }

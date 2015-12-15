@@ -12,6 +12,7 @@ import oop.schachteln.RechteckigeSchachtel;
 import oop.schachteln.RundeSchachtel;
 import oop.schachteln.SechseckigeSchachtel;
 
+@DevelopedBy("Michael Langowski, Christoph Huber")
 public class Schachtellager {
 
 	private List<Schachtel> rundeSchachteln = new ArrayList<>();
@@ -27,6 +28,7 @@ public class Schachtellager {
 	 *            runde Schachtel die diesem Schachtellager hinzugefuegt werden
 	 *            soll
 	 */
+	@DevelopedBy("Michael Langowski")
 	public void addRundeSchachtel(RundeSchachtel r) {
 		rundeSchachteln.add(r);
 	}
@@ -39,6 +41,7 @@ public class Schachtellager {
 	 *            quadratische Schachtel die diesem Schachtellager hinzugefuegt
 	 *            werden soll
 	 */
+	@DevelopedBy("Michael Langowski")
 	public void addQuadratischeSchachtel(QuadratischeSchachtel q) {
 		quadratischeSchachteln.add(q);
 	}
@@ -51,6 +54,7 @@ public class Schachtellager {
 	 *            rechteckige Schachtel die diesem Schachtellager hinzugefuegt
 	 *            werden soll
 	 */
+	@DevelopedBy("Michael Langowski")
 	public void addRechteckigeSchachtel(RechteckigeSchachtel r) {
 		rechteckigeSchachteln.add(r);
 	}
@@ -63,6 +67,7 @@ public class Schachtellager {
 	 *            sechseckige Schachtel die diesem Schachtellager hinzugefuegt
 	 *            werden soll
 	 */
+	@DevelopedBy("Michael Langowski")
 	public void addSechseckigeSchachtel(SechseckigeSchachtel s) {
 		sechseckigeSchachteln.add(s);
 	}
@@ -72,10 +77,12 @@ public class Schachtellager {
 	 * @param g
 	 * @param e
 	 */
+	@DevelopedBy("Christoph Huber")
 	public void verpacke(Geschenk g, Einkaufstasche e) {
 		g.verpackeGeschenk(this, e);
 	}
 
+	@DevelopedBy("Christoph Huber")
 	public void verpackeKreis(Geschenk g, Einkaufstasche e) {
 		Schachtel box = null;
 		if (!rundeSchachteln.isEmpty()) {
@@ -122,6 +129,7 @@ public class Schachtellager {
 		}
 	}
 
+	@DevelopedBy("Christoph Huber")
 	public void verpackeQuadrat(Geschenk g, Einkaufstasche e) {
 		Schachtel box = null;
 		if (!quadratischeSchachteln.isEmpty()) {
@@ -146,6 +154,7 @@ public class Schachtellager {
 
 	}
 
+	@DevelopedBy("Christoph Huber")
 	public void verpackeRechteck(Geschenk g, Einkaufstasche e) {
 		Schachtel box = null;
 		if (!rechteckigeSchachteln.isEmpty()) {
@@ -168,6 +177,7 @@ public class Schachtellager {
 		}
 	}
 
+	@DevelopedBy("Christoph Huber")
 	public void verpackeSechseck(Geschenk g, Einkaufstasche e) {
 		Schachtel box = null;
 		if (!sechseckigeSchachteln.isEmpty()) {
