@@ -37,6 +37,8 @@ public class Test {
         System.out.println("Test fallback Strategie: "+test.testFallbackAlgorithmus());
 		System.out.println();
 		System.out.println("Test keine Schachtel vorhanden: "+test.testKeinSchachtelvorhanden());
+		System.out.println();
+		System.out.println("Test Schachtel als Geschenk verwendet: "+test.testSchachtelAlsGeschenk());
         
     }
     
@@ -256,6 +258,46 @@ public class Test {
 		System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
 		System.out.println(einkaufstasche.inhalt());
 
+    	return true;
+    }
+    
+    @DevelopedBy("Ines Rieder")
+    private boolean testSchachtelAlsGeschenk() {
+    	Schachtellager schachtellager = new Schachtellager();
+		Einkaufstasche einkaufstasche = new Einkaufstasche();
+		RechteckigeSchachtel rechteckigeSchachtel = new RechteckigeSchachtel(10, "rechteckige Schachtel", 5, 10);
+		RechteckigeSchachtel rechteckigeSchachtel1 = new RechteckigeSchachtel(8, "rechteckige Schachtel Geschenk", 3, 8);
+		QuadratischeSchachtel quadratischeSchachtel = new QuadratischeSchachtel(10, "quadratische Schachtel", 10);
+		QuadratischeSchachtel quadratischeSchachtel1 = new QuadratischeSchachtel(8, "quadratische Schachtel Geschenk", 8);
+		RundeSchachtel rundeSchachtel = new RundeSchachtel(10, "runde Schachtel", 10);
+		RundeSchachtel rundeSchachtel1 = new RundeSchachtel(8, "runde Schachtel Geschenk", 8);
+		SechseckigeSchachtel sechseckigeSchachtel = new SechseckigeSchachtel(10, "sechseckige Schachtel", 5);
+		SechseckigeSchachtel sechseckigeSchachtel1 = new SechseckigeSchachtel(8, "sechseckige Schachtel Geschenk", 3);
+		
+		schachtellager.addRechteckigeSchachtel(rechteckigeSchachtel);
+		schachtellager.verpacke(rechteckigeSchachtel1, einkaufstasche);
+		schachtellager.addQuadratischeSchachtel(quadratischeSchachtel);
+		schachtellager.verpacke(quadratischeSchachtel1, einkaufstasche);
+		schachtellager.addRundeSchachtel(rundeSchachtel);
+		schachtellager.verpacke(rundeSchachtel1, einkaufstasche);
+		schachtellager.addSechseckigeSchachtel(sechseckigeSchachtel);
+		schachtellager.verpacke(sechseckigeSchachtel1, einkaufstasche);
+		
+		if (!(einkaufstasche.volumen() == (rechteckigeSchachtel.volumen() + quadratischeSchachtel.volumen() + 
+				rundeSchachtel.volumen() + sechseckigeSchachtel.volumen()))) {
+			return false;
+		}
+		if (!(einkaufstasche.inhalt().contains(rechteckigeSchachtel1.getName())) || 
+				!(einkaufstasche.inhalt().contains(quadratischeSchachtel1.getName())) || 
+				!(einkaufstasche.inhalt().contains(rundeSchachtel1.getName())) ||
+				!(einkaufstasche.inhalt().contains(sechseckigeSchachtel1.getName()))) {
+			return false;
+		}
+		
+		System.out.println();
+		System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
+		System.out.println(einkaufstasche.inhalt());
+		
     	return true;
     }
 }
