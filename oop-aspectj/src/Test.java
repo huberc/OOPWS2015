@@ -37,7 +37,7 @@ public class Test {
     private boolean testRechteckigeSchachtel(){
     	Schachtellager schachtellager = new Schachtellager();
     	Einkaufstasche einkaufstasche = new Einkaufstasche();
-    	Buecher buch1 = new Buecher(18,"Buch1",14,19);
+    	Buecher buch1 = new Buecher(18,"Buch1",13,18);
     	RechteckigeSchachtel rechteckigeSchachtel = new RechteckigeSchachtel(20, "RechteckigeSchachtel 1", 15, 20);
     	
     	schachtellager.addRechteckigeSchachtel(rechteckigeSchachtel);
@@ -49,7 +49,8 @@ public class Test {
     	if(!(einkaufstasche.inhalt().contains("Buch1"))){
     		return false;
     	}
-    		
+    	
+    	System.out.println();
     	System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
     	System.out.println(einkaufstasche.inhalt());
     	
@@ -73,6 +74,7 @@ public class Test {
     		return false;
     	}
     		
+    	System.out.println();
     	System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
     	System.out.println(einkaufstasche.inhalt());
     	
@@ -95,7 +97,8 @@ public class Test {
     	if(!(einkaufstasche.inhalt().contains("Weinflasche"))){
     		return false;
     	}
-    		
+    	
+    	System.out.println();
     	System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
     	System.out.println(einkaufstasche.inhalt());
     	
@@ -106,7 +109,7 @@ public class Test {
     private boolean testSeschseckigeSchachtel(){
     	Schachtellager schachtellager = new Schachtellager();
     	Einkaufstasche einkaufstasche = new Einkaufstasche();
-    	SechseckigeKerze kerze = new SechseckigeKerze(9, "Kerze1", 8);
+    	SechseckigeKerze kerze = new SechseckigeKerze(8, "Kerze1", 7);
     	SechseckigeSchachtel sechseckigeSchachtel = new SechseckigeSchachtel(10, "SechseckigeSchachtel", 9);
     	
     	schachtellager.addSechseckigeSchachtel(sechseckigeSchachtel);
@@ -118,14 +121,15 @@ public class Test {
     	if(!(einkaufstasche.inhalt().contains("Kerze1"))){
     		return false;
     	}
-    		
+    	
+    	System.out.println();
     	System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
     	System.out.println(einkaufstasche.inhalt());
     	
     	return true;
     }
     
-    @DevelopedBy("Ines Rieder")
+    @DevelopedBy("Christoph Huber")
     private boolean testFallbackAlgorithmus(){
     	
     	/**
@@ -146,6 +150,8 @@ public class Test {
     	if(!(einkaufstasche.inhalt().contains(ball.getName())) && !(einkaufstasche.inhalt().contains(quadratischeSchachtel.getName()))){
     		return false;
     	}
+    	
+    	System.out.println();
     	System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
     	System.out.println(einkaufstasche.inhalt());
     	
@@ -168,6 +174,8 @@ public class Test {
     	if(!(einkaufstasche.inhalt().contains(weinflasche.getName())) && !(einkaufstasche.inhalt().contains(sechseckigeSchachtel.getName()))){
     		return false;
     	}
+    	
+    	System.out.println();
     	System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
     	System.out.println(einkaufstasche.inhalt());
     	
@@ -190,6 +198,8 @@ public class Test {
     	if(!(einkaufstasche.inhalt().contains(kerze.getName())) && !(einkaufstasche.inhalt().contains(rundeSchachtel.getName()))){
     		return false;
     	}
+    	
+    	System.out.println();
     	System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
     	System.out.println(einkaufstasche.inhalt());
     	
@@ -211,6 +221,8 @@ public class Test {
     	if(!(einkaufstasche.inhalt().contains(vase.getName())) && !(einkaufstasche.inhalt().contains(rechteckigeSchachtel.getName()))){
     		return false;
     	}
+    	
+    	System.out.println();
     	System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
     	System.out.println(einkaufstasche.inhalt());
     	
@@ -233,6 +245,7 @@ public class Test {
 			return false;
 		}
 
+		System.out.println();
 		System.out.println("\tVolumen der Einkaufstasche: "+einkaufstasche.volumen());
 		System.out.println(einkaufstasche.inhalt());
 
