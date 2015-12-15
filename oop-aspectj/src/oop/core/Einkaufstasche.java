@@ -3,6 +3,7 @@ package oop.core;
 import java.util.ArrayList;
 import java.util.List;
 
+@DevelopedBy
 public class Einkaufstasche {
 
 	private List <Schachtel> einkaufstasche = new ArrayList<>();

@@ -1,5 +1,6 @@
 package oop.core;
 
+@DevelopedBy("Michael Langowski")
 public abstract class Geschenk {
 
 	private int hoehe;

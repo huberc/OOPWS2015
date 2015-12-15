@@ -7,8 +7,9 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.SOURCE)
 @Target({ ElementType.TYPE, ElementType.METHOD })
-public @interface Author {
+@DevelopedBy("Michael Langowski")
+public @interface DevelopedBy {
 
-    String developedBy() default "nobody";
+    String value() default "";
     
 }

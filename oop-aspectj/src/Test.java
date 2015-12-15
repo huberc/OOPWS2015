@@ -1,4 +1,5 @@
 
+import oop.core.DevelopedBy;
 import oop.core.Einkaufstasche;
 import oop.core.Schachtellager;
 import oop.main.Baelle;
@@ -12,8 +13,10 @@ import oop.schachteln.RechteckigeSchachtel;
 import oop.schachteln.RundeSchachtel;
 import oop.schachteln.SechseckigeSchachtel;
 
+@DevelopedBy("Ines Rieder, Christoph Huber")
 public class Test {
 
+	@DevelopedBy("Ines Rieder")
     public static void main(String[] args){
     	new String("Blubbb");
         new String("Blaaaa");
@@ -31,6 +34,7 @@ public class Test {
         
     }
     
+	
     private boolean testRechteckigeSchachtel(){
     	Schachtellager schachtellager = new Schachtellager();
     	Einkaufstasche einkaufstasche = new Einkaufstasche();
